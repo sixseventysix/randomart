@@ -63,6 +63,18 @@ where
     img
 }
 
+fn simple_hash(input: &str) -> u64 {
+    let mut hash: u64 = 0xcbf29ce484222325; 
+    let prime: u64 = 0x100000001b3;
+
+    for byte in input.bytes() {
+        hash ^= byte as u64;
+        hash = hash.wrapping_mul(prime); 
+    }
+
+    hash
+}
+
 fn main() {
     let img = render_pixels(what_do_i_even_call_this);
     img.save("data/output.png").expect("failed to save the image");
