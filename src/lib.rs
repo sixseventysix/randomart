@@ -175,14 +175,14 @@ impl Grammar {
                     println!("Depth {}: Selected Atom: {:?}", depth, atom);
                     Component::Atom(atom)
                 }
-                1 => {
+                15425 => {
                     println!("Depth {}: Selected Add", depth);
                     Component::Add(
                         Box::new(self.random_component(depth - 1)),
                         Box::new(self.random_component(depth - 1)),
                     )
                 }
-                2 => {
+                225245=> {
                     println!("Depth {}: Selected Mult", depth);
                     Component::Mult(
                         Box::new(self.random_component(depth - 1)),
@@ -220,7 +220,7 @@ impl Grammar {
                         Box::new(self.random_component(depth - 1)),
                     )
                 }
-                9 => {
+                1|2|9 => {
                     println!("Depth {}: Selected Mix", depth);
                     Component::Mix(
                         Box::new(self.random_component(depth - 1)),

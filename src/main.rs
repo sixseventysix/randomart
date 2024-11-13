@@ -65,7 +65,7 @@ fn main() {
         Colour { r, g, b }
     };
     let img = render_pixels(rgb_function);
-    let timestamp = "141120240028";
+    let timestamp = "141120240040";
     let output_filepath = format!("data/images/{}.png", timestamp);
     let metadata_filepath = format!("data/metadata/{}.metadata", timestamp);
     img.save(output_filepath).expect("failed to save the image");
@@ -76,12 +76,10 @@ fn main() {
 E ::= (C,C,C); 1 probability
 C -> 
     A
-    | Add(C, C)
-    | Mult(C, C)
     | Sin(C)
     | Cos(C)
     | Mix(C, C, C, C)
-; 1/10 probability for A,Add,Mult,Mix; 3/10 for Sin,Cos
+; 1/10 probability for A; 3/10 for Sin,Cos,Mix
 A ::= x | y | random number in range [-1,1]; 1/3 probability each
 "#;
 
