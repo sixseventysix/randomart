@@ -53,7 +53,7 @@ fn save_metadata(
 }
 
 fn main() {
-    let string = "samarth";
+    let string = "samarth kulkarni";
     let max_depth = 12;
     let seed = fnv1a(string);
     let mut grammar = Grammar::new(seed, max_depth);
@@ -65,7 +65,7 @@ fn main() {
         Colour { r, g, b }
     };
     let img = render_pixels(rgb_function);
-    let timestamp = "141120240040";
+    let timestamp = "141120240043";
     let output_filepath = format!("data/images/{}.png", timestamp);
     let metadata_filepath = format!("data/metadata/{}.metadata", timestamp);
     img.save(output_filepath).expect("failed to save the image");
@@ -79,7 +79,7 @@ C ->
     | Sin(C)
     | Cos(C)
     | Mix(C, C, C, C)
-; 1/10 probability for A; 3/10 for Sin,Cos,Mix
+; 1/10 probability for A; 2/10 for Sin,Cos; 4/10 for Mix
 A ::= x | y | random number in range [-1,1]; 1/3 probability each
 "#;
 

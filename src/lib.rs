@@ -189,13 +189,13 @@ impl Grammar {
                         Box::new(self.random_component(depth - 1)),
                     )
                 }
-                3 | 4 | 5 => {
+                4 | 5 => {
                     println!("Depth {}: Selected Sin", depth);
                     Component::Sin(
                         Box::new(self.random_component(depth - 1)),
                     )
                 }
-                6 | 7 | 8 => {
+                7 | 8 => {
                     println!("Depth {}: Selected Cos", depth);
                     Component::Cos(
                         Box::new(self.random_component(depth - 1)),
@@ -220,7 +220,7 @@ impl Grammar {
                         Box::new(self.random_component(depth - 1)),
                     )
                 }
-                1|2|9 => {
+                1|2|3|6 => {
                     println!("Depth {}: Selected Mix", depth);
                     Component::Mix(
                         Box::new(self.random_component(depth - 1)),
