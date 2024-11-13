@@ -197,10 +197,16 @@ impl Grammar {
                 Atom::Y => y,
             },
             Component::Add(left, right) => {
-                self.evaluate_component(left, x, y) + self.evaluate_component(right, x, y)
+                let left_val = self.evaluate_component(left, x, y);
+                let right_val = self.evaluate_component(right, x, y);
+                let result = left_val + right_val;
+                result.clamp(-1.0,1.0)
             }
             Component::Mult(left, right) => {
-                self.evaluate_component(left, x, y) * self.evaluate_component(right, x, y)
+                let left_val = self.evaluate_component(left, x, y);
+                let right_val = self.evaluate_component(right, x, y);
+                let result = left_val * right_val;
+                result.clamp(-1.0,1.0)
             }
         }
     }
