@@ -1,0 +1,24 @@
+Input String: prabjot
+Seed: 3233411122816840901
+Generated Expression:
+R: -0.473
+G: sin(x)
+B: sin(sin(mix(((sin(mix(((sin(mix((-0.027 / x), cos(x), (x + 0.146), exp(x))) * cos(sqrt(exp(x)))) / cos(sqrt(exp(mix(y, x, x, x))))), (sin(exp(mix((y / y), mix(y, y, 0.146, x), (x * y), cos(-0.205)))) / y), sin((mix(cos(sin(-0.474)), sin(sqrt(0.949)), sin(sqrt(0.547)), cos(sqrt(x))) + mix((sin(-0.607) / cos(y)), exp(mix(y, y, 0.269, 0.191)), sin(x), sqrt(exp(y))))), sin(((x + sin(exp(0.222))) * sin(exp(cos(-0.174))))))) * exp(cos(cos(((y + sin(sin(0.028))) * sqrt(exp(x))))))) / (exp(cos((sqrt((y + (sin(0.355) * sqrt(x)))) / cos(cos(sin(exp(0.104))))))) * (sin(cos(sin(sqrt(exp(cos(x)))))) * sqrt((cos(sin(sqrt((0.857 + 0.788)))) + cos((sin(sin(x)) / (sqrt(y) / 0.416)))))))), sin(x), sqrt(sin(mix(cos(sqrt(sin(mix(((0.177 * y) / sqrt(-0.487)), (sin(x) / y), ((y + -0.821) * exp(-0.375)), sqrt((-0.403 + 0.766)))))), x, sin(exp(mix((sin(sin(y)) / sin((x * x))), cos(((0.519 + x) * exp(y))), sin(sin(exp(x))), sin(((y + -0.943) * sin(x)))))), cos((sin(mix(sin(sqrt(x)), mix((0.456 / x), (x / 0.816), (x / y), mix(x, x, y, 0.025)), sin(sin(x)), sin((x * 0.939)))) * (sin(cos(cos(y))) * exp(mix(sin(y), sin(0.576), sqrt(y), mix(y, -0.352, 0.808, y))))))))), sin(cos(sin(sqrt(sin(cos(cos(sqrt(sin(y))))))))))))
+Depth: 12
+Hashing Function: fnv1a(hash=0xcbf29ce484222325, prime=0x100000001b3)
+PRNG Formula: LCR(a=1664525, c=1013904223, m=2^32)
+Grammar:
+E ::= (C,C,C); 1 probability
+C -> 
+    A
+    | Add(C, C)
+    | Mult(C, C)
+    | Sin(C)
+    | Cos(C)
+    | Exp(C)
+    | Sqrt(C)
+    | Div(C, C)
+    | Mix(C, C, C, C)
+; 1/13 probability for A,Add,Mult,Exp,Sqrt,Div,Mix; 3/13 for Sin,Cos
+A ::= x | y | random number in range [-1,1]; 1/3 probability each
+

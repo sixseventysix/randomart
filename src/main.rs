@@ -53,7 +53,7 @@ fn save_metadata(
 }
 
 fn main() {
-    let string = "samarth kulkarni";
+    let string = "diya";
     let max_depth = 12;
     let seed = fnv1a(string);
     let mut grammar = Grammar::new(seed, max_depth);
@@ -65,7 +65,7 @@ fn main() {
         Colour { r, g, b }
     };
     let img = render_pixels(rgb_function);
-    let timestamp = "141120240007";
+    let timestamp = "141120240017";
     let output_filepath = format!("data/images/{}.png", timestamp);
     let metadata_filepath = format!("data/metadata/{}.metadata", timestamp);
     img.save(output_filepath).expect("failed to save the image");

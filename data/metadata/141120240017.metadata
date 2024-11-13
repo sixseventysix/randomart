@@ -1,0 +1,24 @@
+Input String: diya
+Seed: 14569067173067445212
+Generated Expression:
+R: (sin(sin(cos(sin((sin(mix(cos((sin(x) * sqrt(sin(-0.805)))), sqrt(sin(x)), sin((cos(sin(y)) + exp(mix(0.240, 0.985, -0.367, -0.664)))), sin((exp(cos(0.069)) * exp(cos(0.376)))))) * (mix((sin(exp(y)) / (sin(0.153) * (cos(x) + sin(0.676)))), sin(sin(sin(mix(x, 0.954, 0.575, -0.632)))), x, sqrt((mix(sin(y), sin(0.902), (0.956 * x), sin(x)) + cos(cos(y))))) + exp(mix((sqrt(sin(x)) / (sqrt(x) / y)), sin(exp(0.253)), sin(cos(sin(y))), exp(cos((x / x))))))))))) / y)
+G: sqrt((cos(cos(sin(exp(-0.840)))) + (mix(cos(((-0.144 + exp(mix((sqrt((-0.286 + 0.948)) / mix(cos(0.359), cos(x), (y * x), (y / 0.375))), sin(sin((y + x))), (exp(0.010) * exp(cos(y))), sqrt(exp(cos(x)))))) * sqrt(sin(y)))), sqrt(exp(cos(((sin(mix((x / y), 0.114, exp(x), (-0.341 / -0.164))) * sin(sin(mix(x, x, 0.237, 0.114)))) / (cos((sin(x) / cos(x))) + sin((cos(x) + sin(y)))))))), mix(((exp(y) * sqrt(sin(y))) / sin((cos(cos(sin(exp(-0.626)))) + sqrt(sin(mix((x / -0.256), sin(x), exp(y), cos(y))))))), (y + (exp(mix((sin(sin(y)) / ((0.698 * x) / (-0.812 * x))), ((mix(x, x, y, -0.959) + sin(y)) * cos(sin(x))), exp(-0.629), (x + sqrt(sin(x))))) * (sin(sin(x)) / sqrt(sin(y))))), sqrt(exp(y)), sin((mix(sin(sin((y + sqrt(-0.895)))), sin((exp(mix(y, 0.340, -0.262, -0.353)) * x)), sqrt((mix(cos(-0.566), mix(y, -0.076, y, y), sin(-0.506), cos(y)) + sin(x))), ((mix(sin(-0.876), cos(-0.516), (-0.332 + x), sin(-0.658)) + sin(exp(-0.269))) * sin(sin(cos(0.893))))) + (cos(cos(sin(exp(0.686)))) + sin(sin(x)))))), sqrt(sin(mix(sin(sin((0.611 + exp(mix(y, y, 0.716, x))))), sqrt(exp(cos(((y * -0.963) / sqrt(y))))), mix(cos(sqrt(sin(cos(0.697)))), exp(mix(cos((-0.599 * y)), sin((0.234 + x)), sin(mix(y, 0.418, x, y)), sqrt((0.338 + 0.094)))), mix(cos((exp(x) * cos(y))), exp(mix((0.909 / x), sin(0.487), -0.359, exp(x))), sin(((0.705 + -0.303) * cos(x))), sqrt((cos(x) + sin(y)))), cos((((0.528 + y) * (x + 0.614)) / sin(cos(y))))), sin((-0.973 + sin(mix((x / -0.628), (-0.738 / -0.730), sin(y), y)))))))) + sqrt(sin(y)))))
+B: sin((cos((((cos((sin(sin(0.410)) / sin(mix(cos(sin(x)), cos((-0.244 / x)), cos(sin(y)), cos((0.000 / y)))))) + (sqrt(exp(cos(cos((y * x))))) / sin(sqrt(sin(cos(sin(0.316))))))) * mix(sin(sin(exp(cos((sin(y) / y))))), (exp(y) * ((x + sqrt((x + (y * y)))) * sin((exp(cos(x)) * (exp(y) * sin(x)))))), exp(cos((sqrt((cos(x) + sqrt(y))) / mix((sin(y) / x), sin(exp(x)), sin(sin(x)), cos((x / -0.428)))))), (((0.738 + sin(cos(cos(x)))) * exp(x)) / sqrt(sin(cos((sin(y) / cos(0.898)))))))) / exp(cos(cos(sqrt((cos(cos(sin(-0.841))) + sin(sin(sin(y)))))))))) + (sqrt(exp(mix(sin(((cos((sin(x) / cos(x))) + (sin(0.551) * exp(cos(-0.544)))) * (mix(sin(sin(-0.558)), (sin(-0.788) / sin(x)), (cos(y) + sqrt(x)), mix(sin(x), (y + 0.675), sin(-0.049), (x * x))) + cos(sin(sin(y)))))), (sin((mix(cos(sqrt(y)), y, ((0.985 + -0.137) * x), sin(exp(y))) + (sqrt(exp(-0.458)) / sin(sin(-0.266))))) / sin((y + sqrt((mix(y, y, x, y) + (-0.324 / y)))))), cos(sqrt((x + sqrt(sin(cos(-0.091)))))), (mix(cos(((cos(x) + (x * x)) * sin(sqrt(y)))), cos(sin(((-0.236 + y) * (y + y)))), sin(sin(mix((0.025 / x), sin(0.078), cos(x), sqrt(y)))), -0.477) + (mix(((exp(-0.692) * sin(0.263)) / sin(sin(0.243))), sin(sin((x + y))), ((cos(y) + sqrt(y)) * cos(cos(x))), sin(cos((-0.924 / y)))) + sin(sqrt((cos(y) + sqrt(x))))))))) / -0.180)))
+Depth: 12
+Hashing Function: fnv1a(hash=0xcbf29ce484222325, prime=0x100000001b3)
+PRNG Formula: LCR(a=1664525, c=1013904223, m=2^32)
+Grammar:
+E ::= (C,C,C); 1 probability
+C -> 
+    A
+    | Add(C, C)
+    | Mult(C, C)
+    | Sin(C)
+    | Cos(C)
+    | Exp(C)
+    | Sqrt(C)
+    | Div(C, C)
+    | Mix(C, C, C, C)
+; 1/13 probability for A,Add,Mult,Exp,Sqrt,Div,Mix; 3/13 for Sin,Cos
+A ::= x | y | random number in range [-1,1]; 1/3 probability each
+
