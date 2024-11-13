@@ -1,0 +1,24 @@
+Input String: samarth kulkarni
+Seed: 16432023802618330694
+Generated Expression:
+R: sin(mix(cos(-0.497), cos(y), sin(y), mix(-0.805, x, -0.338, x)))
+G: exp(mix((x / x), y, sqrt(x), mix(-0.768, y, x, -0.459)))
+B: exp(-0.592)
+Depth: 3
+Hashing Function: fnv1a(hash=0xcbf29ce484222325, prime=0x100000001b3)
+PRNG Formula: LCR(a=1664525, c=1013904223, m=2^32)
+Grammar:
+E ::= (C,C,C); 1 probability
+C -> 
+    A
+    | Add(C, C)
+    | Mult(C, C)
+    | Sin(C)
+    | Cos(C)
+    | Exp(C)
+    | Sqrt(C)
+    | Div(C, C)
+    | Mix(C, C, C, C)
+; 1/13 probability for A,Add,Mult,Exp,Sqrt,Div,Mix; 3/13 for Sin,Cos
+A ::= x | y | random number in range [-1,1]; 1/3 probability each
+

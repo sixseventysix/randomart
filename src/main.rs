@@ -54,7 +54,7 @@ fn save_metadata(
 
 fn main() {
     let string = "samarth kulkarni";
-    let max_depth = 20;
+    let max_depth = 12;
     let seed = fnv1a(string);
     let mut grammar = Grammar::new(seed, max_depth);
 
@@ -65,8 +65,9 @@ fn main() {
         Colour { r, g, b }
     };
     let img = render_pixels(rgb_function);
-    let output_filepath = "data/images/131120242325.png";
-    let metadata_filepath = "data/metadata/131120242325.metadata";
+    let timestamp = "141120240007";
+    let output_filepath = format!("data/images/{}.png", timestamp);
+    let metadata_filepath = format!("data/metadata/{}.metadata", timestamp);
     img.save(output_filepath).expect("failed to save the image");
 
     let fnv1a_code = "fnv1a(hash=0xcbf29ce484222325, prime=0x100000001b3)";
@@ -83,7 +84,7 @@ C ->
     | Sqrt(C)
     | Div(C, C)
     | Mix(C, C, C, C)
-; 1/9 probability each
+; 1/13 probability for A,Add,Mult,Exp,Sqrt,Div,Mix; 3/13 for Sin,Cos
 A ::= x | y | random number in range [-1,1]; 1/3 probability each
 "#;
 

@@ -169,7 +169,7 @@ impl Grammar {
             println!("Depth {}: Selected Atom: {:?}", depth, atom);
             Component::Atom(atom)
         } else {
-            match self.rng.next_range(0, 8) {
+            match self.rng.next_range(0, 12) {
                 0 => {
                     let atom = self.random_atom();
                     println!("Depth {}: Selected Atom: {:?}", depth, atom);
@@ -189,13 +189,13 @@ impl Grammar {
                         Box::new(self.random_component(depth - 1)),
                     )
                 }
-                3 => {
+                3 | 9 | 10 => {
                     println!("Depth {}: Selected Sin", depth);
                     Component::Sin(
                         Box::new(self.random_component(depth - 1)),
                     )
                 }
-                4 => {
+                4 | 11 | 12 => {
                     println!("Depth {}: Selected Cos", depth);
                     Component::Cos(
                         Box::new(self.random_component(depth - 1)),
