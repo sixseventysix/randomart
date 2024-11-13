@@ -1,0 +1,18 @@
+Input String: samarth kulkarni
+Seed: 16432023802618330694
+Generated Expression:
+R: mix(y, mix(mix(y, mix(mix(y, -0.805, x, -0.338), mix(y, y, x, x), mix(-0.034, 0.753, y, -0.768), mix(x, -0.459, y, -0.643)), mix(mix(0.442, 0.902, y, x), mix(x, y, 0.217, -0.292), sin(-0.963), -0.984), mix(-0.129, mix(-0.399, x, y, x), sin(x), mix(-0.071, y, y, y))), sin(mix(mix(x, x, y, x), x, mix(0.388, x, y, x), y)), mix(mix(y, mix(x, y, y, x), mix(x, x, y, y), -0.117), mix(0.905, mix(y, y, -0.520, -0.065), mix(y, x, -0.235, y), -0.292), mix(y, mix(x, y, -0.087, -0.751), sin(x), mix(x, 0.656, x, y)), sin(mix(-0.500, y, y, 0.587))), sin(mix(mix(-0.531, y, 0.352, y), mix(y, y, 0.485, -0.896), sin(x), mix(y, x, 0.060, y)))), sin(mix(mix(y, mix(y, y, 0.157, y), y, mix(y, x, x, x)), mix(0.983, mix(x, y, x, x), x, mix(x, y, x, x)), mix(y, mix(-0.439, 0.067, y, x), sin(y), mix(x, x, y, x)), y)), mix(mix(0.258, mix(y, mix(x, x, y, y), mix(x, 0.061, 0.466, 0.947), mix(-0.065, y, x, y)), sin(mix(y, 0.150, x, x)), y), mix(mix(x, mix(-0.142, x, y, y), x, mix(x, x, y, -0.083)), y, mix(mix(x, x, y, x), y, mix(y, y, -0.432, -0.613), sin(y)), mix(x, mix(0.076, x, x, x), x, mix(-0.935, y, y, 0.545))), sin(mix(mix(-0.669, -0.482, y, -0.443), mix(y, -0.069, y, -0.694), mix(y, x, y, x), mix(x, 0.471, 0.615, y))), mix(mix(x, mix(0.433, y, x, x), x, mix(-0.450, x, y, -0.795)), sin(mix(y, x, -0.460, x)), x, mix(mix(0.851, x, 0.094, x), mix(0.478, 0.291, x, -0.012), mix(y, x, x, y), mix(y, x, y, y)))))
+G: 0.648
+B: mix(y, mix(mix(x, mix(mix(x, y, 0.035, y), sin(-0.159), y, mix(0.395, 0.243, -0.105, y)), mix(mix(x, x, y, y), y, mix(y, -0.609, x, y), y), mix(mix(x, 0.990, -0.528, y), mix(0.519, x, x, y), y, mix(x, y, y, y))), mix(-0.276, mix(-0.304, mix(x, y, y, y), x, mix(-0.967, 0.787, 0.462, x)), mix(mix(0.511, x, y, -0.566), mix(y, y, y, 0.627), x, mix(y, x, 0.735, y)), y), mix(mix(0.453, mix(0.929, x, y, y), sin(x), mix(y, y, y, x)), y, mix(mix(y, 0.021, y, x), sin(x), mix(y, -0.855, 0.428, y), mix(x, x, x, -0.687)), x), mix(mix(x, mix(y, y, y, y), mix(y, y, y, x), x), mix(mix(x, y, x, x), y, mix(y, -0.510, y, y), y), mix(mix(y, y, x, x), y, mix(x, y, 0.735, -0.250), sin(x)), mix(0.518, mix(x, y, y, 0.927), sin(y), mix(x, y, 0.643, y)))), sin(mix(mix(y, mix(-0.104, y, y, -0.199), sin(0.885), x), mix(mix(x, x, x, x), y, mix(x, y, y, x), mix(x, x, y, 0.775)), sin(mix(-0.341, -0.857, y, 0.385)), mix(mix(0.356, x, 0.303, x), mix(y, 0.526, y, -0.638), sin(y), mix(x, y, -0.520, y)))), sin(mix(mix(x, mix(-0.284, x, -0.017, y), sin(0.815), y), mix(mix(x, y, -0.823, 0.622), mix(0.378, -0.547, -0.307, y), mix(-0.445, x, 0.631, y), sin(y)), mix(y, mix(y, y, 0.374, y), 0.144, mix(y, y, 0.194, x)), sin(mix(x, x, x, x)))))
+Depth: 5
+Hashing Function: fnv1a(hash=0xcbf29ce484222325, prime=0x100000001b3)
+PRNG Formula: LCR(a=1664525, c=1013904223, m=2^32)
+Grammar:
+E ::= (C,C,C); 1 probability
+C -> 
+    A
+    | Sin(C)
+    | Mix(C, C, C, C)
+; 1/5 probability for A; 2/5 for Sin,Mix
+A ::= x | y | random number in range [-1,1]; 1/3 probability each
+
