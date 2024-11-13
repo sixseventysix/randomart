@@ -1,0 +1,19 @@
+Input String: samarth kulkarni
+Seed: 16432023802618330694
+Generated Expression:
+R: y
+G: cos(mix(cos(cos(sin(x))), mix(mix(mix(x, x, -0.338, x), mix(y, x, x, x), mix(y, 0.753, y, -0.768), mix(x, -0.459, y, -0.643)), cos(mix(0.442, 0.902, y, x)), mix(cos(y), mix(y, -0.292, y, -0.963), mix(-0.984, x, x, -0.129), mix(-0.399, x, y, x)), x), cos(x), mix(mix(sin(y), sin(0.899), mix(y, x, x, x), sin(0.388)), mix(cos(x), mix(y, 0.344, y, y), mix(x, y, y, x), sin(x)), sin(cos(y)), cos(mix(y, -0.924, 0.905, x)))))
+B: sin(sin(mix(sin(mix(x, -0.671, x, -0.235)), mix(-0.292, cos(-0.518), mix(x, y, -0.087, -0.751), mix(x, y, x, 0.656)), sin(mix(-0.594, -0.500, y, y)), mix(mix(x, y, y, -0.531), sin(0.352), cos(-0.381), cos(0.485)))))
+Depth: 5
+Hashing Function: fnv1a(hash=0xcbf29ce484222325, prime=0x100000001b3)
+PRNG Formula: LCR(a=1664525, c=1013904223, m=2^32)
+Grammar:
+E ::= (C,C,C); 1 probability
+C -> 
+    A
+    | Sin(C)
+    | Cos(C)
+    | Mix(C, C, C, C)
+; 1/10 probability for A; 2/10 for Sin,Cos; 4/10 for Mix
+A ::= x | y | random number in range [-1,1]; 1/3 probability each
+
