@@ -53,7 +53,7 @@ fn save_metadata(
 }
 
 fn main() {
-    let string = "diya";
+    let string = "samarth";
     let max_depth = 12;
     let seed = fnv1a(string);
     let mut grammar = Grammar::new(seed, max_depth);
@@ -65,7 +65,7 @@ fn main() {
         Colour { r, g, b }
     };
     let img = render_pixels(rgb_function);
-    let timestamp = "141120240017";
+    let timestamp = "141120240028";
     let output_filepath = format!("data/images/{}.png", timestamp);
     let metadata_filepath = format!("data/metadata/{}.metadata", timestamp);
     img.save(output_filepath).expect("failed to save the image");
@@ -80,11 +80,8 @@ C ->
     | Mult(C, C)
     | Sin(C)
     | Cos(C)
-    | Exp(C)
-    | Sqrt(C)
-    | Div(C, C)
     | Mix(C, C, C, C)
-; 1/13 probability for A,Add,Mult,Exp,Sqrt,Div,Mix; 3/13 for Sin,Cos
+; 1/9 probability for A,Add,Mult,Mix; 3/9 for Sin,Cos
 A ::= x | y | random number in range [-1,1]; 1/3 probability each
 "#;
 

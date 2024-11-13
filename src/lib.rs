@@ -169,7 +169,7 @@ impl Grammar {
             println!("Depth {}: Selected Atom: {:?}", depth, atom);
             Component::Atom(atom)
         } else {
-            match self.rng.next_range(0, 12) {
+            match self.rng.next_range(0, 9) {
                 0 => {
                     let atom = self.random_atom();
                     println!("Depth {}: Selected Atom: {:?}", depth, atom);
@@ -189,39 +189,39 @@ impl Grammar {
                         Box::new(self.random_component(depth - 1)),
                     )
                 }
-                3 | 9 | 10 => {
+                3 | 4 | 5 => {
                     println!("Depth {}: Selected Sin", depth);
                     Component::Sin(
                         Box::new(self.random_component(depth - 1)),
                     )
                 }
-                4 | 11 | 12 => {
+                6 | 7 | 8 => {
                     println!("Depth {}: Selected Cos", depth);
                     Component::Cos(
                         Box::new(self.random_component(depth - 1)),
                     )
                 }
-                5 => {
+                1434 => {
                     println!("Depth {}: Selected Exp", depth);
                     Component::Exp(
                         Box::new(self.random_component(depth - 1)),
                     )
                 }
-                6 => {
+                63531 => {
                     println!("Depth {}: Selected Sqrt", depth);
                     Component::Sqrt(
                         Box::new(self.random_component(depth - 1)),
                     )
                 }
-                7 => {
-                    println!("Depth {}: Selected Cos", depth);
+                756574 => {
+                    println!("Depth {}: Selected Div", depth);
                     Component::Div(
                         Box::new(self.random_component(depth - 1)),
                         Box::new(self.random_component(depth - 1)),
                     )
                 }
-                8 => {
-                    println!("Depth {}: Selected Cos", depth);
+                9 => {
+                    println!("Depth {}: Selected Mix", depth);
                     Component::Mix(
                         Box::new(self.random_component(depth - 1)),
                         Box::new(self.random_component(depth - 1)),
