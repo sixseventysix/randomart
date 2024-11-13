@@ -101,6 +101,12 @@ enum Component {
     Atom(Atom),
     Add(Box<Component>, Box<Component>),
     Mult(Box<Component>, Box<Component>),
+    Sin(Box<Component>),
+    Cos(Box<Component>),
+    Exp(Box<Component>),
+    Sqrt(Box<Component>),
+    Div(Box<Component>, Box<Component>),
+    Mix(Box<Component>, Box<Component>, Box<Component>, Box<Component>),
 }
 
 impl fmt::Display for Component {
@@ -109,6 +115,12 @@ impl fmt::Display for Component {
             Component::Atom(atom) => write!(f, "{}", atom),
             Component::Add(left, right) => write!(f, "({} + {})", left, right),
             Component::Mult(left, right) => write!(f, "({} * {})", left, right),
+            Component::Sin(x) => write!(f, "sin({})", x),
+            Component::Cos(x) => write!(f, "cos({})", x),
+            Component::Exp(x) => write!(f, "exp({})", x),
+            Component::Sqrt(x) => write!(f, "sqrt({})", x),
+            Component::Div(left, right) => write!(f, "({} / {})", left, right),
+            Component::Mix(a, b, c, d) => write!(f, "mix({}, {}, {}, {})", a,b,c,d),
         }
     }
 }
@@ -157,7 +169,7 @@ impl Grammar {
             println!("Depth {}: Selected Atom: {:?}", depth, atom);
             Component::Atom(atom)
         } else {
-            match self.rng.next_range(0, 3) {
+            match self.rng.next_range(0, 8) {
                 0 => {
                     let atom = self.random_atom();
                     println!("Depth {}: Selected Atom: {:?}", depth, atom);
@@ -170,13 +182,54 @@ impl Grammar {
                         Box::new(self.random_component(depth - 1)),
                     )
                 }
-                _ => {
+                2 => {
                     println!("Depth {}: Selected Mult", depth);
                     Component::Mult(
                         Box::new(self.random_component(depth - 1)),
                         Box::new(self.random_component(depth - 1)),
                     )
                 }
+                3 => {
+                    println!("Depth {}: Selected Sin", depth);
+                    Component::Sin(
+                        Box::new(self.random_component(depth - 1)),
+                    )
+                }
+                4 => {
+                    println!("Depth {}: Selected Cos", depth);
+                    Component::Cos(
+                        Box::new(self.random_component(depth - 1)),
+                    )
+                }
+                5 => {
+                    println!("Depth {}: Selected Exp", depth);
+                    Component::Exp(
+                        Box::new(self.random_component(depth - 1)),
+                    )
+                }
+                6 => {
+                    println!("Depth {}: Selected Sqrt", depth);
+                    Component::Sqrt(
+                        Box::new(self.random_component(depth - 1)),
+                    )
+                }
+                7 => {
+                    println!("Depth {}: Selected Cos", depth);
+                    Component::Div(
+                        Box::new(self.random_component(depth - 1)),
+                        Box::new(self.random_component(depth - 1)),
+                    )
+                }
+                8 => {
+                    println!("Depth {}: Selected Cos", depth);
+                    Component::Mix(
+                        Box::new(self.random_component(depth - 1)),
+                        Box::new(self.random_component(depth - 1)),
+                        Box::new(self.random_component(depth - 1)),
+                        Box::new(self.random_component(depth - 1)),
+                    )
+                }
+                _ => unreachable!()
             }
         }
     }
@@ -196,17 +249,20 @@ impl Grammar {
                 Atom::X => x,
                 Atom::Y => y,
             },
-            Component::Add(left, right) => {
-                let left_val = self.evaluate_component(left, x, y);
-                let right_val = self.evaluate_component(right, x, y);
-                let result = left_val + right_val;
-                result.clamp(-1.0,1.0)
-            }
-            Component::Mult(left, right) => {
-                let left_val = self.evaluate_component(left, x, y);
-                let right_val = self.evaluate_component(right, x, y);
-                let result = left_val * right_val;
-                result.clamp(-1.0,1.0)
+            Component::Add(left, right) => (self.evaluate_component(left, x, y) + self.evaluate_component(right, x, y))/2.0,
+            Component::Mult(left, right) => self.evaluate_component(left, x, y) * self.evaluate_component(right, x, y),
+            Component::Sin(inner) => self.evaluate_component(inner, x, y).sin(),
+            Component::Cos(inner) => self.evaluate_component(inner, x, y).cos(),
+            Component::Exp(inner) => self.evaluate_component(inner, x, y).exp(),
+            Component::Sqrt(inner) => self.evaluate_component(inner, x, y).abs().sqrt(),
+            Component::Div(left, right) => self.evaluate_component(left, x, y) / self.evaluate_component(right, x, y),
+            Component::Mix(a, b, c, d) => {
+                let weight_a = self.evaluate_component(a, x, y);
+                let weight_b = self.evaluate_component(b, x, y);
+                let value_c = self.evaluate_component(c, x, y);
+                let value_d = self.evaluate_component(d, x, y);
+    
+                (weight_a * value_c + weight_b * value_d) / (weight_a + weight_b + 1e-6)
             }
         }
     }
