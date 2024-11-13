@@ -81,7 +81,7 @@ C ->
     | Sin(C)
     | Cos(C)
     | Mix(C, C, C, C)
-; 1/9 probability for A,Add,Mult,Mix; 3/9 for Sin,Cos
+; 1/10 probability for A,Add,Mult,Mix; 3/10 for Sin,Cos
 A ::= x | y | random number in range [-1,1]; 1/3 probability each
 "#;
 
