@@ -1,19 +1,6 @@
 use randomart::{utils::{ fnv1a, render_pixels, PixelCoordinates }, Grammar, Node};
 use std::env;
 
-fn print_channels_from_triple(node: &Node) {
-    match node {
-        Node::Triple(left, middle, right) => {
-            println!("R: {:?}", left);
-            println!("G: {:?}", middle);
-            println!("B: {:?}", right);
-        }
-        _ => {
-            println!("node is not a Node::Triple");
-        }
-    }
-}
-
 fn main() {
     let args: Vec<String> = env::args().collect();
 
@@ -33,8 +20,18 @@ fn main() {
     
     let start_rule = 0;
     let generated_node = grammar.gen_rule(start_rule, depth).unwrap();
-    print_channels_from_triple(&generated_node);
 
+    assert!(
+        matches!(*generated_node, Node::Triple(_, _, _)),
+        "expected the generated node to be a Node::Triple, but found: {:?}",
+        generated_node
+    );
+    // unsafe reason:
+    // you must give extract_channels_from_triple a Node::Triple for it to extract the r, g, b channels
+    // if extract_channels_from_triple returns None that means the node is not a Node::Triple
+    // above assert checks for that
+    let (r_str, g_str, b_str) = unsafe { generated_node.extract_channels_from_triple().unwrap_unchecked() };
+    println!("R:{}\n\nG:{}\n\nB:{}", r_str, g_str, b_str);
     let rgb_function = |coords: PixelCoordinates| {
         generated_node.eval_rgb(coords.x, coords.y)
     };
