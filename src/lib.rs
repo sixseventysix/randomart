@@ -16,7 +16,7 @@ pub enum Node {
     Add(Box<Node>, Box<Node>), 
     Mult(Box<Node>, Box<Node>),
     Div(Box<Node>, Box<Node>),
-    Mod(Box<Node>, Box<Node>), 
+    Modulo(Box<Node>, Box<Node>), 
     Gt(Box<Node>, Box<Node>),   
     Triple(Box<Node>, Box<Node>, Box<Node>), 
     If {
@@ -92,6 +92,15 @@ impl Node {
                 let lhs_val = lhs.eval(x, y)?;
                 let rhs_val = rhs.eval(x, y)?;
                 Some(if lhs_val > rhs_val { 1.0 } else { 0.0 })
+            }
+            Node::Modulo(lhs, rhs) => {
+                let lhs_val = lhs.eval(x, y)?; 
+                let rhs_val = rhs.eval(x, y)?; 
+                if rhs_val.abs() > 1e-6 { 
+                    Some(lhs_val % rhs_val)
+                } else {
+                    None 
+                }
             }
             _ => unreachable!("unexpected Node kind during eval: {:?}", self), 
         }
@@ -176,7 +185,7 @@ impl Grammar {
 
             Node::Add(lhs, rhs) |
             Node::Mult(lhs, rhs) |
-            Node::Mod(lhs, rhs) |
+            Node::Modulo(lhs, rhs) |
             Node::Gt(lhs, rhs) |
             Node::Div(lhs, rhs) => {
                 let lhs = self.gen_node(lhs, depth, rng)?;
@@ -184,7 +193,7 @@ impl Grammar {
                 match node {
                     Node::Add(_, _) => Some(Box::new(Node::Add(lhs, rhs))),
                     Node::Mult(_, _) => Some(Box::new(Node::Mult(lhs, rhs))),
-                    Node::Mod(_, _) => Some(Box::new(Node::Mod(lhs, rhs))),
+                    Node::Modulo(_, _) => Some(Box::new(Node::Modulo(lhs, rhs))),
                     Node::Gt(_, _) => Some(Box::new(Node::Gt(lhs, rhs))),
                     Node::Div(_, _) => Some(Box::new(Node::Div(lhs, rhs))),
                     _ => unreachable!("{:?} not a binary op", node), 
