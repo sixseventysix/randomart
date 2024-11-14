@@ -125,34 +125,131 @@ pub struct GrammarBranch {
     pub probability: f32, 
 }
 
+#[derive(Clone)]
 pub struct GrammarBranches {
     pub items: Vec<GrammarBranch>,
 }
 
 pub struct Grammar {
     pub items: Vec<GrammarBranches>, 
+    rng: LinearCongruentialGenerator
 }
 
 impl Grammar {
-    pub fn gen_rule(&self, rule: usize, depth: u32, rng: &mut LinearCongruentialGenerator) -> Option<Box<Node>> {
+    pub fn default(seed: u64) -> Self {
+        Self { 
+            items: 
+            vec![
+            // E::= (C, C, C)
+            GrammarBranches {
+                items: vec![
+                    GrammarBranch {
+                        node: Box::new(Node::Triple(
+                            Box::new(Node::Rule(1)), 
+                            Box::new(Node::Rule(1)), 
+                            Box::new(Node::Rule(1)), 
+                        )),
+                        probability: 1.0, 
+                    },
+                ],
+            },
+            // C::= A | Add(C, C) | Mult(C, C) | Sin(C) | Cos(C) | Exp(C) | Sqrt(C) | Div(C, C) | Mix(C, C, C, C)
+            GrammarBranches {
+                items: 
+                    vec![
+                        GrammarBranch {
+                            node: Box::new(Node::Rule(2)), // A
+                            probability: 1.0 / 13.0,
+                        },
+                        GrammarBranch {
+                            node: Box::new(Node::Add(
+                                Box::new(Node::Rule(1)),
+                                Box::new(Node::Rule(1)),
+                            )),
+                            probability: 1.0 / 13.0,
+                        },
+                        GrammarBranch {
+                            node: Box::new(Node::Mult(
+                                Box::new(Node::Rule(1)),
+                                Box::new(Node::Rule(1)),
+                            )),
+                            probability: 1.0 / 13.0,
+                        },
+                        GrammarBranch {
+                            node: Box::new(Node::Sin(Box::new(Node::Rule(1)))),
+                            probability: 3.0 / 13.0,
+                        },
+                        GrammarBranch {
+                            node: Box::new(Node::Cos(Box::new(Node::Rule(1)))),
+                            probability: 3.0 / 13.0,
+                        },
+                        GrammarBranch {
+                            node: Box::new(Node::Exp(Box::new(Node::Rule(1)))),
+                            probability: 1.0 / 13.0,
+                        },
+                        GrammarBranch {
+                            node: Box::new(Node::Sqrt(Box::new(Node::Rule(1)))),
+                            probability: 1.0 / 13.0,
+                        },
+                        GrammarBranch {
+                            node: Box::new(Node::Div(
+                                Box::new(Node::Rule(1)),
+                                Box::new(Node::Rule(1)),
+                            )),
+                            probability: 1.0 / 13.0,
+                        },
+                        GrammarBranch {
+                            node: Box::new(Node::Mix(
+                                Box::new(Node::Rule(1)),
+                                Box::new(Node::Rule(1)),
+                                Box::new(Node::Rule(1)),
+                                Box::new(Node::Rule(1)),
+                            )),
+                            probability: 1.0 / 13.0,
+                        },
+                    ],
+                },
+                // A::= x | y | random number in [-1,1]
+                GrammarBranches {
+                    items: vec![
+                        GrammarBranch {
+                            node: Box::new(Node::X), 
+                            probability: 1.0 / 3.0,
+                        },
+                        GrammarBranch {
+                            node: Box::new(Node::Y), 
+                            probability: 1.0 / 3.0,
+                        },
+                        GrammarBranch {
+                            node: Box::new(Node::Random), 
+                            probability: 1.0 / 3.0,
+                        },
+                    ],
+                },
+            ], 
+            rng: LinearCongruentialGenerator::new(seed) 
+        }
+    }
+
+    pub fn gen_rule(&mut self, rule: usize, depth: u32) -> Option<Box<Node>> {
         if depth <= 0 {
             return None; 
         }
     
         assert!(rule < self.items.len(), "Invalid rule index");
-        let branches = &self.items[rule];
+        let branches = self.items[rule].clone();
         assert!(!branches.items.is_empty(), "No branches available");
     
         let mut node = None;
     
         for _ in 0..100 { 
-            let p: f32 = rng.next_float(); 
+            let p: f32 = self.rng.next_float(); 
     
             let mut cumulative_probability = 0.0;
             for branch in &branches.items {
                 cumulative_probability += branch.probability;
                 if cumulative_probability >= p {
-                    node = self.gen_node(&branch.node, depth - 1, rng);
+                    node = self.gen_node(&branch.node, depth - 1);
                     break;
                 }
             }
@@ -165,7 +262,7 @@ impl Grammar {
         node
     }
 
-    fn gen_node(&self, node: &Node, depth: u32, rng: &mut LinearCongruentialGenerator) -> Option<Box<Node>> {
+    fn gen_node(&mut self, node: &Node, depth: u32) -> Option<Box<Node>> {
         match node {
             Node::X | Node::Y | Node::Number(_) | Node::Boolean(_) => Some(Box::new(node.clone())),
     
@@ -173,7 +270,7 @@ impl Grammar {
             Node::Sin(inner) |
             Node::Cos(inner) |
             Node::Exp(inner) => {
-                let rhs = self.gen_node(inner, depth, rng)?;
+                let rhs = self.gen_node(inner, depth)?;
                 match node {
                     Node::Sqrt(_) => Some(Box::new(Node::Sqrt(rhs))),
                     Node::Sin(_) => Some(Box::new(Node::Sin(rhs))),
@@ -188,8 +285,8 @@ impl Grammar {
             Node::Modulo(lhs, rhs) |
             Node::Gt(lhs, rhs) |
             Node::Div(lhs, rhs) => {
-                let lhs = self.gen_node(lhs, depth, rng)?;
-                let rhs = self.gen_node(rhs, depth, rng)?;
+                let lhs = self.gen_node(lhs, depth)?;
+                let rhs = self.gen_node(rhs, depth)?;
                 match node {
                     Node::Add(_, _) => Some(Box::new(Node::Add(lhs, rhs))),
                     Node::Mult(_, _) => Some(Box::new(Node::Mult(lhs, rhs))),
@@ -201,36 +298,36 @@ impl Grammar {
             }
     
             Node::Triple(first, second, third) => {
-                let first = self.gen_node(first, depth, rng)?;
-                let second = self.gen_node(second, depth, rng)?;
-                let third = self.gen_node(third, depth, rng)?;
+                let first = self.gen_node(first, depth)?;
+                let second = self.gen_node(second, depth)?;
+                let third = self.gen_node(third, depth)?;
                 Some(Box::new(Node::Triple(first, second, third)))
             }
     
             Node::If { cond, then, elze } => {
-                let cond = self.gen_node(cond, depth, rng)?;
-                let then = self.gen_node(then, depth, rng)?;
-                let elze = self.gen_node(elze, depth, rng)?;
+                let cond = self.gen_node(cond, depth)?;
+                let then = self.gen_node(then, depth)?;
+                let elze = self.gen_node(elze, depth)?;
                 Some(Box::new(Node::If { cond, then, elze }))
             }
     
             Node::Rule(rule_index) => {
                 if let Some(new_depth) = depth.checked_sub(1) {
-                    self.gen_rule(*rule_index, new_depth, rng)
+                    self.gen_rule(*rule_index, new_depth)
                 } else {
                     None 
                 }
             }
     
             Node::Random => {
-                let random_value = rng.next_float() * 2.0 - 1.0;
+                let random_value = self.rng.next_float() * 2.0 - 1.0;
                 Some(Box::new(Node::Number(random_value)))
             }
             Node::Mix(a, b, c, d) => {
-                let a = self.gen_node(a, depth, rng)?;
-                let b = self.gen_node(b, depth, rng)?;
-                let c = self.gen_node(c, depth, rng)?;
-                let d = self.gen_node(d, depth, rng)?;
+                let a = self.gen_node(a, depth)?;
+                let b = self.gen_node(b, depth)?;
+                let c = self.gen_node(c, depth)?;
+                let d = self.gen_node(d, depth)?;
                 Some(Box::new(Node::Mix(a, b, c, d)))
             }
         }

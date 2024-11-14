@@ -1,4 +1,4 @@
-use randomart::{utils::{ fnv1a, render_pixels, LinearCongruentialGenerator, PixelCoordinates }, Grammar, GrammarBranches, GrammarBranch, Node};
+use randomart::{utils::{ fnv1a, render_pixels, PixelCoordinates }, Grammar, Node};
 use std::env;
 
 fn print_channels_from_triple(node: &Node) {
@@ -29,99 +29,10 @@ fn main() {
     });
     let output_filename = args[3].clone();
     let seed = fnv1a(&string);
-    let mut rng = LinearCongruentialGenerator::new(seed);
-    let grammar = Grammar {
-        items: vec![
-            // E::= (C, C, C)
-            GrammarBranches {
-                items: vec![
-                    GrammarBranch {
-                        node: Box::new(Node::Triple(
-                            Box::new(Node::Rule(1)), 
-                            Box::new(Node::Rule(1)), 
-                            Box::new(Node::Rule(1)), 
-                        )),
-                        probability: 1.0, 
-                    },
-                ],
-            },
-            // C::= A | Add(C, C) | Mult(C, C) | Sin(C) | Cos(C) | Exp(C) | Sqrt(C) | Div(C, C) | Mix(C, C, C, C)
-            GrammarBranches {
-                items: vec![
-                    GrammarBranch {
-                        node: Box::new(Node::Rule(2)), // A
-                        probability: 1.0 / 13.0,
-                    },
-                    GrammarBranch {
-                        node: Box::new(Node::Add(
-                            Box::new(Node::Rule(1)),
-                            Box::new(Node::Rule(1)),
-                        )),
-                        probability: 1.0 / 13.0,
-                    },
-                    GrammarBranch {
-                        node: Box::new(Node::Mult(
-                            Box::new(Node::Rule(1)),
-                            Box::new(Node::Rule(1)),
-                        )),
-                        probability: 1.0 / 13.0,
-                    },
-                    GrammarBranch {
-                        node: Box::new(Node::Sin(Box::new(Node::Rule(1)))),
-                        probability: 3.0 / 13.0,
-                    },
-                    GrammarBranch {
-                        node: Box::new(Node::Cos(Box::new(Node::Rule(1)))),
-                        probability: 3.0 / 13.0,
-                    },
-                    GrammarBranch {
-                        node: Box::new(Node::Exp(Box::new(Node::Rule(1)))),
-                        probability: 1.0 / 13.0,
-                    },
-                    GrammarBranch {
-                        node: Box::new(Node::Sqrt(Box::new(Node::Rule(1)))),
-                        probability: 1.0 / 13.0,
-                    },
-                    GrammarBranch {
-                        node: Box::new(Node::Div(
-                            Box::new(Node::Rule(1)),
-                            Box::new(Node::Rule(1)),
-                        )),
-                        probability: 1.0 / 13.0,
-                    },
-                    GrammarBranch {
-                        node: Box::new(Node::Mix(
-                            Box::new(Node::Rule(1)),
-                            Box::new(Node::Rule(1)),
-                            Box::new(Node::Rule(1)),
-                            Box::new(Node::Rule(1)),
-                        )),
-                        probability: 1.0 / 13.0,
-                    },
-                ],
-            },
-            // A::= x | y | random number in [-1,1]
-            GrammarBranches {
-                items: vec![
-                    GrammarBranch {
-                        node: Box::new(Node::X), 
-                        probability: 1.0 / 3.0,
-                    },
-                    GrammarBranch {
-                        node: Box::new(Node::Y), 
-                        probability: 1.0 / 3.0,
-                    },
-                    GrammarBranch {
-                        node: Box::new(Node::Random), 
-                        probability: 1.0 / 3.0,
-                    },
-                ],
-            },
-        ],
-    };
+    let mut grammar = Grammar::default(seed);
     
     let start_rule = 0;
-    let generated_node = grammar.gen_rule(start_rule, depth, &mut rng).unwrap();
+    let generated_node = grammar.gen_rule(start_rule, depth).unwrap();
     print_channels_from_triple(&generated_node);
 
     let rgb_function = |coords: PixelCoordinates| {
