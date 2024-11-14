@@ -8,11 +8,13 @@ Triple(Div(Add(Cos(Sin(Number(-0.14320678))), Add(Sin(Cos(Add(Sqrt(Mult(Sin(Sqrt
 ```
 
 ## how to run:
-1. set whatever string you would like in the `string` variable in the `main` function in `src/main.rs`
-2. set whatever depth you would like in the `depth` variable in the `main` function in `src/main.rs`
-3. execute `cargo run`
-
-> more depth should usually translate to generation of a much more complex formula
+```
+cargo run "<string>" <depth> <output file name>
+```
+e.g. 
+``` 
+cargo run "spiderman 3" 40 spiderman
+```
 
 ## references:
 https://netsec.ethz.ch/publications/papers/validation.pdf

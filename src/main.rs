@@ -1,8 +1,21 @@
 use randomart::{utils::{ fnv1a, render_pixels, LinearCongruentialGenerator, PixelCoordinates }, Grammar, GrammarBranches, GrammarBranch, Node};
+use std::env;
 
 fn main() {
-    let string = "samarth kulkarni";
-    let seed = fnv1a(string);
+    let args: Vec<String> = env::args().collect();
+
+    if args.len() != 4 {
+        eprintln!("usage: {} <string> <depth> <output file path>", args[0]);
+        std::process::exit(1);
+    }
+
+    let string = args[1].clone();
+    let depth: u32 = args[2].parse().unwrap_or_else(|_| {
+        eprintln!("Error: depth must be a positive integer");
+        std::process::exit(1);
+    });
+    let output_filename = args[3].clone();
+    let seed = fnv1a(&string);
     let mut rng = LinearCongruentialGenerator::new(seed);
     let grammar = Grammar {
         items: vec![
@@ -95,7 +108,6 @@ fn main() {
     };
     
     let start_rule = 0;
-    let depth: u32 = 40;
     let generated_node = grammar.gen_rule(start_rule, depth, &mut rng).unwrap();
     println!("generated node: {:?}", generated_node);
 
@@ -104,7 +116,6 @@ fn main() {
     };
     let img = render_pixels(rgb_function);
 
-    let timestamp = "141120242217";
-    let output_filepath = format!("data/images/{}.png", timestamp);
+    let output_filepath = format!("data/images/{}.png", &output_filename);
     img.save(output_filepath).expect("failed to save the image");
 }
