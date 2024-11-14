@@ -6,7 +6,7 @@ pub enum Node {
     X,                       
     Y,                       
     Random,                  
-    Rule(usize),             
+    Rule(usize),                                    // stores the index of the rule          
     Number(f32),             
     Boolean(bool),           
     Sqrt(Box<Node>),        
@@ -33,7 +33,7 @@ impl Node {
             Node::X => Some(x),
             Node::Y => Some(y),
             Node::Number(value) => Some(*value),
-            Node::Random => None,
+            Node::Random => unreachable!("all Node::Random instances are supposed to be converted into Node::Number during generation"),
             Node::Add(lhs, rhs) => {
                 let lhs_val = lhs.eval(x, y)?;
                 let rhs_val = rhs.eval(x, y)?;
@@ -77,9 +77,23 @@ impl Node {
                 Some((a_val * c_val + b_val * d_val) / (a_val + b_val + 1e-6))
             }
             Node::Triple(_first, _second, _third) => {
-                unreachable!()
+                unreachable!("Node::Triple is only for the Entry rule")
             }
-            _ => unreachable!(), 
+            // todo: enforce boolean values only inside cond
+            Node::If { cond, then, elze } => {
+                let cond_value = cond.eval(x, y)?; 
+                if cond_value > 0.0 { // non zero is true
+                    then.eval(x, y)   
+                } else {
+                    elze.eval(x, y)   
+                }
+            }
+            Node::Gt(lhs, rhs) => {
+                let lhs_val = lhs.eval(x, y)?;
+                let rhs_val = rhs.eval(x, y)?;
+                Some(if lhs_val > rhs_val { 1.0 } else { 0.0 })
+            }
+            _ => unreachable!("unexpected Node kind during eval: {:?}", self), 
         }
     }
 
@@ -156,7 +170,7 @@ impl Grammar {
                     Node::Sin(_) => Some(Box::new(Node::Sin(rhs))),
                     Node::Cos(_) => Some(Box::new(Node::Cos(rhs))),
                     Node::Exp(_) => Some(Box::new(Node::Exp(rhs))),
-                    _ => unreachable!(), 
+                    _ => unreachable!("{:?} not a unary op", node), 
                 }
             }
 
@@ -173,7 +187,7 @@ impl Grammar {
                     Node::Mod(_, _) => Some(Box::new(Node::Mod(lhs, rhs))),
                     Node::Gt(_, _) => Some(Box::new(Node::Gt(lhs, rhs))),
                     Node::Div(_, _) => Some(Box::new(Node::Div(lhs, rhs))),
-                    _ => unreachable!(), 
+                    _ => unreachable!("{:?} not a binary op", node), 
                 }
             }
     

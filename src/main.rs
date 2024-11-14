@@ -94,10 +94,8 @@ fn main() {
         ],
     };
     
-    
-
     let start_rule = 0;
-    let depth: u32 = 50;
+    let depth: u32 = 40;
     let generated_node = grammar.gen_rule(start_rule, depth, &mut rng).unwrap();
     println!("generated node: {:?}", generated_node);
 
