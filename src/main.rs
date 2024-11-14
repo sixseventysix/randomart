@@ -1,6 +1,19 @@
 use randomart::{utils::{ fnv1a, render_pixels, LinearCongruentialGenerator, PixelCoordinates }, Grammar, GrammarBranches, GrammarBranch, Node};
 use std::env;
 
+fn print_channels_from_triple(node: &Node) {
+    match node {
+        Node::Triple(left, middle, right) => {
+            println!("R: {:?}", left);
+            println!("G: {:?}", middle);
+            println!("B: {:?}", right);
+        }
+        _ => {
+            println!("node is not a Node::Triple");
+        }
+    }
+}
+
 fn main() {
     let args: Vec<String> = env::args().collect();
 
@@ -109,7 +122,7 @@ fn main() {
     
     let start_rule = 0;
     let generated_node = grammar.gen_rule(start_rule, depth, &mut rng).unwrap();
-    println!("generated node: {:?}", generated_node);
+    print_channels_from_triple(&generated_node);
 
     let rgb_function = |coords: PixelCoordinates| {
         generated_node.eval_rgb(coords.x, coords.y)
