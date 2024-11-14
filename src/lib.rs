@@ -205,7 +205,13 @@ impl Grammar {
                 Some(Box::new(Node::If { cond, then, elze }))
             }
     
-            Node::Rule(rule_index) => self.gen_rule(*rule_index, depth - 1, rng),
+            Node::Rule(rule_index) => {
+                if let Some(new_depth) = depth.checked_sub(1) {
+                    self.gen_rule(*rule_index, new_depth, rng)
+                } else {
+                    None 
+                }
+            }
     
             Node::Random => {
                 let random_value = rng.next_float() * 2.0 - 1.0;

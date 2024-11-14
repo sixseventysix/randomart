@@ -104,7 +104,7 @@ fn main() {
     };
     let img = render_pixels(rgb_function);
 
-    let timestamp = "141120240104";
+    let timestamp = "141120242217";
     let output_filepath = format!("data/images/{}.png", timestamp);
     img.save(output_filepath).expect("failed to save the image");
 }
