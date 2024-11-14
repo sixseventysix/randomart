@@ -1,25 +1,25 @@
 use randomart::{utils::{ fnv1a, render_pixels, LinearCongruentialGenerator, PixelCoordinates }, Grammar, GrammarBranches, GrammarBranch, Node};
 
 fn main() {
-    let string = "samarth";
+    let string = "samarth kulkarni";
     let seed = fnv1a(string);
     let mut rng = LinearCongruentialGenerator::new(seed);
     let grammar = Grammar {
         items: vec![
-            // Rule E: (C, C, C)
+            // E::= (C, C, C)
             GrammarBranches {
                 items: vec![
                     GrammarBranch {
                         node: Box::new(Node::Triple(
-                            Box::new(Node::Rule(1)), // C (first element)
-                            Box::new(Node::Rule(1)), // C (second element)
-                            Box::new(Node::Rule(1)), // C (third element)
+                            Box::new(Node::Rule(1)), 
+                            Box::new(Node::Rule(1)), 
+                            Box::new(Node::Rule(1)), 
                         )),
-                        probability: 1.0, // Only one option for E
+                        probability: 1.0, 
                     },
                 ],
             },
-            // Rule C: A, Add(C, C), Mult(C, C), Sin(C), Cos(C), Exp(C), Sqrt(C), Div(C, C), Mix(C, C, C, C)
+            // C::= A | Add(C, C) | Mult(C, C) | Sin(C) | Cos(C) | Exp(C) | Sqrt(C) | Div(C, C) | Mix(C, C, C, C)
             GrammarBranches {
                 items: vec![
                     GrammarBranch {
@@ -74,19 +74,19 @@ fn main() {
                     },
                 ],
             },
-            // Rule A: x, y, or random number
+            // A::= x | y | random number in [-1,1]
             GrammarBranches {
                 items: vec![
                     GrammarBranch {
-                        node: Box::new(Node::X), // Variable x
+                        node: Box::new(Node::X), 
                         probability: 1.0 / 3.0,
                     },
                     GrammarBranch {
-                        node: Box::new(Node::Y), // Variable y
+                        node: Box::new(Node::Y), 
                         probability: 1.0 / 3.0,
                     },
                     GrammarBranch {
-                        node: Box::new(Node::Random), // Random number
+                        node: Box::new(Node::Random), 
                         probability: 1.0 / 3.0,
                     },
                 ],
@@ -97,7 +97,7 @@ fn main() {
     
 
     let start_rule = 0;
-    let depth = 30;
+    let depth: u32 = 50;
     let generated_node = grammar.gen_rule(start_rule, depth, &mut rng).unwrap();
     println!("generated node: {:?}", generated_node);
 
