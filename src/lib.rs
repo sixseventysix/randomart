@@ -1,200 +1,226 @@
-use std::fmt;
-
 pub mod utils;
-use utils::LinearCongruentialGenerator;
+use utils::{Colour, LinearCongruentialGenerator};
 
-#[derive(Debug)]
-enum Atom {
-    RandomNumber(f32),
-    X,
-    Y,
+#[derive(Clone, Debug)]
+pub enum Node {
+    X,                       // Represents the variable `x`
+    Y,                       // Represents the variable `y`
+    Random,                  // A random number
+    Rule(usize),             // A reference to a grammar rule by index
+    Number(f32),             // A constant number
+    Boolean(bool),           // A boolean value
+    Sqrt(Box<Node>),         // Square root operation (unary)
+    Sin(Box<Node>),
+    Cos(Box<Node>),
+    Exp(Box<Node>),
+    Add(Box<Node>, Box<Node>), // Addition (binary)
+    Mult(Box<Node>, Box<Node>), // Multiplication (binary)
+    Div(Box<Node>, Box<Node>),
+    Mod(Box<Node>, Box<Node>),  // Modulus operation (binary)
+    Gt(Box<Node>, Box<Node>),   // Greater-than comparison (binary)
+    Triple(Box<Node>, Box<Node>, Box<Node>), // A triple node (e.g., RGB values)
+    If {
+        cond: Box<Node>,     // Condition for the `if`
+        then: Box<Node>,     // `then` branch
+        elze: Box<Node>,     // `else` branch
+    },
+    Mix(Box<Node>, Box<Node>, Box<Node>, Box<Node>)
 }
 
-impl fmt::Display for Atom {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+impl Node {
+    fn clone_with_operands(&self, lhs: Box<Node>, rhs: Box<Node>) -> Self {
         match self {
-            Atom::RandomNumber(value) => write!(f, "{:.3}", value),
-            Atom::X => write!(f, "x"),
-            Atom::Y => write!(f, "y"),
+            Node::Add(_, _) => Node::Add(lhs, rhs),
+            Node::Mult(_, _) => Node::Mult(lhs, rhs),
+            Node::Mod(_, _) => Node::Mod(lhs, rhs),
+            Node::Gt(_, _) => Node::Gt(lhs, rhs),
+            _ => panic!("Invalid operation: clone_with_operands can only be called on binary operation nodes"),
         }
     }
-}
 
-#[derive(Debug)]
-enum Component {
-    Atom(Atom),
-    Add(Box<Component>, Box<Component>),
-    Mult(Box<Component>, Box<Component>),
-    Sin(Box<Component>),
-    Cos(Box<Component>),
-    Exp(Box<Component>),
-    Sqrt(Box<Component>),
-    Div(Box<Component>, Box<Component>),
-    Mix(Box<Component>, Box<Component>, Box<Component>, Box<Component>),
-}
 
-impl fmt::Display for Component {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+    fn eval(&self, x: f32, y: f32) -> Option<f32> {
         match self {
-            Component::Atom(atom) => write!(f, "{}", atom),
-            Component::Add(left, right) => write!(f, "({} + {})", left, right),
-            Component::Mult(left, right) => write!(f, "({} * {})", left, right),
-            Component::Sin(x) => write!(f, "sin({})", x),
-            Component::Cos(x) => write!(f, "cos({})", x),
-            Component::Exp(x) => write!(f, "exp({})", x),
-            Component::Sqrt(x) => write!(f, "sqrt({})", x),
-            Component::Div(left, right) => write!(f, "({} / {})", left, right),
-            Component::Mix(a, b, c, d) => write!(f, "mix({}, {}, {}, {})", a,b,c,d),
+            Node::X => Some(x),
+            Node::Y => Some(y),
+            Node::Number(value) => Some(*value),
+            Node::Random => None,
+            Node::Add(lhs, rhs) => {
+                let lhs_val = lhs.eval(x, y)?;
+                let rhs_val = rhs.eval(x, y)?;
+                Some((lhs_val + rhs_val)/2.0)
+            }
+            Node::Mult(lhs, rhs) => {
+                let lhs_val = lhs.eval(x, y)?;
+                let rhs_val = rhs.eval(x, y)?;
+                Some(lhs_val * rhs_val)
+            }
+            Node::Sin(inner) => {
+                let val = inner.eval(x, y)?;
+                Some(val.sin())
+            }
+            Node::Cos(inner) => {
+                let val = inner.eval(x, y)?;
+                Some(val.cos())
+            }
+            Node::Exp(inner) => {
+                let val = inner.eval(x, y)?;
+                Some(val.exp())
+            }
+            Node::Sqrt(inner) => {
+                let val = inner.eval(x, y)?;
+                Some(val.sqrt().max(0.0)) // Ensure non-negative output
+            }
+            Node::Div(lhs, rhs) => {
+                let lhs_val = lhs.eval(x, y)?;
+                let rhs_val = rhs.eval(x, y)?;
+                if rhs_val.abs() > 1e-6 { // Prevent division by zero
+                    Some(lhs_val / rhs_val)
+                } else {
+                    None
+                }
+            }
+            Node::Mix(a, b, c, d) => {
+                let a_val = a.eval(x, y)?;
+                let b_val = b.eval(x, y)?;
+                let c_val = c.eval(x, y)?;
+                let d_val = d.eval(x, y)?;
+                Some((a_val * c_val + b_val * d_val) / (a_val + b_val + 1e-6))
+            }
+            Node::Triple(_first, _second, _third) => {
+                // Triple nodes should not directly evaluate to a single value
+                None
+            }
+            _ => None, // For unsupported nodes
         }
     }
-}
 
-#[derive(Debug)]
-pub struct Expression {
-    r: Component,
-    g: Component,
-    b: Component,
-}
-
-impl fmt::Display for Expression {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(
-            f,
-            "R: {}\nG: {}\nB: {}",
-            self.r, self.g, self.b
-        )
+    pub fn eval_rgb(&self, x: f32, y: f32) -> Colour {
+        if let Node::Triple(first, second, third) = self {
+            let r = first.eval(x, y).unwrap_or(0.0); 
+            let g = second.eval(x, y).unwrap_or(0.0);
+            let b = third.eval(x, y).unwrap_or(0.0);
+            Colour { r, g, b }
+        } else {
+            // Default to black if not a Triple node
+            Colour { r: 0.0, g: 0.0, b: 0.0 }
+        }
     }
+    
+}
+
+#[derive(Clone)]
+pub struct GrammarBranch {
+    pub node: Box<Node>, 
+    pub probability: f32, 
+}
+
+pub struct GrammarBranches {
+    pub items: Vec<GrammarBranch>,
 }
 
 pub struct Grammar {
-    rng: LinearCongruentialGenerator,
-    max_depth: usize,
+    pub items: Vec<GrammarBranches>, 
 }
 
 impl Grammar {
-    pub fn new(seed: u64, max_depth: usize) -> Self {
-        Self {
-            rng: LinearCongruentialGenerator::new(seed),
-            max_depth,
+    pub fn gen_rule(&self, rule: usize, depth: i32, rng: &mut LinearCongruentialGenerator) -> Option<Box<Node>> {
+        if depth <= 0 {
+            return None; 
         }
-    }
-
-    pub fn random_expression(&mut self) -> Expression {
-        println!("Generating Expression with Depth {}", self.max_depth);
-        let r = self.random_component(self.max_depth);
-        let g = self.random_component(self.max_depth);
-        let b = self.random_component(self.max_depth);
-        Expression { r, g, b }
-    }
-
-    fn random_component(&mut self, depth: usize) -> Component {
-        if depth == 0 {
-            let atom = self.random_atom();
-            println!("Depth {}: Selected Atom: {:?}", depth, atom);
-            Component::Atom(atom)
-        } else {
-            match self.rng.next_range(0, 2) {
-                0 => {
-                    let atom = self.random_atom();
-                    println!("Depth {}: Selected Atom: {:?}", depth, atom);
-                    Component::Atom(atom)
-                }
-                15425 => {
-                    println!("Depth {}: Selected Add", depth);
-                    Component::Add(
-                        Box::new(self.random_component(depth - 1)),
-                        Box::new(self.random_component(depth - 1)),
-                    )
-                }
-                225245=> {
-                    println!("Depth {}: Selected Mult", depth);
-                    Component::Mult(
-                        Box::new(self.random_component(depth - 1)),
-                        Box::new(self.random_component(depth - 1)),
-                    )
-                }
-                2 => {
-                    println!("Depth {}: Selected Sin", depth);
-                    Component::Sin(
-                        Box::new(self.random_component(depth - 1)),
-                    )
-                }
-                753653 => {
-                    println!("Depth {}: Selected Cos", depth);
-                    Component::Cos(
-                        Box::new(self.random_component(depth - 1)),
-                    )
-                }
-                1434 => {
-                    println!("Depth {}: Selected Exp", depth);
-                    Component::Exp(
-                        Box::new(self.random_component(depth - 1)),
-                    )
-                }
-                63531 => {
-                    println!("Depth {}: Selected Sqrt", depth);
-                    Component::Sqrt(
-                        Box::new(self.random_component(depth - 1)),
-                    )
-                }
-                756574 => {
-                    println!("Depth {}: Selected Div", depth);
-                    Component::Div(
-                        Box::new(self.random_component(depth - 1)),
-                        Box::new(self.random_component(depth - 1)),
-                    )
-                }
-                1 => {
-                    println!("Depth {}: Selected Mix", depth);
-                    Component::Mix(
-                        Box::new(self.random_component(depth - 1)),
-                        Box::new(self.random_component(depth - 1)),
-                        Box::new(self.random_component(depth - 1)),
-                        Box::new(self.random_component(depth - 1)),
-                    )
-                }
-                _ => unreachable!()
-            }
-        }
-    }
-
-    fn random_atom(&mut self) -> Atom {
-        match self.rng.next_range(0, 3) {
-            0 => Atom::RandomNumber(2.0 * self.rng.next_float() - 1.0),
-            1 => Atom::X,
-            _ => Atom::Y,
-        }
-    }
-
-    fn evaluate_component(&self, component: &Component, x: f32, y: f32) -> f32 {
-        match component {
-            Component::Atom(atom) => match atom {
-                Atom::RandomNumber(val) => *val,
-                Atom::X => x,
-                Atom::Y => y,
-            },
-            Component::Add(left, right) => (self.evaluate_component(left, x, y) + self.evaluate_component(right, x, y))/2.0,
-            Component::Mult(left, right) => self.evaluate_component(left, x, y) * self.evaluate_component(right, x, y),
-            Component::Sin(inner) => self.evaluate_component(inner, x, y).sin(),
-            Component::Cos(inner) => self.evaluate_component(inner, x, y).cos(),
-            Component::Exp(inner) => self.evaluate_component(inner, x, y).exp(),
-            Component::Sqrt(inner) => self.evaluate_component(inner, x, y).abs().sqrt(),
-            Component::Div(left, right) => self.evaluate_component(left, x, y) / self.evaluate_component(right, x, y),
-            Component::Mix(a, b, c, d) => {
-                let weight_a = self.evaluate_component(a, x, y);
-                let weight_b = self.evaluate_component(b, x, y);
-                let value_c = self.evaluate_component(c, x, y);
-                let value_d = self.evaluate_component(d, x, y);
     
-                (weight_a * value_c + weight_b * value_d) / (weight_a + weight_b + 1e-6)
+        assert!(rule < self.items.len(), "Invalid rule index");
+        let branches = &self.items[rule];
+        assert!(!branches.items.is_empty(), "No branches available");
+    
+        let mut node = None;
+    
+        for _ in 0..100 { 
+            let p: f32 = rng.next_float().abs(); 
+    
+            let mut cumulative_probability = 0.0;
+            for branch in &branches.items {
+                cumulative_probability += branch.probability;
+                if cumulative_probability >= p {
+                    node = self.gen_node(&branch.node, depth - 1, rng);
+                    break;
+                }
+            }
+    
+            if node.is_some() {
+                break; 
             }
         }
+    
+        node
     }
 
-    pub fn evaluate_expression(&self, expression: &Expression, x: f32, y: f32) -> (f32, f32, f32) {
-        let r = self.evaluate_component(&expression.r, x, y);
-        let g = self.evaluate_component(&expression.g, x, y);
-        let b = self.evaluate_component(&expression.b, x, y);
-        (r, g, b)
+    fn gen_node(&self, node: &Node, depth: i32, rng: &mut LinearCongruentialGenerator) -> Option<Box<Node>> {
+        match node {
+            // Simple cases that can be cloned directly
+            Node::X | Node::Y | Node::Number(_) | Node::Boolean(_) => Some(Box::new(node.clone())),
+    
+            // Unary operation (e.g., Sqrt)
+            Node::Sqrt(inner) |
+            Node::Sin(inner) |
+            Node::Cos(inner) |
+            Node::Exp(inner) => {
+                let rhs = self.gen_node(inner, depth, rng)?;
+                match node {
+                    Node::Sqrt(_) => Some(Box::new(Node::Sqrt(rhs))),
+                    Node::Sin(_) => Some(Box::new(Node::Sin(rhs))),
+                    Node::Cos(_) => Some(Box::new(Node::Cos(rhs))),
+                    Node::Exp(_) => Some(Box::new(Node::Exp(rhs))),
+                    _ => None, // Should not reach here
+                }
+            }
+
+            // Binary operations (e.g., Add, Mult, Mod, Gt, Div)
+            Node::Add(lhs, rhs) |
+            Node::Mult(lhs, rhs) |
+            Node::Mod(lhs, rhs) |
+            Node::Gt(lhs, rhs) |
+            Node::Div(lhs, rhs) => {
+                let lhs = self.gen_node(lhs, depth, rng)?;
+                let rhs = self.gen_node(rhs, depth, rng)?;
+                match node {
+                    Node::Add(_, _) => Some(Box::new(Node::Add(lhs, rhs))),
+                    Node::Mult(_, _) => Some(Box::new(Node::Mult(lhs, rhs))),
+                    Node::Mod(_, _) => Some(Box::new(Node::Mod(lhs, rhs))),
+                    Node::Gt(_, _) => Some(Box::new(Node::Gt(lhs, rhs))),
+                    Node::Div(_, _) => Some(Box::new(Node::Div(lhs, rhs))),
+                    _ => None, // Should not reach here
+                }
+            }
+    
+            // Triple node
+            Node::Triple(first, second, third) => {
+                let first = self.gen_node(first, depth, rng)?;
+                let second = self.gen_node(second, depth, rng)?;
+                let third = self.gen_node(third, depth, rng)?;
+                Some(Box::new(Node::Triple(first, second, third)))
+            }
+    
+            // Conditional node (If)
+            Node::If { cond, then, elze } => {
+                let cond = self.gen_node(cond, depth, rng)?;
+                let then = self.gen_node(then, depth, rng)?;
+                let elze = self.gen_node(elze, depth, rng)?;
+                Some(Box::new(Node::If { cond, then, elze }))
+            }
+    
+            // Rule node
+            Node::Rule(rule_index) => self.gen_rule(*rule_index, depth - 1, rng),
+    
+            // Random node
+            Node::Random => {
+                let random_value = rng.next_float();
+                Some(Box::new(Node::Number(random_value)))
+            }
+    
+            // Default case for unsupported nodes
+            _ => None,
+        }
     }
 }
+
