@@ -1,4 +1,4 @@
-use randomart::{fnv1a, Grammar, PixelCoordinates, Colour, render_pixels, Expression};
+use randomart::{Grammar, Expression, utils::{ PixelCoordinates, Colour, render_pixels, fnv1a }};
 use std::fs::File;
 use std::io::Write;
 
