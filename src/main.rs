@@ -1,5 +1,11 @@
 use randomart::{utils::{ fnv1a, render_pixels, PixelCoordinates }, Grammar};
 use std::env;
+use std::path::PathBuf;
+
+fn get_output_path(file_name: &str) -> PathBuf {
+    let current_dir = env::current_dir().expect("failed to get the current working directory");
+    current_dir.join(file_name)
+}
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -14,7 +20,7 @@ fn main() {
         eprintln!("error: depth must be a positive integer");
         std::process::exit(1);
     });
-    let output_filename = args[3].clone();
+    let output_filename = format!("{}.png", args[3]);
     let seed = fnv1a(&string);
     let mut grammar = Grammar::default(seed);
     
@@ -28,6 +34,6 @@ fn main() {
     };
     let img = render_pixels(rgb_function);
 
-    let output_filepath = format!("data/images/{}.png", &output_filename);
+    let output_filepath = get_output_path(&output_filename);
     img.save(output_filepath).expect("failed to save the image");
 }
