@@ -9,12 +9,14 @@ Triple(Div(Add(Cos(Sin(Number(-0.14320678))), Add(Sin(Cos(Add(Sqrt(Mult(Sin(Sqrt
 
 ## how to run:
 ```
-cargo run "<string>" <depth> <output file name>
+cargo run "<string>" <depth> <output file name> <width>(optional) <height>(optional)
 ```
 e.g. 
 ``` 
 cargo run "spiderman 3" 40 spiderman 400 400
 ```
+
+> NOTE: the width and height arguments are optional with the default values being set as 400 for both
 
 ## references:
 https://netsec.ethz.ch/publications/papers/validation.pdf
