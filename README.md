@@ -13,7 +13,7 @@ cargo run "<string>" <depth> <output file name>
 ```
 e.g. 
 ``` 
-cargo run "spiderman 3" 40 spiderman
+cargo run "spiderman 3" 40 spiderman 400 400
 ```
 
 ## references:

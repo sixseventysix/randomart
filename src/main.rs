@@ -10,8 +10,8 @@ fn get_output_path(file_name: &str) -> PathBuf {
 fn main() {
     let args: Vec<String> = env::args().collect();
 
-    if args.len() != 4 {
-        eprintln!("usage: {} <string> <depth> <output file path>", args[0]);
+    if args.len() != 6 {
+        eprintln!("usage: {} <string> <depth> <output file path> <width> <height>", args[0]);
         std::process::exit(1);
     }
 
@@ -21,6 +21,9 @@ fn main() {
         std::process::exit(1);
     });
     let output_filename = format!("{}.png", args[3]);
+    let width: u32 = args[4].parse().expect("invalid width");
+    let height: u32 = args[5].parse().expect("invalid height");
+
     let seed = fnv1a(&string);
     let mut grammar = Grammar::default(seed);
     
@@ -32,7 +35,8 @@ fn main() {
     let rgb_function = |coords: PixelCoordinates| {
         generated_node.eval_rgb(coords.x, coords.y)
     };
-    let img = render_pixels(rgb_function);
+    
+    let img = render_pixels(rgb_function, width, height);
 
     let output_filepath = get_output_path(&output_filename);
     img.save(output_filepath).expect("failed to save the image");

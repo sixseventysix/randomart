@@ -1,8 +1,5 @@
 use image::{ImageBuffer, RgbImage};
 
-const HEIGHT: u32 = 400;
-const WIDTH: u32 = 400;
-
 pub struct PixelCoordinates {
     pub x: f32,
     pub y: f32
@@ -14,15 +11,15 @@ pub struct Colour {
     pub b: f32
 }
 
-pub fn render_pixels<F>(function: F) -> RgbImage 
+pub fn render_pixels<F>(function: F, width: u32, height: u32) -> RgbImage 
 where
     F: Fn(PixelCoordinates) -> Colour 
 {
-    let mut img: RgbImage = ImageBuffer::new(WIDTH, HEIGHT);
+    let mut img: RgbImage = ImageBuffer::new(width, height);
 
     for (px, py, pixel) in img.enumerate_pixels_mut() {
-        let x = (px as f32 / (WIDTH - 1) as f32) * 2.0 - 1.0;
-        let y = (py as f32 / (HEIGHT - 1) as f32) * 2.0 - 1.0;
+        let x = (px as f32 / (width - 1) as f32) * 2.0 - 1.0;
+        let y = (py as f32 / (height - 1) as f32) * 2.0 - 1.0;
 
         let colour = function(PixelCoordinates { x, y });
 
