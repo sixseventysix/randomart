@@ -1,4 +1,7 @@
-fn fmod(x: f32, y: f32) -> f32 {
+use crate::utils::{PixelCoordinates, Colour, LinearCongruentialGenerator};
+use std::fmt;
+
+fn _fmod(x: f32, y: f32) -> f32 {
     if y == 0.0 {
         0.0 
     } else {
@@ -6,14 +9,14 @@ fn fmod(x: f32, y: f32) -> f32 {
     }
 }
 
-fn what_do_i_even_call_this(pixel_coordinates: PixelCoordinates) -> Colour {
+fn _what_do_i_even_call_this(pixel_coordinates: PixelCoordinates) -> Colour {
     let x = pixel_coordinates.x;
     let y = pixel_coordinates.y;
 
     if x * y > 0.0 {
         Colour { r: x, g: y, b: 1.0 }
     } else {
-        let value = fmod(x, y);
+        let value = _fmod(x, y);
         Colour {
             r: value,
             g: value,
@@ -22,7 +25,7 @@ fn what_do_i_even_call_this(pixel_coordinates: PixelCoordinates) -> Colour {
     }
 } 
 
-fn gray_gradient(pixel_coordinates: PixelCoordinates) -> Colour {
+fn _gray_gradient(pixel_coordinates: PixelCoordinates) -> Colour {
     Colour { r: pixel_coordinates.x, g: pixel_coordinates.x, b: pixel_coordinates.x }
 }
 
@@ -89,12 +92,12 @@ impl fmt::Display for Expression {
     }
 }
 
-pub struct Grammar {
+pub struct LegacyGrammar {
     rng: LinearCongruentialGenerator,
     max_depth: usize,
 }
 
-impl Grammar {
+impl LegacyGrammar {
     pub fn new(seed: u64, max_depth: usize) -> Self {
         Self {
             rng: LinearCongruentialGenerator::new(seed),
