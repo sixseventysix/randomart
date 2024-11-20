@@ -28,60 +28,60 @@ pub enum Node {
 }
 
 impl Node {
-    fn eval(&self, x: f32, y: f32) -> Option<f32> {
+    fn eval(&self, x: f32, y: f32) -> f32 {
         match self {
-            Node::X => Some(x),
-            Node::Y => Some(y),
-            Node::Number(value) => Some(*value),
+            Node::X => x,
+            Node::Y => y,
+            Node::Number(value) => *value,
             Node::Random => panic!("all Node::Random instances are supposed to be converted into Node::Number during generation"),
             Node::Add(lhs, rhs) => {
-                let lhs_val = lhs.eval(x, y)?;
-                let rhs_val = rhs.eval(x, y)?;
-                Some((lhs_val + rhs_val)/2.0)
+                let lhs_val = lhs.eval(x, y);
+                let rhs_val = rhs.eval(x, y);
+                (lhs_val + rhs_val)/2.0
             }
             Node::Mult(lhs, rhs) => {
-                let lhs_val = lhs.eval(x, y)?;
-                let rhs_val = rhs.eval(x, y)?;
-                Some(lhs_val * rhs_val)
+                let lhs_val = lhs.eval(x, y);
+                let rhs_val = rhs.eval(x, y);
+                lhs_val * rhs_val
             }
             Node::Sin(inner) => {
-                let val = inner.eval(x, y)?;
-                Some(val.sin())
+                let val = inner.eval(x, y);
+                val.sin()
             }
             Node::Cos(inner) => {
-                let val = inner.eval(x, y)?;
-                Some(val.cos())
+                let val = inner.eval(x, y);
+                val.cos()
             }
             Node::Exp(inner) => {
-                let val = inner.eval(x, y)?;
-                Some(val.exp())
+                let val = inner.eval(x, y);
+                val.exp()
             }
             Node::Sqrt(inner) => {
-                let val = inner.eval(x, y)?;
-                Some(val.sqrt().max(0.0)) 
+                let val = inner.eval(x, y);
+                val.sqrt().max(0.0)
             }
             Node::Div(lhs, rhs) => {
-                let lhs_val = lhs.eval(x, y)?;
-                let rhs_val = rhs.eval(x, y)?;
+                let lhs_val = lhs.eval(x, y);
+                let rhs_val = rhs.eval(x, y);
                 if rhs_val.abs() > 1e-6 { 
-                    Some(lhs_val / rhs_val)
+                    lhs_val / rhs_val
                 } else {
-                    None
+                    0.0
                 }
             }
             Node::Mix(a, b, c, d) => {
-                let a_val = a.eval(x, y)?;
-                let b_val = b.eval(x, y)?;
-                let c_val = c.eval(x, y)?;
-                let d_val = d.eval(x, y)?;
-                Some((a_val * c_val + b_val * d_val) / (a_val + b_val + 1e-6))
+                let a_val = a.eval(x, y);
+                let b_val = b.eval(x, y);
+                let c_val = c.eval(x, y);
+                let d_val = d.eval(x, y);
+                (a_val * c_val + b_val * d_val) / (a_val + b_val + 1e-6)
             }
             Node::Triple(_first, _second, _third) => {
                 panic!("Node::Triple is only for the Entry rule")
             }
             // todo: enforce boolean values only inside cond
             Node::If { cond, then, elze } => {
-                let cond_value = cond.eval(x, y)?; 
+                let cond_value = cond.eval(x, y); 
                 if cond_value > 0.0 { // non zero is true
                     then.eval(x, y)   
                 } else {
@@ -89,17 +89,17 @@ impl Node {
                 }
             }
             Node::Gt(lhs, rhs) => {
-                let lhs_val = lhs.eval(x, y)?;
-                let rhs_val = rhs.eval(x, y)?;
-                Some(if lhs_val > rhs_val { 1.0 } else { 0.0 })
+                let lhs_val = lhs.eval(x, y);
+                let rhs_val = rhs.eval(x, y);
+                if lhs_val > rhs_val { 1.0 } else { 0.0 }
             }
             Node::Modulo(lhs, rhs) => {
-                let lhs_val = lhs.eval(x, y)?; 
-                let rhs_val = rhs.eval(x, y)?; 
+                let lhs_val = lhs.eval(x, y); 
+                let rhs_val = rhs.eval(x, y); 
                 if rhs_val.abs() > 1e-6 { 
-                    Some(lhs_val % rhs_val)
+                    lhs_val % rhs_val
                 } else {
-                    None 
+                    0.0 
                 }
             }
             _ => panic!("unexpected Node kind during eval: {:?}", self), 
@@ -108,9 +108,9 @@ impl Node {
 
     pub fn eval_rgb(&self, x: f32, y: f32) -> Colour {
         if let Node::Triple(first, second, third) = self {
-            let r = first.eval(x, y).unwrap_or(0.0); 
-            let g = second.eval(x, y).unwrap_or(0.0);
-            let b = third.eval(x, y).unwrap_or(0.0);
+            let r = first.eval(x, y); 
+            let g = second.eval(x, y);
+            let b = third.eval(x, y);
             Colour { r, g, b }
         } else {
             Colour { r: 0.0, g: 0.0, b: 0.0 }
