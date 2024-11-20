@@ -39,14 +39,9 @@ fn main() {
     
     let start_rule = 0;
     let mut generated_node = grammar.gen_rule(start_rule, depth).unwrap();
-    let (r_str, g_str, b_str) = generated_node.extract_channels_as_str_from_triple();
-    println!("R({}):{}\n\nG({}):{}\n\nB({}):{}", r_str.len(), r_str, g_str.len(), g_str, b_str.len(), b_str);
-
     generated_node.simplify_triple();
     let (r_str_optimised, g_str_optimised, b_str_optimised) = generated_node.extract_channels_as_str_from_triple();
-    println!("\nR({}):{}\n\nG({}):{}\n\nB({}):{}", r_str_optimised.len(), r_str_optimised, g_str_optimised.len(), g_str_optimised, b_str_optimised.len(), b_str_optimised);
-
-    println!("\n\nchars cut by optimisations: R:{}, G: {}, B:{}", r_str.len()-r_str_optimised.len(), g_str.len()-g_str_optimised.len(), b_str.len()-b_str_optimised.len());
+    println!("\nR:{}\n\nG:{}\n\nB:{}", r_str_optimised, g_str_optimised, b_str_optimised);
 
     let rgb_function = |coords: PixelCoordinates| {
         generated_node.eval_rgb(coords.x, coords.y)
