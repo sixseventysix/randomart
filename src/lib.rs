@@ -33,7 +33,7 @@ impl Node {
             Node::X => Some(x),
             Node::Y => Some(y),
             Node::Number(value) => Some(*value),
-            Node::Random => unreachable!("all Node::Random instances are supposed to be converted into Node::Number during generation"),
+            Node::Random => panic!("all Node::Random instances are supposed to be converted into Node::Number during generation"),
             Node::Add(lhs, rhs) => {
                 let lhs_val = lhs.eval(x, y)?;
                 let rhs_val = rhs.eval(x, y)?;
@@ -77,7 +77,7 @@ impl Node {
                 Some((a_val * c_val + b_val * d_val) / (a_val + b_val + 1e-6))
             }
             Node::Triple(_first, _second, _third) => {
-                unreachable!("Node::Triple is only for the Entry rule")
+                panic!("Node::Triple is only for the Entry rule")
             }
             // todo: enforce boolean values only inside cond
             Node::If { cond, then, elze } => {
@@ -102,7 +102,7 @@ impl Node {
                     None 
                 }
             }
-            _ => unreachable!("unexpected Node kind during eval: {:?}", self), 
+            _ => panic!("unexpected Node kind during eval: {:?}", self), 
         }
     }
 
