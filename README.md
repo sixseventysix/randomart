@@ -1,5 +1,5 @@
 # randomart
-![image from randomart](.\data\images\201120241418.png)
+![image from randomart](./data/images/201120241418.png)
 
 image generated using this formula:
 
