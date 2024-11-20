@@ -19,11 +19,7 @@ pub enum Node {
     Modulo(Box<Node>, Box<Node>), 
     Gt(Box<Node>, Box<Node>),   
     Triple(Box<Node>, Box<Node>, Box<Node>), 
-    If {
-        cond: Box<Node>,     
-        then: Box<Node>,    
-        elze: Box<Node>,    
-    },
+    If(Box<Node>, Box<Node>, Box<Node>),
     Mix(Box<Node>, Box<Node>, Box<Node>, Box<Node>)
 }
 
@@ -80,7 +76,7 @@ impl Node {
                 panic!("Node::Triple is only for the Entry rule")
             }
             // todo: enforce boolean values only inside cond
-            Node::If { cond, then, elze } => {
+            Node::If(cond, then, elze) => {
                 let cond_value = cond.eval(x, y); 
                 if cond_value > 0.0 { // non zero is true
                     then.eval(x, y)   
@@ -327,11 +323,11 @@ impl Grammar {
                 Some(Box::new(Node::Triple(first, second, third)))
             }
     
-            Node::If { cond, then, elze } => {
+            Node::If(cond, then, elze) => {
                 let cond = self.gen_node(cond, depth)?;
                 let then = self.gen_node(then, depth)?;
                 let elze = self.gen_node(elze, depth)?;
-                Some(Box::new(Node::If { cond, then, elze }))
+                Some(Box::new(Node::If(cond, then, elze)))
             }
     
             Node::Rule(rule_index) => {
