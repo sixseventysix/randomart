@@ -1,6 +1,5 @@
 use randomart::{utils::{ fnv1a, render_pixels, PixelCoordinates }, Grammar};
-use std::env;
-use std::path::PathBuf;
+use std::{env, path::PathBuf};
 
 fn get_output_path(file_name: &str) -> PathBuf {
     let current_dir = env::current_dir().expect("failed to get the current working directory");
@@ -39,9 +38,15 @@ fn main() {
     let mut grammar = Grammar::default(seed);
     
     let start_rule = 0;
-    let generated_node = grammar.gen_rule(start_rule, depth).unwrap();
-    let (r_str, g_str, b_str) = generated_node.extract_channels_from_triple();
-    println!("R:{}\n\nG:{}\n\nB:{}", r_str, g_str, b_str);
+    let mut generated_node = grammar.gen_rule(start_rule, depth).unwrap();
+    let (r_str, g_str, b_str) = generated_node.extract_channels_as_str_from_triple();
+    println!("R({}):{}\n\nG({}):{}\n\nB({}):{}", r_str.len(), r_str, g_str.len(), g_str, b_str.len(), b_str);
+
+    generated_node.simplify_triple();
+    let (r_str_optimised, g_str_optimised, b_str_optimised) = generated_node.extract_channels_as_str_from_triple();
+    println!("\nR({}):{}\n\nG({}):{}\n\nB({}):{}", r_str_optimised.len(), r_str_optimised, g_str_optimised.len(), g_str_optimised, b_str_optimised.len(), b_str_optimised);
+
+    println!("\n\nchars cut by optimisations: R:{}, G: {}, B:{}", r_str.len()-r_str_optimised.len(), g_str.len()-g_str_optimised.len(), b_str.len()-b_str_optimised.len());
 
     let rgb_function = |coords: PixelCoordinates| {
         generated_node.eval_rgb(coords.x, coords.y)
@@ -50,5 +55,5 @@ fn main() {
     let img = render_pixels(rgb_function, width, height);
 
     let output_filepath = get_output_path(&output_filename);
-    img.save(output_filepath).expect("failed to save the image");
+    img.save(output_filepath.clone()).expect("failed to save the image");
 }

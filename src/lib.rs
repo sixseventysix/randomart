@@ -113,7 +113,7 @@ impl Node {
         }
     }
     
-    pub fn extract_channels_from_triple(&self) -> (String, String, String) {
+    pub fn extract_channels_as_str_from_triple(&self) -> (String, String, String) {
         assert!(
             matches!(*self, Node::Triple(_, _, _)),
             "expected the generated node to be a Node::Triple, but found: {:?}",
@@ -129,6 +129,125 @@ impl Node {
             _ => {
                 unreachable!("assert inside this function would've complained before you came here");
             }
+        }
+    }
+
+    fn simplify(&mut self) {
+        match self {
+            Node::Add(lhs, rhs) => {
+                lhs.simplify(); 
+                rhs.simplify(); 
+
+                if let (Node::Number(lhs_val), Node::Number(rhs_val)) = (&**lhs, &**rhs) {
+                    *self = Node::Number((lhs_val + rhs_val)/2.0);
+                }
+            }
+            Node::Mult(lhs, rhs) => {
+                lhs.simplify();
+                rhs.simplify();
+
+                if let (Node::Number(lhs_val), Node::Number(rhs_val)) = (&**lhs, &**rhs) {
+                    *self = Node::Number(lhs_val * rhs_val);
+                }
+            }
+            Node::Gt(lhs, rhs) => {
+                lhs.simplify();
+                rhs.simplify();
+
+                if let (Node::Number(lhs_val), Node::Number(rhs_val)) = (&**lhs, &**rhs) {
+                    *self = Node::Number(if lhs_val > rhs_val { 1.0 } else { -1.0 });
+                }
+            }
+            Node::Sin(inner) => {
+                inner.simplify();
+
+                if let Node::Number(val) = **inner {
+                    *self = Node::Number(val.sin());
+                }
+            }
+            Node::Cos(inner) => {
+                inner.simplify();
+
+                if let Node::Number(val) = **inner {
+                    *self = Node::Number(val.cos());
+                }
+            }
+            Node::Exp(inner) => {
+                inner.simplify();
+
+                if let Node::Number(val) = **inner {
+                    *self = Node::Number(val.exp());
+                }
+            }
+            Node::Sqrt(inner) => {
+                inner.simplify();
+
+                if let Node::Number(val) = **inner {
+                    *self = Node::Number(val.sqrt().max(0.0));
+                }
+            }
+            Node::Div(lhs, rhs) => {
+                lhs.simplify();
+                rhs.simplify();
+
+                if let (Node::Number(lhs_val), Node::Number(rhs_val)) = (&**lhs, &**rhs) {
+                    if rhs_val.abs() > 1e-6 {
+                        *self = Node::Number(lhs_val / rhs_val);
+                    } else {
+                        *self = Node::Number(0.0); 
+                    }
+                }
+            }
+            Node::If(cond, then, elze) => {
+                cond.simplify();
+                then.simplify();
+                elze.simplify();
+
+                if let Node::Number(cond_val) = **cond {
+                    if cond_val > 0.0 {
+                        *self = (**then).clone(); 
+                    } else {
+                        *self = (**elze).clone(); 
+                    }
+                }
+            }
+            Node::Modulo(lhs, rhs) => {
+                lhs.simplify();
+                rhs.simplify();
+
+                if let (Node::Number(lhs_val), Node::Number(rhs_val)) = (&**lhs, &**rhs) {
+                    if rhs_val.abs() > 1e-6 {
+                        *self = Node::Number(lhs_val % rhs_val);
+                    } else {
+                        *self = Node::Number(0.0); 
+                    }
+                }
+            }
+            Node::Mix(a, b, c, d) => {
+                a.simplify();
+                b.simplify();
+                c.simplify();
+                d.simplify();
+
+                if let (Node::Number(a_val), Node::Number(b_val),Node::Number(c_val), Node::Number(d_val)) = (&**a, &**b, &**c, &**d) {
+                    *self = Node::Number((a_val * c_val + b_val * d_val) / (a_val + b_val + 1e-6));
+                }
+            }
+
+            Node::Number(_) | Node::X | Node::Y => { /* terminates recursive `simplify()` calls */}
+            node => {
+                panic!("encountered {:?} which is not evaluatable. examine your grammar.", node)
+            }
+        }
+    }
+
+    pub fn simplify_triple(&mut self) {
+        if let Node::Triple(first, second, third) = self {
+            first.simplify(); 
+            second.simplify();
+            third.simplify();
+        } else {
+            panic!("expected Node::Triple, encountered {:?}", self);
         }
     }
 }
@@ -362,7 +481,7 @@ mod tests {
     fn test_thumbnail_image() {
         let mut grammar = Grammar::default(fnv1a("spiderman"));
         let generated_node = grammar.gen_rule(0, 40).unwrap();
-        let (r_str, g_str, b_str) = generated_node.extract_channels_from_triple();
+        let (r_str, g_str, b_str) = generated_node.extract_channels_as_str_from_triple();
 
         assert_eq!(r_str.as_str(), "Div(Add(Cos(Number(0.8143064)), Sin(Cos(Mult(Y, Div(Sin(Sin(X)), Mult(Cos(Cos(Exp(Sin(Cos(Y))))), Sin(Sin(Sqrt(Div(Sqrt(Sin(Exp(Mult(Sin(Sqrt(X)), Sin(Sin(X)))))), Sin(Div(Sin(Add(Sqrt(Cos(X)), Sin(Sqrt(X)))), Exp(Sin(Div(Exp(Number(0.65621984)), Div(X, Y)))))))))))))))), Exp(Div(Cos(Sin(Cos(Sqrt(Number(-0.4636864))))), Mix(Mult(Mult(Sin(Mult(Mix(Mult(Sin(Sin(Number(-0.3169167))), Div(Mult(Sin(Cos(Cos(Sin(Cos(X))))), Add(Exp(Cos(Cos(Sin(Number(0.1145941))))), Add(Sin(Sin(Mult(Y, Number(0.55249023)))), Cos(Sqrt(Sin(X)))))), Add(Sin(Mix(Sin(Mult(Mix(Number(-0.2570064), X, X, Y), Sqrt(X))), Exp(Mix(Sin(X), Sin(Y), Cos(X), Mix(Y, X, Number(-0.85492814), X))), Exp(Cos(Sin(X))), Sin(Div(Exp(Y), Add(Number(0.39193344), X))))), X))), Sqrt(Number(-0.43099332)), Add(Exp(Mult(Mix(Div(Sin(Sqrt(Div(Y, Y))), Cos(Exp(Sin(X)))), Cos(Div(Mix(Mult(Number(-0.9781154), Number(0.98348093)), Y, Mix(X, Number(0.9829658), X, X), Add(Number(0.00033164024), Y)), Div(Add(X, Number(0.37760782)), Cos(Number(-0.26082957))))), Number(-0.3052044), Cos(Number(-0.28564852))), Mult(Cos(Sin(Div(Cos(X), Number(0.734452)))), Cos(Cos(Y))))), Cos(X)), Mult(Add(Sqrt(Sin(Sin(Sin(Sin(Sin(X)))))), Div(Sin(Cos(Exp(Cos(Mult(Number(0.28140485), Number(0.46307325)))))), Sin(Sin(Sqrt(Div(Add(Y, X), Sin(Number(0.39548683)))))))), Cos(Sqrt(Add(Sin(Sin(Sin(Sin(Y)))), Mix(Mix(Exp(Mix(X, Number(0.6764331), Number(-0.002668023), Y)), Number(-0.6547586), Exp(X), Exp(Add(Number(0.2886889), Y))), Sin(Number(0.32838047)), Cos(Sin(Cos(Number(-0.3964551)))), Mix(Exp(Cos(Y)), Y, Add(Add(Y, X), Sin(X)), Exp(Sin(X))))))))), Add(Div(Mix(X, Div(X, Add(Exp(Cos(Sin(Number(0.5042167)))), Sin(Sqrt(Number(0.38737178))))), Exp(Sin(Exp(Sin(Sqrt(Sin(Number(-0.5439882))))))), Exp(Div(Sqrt(Sqrt(Number(0.6149641))), Sin(Sin(Y))))), Add(Mult(Mix(Sqrt(Mix(Exp(Cos(Number(0.5883217))), Sqrt(Exp(Y)), X, Mult(Sin(Number(0.78537667)), Sin(Number(0.7132455))))), Mult(Div(Cos(Cos(Number(0.3556627))), Sin(Sqrt(X))), Cos(Sin(Cos(X)))), Number(-0.16642624), Sin(Sin(Mult(Number(0.6821568), Sin(Number(-0.74198234)))))), Cos(Sqrt(Number(-0.15647155)))), Sin(Sin(Cos(Cos(Cos(Sin(Y)))))))), Div(Mult(Sin(Mult(Sin(Exp(Cos(Mix(X, X, Y, Number(-0.26491487))))), Number(-0.5365895))), Sin(Div(Add(Mix(Div(Exp(Number(-0.0028839111)), Cos(X)), Sin(Cos(X)), Sin(Cos(Number(0.27534556))), Cos(Mult(Y, X))), Cos(Mix(Sin(Number(0.8018645)), Cos(X), Div(X, Y), Cos(Y)))), X))), Exp(Sin(Sin(Mix(Mult(Div(Sqrt(Y), Number(0.14593363)), Sqrt(Sin(X))), Cos(Cos(Mult(Number(0.17649806), X))), Mult(Mult(Exp(Number(0.57681966)), Number(0.8129909)), Cos(Div(X, Y))), Sin(X))))))))), Cos(Sin(Exp(Cos(Mult(Cos(Add(Cos(Cos(Add(Sqrt(Number(-0.1577245)), Cos(Number(0.7597283))))), Add(Add(Mix(Sin(Y), Cos(Y), Cos(Y), Sin(Y)), Mult(Mix(X, X, Number(-0.8217878), Number(-0.8065264)), X)), Cos(Sin(Sin(Y)))))), Cos(Cos(Sin(Sin(Y)))))))))), Div(Cos(Y), Cos(Y))), Cos(Mult(Sin(Sqrt(Exp(Sqrt(Cos(Add(Mult(Cos(Mix(Number(-0.4547348), Y, Number(-0.40319186), Sin(Sin(Y)))), Sqrt(Exp(Sin(X)))), Cos(Sin(Div(Cos(Sin(Number(0.18493366))), Add(Mult(Number(0.065757394), Y), Sqrt(X))))))))))), Cos(Cos(Mult(Cos(Mult(Sin(Cos(Div(Cos(Sin(Mult(X, X))), Cos(Mult(Cos(X), Cos(X)))))), Cos(Cos(Cos(Y))))), Exp(Cos(Sqrt(Cos(Mult(Sin(Mult(Div(Number(-0.7573502), Number(-0.9857584)), Mix(X, Y, Y, X))), Sqrt(Mult(Cos(Y), Div(Y, X))))))))))))), Cos(Add(Sin(Cos(Sin(Add(Mult(Exp(X), Sqrt(Exp(Mult(Exp(Mult(Add(Number(-0.31604564), Number(-0.7738019)), Sin(Y))), Add(Cos(Add(Y, Y)), Cos(Sin(Number(-0.15715218)))))))), Div(Add(Cos(Cos(Div(Sin(X), Cos(Cos(Number(0.24509537)))))), Sin(Cos(Sin(Sin(X))))), Add(Cos(Cos(Sin(Exp(Cos(Y))))), Cos(Add(Sin(Add(Sqrt(X), Div(Y, X))), Sqrt(Sin(X)))))))))), Sqrt(Sqrt(Add(Add(Sin(Cos(Sin(Exp(Cos(Mult(Cos(Y), Add(Y, Number(0.20476437)))))))), Cos(Sin(Cos(Y)))), Cos(Mix(Div(Cos(Mult(Sin(Add(Sin(Y), Add(Number(-0.024786115), Number(-0.2799965)))), Add(Div(Mult(X, Number(-0.4414025)), Mix(Number(-0.9442846), Y, Y, X)), Sin(Cos(Number(-0.8271515)))))), Cos(Add(Sin(Cos(Sin(X))), Div(Exp(Sin(X)), Exp(Cos(X)))))), Sin(Div(Cos(Cos(Sin(Sqrt(Number(0.23292065))))), Div(Sin(Cos(Mult(X, Y))), X))), Exp(Exp(Sin(Mult(Cos(Sin(Number(-0.3700946))), Div(Cos(Number(0.7585335)), Cos(X)))))), Cos(Sqrt(Div(Sqrt(Add(Sin(X), Cos(Number(-0.34130484)))), Cos(Mult(Sqrt(Number(0.50590134)), Cos(Number(-0.36470628)))))))))))))), Sin(Sin(Mix(X, Sin(Mix(Exp(Sqrt(Mix(Mix(Sin(Sin(Sin(Sin(Number(-0.34478718))))), Sin(Sin(Mult(Add(Y, Number(-0.045727193)), Exp(Number(0.29553854))))), Sin(Cos(Exp(Add(Number(0.4138062), Y)))), Cos(Mix(Add(Cos(X), Sqrt(Y)), Exp(Sin(Number(-0.04634434))), Add(Cos(X), Cos(Number(0.2695595))), Number(0.66356707)))), Exp(Sin(Sqrt(Mult(Cos(Number(-0.9506049)), Div(Number(-0.9438669), Number(0.65550923)))))), Cos(Cos(Cos(Sin(Div(Y, Number(-0.114050984)))))), Sin(Y)))), Add(Cos(Mix(Sin(Cos(Mix(Cos(Mult(Y, Y)), Mix(Cos(Y), X, Sqrt(Number(-0.22931701)), Sqrt(Y)), Exp(Add(Y, X)), Mult(Add(Y, X), Add(Number(-0.3215127), Y))))), Number(0.24276114), Exp(Cos(Sqrt(Sin(Cos(Number(-0.18957245)))))), Cos(Sin(Cos(Cos(Exp(X))))))), Mult(Mult(Sin(Cos(Add(Cos(Sin(Number(0.7906107))), Sin(Sin(Number(0.84752166)))))), Mult(Cos(Div(Sqrt(Div(Y, Number(-0.64992726))), Cos(Cos(Number(-0.4923606))))), Sin(Sqrt(Exp(Add(X, Y)))))), Sqrt(Y))), Cos(Sin(Div(Mult(Mult(Cos(Add(Add(Number(-0.62430465), Y), Number(0.31052673))), Cos(Sqrt(Sin(Y)))), Cos(Sqrt(Cos(Add(Number(-0.07915354), Number(-0.28086126)))))), Sin(Mix(Sin(Number(-0.3475607)), Mix(Exp(Sqrt(Number(-0.8519582))), Div(Sin(X), Cos(Number(0.69957685))), Sin(X), Sin(Mix(Number(-0.32548696), X, Y, Y))), X, Cos(Add(Cos(Y), Y))))))), Sqrt(Cos(Sin(Add(Mult(Cos(Mult(Sin(Y), Sin(Y))), Sin(Exp(Cos(Y)))), Cos(Mix(Cos(Mult(X, Y)), Cos(Cos(Y)), Mix(X, Y, Exp(Number(0.9540616)), Cos(Number(0.120253205))), Y)))))))), Sin(Cos(Cos(Sin(Add(Sin(Number(0.44129848)), Mix(Sin(Add(Mix(Add(Number(0.9994931), Y), Div(X, Y), Cos(Number(0.98042333)), Sin(Y)), Sin(Sin(Number(-0.59432995))))), Mult(Exp(Mult(Add(Number(0.92121184), X), Sqrt(Number(0.31801617)))), Cos(Div(Sin(Y), Sqrt(Number(-0.709242))))), Sin(Sin(Div(Sin(X), Sin(X)))), Sqrt(Mult(Sqrt(Mult(X, Number(0.04581046))), Add(Y, Y))))))))), Cos(Cos(Sin(Mix(Div(Add(Cos(Exp(Sin(Add(Y, X)))), Cos(Mult(Mix(Sin(Y), Exp(X), Cos(Y), Div(Number(0.8831701), Y)), Sin(Sin(X))))), X), Number(-0.41597492), Sin(Cos(Sqrt(Cos(Cos(Cos(Number(-0.76706165))))))), Add(Exp(Cos(Exp(Div(Mix(Number(0.18548024), Number(-0.04697287), X, Number(0.06729615)), Sqrt(X))))), Mix(Mix(Sin(Sin(Cos(X))), Mult(Sqrt(Mult(X, Number(0.8523488))), Exp(Mult(Y, Y))), Mix(Add(X, Cos(X)), Sin(Div(Y, Number(-0.0379979))), Cos(Cos(X)), Sin(Cos(Number(0.8349887)))), Cos(Cos(Exp(X)))), Mix(Cos(Sin(Div(X, X))), Sqrt(Y), Cos(Exp(Cos(X))), Cos(Div(X, Number(-0.17966276)))), Add(Cos(Number(0.7713872)), Sin(Sin(Sin(Number(-0.051343262))))), Cos(Sin(Cos(Cos(Y)))))))))))))))))");
 
@@ -375,7 +494,7 @@ mod tests {
     #[should_panic(expected = "expected the generated node to be a Node::Triple")]
     fn test_extract_channels_from_triple_panics_on_invalid_variant() {
         let invalid_node = Node::X;
-        invalid_node.extract_channels_from_triple();
+        invalid_node.extract_channels_as_str_from_triple();
     }
 }
 
