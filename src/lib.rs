@@ -70,7 +70,9 @@ impl Node {
                 let b_val = b.eval(x, y);
                 let c_val = c.eval(x, y);
                 let d_val = d.eval(x, y);
-                (a_val * c_val + b_val * d_val) / (a_val + b_val + 1e-6)
+                let numerator = a_val * c_val + b_val * d_val;
+                let denominator = (a_val + b_val).abs().max(1e-6);
+                numerator / denominator
             }
             Node::Triple(_first, _second, _third) => {
                 panic!("Node::Triple is only for the Entry rule")
@@ -230,7 +232,9 @@ impl Node {
                 d.simplify();
 
                 if let (Node::Number(a_val), Node::Number(b_val),Node::Number(c_val), Node::Number(d_val)) = (&**a, &**b, &**c, &**d) {
-                    *self = Node::Number((a_val * c_val + b_val * d_val) / (a_val + b_val + 1e-6));
+                    let numerator = a_val * c_val + b_val * d_val;
+                    let denominator = (a_val + b_val).abs().max(1e-6);
+                    *self = Node::Number(numerator / denominator);
                 }
             }
 
