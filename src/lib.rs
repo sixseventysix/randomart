@@ -6,9 +6,8 @@ pub enum Node {
     X,                       
     Y,                       
     Random,                  
-    Rule(usize),                                    // stores the index of the rule          
+    Rule(usize),                                                      // stores the index of the rule          
     Number(f32),             
-    Boolean(bool),           
     Sqrt(Box<Node>),        
     Sin(Box<Node>),
     Cos(Box<Node>),
@@ -17,9 +16,7 @@ pub enum Node {
     Mult(Box<Node>, Box<Node>),
     Div(Box<Node>, Box<Node>),
     Modulo(Box<Node>, Box<Node>), 
-    Gt(Box<Node>, Box<Node>),   
     Triple(Box<Node>, Box<Node>, Box<Node>), 
-    If(Box<Node>, Box<Node>, Box<Node>),
     Mix(Box<Node>, Box<Node>, Box<Node>, Box<Node>),
     MixUnbounded(Box<Node>, Box<Node>, Box<Node>, Box<Node>)
 }
@@ -86,20 +83,6 @@ impl Node {
             Node::Triple(_first, _second, _third) => {
                 panic!("Node::Triple is only for the Entry rule")
             }
-            // todo: enforce boolean values only inside cond
-            Node::If(cond, then, elze) => {
-                let cond_value = cond.eval(x, y); 
-                if cond_value > 0.0 { // non zero is true
-                    then.eval(x, y)   
-                } else {
-                    elze.eval(x, y)   
-                }
-            }
-            Node::Gt(lhs, rhs) => {
-                let lhs_val = lhs.eval(x, y);
-                let rhs_val = rhs.eval(x, y);
-                if lhs_val > rhs_val { 1.0 } else { 0.0 }
-            }
             Node::Modulo(lhs, rhs) => {
                 let lhs_val = lhs.eval(x, y); 
                 let rhs_val = rhs.eval(x, y); 
@@ -161,14 +144,6 @@ impl Node {
                     *self = Node::Number(lhs_val * rhs_val);
                 }
             }
-            Node::Gt(lhs, rhs) => {
-                lhs.simplify();
-                rhs.simplify();
-
-                if let (Node::Number(lhs_val), Node::Number(rhs_val)) = (&**lhs, &**rhs) {
-                    *self = Node::Number(if lhs_val > rhs_val { 1.0 } else { -1.0 });
-                }
-            }
             Node::Sin(inner) => {
                 inner.simplify();
 
@@ -206,19 +181,6 @@ impl Node {
                         *self = Node::Number(lhs_val / rhs_val);
                     } else {
                         *self = Node::Number(0.0); 
-                    }
-                }
-            }
-            Node::If(cond, then, elze) => {
-                cond.simplify();
-                then.simplify();
-                elze.simplify();
-
-                if let Node::Number(cond_val) = **cond {
-                    if cond_val > 0.0 {
-                        *self = (**then).clone(); 
-                    } else {
-                        *self = (**elze).clone(); 
                     }
                 }
             }
@@ -424,7 +386,7 @@ impl Grammar {
 
     fn gen_node(&mut self, node: &Node, depth: u32) -> Option<Box<Node>> {
         match node {
-            Node::X | Node::Y | Node::Number(_) | Node::Boolean(_) => Some(Box::new(node.clone())),
+            Node::X | Node::Y | Node::Number(_) => Some(Box::new(node.clone())),
     
             Node::Sqrt(inner) |
             Node::Sin(inner) |
@@ -443,7 +405,6 @@ impl Grammar {
             Node::Add(lhs, rhs) |
             Node::Mult(lhs, rhs) |
             Node::Modulo(lhs, rhs) |
-            Node::Gt(lhs, rhs) |
             Node::Div(lhs, rhs) => {
                 let lhs = self.gen_node(lhs, depth)?;
                 let rhs = self.gen_node(rhs, depth)?;
@@ -451,7 +412,6 @@ impl Grammar {
                     Node::Add(_, _) => Some(Box::new(Node::Add(lhs, rhs))),
                     Node::Mult(_, _) => Some(Box::new(Node::Mult(lhs, rhs))),
                     Node::Modulo(_, _) => Some(Box::new(Node::Modulo(lhs, rhs))),
-                    Node::Gt(_, _) => Some(Box::new(Node::Gt(lhs, rhs))),
                     Node::Div(_, _) => Some(Box::new(Node::Div(lhs, rhs))),
                     _ => unreachable!("{:?} not a binary op", node), 
                 }
@@ -462,13 +422,6 @@ impl Grammar {
                 let second = self.gen_node(second, depth)?;
                 let third = self.gen_node(third, depth)?;
                 Some(Box::new(Node::Triple(first, second, third)))
-            }
-    
-            Node::If(cond, then, elze) => {
-                let cond = self.gen_node(cond, depth)?;
-                let then = self.gen_node(then, depth)?;
-                let elze = self.gen_node(elze, depth)?;
-                Some(Box::new(Node::If(cond, then, elze)))
             }
     
             Node::Rule(rule_index) => {
