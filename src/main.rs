@@ -1,4 +1,4 @@
-use randomart::{utils::{ fnv1a, render_pixels, PixelCoordinates }, Grammar};
+use randomart::{utils::{ fnv1a, render_pixels, PixelCoordinates, Colour }, Grammar, compile_node, Node};
 use std::{env, path::PathBuf};
 
 fn get_output_path(file_name: &str) -> PathBuf {
@@ -40,12 +40,26 @@ fn main() {
     let start_rule = 0;
     let mut generated_node = grammar.gen_rule(start_rule, depth).unwrap();
     generated_node.simplify_triple();
-    let (r_str_optimised, g_str_optimised, b_str_optimised) = generated_node.extract_channels_as_str_from_triple();
-    println!("\nR:{}\n\nG:{}\n\nB:{}", r_str_optimised, g_str_optimised, b_str_optimised);
-
-    let rgb_function = |coords: PixelCoordinates| {
-        generated_node.eval_rgb(coords.x, coords.y)
+    let (r_node, g_node, b_node) = match &*generated_node {
+        Node::Triple(r, g, b) => (r, g, b),
+        _ => panic!("Expected Triple node at the top level"),
     };
+
+    let r_fn = compile_node(&*r_node);
+    let g_fn = compile_node(&*g_node);
+    let b_fn = compile_node(&*b_node);
+
+    let rgb_function = move |coords: PixelCoordinates| Colour {
+        r: r_fn(coords.x, coords.y),
+        g: g_fn(coords.x, coords.y),
+        b: b_fn(coords.x, coords.y),
+    };
+    // let (r_str_optimised, g_str_optimised, b_str_optimised) = generated_node.extract_channels_as_str_from_triple();
+    // println!("\nR:{}\n\nG:{}\n\nB:{}", r_str_optimised, g_str_optimised, b_str_optimised);
+
+    // let rgb_function = |coords: PixelCoordinates| {
+    //     generated_node.eval_rgb(coords.x, coords.y)
+    // };
     
     let img = render_pixels(rgb_function, width, height);
 
