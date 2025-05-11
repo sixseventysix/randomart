@@ -233,9 +233,9 @@ impl ClosureTree {
     pub fn from_node(node: &Node) -> Self {
         match node {
             Node::Triple(r, g, b) => Self {
-                r: compile_node(r),
-                g: compile_node(g),
-                b: compile_node(b),
+                r: node2closuretree(r),
+                g: node2closuretree(g),
+                b: node2closuretree(b),
             },
             _ => panic!("Expected Node::Triple at top level"),
         }
@@ -250,7 +250,7 @@ impl ClosureTree {
     }
 }
 
-pub fn compile_node(node: &Node) -> Box<dyn ClosureNode> {
+fn node2closuretree(node: &Node) -> Box<dyn ClosureNode> {
     match node {
         Node::X => Box::new(|x, _| x),
         Node::Y => Box::new(|_, y| y),
@@ -260,20 +260,20 @@ pub fn compile_node(node: &Node) -> Box<dyn ClosureNode> {
         }
 
         Node::Add(a, b) => {
-            let fa = compile_node(a);
-            let fb = compile_node(b);
+            let fa = node2closuretree(a);
+            let fb = node2closuretree(b);
             Box::new(move |x, y| (fa(x, y) + fb(x, y)) / 2.0)
         }
 
         Node::Mult(a, b) => {
-            let fa = compile_node(a);
-            let fb = compile_node(b);
+            let fa = node2closuretree(a);
+            let fb = node2closuretree(b);
             Box::new(move |x, y| fa(x, y) * fb(x, y))
         }
 
         Node::Div(a, b) => {
-            let fa = compile_node(a);
-            let fb = compile_node(b);
+            let fa = node2closuretree(a);
+            let fb = node2closuretree(b);
             Box::new(move |x, y| {
                 let denom = fb(x, y);
                 if denom.abs() > 1e-6 {
@@ -285,8 +285,8 @@ pub fn compile_node(node: &Node) -> Box<dyn ClosureNode> {
         }
 
         Node::Modulo(a, b) => {
-            let fa = compile_node(a);
-            let fb = compile_node(b);
+            let fa = node2closuretree(a);
+            let fb = node2closuretree(b);
             Box::new(move |x, y| {
                 let denom = fb(x, y);
                 if denom.abs() > 1e-6 {
@@ -298,30 +298,30 @@ pub fn compile_node(node: &Node) -> Box<dyn ClosureNode> {
         }
 
         Node::Sqrt(inner) => {
-            let f = compile_node(inner);
+            let f = node2closuretree(inner);
             Box::new(move |x, y| f(x, y).sqrt().max(0.0))
         }
 
         Node::Sin(inner) => {
-            let f = compile_node(inner);
+            let f = node2closuretree(inner);
             Box::new(move |x, y| f(x, y).sin())
         }
 
         Node::Cos(inner) => {
-            let f = compile_node(inner);
+            let f = node2closuretree(inner);
             Box::new(move |x, y| f(x, y).cos())
         }
 
         Node::Exp(inner) => {
-            let f = compile_node(inner);
+            let f = node2closuretree(inner);
             Box::new(move |x, y| f(x, y).exp())
         }
 
         Node::Mix(a, b, c, d) => {
-            let fa = compile_node(a);
-            let fb = compile_node(b);
-            let fc = compile_node(c);
-            let fd = compile_node(d);
+            let fa = node2closuretree(a);
+            let fb = node2closuretree(b);
+            let fc = node2closuretree(c);
+            let fd = node2closuretree(d);
             Box::new(move |x, y| {
                 let a = fa(x, y) + 1.0;
                 let b = fb(x, y) + 1.0;
@@ -334,10 +334,10 @@ pub fn compile_node(node: &Node) -> Box<dyn ClosureNode> {
         }
 
         Node::MixUnbounded(a, b, c, d) => {
-            let fa = compile_node(a);
-            let fb = compile_node(b);
-            let fc = compile_node(c);
-            let fd = compile_node(d);
+            let fa = node2closuretree(a);
+            let fb = node2closuretree(b);
+            let fc = node2closuretree(c);
+            let fd = node2closuretree(d);
             Box::new(move |x, y| {
                 let a = fa(x, y);
                 let b = fb(x, y);
@@ -352,22 +352,22 @@ pub fn compile_node(node: &Node) -> Box<dyn ClosureNode> {
         }
 
         Node::Triple(_, _, _) => {
-            panic!("compile_node() is for scalar nodes, not Triple");
+            panic!("node2closuretree() is for scalar nodes, not Triple");
         }
 
-        _ => unimplemented!("compile_node: missing match arm for {:?}", node),
+        _ => unimplemented!("node2closuretree: missing match arm for {:?}", node),
     }
 }
 
 #[derive(Clone)]
-pub struct GrammarBranch {
-    pub node: Box<Node>, 
-    pub probability: f32, 
+struct GrammarBranch {
+    node: Box<Node>, 
+    probability: f32, 
 }
 
 #[derive(Clone)]
-pub struct GrammarBranches {
-    pub alternates: Vec<GrammarBranch>,
+struct GrammarBranches {
+    alternates: Vec<GrammarBranch>,
 }
 
 impl GrammarBranches {
@@ -383,7 +383,7 @@ impl GrammarBranches {
 }
 
 pub struct Grammar {
-    pub rules: Vec<GrammarBranches>, 
+    rules: Vec<GrammarBranches>, 
     rng: LinearCongruentialGenerator
 }
 
@@ -605,9 +605,9 @@ mod tests {
             _ => panic!("Expected Triple node at the top level"),
         };
 
-        let r_fn = compile_node(&*r_node);
-        let g_fn = compile_node(&*g_node);
-        let b_fn = compile_node(&*b_node);
+        let r_fn = node2closuretree(&*r_node);
+        let g_fn = node2closuretree(&*g_node);
+        let b_fn = node2closuretree(&*b_node);
         
         let rgb_function = move |coords: PixelCoordinates| Colour {
             r: r_fn(coords.x, coords.y),
@@ -621,9 +621,9 @@ mod tests {
             _ => panic!("Expected Triple node at the top level"),
         };
 
-        let r_fn = compile_node(&*r_node);
-        let g_fn = compile_node(&*g_node);
-        let b_fn = compile_node(&*b_node);
+        let r_fn = node2closuretree(&*r_node);
+        let g_fn = node2closuretree(&*g_node);
+        let b_fn = node2closuretree(&*b_node);
         
         let rgb_function = move |coords: PixelCoordinates| Colour {
             r: r_fn(coords.x, coords.y),
