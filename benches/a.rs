@@ -1,24 +1,26 @@
-use criterion::{criterion_group, criterion_main, Criterion};
-use randomart_core::utils::{render_pixels, PixelCoordinates, Colour};
-include!(concat!(env!("OUT_DIR"), "/generated_rgb_fn.rs"));
+use criterion::{black_box, Criterion};
+use criterion::{criterion_group, criterion_main};
+use randomart::{ ClosureTree, Grammar };
+use randomart::utils::{ render_pixels, PixelCoordinates, fnv1a };
 
 pub fn bench_render_pixels(c: &mut Criterion) {
+    let string = "spiderman 1";
+    let depth = 40;
     let width = 400;
     let height = 400;
 
-    let r = r_fn();
-    let g = g_fn();
-    let b = b_fn();
+    let seed = fnv1a(&string);
+    let mut grammar = Grammar::default(seed);
 
-    let rgb_function = move |coord: PixelCoordinates| Colour {
-        r: r(coord.x, coord.y),
-        g: g(coord.x, coord.y),
-        b: b(coord.x, coord.y),
-    };
+    let mut generated_node = grammar.gen_rule(0, depth).unwrap();
+    generated_node.simplify_triple();
 
+    let closure_tree = ClosureTree::from_node(&generated_node);
+
+    let rgb_fn = move |coord: PixelCoordinates| closure_tree.eval_rgb(coord.x, coord.y);
     c.bench_function("render_pixels", |b| {
         b.iter(|| {
-            let _img = std::hint::black_box(render_pixels(&rgb_function, width, height));
+            black_box(render_pixels(&rgb_fn, width, height));
         });
     });
 }

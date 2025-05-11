@@ -1,4 +1,4 @@
-use randomart::{utils::{ fnv1a, render_pixels, PixelCoordinates, Colour }, Grammar, compile_node, Node};
+use randomart::{utils::{ fnv1a, render_pixels, PixelCoordinates }, Grammar, ClosureTree};
 use std::{env, path::PathBuf};
 
 fn get_output_path(file_name: &str) -> PathBuf {
@@ -40,28 +40,14 @@ fn main() {
     
     let start_rule = 0;
     let mut generated_node = grammar.gen_rule(start_rule, depth).unwrap();
+
     generated_node.simplify_triple();
+
     let formula = format!("{}", generated_node);
-    let (r_node, g_node, b_node) = match &*generated_node {
-        Node::Triple(r, g, b) => (r, g, b),
-        _ => panic!("Expected Triple node at the top level"),
-    };
+    let closure_tree = ClosureTree::from_node(&generated_node);
 
-    let r_fn = compile_node(&*r_node);
-    let g_fn = compile_node(&*g_node);
-    let b_fn = compile_node(&*b_node);
-    
-    let rgb_function = move |coords: PixelCoordinates| Colour {
-        r: r_fn(coords.x, coords.y),
-        g: g_fn(coords.x, coords.y),
-        b: b_fn(coords.x, coords.y),
-    };
-
-    // let rgb_function = |coords: PixelCoordinates| {
-    //     generated_node.eval_rgb(coords.x, coords.y)
-    // };
-    
-    let img = render_pixels(rgb_function, width, height);
+    let rgb_fn = move |coord: PixelCoordinates| closure_tree.eval_rgb(coord.x, coord.y);
+    let img = render_pixels(rgb_fn, width, height);
 
     let output_img_filepath = get_output_path(&output_img_filename);
     img.save(output_img_filepath.clone()).expect("failed to save the image");
