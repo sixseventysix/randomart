@@ -15,9 +15,25 @@ pub fn bench_render_pixels(c: &mut Criterion) {
     let mut generated_node = grammar.gen_rule(0, depth).unwrap();
     generated_node.simplify_triple();
 
-    let closure_tree = ClosureTree::from_node(&generated_node);
+    let (r_node, g_node, b_node) = match &*generated_node {
+        randomart::Node::Triple(r, g, b) => (r, g, b),
+            _ => panic!("Expected Node::Triple at the top level"),
+    };
 
-    let rgb_fn = move |coord: PixelCoordinates| closure_tree.eval_rgb(coord.x, coord.y);
+    let mut r_instructions = Vec::new();
+    let mut g_instructions = Vec::new();
+    let mut b_instructions = Vec::new();
+
+    randomart::emit_postfix(r_node, &mut r_instructions);
+    randomart::emit_postfix(g_node, &mut g_instructions);
+    randomart::emit_postfix(b_node, &mut b_instructions);
+
+    let program = randomart::PostfixRgbProgram {
+        r: r_instructions,
+        g: g_instructions,
+        b: b_instructions,
+    };
+    let rgb_fn = program.to_fn();
     c.bench_function("render_pixels", |b| {
         b.iter(|| {
             black_box(render_pixels(&rgb_fn, width, height));

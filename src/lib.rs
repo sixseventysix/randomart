@@ -1,5 +1,5 @@
 pub mod utils;
-use utils::{ Colour, LinearCongruentialGenerator };
+use utils::{ Colour, LinearCongruentialGenerator, PixelCoordinates };
 use std::fmt;
 
 #[derive(Clone, Debug, PartialEq)]
@@ -357,6 +357,193 @@ fn node2closuretree(node: &Node) -> Box<dyn ClosureNode> {
 
         _ => unimplemented!("node2closuretree: missing match arm for {:?}", node),
     }
+}
+
+#[derive(Debug, Clone, Copy)]
+pub enum OpCode {
+    X,
+    Y,
+    Const(f32),
+    Add,
+    Mult,
+    Div,
+    Modulo,
+    Sin,
+    Cos,
+    Exp,
+    Sqrt,
+    Mix,
+    MixUnbounded,
+}
+
+pub struct PostfixRgbProgram {
+    pub r: Vec<OpCode>,
+    pub g: Vec<OpCode>,
+    pub b: Vec<OpCode>,
+}
+
+impl PostfixRgbProgram {
+    pub fn to_fn(&self) -> impl Fn(PixelCoordinates) -> Colour + '_ {
+        move |coord: PixelCoordinates| Colour {
+            r: eval_program(&self.r, coord.x, coord.y),
+            g: eval_program(&self.g, coord.x, coord.y),
+            b: eval_program(&self.b, coord.x, coord.y),
+        }
+    }
+}
+pub fn emit_postfix(node: &Node, out: &mut Vec<OpCode>) {
+    use Node::*;
+
+    match node {
+        X => out.push(OpCode::X),
+        Y => out.push(OpCode::Y),
+        Number(n) => out.push(OpCode::Const(*n)),
+
+        Add(a, b) => {
+            emit_postfix(a, out);
+            emit_postfix(b, out);
+            out.push(OpCode::Add);
+        }
+        Mult(a, b) => {
+            emit_postfix(a, out);
+            emit_postfix(b, out);
+            out.push(OpCode::Mult);
+        }
+        Div(a, b) => {
+            emit_postfix(a, out);
+            emit_postfix(b, out);
+            out.push(OpCode::Div);
+        }
+        Modulo(a, b) => {
+            emit_postfix(a, out);
+            emit_postfix(b, out);
+            out.push(OpCode::Modulo);
+        }
+        Sin(inner) => {
+            emit_postfix(inner, out);
+            out.push(OpCode::Sin);
+        }
+        Cos(inner) => {
+            emit_postfix(inner, out);
+            out.push(OpCode::Cos);
+        }
+        Exp(inner) => {
+            emit_postfix(inner, out);
+            out.push(OpCode::Exp);
+        }
+        Sqrt(inner) => {
+            emit_postfix(inner, out);
+            out.push(OpCode::Sqrt);
+        }
+        Mix(a, b, c, d) => {
+            emit_postfix(a, out);
+            emit_postfix(b, out);
+            emit_postfix(c, out);
+            emit_postfix(d, out);
+            out.push(OpCode::Mix);
+        }
+        MixUnbounded(a, b, c, d) => {
+            emit_postfix(a, out);
+            emit_postfix(b, out);
+            emit_postfix(c, out);
+            emit_postfix(d, out);
+            out.push(OpCode::MixUnbounded);
+        }
+
+        Random => panic!("Random must be replaced before emission"),
+        Triple(_, _, _) => panic!("Only scalar expressions allowed"),
+        Rule(_) => panic!("Rule must be resolved before emission"),
+    }
+}
+
+pub fn eval_program(program: &[OpCode], x: f32, y: f32) -> f32 {
+    let mut stack = [0.0f32; 32];
+    let mut sp = 0;
+
+    for op in program {
+        match *op {
+            OpCode::X => {
+                stack[sp] = x;
+                sp += 1;
+            }
+            OpCode::Y => {
+                stack[sp] = y;
+                sp += 1;
+            }
+            OpCode::Const(n) => {
+                stack[sp] = n;
+                sp += 1;
+            }
+            OpCode::Add => {
+                let b = stack[sp - 1];
+                let a = stack[sp - 2];
+                sp -= 2;
+                stack[sp] = (a + b) / 2.0;
+                sp += 1;
+            }
+            OpCode::Mult => {
+                let b = stack[sp - 1];
+                let a = stack[sp - 2];
+                sp -= 2;
+                stack[sp] = a * b;
+                sp += 1;
+            }
+            OpCode::Div => {
+                let b = stack[sp - 1];
+                let a = stack[sp - 2];
+                sp -= 2;
+                stack[sp] = if b.abs() > 1e-6 { a / b } else { 0.0 };
+                sp += 1;
+            }
+            OpCode::Modulo => {
+                let b = stack[sp - 1];
+                let a = stack[sp - 2];
+                sp -= 2;
+                stack[sp] = if b.abs() > 1e-6 { a % b } else { 0.0 };
+                sp += 1;
+            }
+            OpCode::Sin => {
+                let v = stack[sp - 1];
+                stack[sp - 1] = v.sin();
+            }
+            OpCode::Cos => {
+                let v = stack[sp - 1];
+                stack[sp - 1] = v.cos();
+            }
+            OpCode::Exp => {
+                let v = stack[sp - 1];
+                stack[sp - 1] = v.exp();
+            }
+            OpCode::Sqrt => {
+                let v = stack[sp - 1];
+                stack[sp - 1] = v.sqrt().max(0.0);
+            }
+            OpCode::Mix => {
+                let d = stack[sp - 1] + 1.0;
+                let c = stack[sp - 2] + 1.0;
+                let b = stack[sp - 3] + 1.0;
+                let a = stack[sp - 4] + 1.0;
+                sp -= 4;
+                let numerator = a * c + b * d;
+                let denominator = (a + b).max(1e-6);
+                stack[sp] = (numerator / denominator) - 1.0;
+                sp += 1;
+            }
+            OpCode::MixUnbounded => {
+                let d = stack[sp - 1];
+                let c = stack[sp - 2];
+                let b = stack[sp - 3];
+                let a = stack[sp - 4];
+                sp -= 4;
+                let denominator = a + b + 1e-6;
+                stack[sp] = (a * c + b * d) / denominator;
+                sp += 1;
+            }
+        }
+    }
+
+    debug_assert_eq!(sp, 1);
+    stack[0]
 }
 
 #[derive(Clone)]
