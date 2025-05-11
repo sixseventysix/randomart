@@ -825,24 +825,6 @@ version = "0.1.0"
 dependencies = [
  "criterion",
  "image",
- "randomart_core",
- "randomart_fn_gen_macro",
-]
-
-[[package]]
-name = "randomart_core"
-version = "0.1.0"
-dependencies = [
- "image",
-]
-
-[[package]]
-name = "randomart_fn_gen_macro"
-version = "0.1.0"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn",
 ]
 
 [[package]]
