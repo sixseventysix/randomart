@@ -21,6 +21,9 @@ has the code for the standalone version\
 this can be directly compiled into binaries\
 much slower than randomart_cargo but can be used for smaller images/depths or for portability
 
+## randomart_spec_lang_reader
+has the code to read from a txt file that has the proper syntactical form of the randomart spec lang and generate the original image from it
+
 ## gallery(built during testing phase(not reproducible))
 ![1](./data/images/141120240040.png)
 ![2](./data/images/141120240053.png)
