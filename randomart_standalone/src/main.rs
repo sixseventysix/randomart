@@ -39,20 +39,36 @@ fn main() {
             std::process::exit(1);
         })
     });
-
+    let start1 = std::time::Instant::now();
     let seed = fnv1a(&string);
     let mut grammar = Grammar::default(seed);
-    
     let start_rule = 0;
+    let start5 = std::time::Instant::now();
     let mut generated_node = grammar.gen_rule(start_rule, depth).unwrap();
+    let elaps5 = start5.elapsed();
+    println!("tree generation: {:?}", elaps5);
 
+    let start3 = std::time::Instant::now();
     generated_node.simplify_triple();
+    let elaps3 = start3.elapsed();
+    println!("simplify: {:?}", elaps3);
 
     let formula = format!("{}", generated_node);
+
+    let start4 = std::time::Instant::now();
     let closure_tree = ClosureTree::from_node(&generated_node);
+    let elaps4 = start4.elapsed();
+    println!("closure tree creation: {:?}", elaps4);
 
     let rgb_fn = move |coord: PixelCoordinates| closure_tree.eval_rgb(coord.x, coord.y);
-    let img = render_pixels(rgb_fn, width, height);
+
+    let elaps1 = start1.elapsed();
+    println!("grammar to closure tree: {:?}", elaps1);
+
+    let start2 = std::time::Instant::now();
+    let img = render_pixels(&rgb_fn, width, height);
+    let elaps2 = start2.elapsed();
+    println!("hot path (render pixels loop): {:?}", elaps2);
 
     let output_img_filepath = get_output_path(&output_img_filename);
     img.save(output_img_filepath.clone()).expect("failed to save the image");
