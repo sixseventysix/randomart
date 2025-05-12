@@ -33,6 +33,7 @@ fn main() {
         })
     });
 
+    let start = std::time::Instant::now();
     let seed = fnv1a(&string);
     let mut grammar = Grammar::default(seed);
     
@@ -62,6 +63,8 @@ fn main() {
 
     let rgb_fn = program.to_fn();
     let img = render_pixels(rgb_fn, width, height);
+    let elapsed = start.elapsed();
+    println!("elaps: {:?}", elapsed);
     let output_img_filepath = get_output_path(&output_img_filename);
     img.save(output_img_filepath.clone()).expect("failed to save the image");
 }

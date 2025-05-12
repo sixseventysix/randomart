@@ -5,9 +5,9 @@ use randomart::utils::{ render_pixels, PixelCoordinates, fnv1a };
 
 pub fn bench_render_pixels_stack_based(c: &mut Criterion) {
     let string = "spiderman 1";
-    let depth = 60;
-    let width = 100;
-    let height = 100;
+    let depth = 40;
+    let width = 400;
+    let height = 400;
 
     let seed = fnv1a(&string);
     let mut grammar = Grammar::default(seed);
@@ -36,7 +36,7 @@ pub fn bench_render_pixels_stack_based(c: &mut Criterion) {
     let rgb_fn = program.to_fn();
     c.bench_function("render_pixels_stack", |b| {
         b.iter(|| {
-            black_box(render_pixels(&rgb_fn, width, height));
+            render_pixels(black_box(&rgb_fn), width, height);
         });
     });
 }
@@ -58,7 +58,7 @@ pub fn bench_render_pixels_closure_tree(c: &mut Criterion) {
     let rgb_fn = move |coord: PixelCoordinates| closure_tree.eval_rgb(coord.x, coord.y);
     c.bench_function("render_pixels_closure_tree", |b| {
         b.iter(|| {
-            black_box(render_pixels(&rgb_fn, width, height));
+            render_pixels(black_box(&rgb_fn), width, height);
         });
     });
 }
