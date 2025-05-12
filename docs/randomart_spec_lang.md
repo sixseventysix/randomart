@@ -43,7 +43,9 @@ triple (
             y 
         ) 
     )
-    const_ ( 0.5 )
+    const_ ( 
+        0.5 
+    )
 )
 ```
 this represents an rgb function where:\
