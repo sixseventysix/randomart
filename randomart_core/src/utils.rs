@@ -1,4 +1,5 @@
 use image::{ImageBuffer, RgbImage};
+use rayon::prelude::*;
 
 pub struct PixelCoordinates {
     pub x: f32,
@@ -11,24 +12,30 @@ pub struct Colour {
     pub b: f32
 }
 
-pub fn render_pixels<F>(function: F, width: u32, height: u32) -> RgbImage 
+pub fn render_pixels<F>(function: F, width: u32, height: u32) -> RgbImage
 where
-    F: Fn(PixelCoordinates) -> Colour 
+    F: Sync + Send + Fn(PixelCoordinates) -> Colour,
 {
     let mut img: RgbImage = ImageBuffer::new(width, height);
+    let buffer = img.as_mut();
 
-    for (px, py, pixel) in img.enumerate_pixels_mut() {
-        let x = (px as f32 / (width - 1) as f32) * 2.0 - 1.0;
-        let y = (py as f32 / (height - 1) as f32) * 2.0 - 1.0;
+    buffer
+        .par_chunks_mut(3)
+        .enumerate()
+        .for_each(|(i, pixel)| {
+            let px = (i as u32) % width;
+            let py = (i as u32) / width;
 
-        let colour = function(PixelCoordinates { x, y });
+            let x = (px as f32 / (width - 1) as f32) * 2.0 - 1.0;
+            let y = (py as f32 / (height - 1) as f32) * 2.0 - 1.0;
 
-        let r = ((colour.r + 1.0) * 127.5).clamp(0.0, 255.0) as u8;
-        let g = ((colour.g + 1.0) * 127.5).clamp(0.0, 255.0) as u8;
-        let b = ((colour.b + 1.0) * 127.5).clamp(0.0, 255.0) as u8;
+            let Colour { r, g, b } = function(PixelCoordinates { x, y });
 
-        *pixel = image::Rgb([r, g, b]);
-    }
+            pixel[0] = ((r + 1.0) * 127.5).clamp(0.0, 255.0) as u8;
+            pixel[1] = ((g + 1.0) * 127.5).clamp(0.0, 255.0) as u8;
+            pixel[2] = ((b + 1.0) * 127.5).clamp(0.0, 255.0) as u8;
+        });
+
     img
 }
 

@@ -32,9 +32,9 @@ fn main() {
             generate_fn!({})
         }}
         "#,
-        r.to_dsl_string(),
-        g.to_dsl_string(),
-        b.to_dsl_string()
+        r.to_randomart_spec_lang(),
+        g.to_randomart_spec_lang(),
+        b.to_randomart_spec_lang()
     );
 
     let out_path = Path::new(&env::var("OUT_DIR").unwrap()).join("generated_rgb_fn.rs");

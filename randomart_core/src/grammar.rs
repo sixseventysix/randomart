@@ -21,110 +21,6 @@ pub enum Node {
 }
 
 impl Node {
-    fn eval(&self, x: f32, y: f32) -> f32 {
-        match self {
-            Node::X => x,
-            Node::Y => y,
-            Node::Number(value) => *value,
-            Node::Random => panic!("all Node::Random instances are supposed to be converted into Node::Number during generation"),
-            Node::Add(lhs, rhs) => {
-                let lhs_val = lhs.eval(x, y);
-                let rhs_val = rhs.eval(x, y);
-                (lhs_val + rhs_val)/2.0
-            }
-            Node::Mult(lhs, rhs) => {
-                let lhs_val = lhs.eval(x, y);
-                let rhs_val = rhs.eval(x, y);
-                lhs_val * rhs_val
-            }
-            Node::Sin(inner) => {
-                let val = inner.eval(x, y);
-                val.sin()
-            }
-            Node::Cos(inner) => {
-                let val = inner.eval(x, y);
-                val.cos()
-            }
-            Node::Exp(inner) => {
-                let val = inner.eval(x, y);
-                val.exp()
-            }
-            Node::Sqrt(inner) => {
-                let val = inner.eval(x, y);
-                val.sqrt().max(0.0)
-            }
-            Node::Div(lhs, rhs) => {
-                let lhs_val = lhs.eval(x, y);
-                let rhs_val = rhs.eval(x, y);
-                if rhs_val.abs() > 1e-6 { 
-                    lhs_val / rhs_val
-                } else {
-                    0.0
-                }
-            }
-            Node::Mix(a, b, c, d) => {
-                let a_val = a.eval(x, y) + 1.0;
-                let b_val = b.eval(x, y) + 1.0;
-                let c_val = c.eval(x, y) + 1.0;
-                let d_val = d.eval(x, y) + 1.0;
-                let numerator = a_val * c_val + b_val * d_val;
-                let denominator = (a_val + b_val).max(1e-6);
-                (numerator / denominator) - 1.0
-            }
-            Node::MixUnbounded(a, b, c, d) => {
-                let a_val = a.eval(x, y);
-                let b_val = b.eval(x, y);
-                let c_val = c.eval(x, y);
-                let d_val = d.eval(x, y);
-
-                (a_val * c_val + b_val * d_val) / (a_val + b_val + 1e-6)
-            }
-            Node::Triple(_first, _second, _third) => {
-                panic!("Node::Triple is only for the Entry rule")
-            }
-            Node::Modulo(lhs, rhs) => {
-                let lhs_val = lhs.eval(x, y); 
-                let rhs_val = rhs.eval(x, y); 
-                if rhs_val.abs() > 1e-6 { 
-                    lhs_val % rhs_val
-                } else {
-                    0.0 
-                }
-            }
-            _ => panic!("unexpected Node kind during eval: {:?}", self), 
-        }
-    }
-
-    pub fn eval_rgb(&self, x: f32, y: f32) -> Colour {
-        if let Node::Triple(first, second, third) = self {
-            let r = first.eval(x, y); 
-            let g = second.eval(x, y);
-            let b = third.eval(x, y);
-            Colour { r, g, b }
-        } else {
-            Colour { r: 0.0, g: 0.0, b: 0.0 }
-        }
-    }
-    
-    pub fn extract_channels_as_str_from_triple(&self) -> (String, String, String) {
-        assert!(
-            matches!(*self, Node::Triple(_, _, _)),
-            "expected the generated node to be a Node::Triple, but found: {:?}",
-            self
-        );
-        match self {
-            Node::Triple(left, middle, right) => {
-                let r = format!("{:?}", left);
-                let g = format!("{:?}", middle);
-                let b = format!("{:?}", right);
-                (r,g,b)
-            }
-            _ => {
-                unreachable!("assert inside this function would've complained before you came here");
-            }
-        }
-    }
-
     fn simplify(&mut self) {
         match self {
             Node::Add(lhs, rhs) => {
@@ -234,7 +130,7 @@ impl Node {
         }
     }
 
-    pub fn to_dsl_string(&self) -> String {
+    pub fn to_randomart_spec_lang(&self) -> String {
         match self {
             Node::X => "x".to_string(),
             Node::Y => "y".to_string(),
@@ -246,144 +142,32 @@ impl Node {
                 }
             },
 
-            Node::Sqrt(inner) => format!("sqrt({})", inner.to_dsl_string()),
-            Node::Sin(inner) => format!("sin({})", inner.to_dsl_string()),
-            Node::Cos(inner) => format!("cos({})", inner.to_dsl_string()),
-            Node::Exp(inner) => format!("exp({})", inner.to_dsl_string()),
+            Node::Sqrt(inner) => format!("sqrt({})", inner.to_randomart_spec_lang()),
+            Node::Sin(inner) => format!("sin({})", inner.to_randomart_spec_lang()),
+            Node::Cos(inner) => format!("cos({})", inner.to_randomart_spec_lang()),
+            Node::Exp(inner) => format!("exp({})", inner.to_randomart_spec_lang()),
 
-            Node::Add(left, right) => format!("add({}, {})", left.to_dsl_string(), right.to_dsl_string()),
-            Node::Mult(left, right) => format!("mul({}, {})", left.to_dsl_string(), right.to_dsl_string()),
-            Node::Div(left, right) => format!("div({}, {})", left.to_dsl_string(), right.to_dsl_string()),
-            Node::Modulo(left, right) => format!("modulo({}, {})", left.to_dsl_string(), right.to_dsl_string()),
+            Node::Add(left, right) => format!("add({}, {})", left.to_randomart_spec_lang(), right.to_randomart_spec_lang()),
+            Node::Mult(left, right) => format!("mul({}, {})", left.to_randomart_spec_lang(), right.to_randomart_spec_lang()),
+            Node::Div(left, right) => format!("div({}, {})", left.to_randomart_spec_lang(), right.to_randomart_spec_lang()),
+            Node::Modulo(left, right) => format!("modulo({}, {})", left.to_randomart_spec_lang(), right.to_randomart_spec_lang()),
 
             Node::Mix(a, b, c, d) => format!("mix({}, {}, {}, {})",
-                a.to_dsl_string(),
-                b.to_dsl_string(),
-                c.to_dsl_string(),
-                d.to_dsl_string(),
+                a.to_randomart_spec_lang(),
+                b.to_randomart_spec_lang(),
+                c.to_randomart_spec_lang(),
+                d.to_randomart_spec_lang(),
             ),
 
             Node::MixUnbounded(a, b, c, d) => format!("mixu({}, {}, {}, {})",
-                a.to_dsl_string(),
-                b.to_dsl_string(),
-                c.to_dsl_string(),
-                d.to_dsl_string(),
+                a.to_randomart_spec_lang(),
+                b.to_randomart_spec_lang(),
+                c.to_randomart_spec_lang(),
+                d.to_randomart_spec_lang(),
             ),
 
             _ => panic!("Unsupported node variant for DSL export"),
         }
-    }
-}
-
-pub trait CompiledFn: Fn(f32, f32) -> f32 + Send + Sync {}
-impl<T: Fn(f32, f32) -> f32 + Send + Sync> CompiledFn for T {}
-
-pub fn compile_node(node: &Node) -> Box<dyn CompiledFn> {
-    match node {
-        Node::X => Box::new(|x, _| x),
-        Node::Y => Box::new(|_, y| y),
-        Node::Number(v) => {
-            let val = *v;
-            Box::new(move |_, _| val)
-        }
-
-        Node::Add(a, b) => {
-            let fa = compile_node(a);
-            let fb = compile_node(b);
-            Box::new(move |x, y| (fa(x, y) + fb(x, y)) / 2.0)
-        }
-
-        Node::Mult(a, b) => {
-            let fa = compile_node(a);
-            let fb = compile_node(b);
-            Box::new(move |x, y| fa(x, y) * fb(x, y))
-        }
-
-        Node::Div(a, b) => {
-            let fa = compile_node(a);
-            let fb = compile_node(b);
-            Box::new(move |x, y| {
-                let denom = fb(x, y);
-                if denom.abs() > 1e-6 {
-                    fa(x, y) / denom
-                } else {
-                    0.0
-                }
-            })
-        }
-
-        Node::Modulo(a, b) => {
-            let fa = compile_node(a);
-            let fb = compile_node(b);
-            Box::new(move |x, y| {
-                let denom = fb(x, y);
-                if denom.abs() > 1e-6 {
-                    fa(x, y) % denom
-                } else {
-                    0.0
-                }
-            })
-        }
-
-        Node::Sqrt(inner) => {
-            let f = compile_node(inner);
-            Box::new(move |x, y| f(x, y).sqrt().max(0.0))
-        }
-
-        Node::Sin(inner) => {
-            let f = compile_node(inner);
-            Box::new(move |x, y| f(x, y).sin())
-        }
-
-        Node::Cos(inner) => {
-            let f = compile_node(inner);
-            Box::new(move |x, y| f(x, y).cos())
-        }
-
-        Node::Exp(inner) => {
-            let f = compile_node(inner);
-            Box::new(move |x, y| f(x, y).exp())
-        }
-
-        Node::Mix(a, b, c, d) => {
-            let fa = compile_node(a);
-            let fb = compile_node(b);
-            let fc = compile_node(c);
-            let fd = compile_node(d);
-            Box::new(move |x, y| {
-                let a = fa(x, y) + 1.0;
-                let b = fb(x, y) + 1.0;
-                let c = fc(x, y) + 1.0;
-                let d = fd(x, y) + 1.0;
-                let numerator = a * c + b * d;
-                let denominator = (a + b).max(1e-6);
-                (numerator / denominator) - 1.0
-            })
-        }
-
-        Node::MixUnbounded(a, b, c, d) => {
-            let fa = compile_node(a);
-            let fb = compile_node(b);
-            let fc = compile_node(c);
-            let fd = compile_node(d);
-            Box::new(move |x, y| {
-                let a = fa(x, y);
-                let b = fb(x, y);
-                let c = fc(x, y);
-                let d = fd(x, y);
-                (a * c + b * d) / (a + b + 1e-6)
-            })
-        }
-
-        Node::Random => {
-            panic!("Node::Random should be replaced before compilation");
-        }
-
-        Node::Triple(_, _, _) => {
-            panic!("compile_node() is for scalar nodes, not Triple");
-        }
-
-        _ => unimplemented!("compile_node: missing match arm for {:?}", node),
     }
 }
 
