@@ -1,4 +1,4 @@
-use randomart::{utils::{ fnv1a, render_pixels, PixelCoordinates }, Grammar, ClosureTree};
+use randomart_standalone::{utils::{ fnv1a, render_pixels, PixelCoordinates }, Grammar, ClosureTree};
 use std::{env, path::PathBuf};
 
 fn get_output_path(file_name: &str) -> PathBuf {
@@ -9,7 +9,7 @@ fn get_output_path(file_name: &str) -> PathBuf {
 fn main() {
     let args: Vec<String> = env::args().collect();
 
-    if args.len() < 4 || args.len() > 6 {
+    if args.len() < 3 || args.len() > 6 {
         eprintln!("usage: {} <string> <depth> <output file path> <width>(optional) <height>(optional)", args[0]);
         std::process::exit(1);
     }
@@ -19,8 +19,13 @@ fn main() {
         eprintln!("error: depth must be a positive integer");
         std::process::exit(1);
     });
-    let output_img_filename = format!("{}.png", args[3]);
-    let output_formula_filename = format!("{}.txt", args[3]);
+    let output_file_namespace = args.get(3).map_or(string.clone(), |arg| {
+        arg.parse().unwrap_or_else(|_| {
+            std::process::exit(1);
+        })
+    });
+    let output_img_filename = format!("{}.png", output_file_namespace);
+    let output_formula_filename = format!("{}.txt", output_file_namespace);
 
     let width: u32 = args.get(4).map_or(400, |arg| {
         arg.parse().unwrap_or_else(|_| {
