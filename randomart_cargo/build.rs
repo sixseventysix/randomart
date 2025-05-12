@@ -19,7 +19,7 @@ fn main() {
 
     let code = format!(
         r#"
-        use randomart::math::*;
+        use randomart_cargo::math::*;
         use randomart_fn_gen_macro::generate_fn;
 
         pub fn r_fn() -> impl Fn(f32, f32) -> f32 {{

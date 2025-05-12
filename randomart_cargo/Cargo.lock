@@ -820,7 +820,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "randomart"
+name = "randomart_cargo"
 version = "0.1.0"
 dependencies = [
  "criterion",
