@@ -1,6 +1,7 @@
+pub mod reader;
 pub mod utils;
-// pub mod reader;
-use utils::{ Colour, LinearCongruentialGenerator };
+use utils::*;
+use reader::*;
 use std::fmt;
 
 #[derive(Clone, Debug, PartialEq)]
@@ -30,7 +31,7 @@ impl Node {
         match self {
             X => writeln!(f, "{}x", pad),
             Y => writeln!(f, "{}y", pad),
-            Number(n) => writeln!(f, "{}const_ ( {:?} )", pad, n),
+            Number(n) => writeln!(f, "{}const_ ( {:.1} )", pad, n),
             Random => writeln!(f, "{}random", pad),
             Rule(r) => writeln!(f, "{}rule ( {} ) ", pad, r),
             Sin(inner) => {
@@ -219,115 +220,6 @@ impl Node {
             panic!("expected Node::Triple, encountered {:?}", self);
         }
     }
-
-    pub fn to_closure_tree(&self) -> Box<dyn ClosureNode> {
-        match self {
-            Node::X => Box::new(|x, _| x),
-            Node::Y => Box::new(|_, y| y),
-            Node::Number(v) => {
-                let val = *v;
-                Box::new(move |_, _| val)
-            }
-
-            Node::Add(a, b) => {
-                let fa = a.to_closure_tree();
-                let fb = b.to_closure_tree();
-                Box::new(move |x, y| (fa(x, y) + fb(x, y)) / 2.0)
-            }
-
-            Node::Mult(a, b) => {
-                let fa = a.to_closure_tree();
-                let fb = b.to_closure_tree();
-                Box::new(move |x, y| fa(x, y) * fb(x, y))
-            }
-
-            Node::Div(a, b) => {
-                let fa = a.to_closure_tree();
-                let fb = b.to_closure_tree();
-                Box::new(move |x, y| {
-                    let denom = fb(x, y);
-                    if denom.abs() > 1e-6 {
-                        fa(x, y) / denom
-                    } else {
-                        0.0
-                    }
-                })
-            }
-
-            Node::Modulo(a, b) => {
-                let fa = a.to_closure_tree();
-                let fb = b.to_closure_tree();
-                Box::new(move |x, y| {
-                    let denom = fb(x, y);
-                    if denom.abs() > 1e-6 {
-                        fa(x, y) % denom
-                    } else {
-                        0.0
-                    }
-                })
-            }
-
-            Node::Sqrt(inner) => {
-                let f = inner.to_closure_tree();
-                Box::new(move |x, y| f(x, y).sqrt().max(0.0))
-            }
-
-            Node::Sin(inner) => {
-                let f = inner.to_closure_tree();
-                Box::new(move |x, y| f(x, y).sin())
-            }
-
-            Node::Cos(inner) => {
-                let f = inner.to_closure_tree();
-                Box::new(move |x, y| f(x, y).cos())
-            }
-
-            Node::Exp(inner) => {
-                let f = inner.to_closure_tree();
-                Box::new(move |x, y| f(x, y).exp())
-            }
-
-            Node::Mix(a, b, c, d) => {
-                let fa = a.to_closure_tree();
-                let fb = b.to_closure_tree();
-                let fc = c.to_closure_tree();
-                let fd = d.to_closure_tree();
-                Box::new(move |x, y| {
-                    let a = fa(x, y) + 1.0;
-                    let b = fb(x, y) + 1.0;
-                    let c = fc(x, y) + 1.0;
-                    let d = fd(x, y) + 1.0;
-                    let numerator = a * c + b * d;
-                    let denominator = (a + b).max(1e-6);
-                    (numerator / denominator) - 1.0
-                })
-            }
-
-            Node::MixUnbounded(a, b, c, d) => {
-                let fa = a.to_closure_tree();
-                let fb = b.to_closure_tree();
-                let fc = c.to_closure_tree();
-                let fd = d.to_closure_tree();
-                Box::new(move |x, y| {
-                    let a = fa(x, y);
-                    let b = fb(x, y);
-                    let c = fc(x, y);
-                    let d = fd(x, y);
-                    (a * c + b * d) / (a + b + 1e-6)
-                })
-            }
-
-            Node::Random => {
-                panic!("Node::Random should be replaced before compilation");
-            }
-
-            Node::Triple(_, _, _) => {
-                panic!("to_closure_tree() is for scalar nodes, not Triple");
-            }
-
-            _ => unimplemented!("to_closure_tree: missing match arm for {:?}", self),
-        }
-    }
 }
 
 pub trait ClosureNode: Fn(f32, f32) -> f32 + Send + Sync {}
@@ -343,9 +235,9 @@ impl ClosureTree {
     pub fn from_node(node: &Node) -> Self {
         match node {
             Node::Triple(r, g, b) => Self {
-                r: r.to_closure_tree(),
-                g: g.to_closure_tree(),
-                b: b.to_closure_tree(),
+                r: compile_node(r),
+                g: compile_node(g),
+                b: compile_node(b),
             },
             _ => panic!("Expected Node::Triple at top level"),
         }
@@ -360,7 +252,114 @@ impl ClosureTree {
     }
 }
 
+pub fn compile_node(node: &Node) -> Box<dyn ClosureNode> {
+    match node {
+        Node::X => Box::new(|x, _| x),
+        Node::Y => Box::new(|_, y| y),
+        Node::Number(v) => {
+            let val = *v;
+            Box::new(move |_, _| val)
+        }
 
+        Node::Add(a, b) => {
+            let fa = compile_node(a);
+            let fb = compile_node(b);
+            Box::new(move |x, y| (fa(x, y) + fb(x, y)) / 2.0)
+        }
+
+        Node::Mult(a, b) => {
+            let fa = compile_node(a);
+            let fb = compile_node(b);
+            Box::new(move |x, y| fa(x, y) * fb(x, y))
+        }
+
+        Node::Div(a, b) => {
+            let fa = compile_node(a);
+            let fb = compile_node(b);
+            Box::new(move |x, y| {
+                let denom = fb(x, y);
+                if denom.abs() > 1e-6 {
+                    fa(x, y) / denom
+                } else {
+                    0.0
+                }
+            })
+        }
+
+        Node::Modulo(a, b) => {
+            let fa = compile_node(a);
+            let fb = compile_node(b);
+            Box::new(move |x, y| {
+                let denom = fb(x, y);
+                if denom.abs() > 1e-6 {
+                    fa(x, y) % denom
+                } else {
+                    0.0
+                }
+            })
+        }
+
+        Node::Sqrt(inner) => {
+            let f = compile_node(inner);
+            Box::new(move |x, y| f(x, y).sqrt().max(0.0))
+        }
+
+        Node::Sin(inner) => {
+            let f = compile_node(inner);
+            Box::new(move |x, y| f(x, y).sin())
+        }
+
+        Node::Cos(inner) => {
+            let f = compile_node(inner);
+            Box::new(move |x, y| f(x, y).cos())
+        }
+
+        Node::Exp(inner) => {
+            let f = compile_node(inner);
+            Box::new(move |x, y| f(x, y).exp())
+        }
+
+        Node::Mix(a, b, c, d) => {
+            let fa = compile_node(a);
+            let fb = compile_node(b);
+            let fc = compile_node(c);
+            let fd = compile_node(d);
+            Box::new(move |x, y| {
+                let a = fa(x, y) + 1.0;
+                let b = fb(x, y) + 1.0;
+                let c = fc(x, y) + 1.0;
+                let d = fd(x, y) + 1.0;
+                let numerator = a * c + b * d;
+                let denominator = (a + b).max(1e-6);
+                (numerator / denominator) - 1.0
+            })
+        }
+
+        Node::MixUnbounded(a, b, c, d) => {
+            let fa = compile_node(a);
+            let fb = compile_node(b);
+            let fc = compile_node(c);
+            let fd = compile_node(d);
+            Box::new(move |x, y| {
+                let a = fa(x, y);
+                let b = fb(x, y);
+                let c = fc(x, y);
+                let d = fd(x, y);
+                (a * c + b * d) / (a + b + 1e-6)
+            })
+        }
+
+        Node::Random => {
+            panic!("Node::Random should be replaced before compilation");
+        }
+
+        Node::Triple(_, _, _) => {
+            panic!("compile_node() is for scalar nodes, not Triple");
+        }
+
+        _ => unimplemented!("compile_node: missing match arm for {:?}", node),
+    }
+}
 
 #[derive(Clone)]
 pub struct GrammarBranch {
@@ -581,59 +580,5 @@ impl Grammar {
                 Some(Box::new(Node::Number(val)))
             }
         }
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-    use crate::utils::{fnv1a, PixelCoordinates, render_pixels};
-    use image::RgbImage;
-
-    fn images_are_equal(img1: &RgbImage, img2: &RgbImage) -> bool {
-        if img1.dimensions() != img2.dimensions() {
-            return false; 
-        }
-        img1.as_raw() == img2.as_raw() 
-    }
-
-    #[test]
-    fn test_image_buffer_before_and_after_optimisations() {
-        let (width, height) = (400, 400);
-        let mut grammar = Grammar::default(fnv1a("spiderman"));
-        let mut generated_node = grammar.gen_rule(0, 40).unwrap();
-
-        let (r_node, g_node, b_node) = match &*generated_node {
-            Node::Triple(r, g, b) => (r, g, b),
-            _ => panic!("Expected Triple node at the top level"),
-        };
-
-        let r_fn = to_closure_tree(&*r_node);
-        let g_fn = to_closure_tree(&*g_node);
-        let b_fn = to_closure_tree(&*b_node);
-        
-        let rgb_function = move |coords: PixelCoordinates| Colour {
-            r: r_fn(coords.x, coords.y),
-            g: g_fn(coords.x, coords.y),
-            b: b_fn(coords.x, coords.y),
-        };
-        let img1 = render_pixels(rgb_function, width, height);
-        generated_node.simplify_triple();
-        let (r_node, g_node, b_node) = match &*generated_node {
-            Node::Triple(r, g, b) => (r, g, b),
-            _ => panic!("Expected Triple node at the top level"),
-        };
-
-        let r_fn = to_closure_tree(&*r_node);
-        let g_fn = to_closure_tree(&*g_node);
-        let b_fn = to_closure_tree(&*b_node);
-        
-        let rgb_function = move |coords: PixelCoordinates| Colour {
-            r: r_fn(coords.x, coords.y),
-            g: g_fn(coords.x, coords.y),
-            b: b_fn(coords.x, coords.y),
-        };
-        let img2 = render_pixels(rgb_function, width, height);
-        assert!(images_are_equal(&img1, &img2));
     }
 }

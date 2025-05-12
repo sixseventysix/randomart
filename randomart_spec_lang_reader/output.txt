@@ -1,7 +1,7 @@
 triple ( 
   div ( 
     add ( 
-      const_ ( 0.686373 )
+      const_ ( 0.7 )
       sin ( 
         cos ( 
           mult ( 
@@ -65,7 +65,7 @@ triple (
                             exp ( 
                               sin ( 
                                 div ( 
-                                  const_ ( 1.9274923 )
+                                  const_ ( 1.9 )
                                   div ( 
                                     x
                                     y
@@ -87,7 +87,7 @@ triple (
      ) 
     exp ( 
       div ( 
-        const_ ( 0.66636676 )
+        const_ ( 0.7 )
         mixu ( 
           mult ( 
             mult ( 
@@ -95,7 +95,7 @@ triple (
                 mult ( 
                   mixu ( 
                     mult ( 
-                      const_ ( -0.30661842 )
+                      const_ ( -0.3 )
                       div ( 
                         mult ( 
                           sin ( 
@@ -110,13 +110,13 @@ triple (
                              ) 
                            ) 
                           add ( 
-                            const_ ( 1.7259638 )
+                            const_ ( 1.7 )
                             add ( 
                               sin ( 
                                 sin ( 
                                   mult ( 
                                     y
-                                    const_ ( 0.55249023 )
+                                    const_ ( 0.6 )
                                    ) 
                                  ) 
                                ) 
@@ -136,7 +136,7 @@ triple (
                               sin ( 
                                 mult ( 
                                   mixu ( 
-                                    const_ ( -0.2570064 )
+                                    const_ ( -0.3 )
                                     x
                                     x
                                     y
@@ -160,7 +160,7 @@ triple (
                                   mixu ( 
                                     y
                                     x
-                                    const_ ( -0.85492814 )
+                                    const_ ( -0.9 )
                                     x
                                    ) 
                                  ) 
@@ -178,7 +178,7 @@ triple (
                                     y
                                    ) 
                                   add ( 
-                                    const_ ( 0.39193344 )
+                                    const_ ( 0.4 )
                                     x
                                    ) 
                                  ) 
@@ -189,7 +189,7 @@ triple (
                          ) 
                        ) 
                      ) 
-                    const_ ( 0 )
+                    const_ ( 0.0 )
                     add ( 
                       exp ( 
                         mult ( 
@@ -214,30 +214,30 @@ triple (
                             cos ( 
                               div ( 
                                 mixu ( 
-                                  const_ ( -0.9619578 )
+                                  const_ ( -1.0 )
                                   y
                                   mixu ( 
                                     x
-                                    const_ ( 0.9829658 )
+                                    const_ ( 1.0 )
                                     x
                                     x
                                    ) 
                                   add ( 
-                                    const_ ( 0.00033164024 )
+                                    const_ ( 0.0 )
                                     y
                                    ) 
                                  ) 
                                 div ( 
                                   add ( 
                                     x
-                                    const_ ( 0.37760782 )
+                                    const_ ( 0.4 )
                                    ) 
-                                  const_ ( 0.9661764 )
+                                  const_ ( 1.0 )
                                  ) 
                                ) 
                              ) 
-                            const_ ( -0.3052044 )
-                            const_ ( 0.9594791 )
+                            const_ ( -0.3 )
+                            const_ ( 1.0 )
                            ) 
                           mult ( 
                             cos ( 
@@ -246,7 +246,7 @@ triple (
                                   cos ( 
                                     x
                                    ) 
-                                  const_ ( 0.734452 )
+                                  const_ ( 0.7 )
                                  ) 
                                ) 
                              ) 
@@ -278,7 +278,7 @@ triple (
                            ) 
                          ) 
                         div ( 
-                          const_ ( -0.7846104 )
+                          const_ ( -0.8 )
                           sin ( 
                             sin ( 
                               sqrt ( 
@@ -287,7 +287,7 @@ triple (
                                     y
                                     x
                                    ) 
-                                  const_ ( 0.38525748 )
+                                  const_ ( 0.4 )
                                  ) 
                                ) 
                              ) 
@@ -311,24 +311,24 @@ triple (
                                 exp ( 
                                   mixu ( 
                                     x
-                                    const_ ( 0.6764331 )
-                                    const_ ( -0.002668023 )
+                                    const_ ( 0.7 )
+                                    const_ ( -0.0 )
                                     y
                                    ) 
                                  ) 
-                                const_ ( -0.6547586 )
+                                const_ ( -0.7 )
                                 exp ( 
                                   x
                                  ) 
                                 exp ( 
                                   add ( 
-                                    const_ ( 0.2886889 )
+                                    const_ ( 0.3 )
                                     y
                                    ) 
                                  ) 
                                ) 
-                              const_ ( 0.32251045 )
-                              const_ ( 0.6988021 )
+                              const_ ( 0.3 )
+                              const_ ( 0.7 )
                               mixu ( 
                                 exp ( 
                                   cos ( 
@@ -363,12 +363,12 @@ triple (
                         x
                         div ( 
                           x
-                          const_ ( 1.5036478 )
+                          const_ ( 1.5 )
                          ) 
-                        const_ ( 2.3197768 )
+                        const_ ( 2.3 )
                         exp ( 
                           div ( 
-                            const_ ( 0.8855487 )
+                            const_ ( 0.9 )
                             sin ( 
                               sin ( 
                                 y
@@ -382,19 +382,19 @@ triple (
                           mixu ( 
                             sqrt ( 
                               mixu ( 
-                                const_ ( 2.2976186 )
+                                const_ ( 2.3 )
                                 sqrt ( 
                                   exp ( 
                                     y
                                    ) 
                                  ) 
                                 x
-                                const_ ( 0.4626441 )
+                                const_ ( 0.5 )
                                ) 
                              ) 
                             mult ( 
                               div ( 
-                                const_ ( 0.5918728 )
+                                const_ ( 0.6 )
                                 sin ( 
                                   sqrt ( 
                                     x
@@ -409,10 +409,10 @@ triple (
                                  ) 
                                ) 
                              ) 
-                            const_ ( -0.16642624 )
-                            const_ ( -0.43029097 )
+                            const_ ( -0.2 )
+                            const_ ( -0.4 )
                            ) 
-                          const_ ( 1 )
+                          const_ ( 1.0 )
                          ) 
                         sin ( 
                           sin ( 
@@ -440,12 +440,12 @@ triple (
                                     x
                                     x
                                     y
-                                    const_ ( -0.26491487 )
+                                    const_ ( -0.3 )
                                    ) 
                                  ) 
                                ) 
                              ) 
-                            const_ ( -0.5365895 )
+                            const_ ( -0.5 )
                            ) 
                          ) 
                         sin ( 
@@ -453,7 +453,7 @@ triple (
                             add ( 
                               mixu ( 
                                 div ( 
-                                  const_ ( 0.99712026 )
+                                  const_ ( 1.0 )
                                   cos ( 
                                     x
                                    ) 
@@ -463,7 +463,7 @@ triple (
                                     x
                                    ) 
                                  ) 
-                                const_ ( 0.82052636 )
+                                const_ ( 0.8 )
                                 cos ( 
                                   mult ( 
                                     y
@@ -473,7 +473,7 @@ triple (
                                ) 
                               cos ( 
                                 mixu ( 
-                                  const_ ( 0.71865386 )
+                                  const_ ( 0.7 )
                                   cos ( 
                                     x
                                    ) 
@@ -500,7 +500,7 @@ triple (
                                   sqrt ( 
                                     y
                                    ) 
-                                  const_ ( 0.14593363 )
+                                  const_ ( 0.1 )
                                  ) 
                                 sqrt ( 
                                   sin ( 
@@ -511,13 +511,13 @@ triple (
                               cos ( 
                                 cos ( 
                                   mult ( 
-                                    const_ ( 0.17649806 )
+                                    const_ ( 0.2 )
                                     x
                                    ) 
                                  ) 
                                ) 
                               mult ( 
-                                const_ ( 1.4474224 )
+                                const_ ( 1.4 )
                                 cos ( 
                                   div ( 
                                     x
@@ -543,7 +543,7 @@ triple (
                       mult ( 
                         cos ( 
                           add ( 
-                            const_ ( 0.5938111 )
+                            const_ ( 0.6 )
                             add ( 
                               add ( 
                                 mixu ( 
@@ -564,8 +564,8 @@ triple (
                                   mixu ( 
                                     x
                                     x
-                                    const_ ( -0.8217878 )
-                                    const_ ( -0.8065264 )
+                                    const_ ( -0.8 )
+                                    const_ ( -0.8 )
                                    ) 
                                   x
                                  ) 
@@ -615,9 +615,9 @@ triple (
                           mult ( 
                             cos ( 
                               mixu ( 
-                                const_ ( -0.4547348 )
+                                const_ ( -0.5 )
                                 y
-                                const_ ( -0.40319186 )
+                                const_ ( -0.4 )
                                 sin ( 
                                   sin ( 
                                     y
@@ -636,10 +636,10 @@ triple (
                           cos ( 
                             sin ( 
                               div ( 
-                                const_ ( 0.9831414 )
+                                const_ ( 1.0 )
                                 add ( 
                                   mult ( 
-                                    const_ ( 0.065757394 )
+                                    const_ ( 0.1 )
                                     y
                                    ) 
                                   sqrt ( 
@@ -700,7 +700,7 @@ triple (
                             mult ( 
                               sin ( 
                                 mult ( 
-                                  const_ ( 0.7682919 )
+                                  const_ ( 0.8 )
                                   mixu ( 
                                     x
                                     y
@@ -745,7 +745,7 @@ triple (
                             mult ( 
                               exp ( 
                                 mult ( 
-                                  const_ ( -0.5449238 )
+                                  const_ ( -0.5 )
                                   sin ( 
                                     y
                                    ) 
@@ -758,7 +758,7 @@ triple (
                                     y
                                    ) 
                                  ) 
-                                const_ ( 0.9877779 )
+                                const_ ( 1.0 )
                                ) 
                              ) 
                            ) 
@@ -772,7 +772,7 @@ triple (
                                 sin ( 
                                   x
                                  ) 
-                                const_ ( 0.56520534 )
+                                const_ ( 0.6 )
                                ) 
                              ) 
                            ) 
@@ -839,7 +839,7 @@ triple (
                                    ) 
                                   add ( 
                                     y
-                                    const_ ( 0.20476437 )
+                                    const_ ( 0.2 )
                                    ) 
                                  ) 
                                ) 
@@ -865,23 +865,23 @@ triple (
                                   sin ( 
                                     y
                                    ) 
-                                  const_ ( -0.15239131 )
+                                  const_ ( -0.2 )
                                  ) 
                                ) 
                               add ( 
                                 div ( 
                                   mult ( 
                                     x
-                                    const_ ( -0.4414025 )
+                                    const_ ( -0.4 )
                                    ) 
                                   mixu ( 
-                                    const_ ( -0.9442846 )
+                                    const_ ( -0.9 )
                                     y
                                     y
                                     x
                                    ) 
                                  ) 
-                                const_ ( 0.626438 )
+                                const_ ( 0.6 )
                                ) 
                              ) 
                            ) 
@@ -911,7 +911,7 @@ triple (
                          ) 
                         sin ( 
                           div ( 
-                            const_ ( 0.62612355 )
+                            const_ ( 0.6 )
                             div ( 
                               sin ( 
                                 cos ( 
@@ -929,9 +929,9 @@ triple (
                           exp ( 
                             sin ( 
                               mult ( 
-                                const_ ( 0.93529534 )
+                                const_ ( 0.9 )
                                 div ( 
-                                  const_ ( 0.7258456 )
+                                  const_ ( 0.7 )
                                   cos ( 
                                     x
                                    ) 
@@ -948,10 +948,10 @@ triple (
                                   sin ( 
                                     x
                                    ) 
-                                  const_ ( 0.94231874 )
+                                  const_ ( 0.9 )
                                  ) 
                                ) 
-                              const_ ( 0.78723365 )
+                              const_ ( 0.8 )
                              ) 
                            ) 
                          ) 
@@ -972,15 +972,15 @@ triple (
                       sqrt ( 
                         mixu ( 
                           mixu ( 
-                            const_ ( -0.31983367 )
+                            const_ ( -0.3 )
                             sin ( 
                               sin ( 
                                 mult ( 
                                   add ( 
                                     y
-                                    const_ ( -0.045727193 )
+                                    const_ ( -0.0 )
                                    ) 
-                                  const_ ( 1.3438499 )
+                                  const_ ( 1.3 )
                                  ) 
                                ) 
                              ) 
@@ -988,7 +988,7 @@ triple (
                               cos ( 
                                 exp ( 
                                   add ( 
-                                    const_ ( 0.4138062 )
+                                    const_ ( 0.4 )
                                     y
                                    ) 
                                  ) 
@@ -1004,25 +1004,25 @@ triple (
                                     y
                                    ) 
                                  ) 
-                                const_ ( 0.954729 )
+                                const_ ( 1.0 )
                                 add ( 
                                   cos ( 
                                     x
                                    ) 
-                                  const_ ( 0.9638883 )
+                                  const_ ( 1.0 )
                                  ) 
-                                const_ ( 0.66356707 )
+                                const_ ( 0.7 )
                                ) 
                              ) 
                            ) 
-                          const_ ( 1 )
+                          const_ ( 1.0 )
                           cos ( 
                             cos ( 
                               cos ( 
                                 sin ( 
                                   div ( 
                                     y
-                                    const_ ( -0.114050984 )
+                                    const_ ( -0.1 )
                                    ) 
                                  ) 
                                ) 
@@ -1051,7 +1051,7 @@ triple (
                                     y
                                    ) 
                                   x
-                                  const_ ( 0 )
+                                  const_ ( 0.0 )
                                   sqrt ( 
                                     y
                                    ) 
@@ -1068,15 +1068,15 @@ triple (
                                     x
                                    ) 
                                   add ( 
-                                    const_ ( -0.3215127 )
+                                    const_ ( -0.3 )
                                     y
                                    ) 
                                  ) 
                                ) 
                              ) 
                            ) 
-                          const_ ( 0.24276114 )
-                          const_ ( 1.8444908 )
+                          const_ ( 0.2 )
+                          const_ ( 1.8 )
                           cos ( 
                             sin ( 
                               cos ( 
@@ -1092,17 +1092,17 @@ triple (
                        ) 
                       mult ( 
                         mult ( 
-                          const_ ( 0.6831446 )
+                          const_ ( 0.7 )
                           mult ( 
                             cos ( 
                               div ( 
                                 sqrt ( 
                                   div ( 
                                     y
-                                    const_ ( -0.64992726 )
+                                    const_ ( -0.6 )
                                    ) 
                                  ) 
-                                const_ ( 0.6362108 )
+                                const_ ( 0.6 )
                                ) 
                              ) 
                             sin ( 
@@ -1130,10 +1130,10 @@ triple (
                               cos ( 
                                 add ( 
                                   add ( 
-                                    const_ ( -0.62430465 )
+                                    const_ ( -0.6 )
                                     y
                                    ) 
-                                  const_ ( 0.31052673 )
+                                  const_ ( 0.3 )
                                  ) 
                                ) 
                               cos ( 
@@ -1144,25 +1144,25 @@ triple (
                                  ) 
                                ) 
                              ) 
-                            const_ ( 0.5471102 )
+                            const_ ( 0.5 )
                            ) 
                           sin ( 
                             mixu ( 
-                              const_ ( -0.34060538 )
+                              const_ ( -0.3 )
                               mixu ( 
-                                const_ ( 1 )
+                                const_ ( 1.0 )
                                 div ( 
                                   sin ( 
                                     x
                                    ) 
-                                  const_ ( 0.7651147 )
+                                  const_ ( 0.8 )
                                  ) 
                                 sin ( 
                                   x
                                  ) 
                                 sin ( 
                                   mixu ( 
-                                    const_ ( -0.32548696 )
+                                    const_ ( -0.3 )
                                     x
                                     y
                                     y
@@ -1222,8 +1222,8 @@ triple (
                                 mixu ( 
                                   x
                                   y
-                                  const_ ( 2.5962331 )
-                                  const_ ( 0.9927783 )
+                                  const_ ( 2.6 )
+                                  const_ ( 1.0 )
                                  ) 
                                 y
                                ) 
@@ -1239,35 +1239,35 @@ triple (
                     cos ( 
                       sin ( 
                         add ( 
-                          const_ ( 0.42711392 )
+                          const_ ( 0.4 )
                           mixu ( 
                             sin ( 
                               add ( 
                                 mixu ( 
                                   add ( 
-                                    const_ ( 0.9994931 )
+                                    const_ ( 1.0 )
                                     y
                                    ) 
                                   div ( 
                                     x
                                     y
                                    ) 
-                                  const_ ( 0.5566709 )
+                                  const_ ( 0.6 )
                                   sin ( 
                                     y
                                    ) 
                                  ) 
-                                const_ ( -0.531147 )
+                                const_ ( -0.5 )
                                ) 
                              ) 
                             mult ( 
                               exp ( 
                                 mult ( 
                                   add ( 
-                                    const_ ( 0.92121184 )
+                                    const_ ( 0.9 )
                                     x
                                    ) 
-                                  const_ ( 0.5639292 )
+                                  const_ ( 0.6 )
                                  ) 
                                ) 
                               cos ( 
@@ -1275,7 +1275,7 @@ triple (
                                   sin ( 
                                     y
                                    ) 
-                                  const_ ( 0 )
+                                  const_ ( 0.0 )
                                  ) 
                                ) 
                              ) 
@@ -1296,7 +1296,7 @@ triple (
                                 sqrt ( 
                                   mult ( 
                                     x
-                                    const_ ( 0.04581046 )
+                                    const_ ( 0.0 )
                                    ) 
                                  ) 
                                 add ( 
@@ -1340,7 +1340,7 @@ triple (
                                     y
                                    ) 
                                   div ( 
-                                    const_ ( 0.8831701 )
+                                    const_ ( 0.9 )
                                     y
                                    ) 
                                  ) 
@@ -1354,18 +1354,18 @@ triple (
                            ) 
                           x
                          ) 
-                        const_ ( -0.41597492 )
-                        const_ ( 0.6103312 )
+                        const_ ( -0.4 )
+                        const_ ( 0.6 )
                         add ( 
                           exp ( 
                             cos ( 
                               exp ( 
                                 div ( 
                                   mixu ( 
-                                    const_ ( 0.18548024 )
-                                    const_ ( -0.04697287 )
+                                    const_ ( 0.2 )
+                                    const_ ( -0.0 )
                                     x
-                                    const_ ( 0.06729615 )
+                                    const_ ( 0.1 )
                                    ) 
                                   sqrt ( 
                                     x
@@ -1387,7 +1387,7 @@ triple (
                                 sqrt ( 
                                   mult ( 
                                     x
-                                    const_ ( 0.8523488 )
+                                    const_ ( 0.9 )
                                    ) 
                                  ) 
                                 exp ( 
@@ -1407,7 +1407,7 @@ triple (
                                 sin ( 
                                   div ( 
                                     y
-                                    const_ ( -0.0379979 )
+                                    const_ ( -0.0 )
                                    ) 
                                  ) 
                                 cos ( 
@@ -1415,7 +1415,7 @@ triple (
                                     x
                                    ) 
                                  ) 
-                                const_ ( 0.62191516 )
+                                const_ ( 0.6 )
                                ) 
                               cos ( 
                                 cos ( 
@@ -1447,11 +1447,11 @@ triple (
                               cos ( 
                                 div ( 
                                   x
-                                  const_ ( -0.17966276 )
+                                  const_ ( -0.2 )
                                  ) 
                                ) 
                              ) 
-                            const_ ( 0.3328343 )
+                            const_ ( 0.3 )
                             cos ( 
                               sin ( 
                                 cos ( 
@@ -1534,7 +1534,7 @@ triple (
                                ) 
                               exp ( 
                                 mult ( 
-                                  const_ ( -0.6369897 )
+                                  const_ ( -0.6 )
                                   add ( 
                                     y
                                     y
@@ -1546,7 +1546,7 @@ triple (
                               sin ( 
                                 mult ( 
                                   add ( 
-                                    const_ ( -0.35400218 )
+                                    const_ ( -0.4 )
                                     y
                                    ) 
                                   exp ( 
@@ -1570,7 +1570,7 @@ triple (
                                    ) 
                                   add ( 
                                     y
-                                    const_ ( 0.6860547 )
+                                    const_ ( 0.7 )
                                    ) 
                                  ) 
                                ) 
@@ -1584,7 +1584,7 @@ triple (
                               cos ( 
                                 cos ( 
                                   mult ( 
-                                    const_ ( 0.6749203 )
+                                    const_ ( 0.7 )
                                     y
                                    ) 
                                  ) 
@@ -1610,7 +1610,7 @@ triple (
                                    ) 
                                  ) 
                                ) 
-                              const_ ( 0.27389026 )
+                              const_ ( 0.3 )
                               sin ( 
                                 add ( 
                                   add ( 
@@ -1618,10 +1618,10 @@ triple (
                                     y
                                    ) 
                                   mixu ( 
-                                    const_ ( 0.60576737 )
+                                    const_ ( 0.6 )
                                     x
                                     x
-                                    const_ ( -0.8773289 )
+                                    const_ ( -0.9 )
                                    ) 
                                  ) 
                                ) 
@@ -1630,12 +1630,12 @@ triple (
                                   sin ( 
                                     y
                                    ) 
-                                  const_ ( -0.07104665 )
+                                  const_ ( -0.1 )
                                   sin ( 
                                     x
                                    ) 
                                   add ( 
-                                    const_ ( 0.40966177 )
+                                    const_ ( 0.4 )
                                     y
                                    ) 
                                  ) 
@@ -1650,7 +1650,7 @@ triple (
                ) 
              ) 
            ) 
-          const_ ( -0.6661038 )
+          const_ ( -0.7 )
           cos ( 
             sin ( 
               sqrt ( 
@@ -1686,10 +1686,10 @@ triple (
                         mult ( 
                           cos ( 
                             mult ( 
-                              const_ ( -0.1689261 )
+                              const_ ( -0.2 )
                               mult ( 
                                 add ( 
-                                  const_ ( 0.57095814 )
+                                  const_ ( 0.6 )
                                   exp ( 
                                     y
                                    ) 
@@ -1703,11 +1703,11 @@ triple (
                                ) 
                              ) 
                            ) 
-                          const_ ( 0.9294585 )
+                          const_ ( 0.9 )
                          ) 
                        ) 
                       mult ( 
-                        const_ ( 0.6222092 )
+                        const_ ( 0.6 )
                         cos ( 
                           add ( 
                             sin ( 
@@ -1747,10 +1747,10 @@ triple (
                              ) 
                            ) 
                          ) 
-                        const_ ( 0.8163129 )
+                        const_ ( 0.8 )
                        ) 
                       mixu ( 
-                        const_ ( -0.88410664 )
+                        const_ ( -0.9 )
                         mixu ( 
                           sin ( 
                             add ( 
@@ -1774,19 +1774,19 @@ triple (
                                     x
                                    ) 
                                  ) 
-                                const_ ( -0.1332128 )
-                                const_ ( 0.9111733 )
+                                const_ ( -0.1 )
+                                const_ ( 0.9 )
                                ) 
                               cos ( 
                                 mixu ( 
-                                  const_ ( 0.7230706 )
+                                  const_ ( 0.7 )
                                   sin ( 
                                     y
                                    ) 
                                   sqrt ( 
                                     y
                                    ) 
-                                  const_ ( 0 )
+                                  const_ ( 0.0 )
                                  ) 
                                ) 
                              ) 
@@ -1807,7 +1807,7 @@ triple (
                               cos ( 
                                 sin ( 
                                   add ( 
-                                    const_ ( -0.12995744 )
+                                    const_ ( -0.1 )
                                     x
                                    ) 
                                  ) 
@@ -1827,7 +1827,7 @@ triple (
                             sqrt ( 
                               sin ( 
                                 mixu ( 
-                                  const_ ( 0.6077965 )
+                                  const_ ( 0.6 )
                                   sin ( 
                                     y
                                    ) 
@@ -1847,7 +1847,7 @@ triple (
                           cos ( 
                             cos ( 
                               div ( 
-                                const_ ( 0.99836236 )
+                                const_ ( 1.0 )
                                 exp ( 
                                   sin ( 
                                     y
@@ -1878,9 +1878,9 @@ triple (
                               sin ( 
                                 sin ( 
                                   mixu ( 
-                                    const_ ( 0.750396 )
+                                    const_ ( 0.8 )
                                     y
-                                    const_ ( 0.7005997 )
+                                    const_ ( 0.7 )
                                     x
                                    ) 
                                  ) 
@@ -1892,14 +1892,14 @@ triple (
                                   cos ( 
                                     x
                                    ) 
-                                  const_ ( 1.3741046 )
+                                  const_ ( 1.4 )
                                  ) 
                                ) 
                               cos ( 
                                 x
                                ) 
                              ) 
-                            const_ ( 3.7642496 )
+                            const_ ( 3.8 )
                             sin ( 
                               add ( 
                                 mixu ( 
@@ -1907,15 +1907,15 @@ triple (
                                     y
                                    ) 
                                   y
-                                  const_ ( 0.99103457 )
+                                  const_ ( 1.0 )
                                   mult ( 
                                     x
-                                    const_ ( 0.30471373 )
+                                    const_ ( 0.3 )
                                    ) 
                                  ) 
                                 cos ( 
                                   div ( 
-                                    const_ ( -0.5521328 )
+                                    const_ ( -0.6 )
                                     x
                                    ) 
                                  ) 
@@ -1943,7 +1943,7 @@ triple (
                                     x
                                    ) 
                                  ) 
-                                const_ ( 0.82563126 )
+                                const_ ( 0.8 )
                                 sin ( 
                                   cos ( 
                                     y
@@ -1970,22 +1970,22 @@ triple (
                                     x
                                    ) 
                                   mult ( 
-                                    const_ ( 0.08909309 )
+                                    const_ ( 0.1 )
                                     y
                                    ) 
                                   add ( 
                                     x
-                                    const_ ( 0.5878979 )
+                                    const_ ( 0.6 )
                                    ) 
                                   add ( 
                                     x
-                                    const_ ( -0.106450975 )
+                                    const_ ( -0.1 )
                                    ) 
                                  ) 
                                ) 
                               cos ( 
                                 mult ( 
-                                  const_ ( 0.4321984 )
+                                  const_ ( 0.4 )
                                   sin ( 
                                     x
                                    ) 
@@ -1993,7 +1993,7 @@ triple (
                                ) 
                               div ( 
                                 div ( 
-                                  const_ ( 0.3731032 )
+                                  const_ ( 0.4 )
                                   cos ( 
                                     y
                                    ) 
@@ -2001,14 +2001,14 @@ triple (
                                 cos ( 
                                   add ( 
                                     x
-                                    const_ ( -0.4566828 )
+                                    const_ ( -0.5 )
                                    ) 
                                  ) 
                                ) 
                              ) 
                            ) 
                          ) 
-                        const_ ( 0.7473871 )
+                        const_ ( 0.7 )
                         exp ( 
                           cos ( 
                             cos ( 
@@ -2016,7 +2016,7 @@ triple (
                                 sin ( 
                                   mult ( 
                                     y
-                                    const_ ( -0.59669995 )
+                                    const_ ( -0.6 )
                                    ) 
                                  ) 
                                 exp ( 
@@ -2026,18 +2026,18 @@ triple (
                                  ) 
                                 sqrt ( 
                                   div ( 
-                                    const_ ( -0.6026432 )
+                                    const_ ( -0.6 )
                                     y
                                    ) 
                                  ) 
-                                const_ ( 2.0762398 )
+                                const_ ( 2.1 )
                                ) 
                              ) 
                            ) 
                          ) 
                        ) 
                      ) 
-                    const_ ( 0.77125 )
+                    const_ ( 0.8 )
                     cos ( 
                       div ( 
                         cos ( 
@@ -2059,7 +2059,7 @@ triple (
                                 cos ( 
                                   mult ( 
                                     y
-                                    const_ ( -0.6366973 )
+                                    const_ ( -0.6 )
                                    ) 
                                  ) 
                                ) 
@@ -2074,14 +2074,14 @@ triple (
                                ) 
                               div ( 
                                 mult ( 
-                                  const_ ( -0.06447513 )
+                                  const_ ( -0.1 )
                                   sin ( 
                                     x
                                    ) 
                                  ) 
                                 cos ( 
                                   add ( 
-                                    const_ ( 0.34597528 )
+                                    const_ ( 0.3 )
                                     y
                                    ) 
                                  ) 
@@ -2096,7 +2096,7 @@ triple (
                               mixu ( 
                                 add ( 
                                   mult ( 
-                                    const_ ( -0.8950111 )
+                                    const_ ( -0.9 )
                                     y
                                    ) 
                                   sin ( 
@@ -2104,7 +2104,7 @@ triple (
                                    ) 
                                  ) 
                                 y
-                                const_ ( 0.7384033 )
+                                const_ ( 0.7 )
                                 sin ( 
                                   cos ( 
                                     y
@@ -2129,7 +2129,7 @@ triple (
                                     y
                                    ) 
                                  ) 
-                                const_ ( 0.9570308 )
+                                const_ ( 1.0 )
                                ) 
                              ) 
                            ) 
@@ -2137,7 +2137,7 @@ triple (
                        ) 
                      ) 
                     mixu ( 
-                      const_ ( 0.73548687 )
+                      const_ ( 0.7 )
                       cos ( 
                         exp ( 
                           sqrt ( 
@@ -2164,7 +2164,7 @@ triple (
                                    ) 
                                  ) 
                                 mult ( 
-                                  const_ ( 0.7881724 )
+                                  const_ ( 0.8 )
                                   div ( 
                                     y
                                     x
@@ -2172,14 +2172,14 @@ triple (
                                  ) 
                                 mult ( 
                                   add ( 
-                                    const_ ( 0.88850343 )
+                                    const_ ( 0.9 )
                                     y
                                    ) 
                                   sin ( 
                                     y
                                    ) 
                                  ) 
-                                const_ ( 0.46189368 )
+                                const_ ( 0.5 )
                                ) 
                               cos ( 
                                 cos ( 
@@ -2193,12 +2193,12 @@ triple (
                                   mixu ( 
                                     y
                                     x
-                                    const_ ( 0.2969669 )
-                                    const_ ( 0.6180321 )
+                                    const_ ( 0.3 )
+                                    const_ ( 0.6 )
                                    ) 
                                  ) 
                                ) 
-                              const_ ( 2.4392288 )
+                              const_ ( 2.4 )
                              ) 
                             sin ( 
                               div ( 
@@ -2211,17 +2211,17 @@ triple (
                                    ) 
                                   mult ( 
                                     x
-                                    const_ ( 0.38502717 )
+                                    const_ ( 0.4 )
                                    ) 
-                                  const_ ( 0.068482995 )
+                                  const_ ( 0.1 )
                                   mult ( 
-                                    const_ ( -0.5732194 )
+                                    const_ ( -0.6 )
                                     y
                                    ) 
                                  ) 
                                 sin ( 
                                   div ( 
-                                    const_ ( -0.0726378 )
+                                    const_ ( -0.1 )
                                     x
                                    ) 
                                  ) 
@@ -2230,7 +2230,7 @@ triple (
                            ) 
                          ) 
                        ) 
-                      const_ ( 0.37466112 )
+                      const_ ( 0.4 )
                      ) 
                    ) 
                  ) 
@@ -2252,7 +2252,7 @@ triple (
                         mult ( 
                           sin ( 
                             add ( 
-                              const_ ( 0.31789392 )
+                              const_ ( 0.3 )
                               cos ( 
                                 y
                                ) 
@@ -2271,7 +2271,7 @@ triple (
                                     x
                                     y
                                     y
-                                    const_ ( -0.50199676 )
+                                    const_ ( -0.5 )
                                    ) 
                                  ) 
                                ) 
@@ -2313,9 +2313,9 @@ triple (
                                 mixu ( 
                                   div ( 
                                     x
-                                    const_ ( -0.33304155 )
+                                    const_ ( -0.3 )
                                    ) 
-                                  const_ ( 1.2541634 )
+                                  const_ ( 1.3 )
                                   add ( 
                                     x
                                     x
@@ -2354,8 +2354,8 @@ triple (
                             sqrt ( 
                               mixu ( 
                                 y
-                                const_ ( 0.7775856 )
-                                const_ ( 0.63480806 )
+                                const_ ( 0.8 )
+                                const_ ( 0.6 )
                                 cos ( 
                                   cos ( 
                                     y
@@ -2372,11 +2372,11 @@ triple (
                               sin ( 
                                 mult ( 
                                   mult ( 
-                                    const_ ( 0.53478885 )
+                                    const_ ( 0.5 )
                                     y
                                    ) 
                                   add ( 
-                                    const_ ( -0.5477965 )
+                                    const_ ( -0.5 )
                                     y
                                    ) 
                                  ) 
@@ -2391,7 +2391,7 @@ triple (
                              ) 
                            ) 
                          ) 
-                        const_ ( 0.7084506 )
+                        const_ ( 0.7 )
                        ) 
                      ) 
                    ) 
@@ -2417,10 +2417,10 @@ triple (
                             sin ( 
                               cos ( 
                                 mult ( 
-                                  const_ ( 2.4306185 )
+                                  const_ ( 2.4 )
                                   mult ( 
                                     x
-                                    const_ ( 0.91461563 )
+                                    const_ ( 0.9 )
                                    ) 
                                  ) 
                                ) 
@@ -2439,7 +2439,7 @@ triple (
                                 sqrt ( 
                                   add ( 
                                     y
-                                    const_ ( -0.8905563 )
+                                    const_ ( -0.9 )
                                    ) 
                                  ) 
                                 mult ( 
@@ -2447,7 +2447,7 @@ triple (
                                     x
                                     y
                                    ) 
-                                  const_ ( 2.1007419 )
+                                  const_ ( 2.1 )
                                  ) 
                                ) 
                              ) 
@@ -2470,7 +2470,7 @@ triple (
                           exp ( 
                             x
                            ) 
-                          const_ ( 0.5948379 )
+                          const_ ( 0.6 )
                          ) 
                        ) 
                      ) 
@@ -2483,7 +2483,7 @@ triple (
             cos ( 
               mult ( 
                 mult ( 
-                  const_ ( 0.68916434 )
+                  const_ ( 0.7 )
                   add ( 
                     cos ( 
                       cos ( 
@@ -2519,20 +2519,20 @@ triple (
                                   mixu ( 
                                     y
                                     y
-                                    const_ ( -0.3753299 )
+                                    const_ ( -0.4 )
                                     x
                                    ) 
                                  ) 
-                                const_ ( 0.79341084 )
+                                const_ ( 0.8 )
                                ) 
-                              const_ ( 0.4550675 )
+                              const_ ( 0.5 )
                               div ( 
                                 cos ( 
                                   exp ( 
                                     x
                                    ) 
                                  ) 
-                                const_ ( -0.09867754 )
+                                const_ ( -0.1 )
                                ) 
                               mixu ( 
                                 exp ( 
@@ -2548,12 +2548,12 @@ triple (
                                     x
                                    ) 
                                  ) 
-                                const_ ( -0.28537047 )
+                                const_ ( -0.3 )
                                 div ( 
                                   sin ( 
                                     y
                                    ) 
-                                  const_ ( 0.32361194 )
+                                  const_ ( 0.3 )
                                  ) 
                                ) 
                              ) 
@@ -2572,10 +2572,10 @@ triple (
                                  ) 
                                 exp ( 
                                   mixu ( 
-                                    const_ ( -0.79582965 )
-                                    const_ ( 0.03277147 )
+                                    const_ ( -0.8 )
+                                    const_ ( 0.0 )
                                     y
-                                    const_ ( 0.7603396 )
+                                    const_ ( 0.8 )
                                    ) 
                                  ) 
                                ) 
@@ -2607,7 +2607,7 @@ triple (
                                   cos ( 
                                     x
                                    ) 
-                                  const_ ( 0.43573272 )
+                                  const_ ( 0.4 )
                                  ) 
                                ) 
                              ) 
@@ -2615,7 +2615,7 @@ triple (
                           sin ( 
                             div ( 
                               mixu ( 
-                                const_ ( 2.713658 )
+                                const_ ( 2.7 )
                                 mixu ( 
                                   exp ( 
                                     y
@@ -2635,7 +2635,7 @@ triple (
                                   sqrt ( 
                                     x
                                    ) 
-                                  const_ ( -0.32041034 )
+                                  const_ ( -0.3 )
                                   sin ( 
                                     y
                                    ) 
@@ -2680,7 +2680,7 @@ triple (
                                 add ( 
                                   add ( 
                                     x
-                                    const_ ( -0.013236105 )
+                                    const_ ( -0.0 )
                                    ) 
                                   sqrt ( 
                                     y
@@ -2697,7 +2697,7 @@ triple (
                                     x
                                     x
                                    ) 
-                                  const_ ( 0.47213364 )
+                                  const_ ( 0.5 )
                                   div ( 
                                     y
                                     x
@@ -2718,7 +2718,7 @@ triple (
                                    ) 
                                  ) 
                                ) 
-                              const_ ( 0.9991281 )
+                              const_ ( 1.0 )
                              ) 
                            ) 
                          ) 
@@ -2751,26 +2751,26 @@ triple (
                                   cos ( 
                                     x
                                    ) 
-                                  const_ ( 2.333165 )
+                                  const_ ( 2.3 )
                                   div ( 
                                     x
-                                    const_ ( 0.901212 )
+                                    const_ ( 0.9 )
                                    ) 
-                                  const_ ( 0.9453289 )
+                                  const_ ( 0.9 )
                                  ) 
                                 div ( 
                                   sin ( 
                                     y
                                    ) 
-                                  const_ ( 0.9611327 )
+                                  const_ ( 1.0 )
                                  ) 
                                ) 
                               div ( 
-                                const_ ( 0.65304524 )
+                                const_ ( 0.7 )
                                 sqrt ( 
                                   div ( 
                                     y
-                                    const_ ( 0.17022884 )
+                                    const_ ( 0.2 )
                                    ) 
                                  ) 
                                ) 
@@ -2809,7 +2809,7 @@ triple (
           y
          ) 
        ) 
-      const_ ( 1.9812315 )
+      const_ ( 2.0 )
       cos ( 
         exp ( 
           sqrt ( 
@@ -2823,7 +2823,7 @@ triple (
                           sin ( 
                             sin ( 
                               div ( 
-                                const_ ( 0.6139124 )
+                                const_ ( 0.6 )
                                 cos ( 
                                   sin ( 
                                     y
@@ -2835,10 +2835,10 @@ triple (
                           cos ( 
                             cos ( 
                               div ( 
-                                const_ ( 0.7576096 )
+                                const_ ( 0.8 )
                                 mixu ( 
-                                  const_ ( 0 )
-                                  const_ ( 2.0408168 )
+                                  const_ ( 0.0 )
+                                  const_ ( 2.0 )
                                   mult ( 
                                     x
                                     x
@@ -2879,7 +2879,7 @@ triple (
                               exp ( 
                                 sin ( 
                                   mult ( 
-                                    const_ ( -0.5917237 )
+                                    const_ ( -0.6 )
                                     x
                                    ) 
                                  ) 
@@ -2915,7 +2915,7 @@ triple (
                                 cos ( 
                                   add ( 
                                     x
-                                    const_ ( 0.6104591 )
+                                    const_ ( 0.6 )
                                    ) 
                                  ) 
                                ) 
@@ -2949,7 +2949,7 @@ triple (
                           mixu ( 
                             mult ( 
                               mixu ( 
-                                const_ ( 0.52034104 )
+                                const_ ( 0.5 )
                                 mixu ( 
                                   sin ( 
                                     x
@@ -2957,9 +2957,9 @@ triple (
                                   cos ( 
                                     y
                                    ) 
-                                  const_ ( 0.97382414 )
+                                  const_ ( 1.0 )
                                   add ( 
-                                    const_ ( 0.582808 )
+                                    const_ ( 0.6 )
                                     y
                                    ) 
                                  ) 
@@ -2999,7 +2999,7 @@ triple (
                                    ) 
                                  ) 
                                 div ( 
-                                  const_ ( 0.20069425 )
+                                  const_ ( 0.2 )
                                   add ( 
                                     x
                                     y
@@ -3032,10 +3032,10 @@ triple (
                                  ) 
                                 add ( 
                                   add ( 
-                                    const_ ( 0.79266167 )
+                                    const_ ( 0.8 )
                                     x
                                    ) 
-                                  const_ ( -0.16753438 )
+                                  const_ ( -0.2 )
                                  ) 
                                 cos ( 
                                   x
@@ -3089,16 +3089,16 @@ triple (
                                 add ( 
                                   mixu ( 
                                     y
-                                    const_ ( 0.45666337 )
+                                    const_ ( 0.5 )
                                     x
                                     x
                                    ) 
-                                  const_ ( 0.5290232 )
+                                  const_ ( 0.5 )
                                  ) 
                                ) 
                              ) 
                             mixu ( 
-                              const_ ( 0.9790369 )
+                              const_ ( 1.0 )
                               sin ( 
                                 sin ( 
                                   cos ( 
@@ -3161,7 +3161,7 @@ triple (
                               mixu ( 
                                 cos ( 
                                   mult ( 
-                                    const_ ( -0.38597637 )
+                                    const_ ( -0.4 )
                                     y
                                    ) 
                                  ) 
@@ -3172,11 +3172,11 @@ triple (
                                    ) 
                                   mult ( 
                                     x
-                                    const_ ( -0.5198046 )
+                                    const_ ( -0.5 )
                                    ) 
                                  ) 
                                 div ( 
-                                  const_ ( 0.051579107 )
+                                  const_ ( 0.1 )
                                   mult ( 
                                     x
                                     x
@@ -3205,11 +3205,11 @@ triple (
                       sin ( 
                         div ( 
                           add ( 
-                            const_ ( 0.19756238 )
+                            const_ ( 0.2 )
                             mixu ( 
                               cos ( 
                                 mult ( 
-                                  const_ ( 0.69373924 )
+                                  const_ ( 0.7 )
                                   cos ( 
                                     x
                                    ) 
@@ -3236,7 +3236,7 @@ triple (
                           mult ( 
                             mixu ( 
                               mixu ( 
-                                const_ ( 0.87724173 )
+                                const_ ( 0.9 )
                                 add ( 
                                   cos ( 
                                     x
@@ -3254,7 +3254,7 @@ triple (
                                    ) 
                                  ) 
                                 add ( 
-                                  const_ ( -0.15472381 )
+                                  const_ ( -0.2 )
                                   cos ( 
                                     x
                                    ) 
@@ -3266,24 +3266,24 @@ triple (
                                   x
                                   mult ( 
                                     x
-                                    const_ ( 0.23911572 )
+                                    const_ ( 0.2 )
                                    ) 
                                  ) 
                                ) 
                               exp ( 
                                 mult ( 
-                                  const_ ( -0.55614614 )
+                                  const_ ( -0.6 )
                                   mixu ( 
                                     x
                                     x
-                                    const_ ( 0.08039367 )
-                                    const_ ( 0.5718888 )
+                                    const_ ( 0.1 )
+                                    const_ ( 0.6 )
                                    ) 
                                  ) 
                                ) 
                               sin ( 
                                 add ( 
-                                  const_ ( 0.9864645 )
+                                  const_ ( 1.0 )
                                   add ( 
                                     x
                                     y
@@ -3311,7 +3311,7 @@ triple (
                         sin ( 
                           sin ( 
                             mult ( 
-                              const_ ( 0.5985373 )
+                              const_ ( 0.6 )
                               div ( 
                                 div ( 
                                   sin ( 
@@ -3319,7 +3319,7 @@ triple (
                                    ) 
                                   mult ( 
                                     x
-                                    const_ ( 0.10399163 )
+                                    const_ ( 0.1 )
                                    ) 
                                  ) 
                                 y
@@ -3333,7 +3333,7 @@ triple (
                   cos ( 
                     sin ( 
                       div ( 
-                        const_ ( 0.8296132 )
+                        const_ ( 0.8 )
                         cos ( 
                           div ( 
                             mult ( 
@@ -3354,14 +3354,14 @@ triple (
                                    ) 
                                   mixu ( 
                                     y
-                                    const_ ( -0.86337614 )
+                                    const_ ( -0.9 )
                                     x
-                                    const_ ( -0.09413463 )
+                                    const_ ( -0.1 )
                                    ) 
                                   y
                                  ) 
                                 add ( 
-                                  const_ ( -0.64523846 )
+                                  const_ ( -0.6 )
                                   sin ( 
                                     y
                                    ) 
@@ -3384,7 +3384,7 @@ triple (
                                   cos ( 
                                     y
                                    ) 
-                                  const_ ( 0.9194191 )
+                                  const_ ( 0.9 )
                                  ) 
                                ) 
                              ) 
@@ -3417,7 +3417,7 @@ triple (
                                    ) 
                                   add ( 
                                     x
-                                    const_ ( 0.763054 )
+                                    const_ ( 0.8 )
                                    ) 
                                  ) 
                                ) 
@@ -3428,18 +3428,18 @@ triple (
                               mixu ( 
                                 exp ( 
                                   mixu ( 
-                                    const_ ( -0.92663693 )
-                                    const_ ( 0.07739127 )
+                                    const_ ( -0.9 )
+                                    const_ ( 0.1 )
                                     y
-                                    const_ ( -0.59588516 )
+                                    const_ ( -0.6 )
                                    ) 
                                  ) 
                                 div ( 
                                   mixu ( 
-                                    const_ ( -0.7822008 )
+                                    const_ ( -0.8 )
                                     y
-                                    const_ ( -0.7499936 )
-                                    const_ ( -0.4514976 )
+                                    const_ ( -0.7 )
+                                    const_ ( -0.5 )
                                    ) 
                                   mult ( 
                                     x
@@ -3448,17 +3448,17 @@ triple (
                                  ) 
                                 mixu ( 
                                   div ( 
-                                    const_ ( -0.5781597 )
+                                    const_ ( -0.6 )
                                     x
                                    ) 
                                   add ( 
-                                    const_ ( -0.9275126 )
+                                    const_ ( -0.9 )
                                     x
                                    ) 
                                   sin ( 
                                     y
                                    ) 
-                                  const_ ( 0.9757564 )
+                                  const_ ( 1.0 )
                                  ) 
                                 sin ( 
                                   sin ( 
@@ -3476,7 +3476,7 @@ triple (
                                   cos ( 
                                     y
                                    ) 
-                                  const_ ( 0.9996711 )
+                                  const_ ( 1.0 )
                                   div ( 
                                     y
                                     x
@@ -3498,7 +3498,7 @@ triple (
                                 mult ( 
                                   mixu ( 
                                     x
-                                    const_ ( 0.6559305 )
+                                    const_ ( 0.7 )
                                     x
                                     y
                                    ) 
@@ -3521,7 +3521,7 @@ triple (
                                    ) 
                                  ) 
                                ) 
-                              const_ ( 0.37571147 )
+                              const_ ( 0.4 )
                              ) 
                            ) 
                          ) 
