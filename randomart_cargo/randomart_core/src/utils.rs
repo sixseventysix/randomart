@@ -26,7 +26,6 @@ where
         .flat_map(|ty| (0..tiles_x).map(move |tx| (tx * TILE_SIZE, ty * TILE_SIZE)))
         .collect();
 
-    // Each tile returns its starting coord + mini buffer
     let partial_tiles: Vec<(u32, u32, RgbImage)> = tiles
         .into_par_iter()
         .map(|(x_start, y_start)| {
