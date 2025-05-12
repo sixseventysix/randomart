@@ -1,5 +1,5 @@
 pub mod utils;
-// pub mod reader;
+pub mod reader;
 use utils::{ Colour, LinearCongruentialGenerator };
 use std::fmt;
 
