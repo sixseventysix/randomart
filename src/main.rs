@@ -1,18 +1,22 @@
 use randomart::{utils::{ fnv1a, render_pixels, PixelCoordinates }, Grammar, ClosureTree};
 use std::{env, path::PathBuf};
 
-fn get_output_path(file_name: &str) -> PathBuf {
-    let current_dir = env::current_dir().expect("failed to get the current working directory");
-    current_dir.join(file_name)
-}
+fn assert_send_sync<T: Send + Sync>(_f: &T) {}
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
+    let width = 1920;
+    let height = 1080;
 
-    if args.len() < 4 || args.len() > 6 {
-        eprintln!("usage: {} <string> <depth> <output file path> <width>(optional) <height>(optional)", args[0]);
-        std::process::exit(1);
-    }
+    let start = std::time::Instant::now();
+
+    let r = r_fn();
+    assert_send_sync(&r);
+
+    let g = g_fn();
+    assert_send_sync(&g);
+
+    let b = b_fn();
+    assert_send_sync(&b);
 
     let string = args[1].clone();
     let depth: u32 = args[2].parse().unwrap_or_else(|_| {
@@ -47,24 +51,8 @@ fn main() {
             _ => panic!("Expected Node::Triple at the top level"),
     };
 
-    let mut r_instructions = Vec::new();
-    let mut g_instructions = Vec::new();
-    let mut b_instructions = Vec::new();
-
-    randomart::emit_postfix(r_node, &mut r_instructions);
-    randomart::emit_postfix(g_node, &mut g_instructions);
-    randomart::emit_postfix(b_node, &mut b_instructions);
-
-    let program = randomart::PostfixRgbProgram {
-        r: r_instructions,
-        g: g_instructions,
-        b: b_instructions,
-    };
-
-    let rgb_fn = program.to_fn();
-    let img = render_pixels(rgb_fn, width, height);
-    let elapsed = start.elapsed();
-    println!("elaps: {:?}", elapsed);
-    let output_img_filepath = get_output_path(&output_img_filename);
-    img.save(output_img_filepath.clone()).expect("failed to save the image");
+    let img = render_pixels(&rgb_function, width, height);
+    let elaps = start.elapsed();
+    println!("elaps:{:?}", elaps);
+    img.save("output.png").expect("Failed to save image");
 }
