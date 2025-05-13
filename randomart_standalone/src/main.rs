@@ -45,12 +45,9 @@ fn main() {
     let start_render = Instant::now();
     let img = render_pixels(&closure_tree, width, height);
     let elapsed_render = start_render.elapsed();
-
-    // Write outputs
     img.save(output_img_filename).expect("Failed to save image");
     std::fs::write(output_formula_filename, format!("{}", generated_node)).expect("Failed to write formula");
-
-    // Summary
+    
     println!("Tree generation:      {:?}", elapsed_gen);
     println!("Closure tree creation:{:?}", elapsed_tree);
     println!("Image render time:    {:?}", elapsed_render);
