@@ -1,0 +1,9 @@
+ClosureTree {
+    r: XY(<closure>),
+    g: XY(<closure>),
+    b: XY(<closure>),
+}
+Tree generation:      2.64635625s
+Closure tree creation:4.250792ms
+Image render time:    948.847084ms
+Total time:           3.628746125s

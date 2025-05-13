@@ -1,5 +1,6 @@
 use std::fmt;
-use crate::closure_tree::ClosureNode;
+use crate::closure_tree::{ Dependency, CachedClosure };
+use std::sync::{Mutex, Arc};
 
 #[derive(Clone, Debug, PartialEq)]
 pub enum Node {
@@ -19,6 +20,122 @@ pub enum Node {
     Triple(Box<Node>, Box<Node>, Box<Node>), 
     Mix(Box<Node>, Box<Node>, Box<Node>, Box<Node>),
     MixUnbounded(Box<Node>, Box<Node>, Box<Node>, Box<Node>)
+}
+
+impl Node {
+    pub fn dependency(&self) -> Dependency {
+        use Dependency::*;
+        match self {
+            Node::X => x,
+            Node::Y => y,
+            Node::Number(_) => const_,
+            Node::Add(a, b)
+            | Node::Mult(a, b)
+            | Node::Div(a, b)
+            | Node::Modulo(a, b) => {
+                merge(a.dependency(), b.dependency())
+            }
+            Node::Sin(inner)
+            | Node::Cos(inner)
+            | Node::Exp(inner)
+            | Node::Sqrt(inner) => inner.dependency(),
+            Node::Mix(a, b, c, d)
+            | Node::MixUnbounded(a, b, c, d) => {
+                merge4(a, b, c, d)
+            }
+            _ => x_and_y, // fallback for unsupported or variable nodes
+        }
+    }
+}
+
+fn merge(d1: Dependency, d2: Dependency) -> Dependency {
+    use Dependency::*;
+    match (d1, d2) {
+        (const_, const_) => const_,
+        (x, const_) | (const_, x) => x,
+        (y, const_) | (const_, y) => y,
+        (x, y) | (y, x) => x_and_y,
+        (_, x_and_y) | (x_and_y, _) => x_and_y,
+        _ => x_and_y,
+    }
+}
+
+fn merge4(a: &Node, b: &Node, c: &Node, d: &Node) -> Dependency {
+    merge(merge(a.dependency(), b.dependency()), merge(c.dependency(), d.dependency()))
+}
+
+impl Node {
+    pub fn to_cached_closure(&self) -> CachedClosure {
+        match self.dependency() {
+            Dependency::const_ => {
+                let val = self.eval_const();
+                CachedClosure::Const(val)
+            }
+            Dependency::x => {
+                let f = self.to_closure_tree();
+                CachedClosure::XCached {
+                    cache: Arc::new(Mutex::new(Some(Vec::new()))),
+                    f: Arc::new(move |x: f32| f(x, 0.0)),
+                }
+            }
+            Dependency::y => {
+                let f = self.to_closure_tree();
+                CachedClosure::YCached {
+                    cache: Arc::new(Mutex::new(Some(Vec::new()))),
+                    f: Arc::new(move |y: f32| f(0.0, y)),
+                }
+            }
+            Dependency::x_and_y => {
+                let f = self.to_closure_tree();
+                CachedClosure::XY(f)
+            }
+        }
+    }
+
+    pub fn eval_const(&self) -> f32 {
+        match self {
+            Node::Number(v) => *v,
+            Node::Add(a, b) => (a.eval_const() + b.eval_const()) / 2.0,
+            Node::Mult(a, b) => a.eval_const() * b.eval_const(),
+            Node::Div(a, b) => {
+                let denom = b.eval_const();
+                if denom.abs() > 1e-6 {
+                    a.eval_const() / denom
+                } else {
+                    0.0
+                }
+            }
+            Node::Modulo(a, b) => {
+                let denom = b.eval_const();
+                if denom.abs() > 1e-6 {
+                    a.eval_const() % denom
+                } else {
+                    0.0
+                }
+            }
+            Node::Sin(inner) => inner.eval_const().sin(),
+            Node::Cos(inner) => inner.eval_const().cos(),
+            Node::Exp(inner) => inner.eval_const().exp(),
+            Node::Sqrt(inner) => inner.eval_const().sqrt().max(0.0),
+            Node::Mix(a, b, c, d) => {
+                let a = a.eval_const() + 1.0;
+                let b = b.eval_const() + 1.0;
+                let c = c.eval_const() + 1.0;
+                let d = d.eval_const() + 1.0;
+                let numerator = a * c + b * d;
+                let denominator = (a + b).max(1e-6);
+                (numerator / denominator) - 1.0
+            }
+            Node::MixUnbounded(a, b, c, d) => {
+                let a = a.eval_const();
+                let b = b.eval_const();
+                let c = c.eval_const();
+                let d = d.eval_const();
+                (a * c + b * d) / (a + b + 1e-6)
+            }
+            _ => panic!("Node is not constant-evaluable: {:?}", self),
+        }
+    }
 }
 
 impl Node {
@@ -219,32 +336,32 @@ impl Node {
         }
     }
 
-    pub fn to_closure_tree(&self) -> Box<dyn ClosureNode> {
+    pub fn to_closure_tree(&self) -> Arc<dyn Fn(f32, f32) -> f32 + Send + Sync> {
         use Node::*;
         match self {
-            X => Box::new(|x, _| x),
-            Y => Box::new(|_, y| y),
+            X => Arc::new(|x, _| x),
+            Y => Arc::new(|_, y| y),
             Number(v) => {
                 let val = *v;
-                Box::new(move |_, _| val)
+                Arc::new(move |_, _| val)
             }
 
             Add(a, b) => {
                 let fa = a.to_closure_tree();
                 let fb = b.to_closure_tree();
-                Box::new(move |x, y| (fa(x, y) + fb(x, y)) / 2.0)
+                Arc::new(move |x, y| (fa(x, y) + fb(x, y)) / 2.0)
             }
 
             Mult(a, b) => {
                 let fa = a.to_closure_tree();
                 let fb = b.to_closure_tree();
-                Box::new(move |x, y| fa(x, y) * fb(x, y))
+                Arc::new(move |x, y| fa(x, y) * fb(x, y))
             }
 
             Div(a, b) => {
                 let fa = a.to_closure_tree();
                 let fb = b.to_closure_tree();
-                Box::new(move |x, y| {
+                Arc::new(move |x, y| {
                     let denom = fb(x, y);
                     if denom.abs() > 1e-6 {
                         fa(x, y) / denom
@@ -257,7 +374,7 @@ impl Node {
             Modulo(a, b) => {
                 let fa = a.to_closure_tree();
                 let fb = b.to_closure_tree();
-                Box::new(move |x, y| {
+                Arc::new(move |x, y| {
                     let denom = fb(x, y);
                     if denom.abs() > 1e-6 {
                         fa(x, y) % denom
@@ -269,22 +386,22 @@ impl Node {
 
             Sqrt(inner) => {
                 let f = inner.to_closure_tree();
-                Box::new(move |x, y| f(x, y).sqrt().max(0.0))
+                Arc::new(move |x, y| f(x, y).sqrt().max(0.0))
             }
 
             Sin(inner) => {
                 let f = inner.to_closure_tree();
-                Box::new(move |x, y| f(x, y).sin())
+                Arc::new(move |x, y| f(x, y).sin())
             }
 
             Cos(inner) => {
                 let f = inner.to_closure_tree();
-                Box::new(move |x, y| f(x, y).cos())
+                Arc::new(move |x, y| f(x, y).cos())
             }
 
             Exp(inner) => {
                 let f = inner.to_closure_tree();
-                Box::new(move |x, y| f(x, y).exp())
+                Arc::new(move |x, y| f(x, y).exp())
             }
 
             Mix(a, b, c, d) => {
@@ -292,7 +409,7 @@ impl Node {
                 let fb = b.to_closure_tree();
                 let fc = c.to_closure_tree();
                 let fd = d.to_closure_tree();
-                Box::new(move |x, y| {
+                Arc::new(move |x, y| {
                     let a = fa(x, y) + 1.0;
                     let b = fb(x, y) + 1.0;
                     let c = fc(x, y) + 1.0;
@@ -308,7 +425,7 @@ impl Node {
                 let fb = b.to_closure_tree();
                 let fc = c.to_closure_tree();
                 let fd = d.to_closure_tree();
-                Box::new(move |x, y| {
+                Arc::new(move |x, y| {
                     let a = fa(x, y);
                     let b = fb(x, y);
                     let c = fc(x, y);
