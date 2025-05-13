@@ -37,7 +37,7 @@ fn main() {
     node.simplify_triple();
 
     let start_tree = Instant::now();
-    let closure_tree = ClosureTree::from_node(&generated_node);
+    let closure_tree = ClosureTree::from_node(&node);
     let elapsed_tree = start_tree.elapsed();
 
     println!("{:#?}", closure_tree);
@@ -46,7 +46,7 @@ fn main() {
     let img = render_pixels(&closure_tree, width, height);
     let elapsed_render = start_render.elapsed();
     img.save(output_img_filename).expect("Failed to save image");
-    std::fs::write(output_formula_filename, format!("{}", generated_node)).expect("Failed to write formula");
+    std::fs::write(output_formula_filename, format!("{}", node)).expect("Failed to write formula");
     
     println!("Tree generation:      {:?}", elapsed_gen);
     println!("Closure tree creation:{:?}", elapsed_tree);

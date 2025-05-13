@@ -3,7 +3,7 @@ ClosureTree {
     g: XY(<closure>),
     b: XY(<closure>),
 }
-Tree generation:      2.64635625s
-Closure tree creation:4.250792ms
-Image render time:    948.847084ms
-Total time:           3.628746125s
+Tree generation:      3.547480209s
+Closure tree creation:16.215541ms
+Image render time:    3.52827775s
+Total time:           7.138999458s
