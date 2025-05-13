@@ -1,7 +1,7 @@
 use randomart_standalone::{
     utils::{ fnv1a, render_pixels, PixelCoordinates }, 
-    Grammar, 
-    ClosureTree,
+    grammar::Grammar, 
+    closure_tree::ClosureTree,
     reader::{tokenize, parse_expr}
 };
 use std::{
@@ -50,10 +50,10 @@ fn main() {
                     std::process::exit(1);
                 })
             });
-            let start1 = Instant::now();
             let seed = fnv1a(&string);
             let mut grammar = Grammar::default(seed);
             let start_rule = 0;
+            
             let start5 = Instant::now();
             let mut generated_node = grammar.gen_rule(start_rule, depth).unwrap();
             let elaps5 = start5.elapsed();
@@ -70,16 +70,14 @@ fn main() {
 
             let rgb_fn = move |coord: PixelCoordinates| closure_tree.eval_rgb(coord.x, coord.y);
 
-            let elaps1 = start1.elapsed();
-            
             let start2 = Instant::now();
             let img = render_pixels(&rgb_fn, width, height);
             let elaps2 = start2.elapsed();
 
+
             println!("tree generation: {:?}", elaps5);
             println!("simplify: {:?}", elaps3);
             println!("closure tree creation: {:?}", elaps4);
-            println!("grammar to rgb fn creation: {:?}", elaps1);
             println!("hot path (render pixels loop): {:?}", elaps2);
 
             let output_img_filepath = get_output_path(&output_img_filename);

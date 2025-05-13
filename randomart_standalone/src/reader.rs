@@ -1,4 +1,4 @@
-use crate::Node;
+use crate::node::Node;
 
 pub fn parse_expr(tokens: &mut impl Iterator<Item = String>) -> Node {
     let token = tokens.next().expect("Unexpected end");
