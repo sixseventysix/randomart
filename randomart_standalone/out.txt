@@ -1,0 +1,40 @@
+r channel report:
+Total Nodes: 238
+Total Ops: 170
+Op Counts: {"MixUnbounded": 6, "Sqrt": 12, "Cos": 38, "Sin": 48, "Div": 19, "Add": 12, "Mult": 18, "Exp": 17}
+Leaf Nodes: 68
+Max Depth: 27
+X-only Subtrees: 25
+Y-only Subtrees: 45
+Leaf Depth Histogram: {2: 1, 5: 1, 8: 1, 12: 1, 17: 2, 20: 2, 21: 1, 24: 5, 25: 3, 26: 6, 27: 45}
+X-only Subtree Depth Histogram: {6: 1, 7: 1, 20: 1, 21: 2, 22: 3, 23: 4, 24: 3, 25: 3, 26: 7}
+Y-only Subtree Depth Histogram: {7: 1, 8: 1, 9: 1, 10: 1, 11: 1, 20: 1, 21: 2, 22: 2, 23: 4, 24: 7, 25: 11, 26: 13}
+
+g channel report:
+Total Nodes: 8201
+Total Ops: 5183
+Op Counts: {"Exp": 411, "Add": 476, "Sqrt": 412, "Cos": 1178, "MixUnbounded": 523, "Div": 510, "Mult": 462, "Sin": 1211}
+Leaf Nodes: 3018
+Max Depth: 27
+X-only Subtrees: 1359
+Y-only Subtrees: 1546
+Leaf Depth Histogram: {5: 1, 7: 1, 11: 2, 12: 2, 13: 1, 14: 3, 15: 4, 16: 6, 17: 19, 18: 18, 19: 16, 20: 28, 21: 31, 22: 54, 23: 70, 24: 141, 25: 229, 26: 310, 27: 2082}
+X-only Subtree Depth Histogram: {12: 1, 13: 1, 14: 1, 15: 2, 16: 2, 17: 6, 18: 8, 19: 16, 20: 26, 21: 37, 22: 59, 23: 110, 24: 213, 25: 344, 26: 533}
+Y-only Subtree Depth Histogram: {13: 1, 14: 4, 15: 5, 16: 9, 17: 11, 18: 13, 19: 22, 20: 31, 21: 47, 22: 91, 23: 153, 24: 239, 25: 370, 26: 550}
+
+b channel report:
+Total Nodes: 70625
+Total Ops: 44804
+Op Counts: {"Sqrt": 3467, "Add": 4254, "Mult": 4077, "Div": 4280, "Sin": 10421, "MixUnbounded": 4403, "Cos": 10465, "Exp": 3437}
+Leaf Nodes: 25821
+Max Depth: 27
+X-only Subtrees: 13097
+Y-only Subtrees: 12607
+Leaf Depth Histogram: {2: 1, 3: 2, 5: 2, 6: 2, 7: 1, 8: 1, 9: 4, 10: 9, 11: 12, 12: 16, 13: 25, 14: 31, 15: 30, 16: 47, 17: 74, 18: 121, 19: 126, 20: 218, 21: 275, 22: 471, 23: 718, 24: 1117, 25: 1753, 26: 2727, 27: 18038}
+X-only Subtree Depth Histogram: {9: 2, 10: 2, 11: 4, 12: 12, 13: 10, 14: 14, 15: 21, 16: 40, 17: 59, 18: 100, 19: 180, 20: 284, 21: 473, 22: 751, 23: 1248, 24: 2001, 25: 3131, 26: 4765}
+Y-only Subtree Depth Histogram: {3: 1, 4: 2, 5: 2, 6: 1, 7: 1, 8: 2, 9: 4, 10: 3, 11: 7, 12: 8, 13: 14, 14: 17, 15: 28, 16: 32, 17: 52, 18: 79, 19: 124, 20: 231, 21: 398, 22: 711, 23: 1164, 24: 1927, 25: 3099, 26: 4700}
+tree generation: 851.598334ms
+simplify: 963.917µs
+tree stats: 2.514583ms
+closure tree creation: 1.387625ms
+hot path (render pixels loop): 734.123041ms

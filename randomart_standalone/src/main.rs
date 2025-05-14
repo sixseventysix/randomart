@@ -2,7 +2,9 @@ use randomart_standalone::{
     utils::{ fnv1a, render_pixels, PixelCoordinates }, 
     grammar::Grammar, 
     closure_tree::ClosureTree,
-    reader::{tokenize, parse_expr}
+    reader::{tokenize, parse_expr},
+    statistics::{TreeStats},
+    node::Node
 };
 use std::{
     env, 
@@ -21,7 +23,7 @@ fn main() {
     match args.get(1).map(|s| s.as_str()) {
         Some("generate") => {
             if args.len() < 4 || args.len() > 7 {
-                eprintln!("usage: {} generate <string> <depth> <output file name>(optional) <width>(optional) <height>(optional)", args[0]);
+                eprintln!("usage: {} generate <string> <depth> <width>(optional) <height>(optional) <output file name>(optional)", args[0]);
                 std::process::exit(1);
             }
 
@@ -30,7 +32,21 @@ fn main() {
                 eprintln!("error: depth must be a positive integer");
                 std::process::exit(1);
             });
-            let output_file_namespace = args.get(4).map_or(string.clone(), |arg| {
+
+            let width: u32 = args.get(4).map_or(400, |arg| {
+                arg.parse().unwrap_or_else(|_| {
+                    eprintln!("ERR: invalid width, must be a positive integer");
+                    std::process::exit(1);
+                })
+            });
+            let height: u32 = args.get(5).map_or(400, |arg| {
+                arg.parse().unwrap_or_else(|_| {
+                    eprintln!("ERR: invalid height, must be a positive integer");
+                    std::process::exit(1);
+                })
+            });
+
+            let output_file_namespace = args.get(6).map_or(string.clone(), |arg| {
                 arg.parse().unwrap_or_else(|_| {
                     std::process::exit(1);
                 })
@@ -38,18 +54,6 @@ fn main() {
             let output_img_filename = format!("{}.png", output_file_namespace);
             let output_formula_filename = format!("{}.txt", output_file_namespace);
 
-            let width: u32 = args.get(5).map_or(400, |arg| {
-                arg.parse().unwrap_or_else(|_| {
-                    eprintln!("ERR: invalid width, must be a positive integer");
-                    std::process::exit(1);
-                })
-            });
-            let height: u32 = args.get(6).map_or(400, |arg| {
-                arg.parse().unwrap_or_else(|_| {
-                    eprintln!("ERR: invalid height, must be a positive integer");
-                    std::process::exit(1);
-                })
-            });
             let seed = fnv1a(&string);
             let mut grammar = Grammar::default(seed);
             let start_rule = 0;
@@ -61,6 +65,26 @@ fn main() {
             let start3 = Instant::now();
             generated_node.simplify_triple();
             let elaps3 = start3.elapsed();
+
+            let start6 = Instant::now();
+            let (r, g, b) = match &*generated_node {
+                Node::Triple(r, g, b) => (r, g, b),
+                _ => panic!("Expected Triple node at top level"),
+            };
+
+            let r_stats = TreeStats::from_node(r);
+            let g_stats = TreeStats::from_node(g);
+            let b_stats = TreeStats::from_node(b);
+            let elaps6 = start6.elapsed();
+
+            println!("r channel report:");
+            r_stats.report();
+
+            println!("\ng channel report:");
+            g_stats.report();
+
+            println!("\nb channel report:");
+            b_stats.report();
 
             let formula = format!("{}", generated_node);
 
@@ -77,6 +101,7 @@ fn main() {
 
             println!("tree generation: {:?}", elaps5);
             println!("simplify: {:?}", elaps3);
+            println!("tree stats: {:?}", elaps6);
             println!("closure tree creation: {:?}", elaps4);
             println!("hot path (render pixels loop): {:?}", elaps2);
 
@@ -87,24 +112,24 @@ fn main() {
         }
         Some("read") => {
             if args.len() < 3 || args.len() > 6 {
-                eprintln!("usage: {} read <input file name> <output file name>(optional) <width>(optional) <height>(optional)", args[0]);
+                eprintln!("usage: {} read <input file name> <width>(optional) <height>(optional) <output file name>(optional)", args[0]);
                 std::process::exit(1);
             }
             let input = std::fs::read_to_string(&args[2]).expect("Failed to read file");
-            let output_file_namespace = args.get(3).map_or(input.clone(), |arg| {
-                arg.parse().unwrap_or_else(|_| {
-                    std::process::exit(1);
-                })
-            });
-            let width: u32 = args.get(4).map_or(400, |arg| {
+            let width: u32 = args.get(3).map_or(400, |arg| {
                 arg.parse().unwrap_or_else(|_| {
                     eprintln!("ERR: invalid width, must be a positive integer");
                     std::process::exit(1);
                 })
             });
-            let height: u32 = args.get(5).map_or(400, |arg| {
+            let height: u32 = args.get(4).map_or(400, |arg| {
                 arg.parse().unwrap_or_else(|_| {
                     eprintln!("ERR: invalid height, must be a positive integer");
+                    std::process::exit(1);
+                })
+            });
+            let output_file_namespace = args.get(5).map_or(input.clone(), |arg| {
+                arg.parse().unwrap_or_else(|_| {
                     std::process::exit(1);
                 })
             });
