@@ -21,6 +21,7 @@ fn main() {
         r#"
         use randomart_cargo::math::*;
         use randomart_fn_gen_macro::generate_fn;
+        const inf: f32 = f32::INFINITY;
 
         pub fn r_fn() -> impl Fn(f32, f32) -> f32 {{
             generate_fn!({})
