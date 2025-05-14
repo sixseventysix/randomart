@@ -1,7 +1,13 @@
-r channel report:
+randomart
+str: My brain on drugs
+depth:40
+width:400 height:400
+
+
+R channel report:
 Total Nodes: 493
 Total Ops: 314
-Op Counts: {"Sin": 64, "Div": 23, "Exp": 24, "Add": 34, "Mult": 28, "Sqrt": 25, "Cos": 85, "MixUnbounded": 31}
+Op Counts: {"Mult": 28, "Div": 23, "Add": 34, "Sin": 64, "Cos": 85, "Sqrt": 25, "Exp": 24, "MixUnbounded": 31}
 Leaf Nodes: 179
 Max Depth: 17
 X-only Subtrees: 90
@@ -10,10 +16,10 @@ Leaf Depth Histogram: {4: 3, 5: 1, 6: 1, 7: 1, 8: 1, 9: 1, 10: 1, 11: 1, 13: 9, 
 X-only Subtree Op Counts Histogram: {1: 28, 2: 9, 3: 5, 4: 1, 5: 2, 7: 1, 8: 1}
 Y-only Subtree Op Counts Histogram: {1: 14, 2: 7, 3: 2, 4: 8, 5: 1, 10: 1}
 
-g channel report:
+G channel report:
 Total Nodes: 1875
 Total Ops: 1208
-Op Counts: {"Div": 140, "Exp": 81, "Add": 120, "Sin": 306, "Mult": 115, "Sqrt": 85, "Cos": 264, "MixUnbounded": 97}
+Op Counts: {"Sqrt": 85, "Div": 140, "Cos": 264, "Mult": 115, "MixUnbounded": 97, "Exp": 81, "Sin": 306, "Add": 120}
 Leaf Nodes: 667
 Max Depth: 17
 X-only Subtrees: 367
@@ -22,10 +28,10 @@ Leaf Depth Histogram: {3: 1, 4: 2, 5: 1, 6: 2, 7: 1, 8: 5, 9: 5, 10: 5, 11: 11, 
 X-only Subtree Op Counts Histogram: {1: 60, 2: 28, 3: 34, 4: 11, 5: 3, 6: 6, 8: 1, 13: 1, 18: 1, 19: 1}
 Y-only Subtree Op Counts Histogram: {1: 69, 2: 16, 3: 26, 4: 9, 5: 8, 6: 1, 7: 2, 9: 2, 12: 1}
 
-b channel report:
+B channel report:
 Total Nodes: 1712
 Total Ops: 1067
-Op Counts: {"Add": 107, "Mult": 113, "Cos": 253, "MixUnbounded": 110, "Exp": 88, "Sin": 227, "Div": 94, "Sqrt": 75}
+Op Counts: {"MixUnbounded": 110, "Mult": 113, "Sqrt": 75, "Add": 107, "Sin": 227, "Exp": 88, "Div": 94, "Cos": 253}
 Leaf Nodes: 645
 Max Depth: 17
 X-only Subtrees: 313
@@ -33,8 +39,9 @@ Y-only Subtrees: 278
 Leaf Depth Histogram: {5: 1, 7: 1, 8: 1, 9: 6, 10: 6, 11: 8, 12: 11, 13: 26, 14: 20, 15: 51, 16: 56, 17: 458}
 X-only Subtree Op Counts Histogram: {1: 56, 2: 28, 3: 26, 4: 10, 5: 5, 7: 2, 9: 1, 10: 2, 21: 1}
 Y-only Subtree Op Counts Histogram: {1: 62, 2: 31, 3: 19, 4: 9, 5: 5, 6: 2, 8: 2, 10: 1}
-tree generation: 55.177292ms
-simplify: 53.958µs
-tree stats: 157.167µs
-closure tree creation: 84.334µs
-hot path (render pixels loop): 41.507092708s
+
+tree generation: 55.974041ms
+simplify: 55.917µs
+tree stats: 164.917µs
+closure tree creation: 79.958µs
+hot path (render pixels loop): 447.652917ms

@@ -77,15 +77,6 @@ fn main() {
             let b_stats = TreeStats::from_node(b);
             let elaps6 = start6.elapsed();
 
-            println!("r channel report:");
-            r_stats.report();
-
-            println!("\ng channel report:");
-            g_stats.report();
-
-            println!("\nb channel report:");
-            b_stats.report();
-
             let formula = format!("{}", generated_node);
 
             let start4 = Instant::now();
@@ -98,8 +89,14 @@ fn main() {
             let img = render_pixels(&rgb_fn, width, height);
             let elaps2 = start2.elapsed();
 
-
-            println!("tree generation: {:?}", elaps5);
+            println!("randomart\nstr: {string}\ndepth:{depth}\nwidth:{width} height:{height}\n\n");
+            println!("R channel report:");
+            r_stats.report();
+            println!("\nG channel report:");
+            g_stats.report();
+            println!("\nB channel report:");
+            b_stats.report();
+            println!("\ntree generation: {:?}", elaps5);
             println!("simplify: {:?}", elaps3);
             println!("tree stats: {:?}", elaps6);
             println!("closure tree creation: {:?}", elaps4);
