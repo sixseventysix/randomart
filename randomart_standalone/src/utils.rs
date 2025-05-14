@@ -1,12 +1,9 @@
-use image::{RgbImage, ImageBuffer};
+use image::{RgbImage, Rgb};
 use rayon::prelude::*;
-use crate::closure_tree::ClosureTree;
 
 pub struct PixelCoordinates {
     pub x: f32,
-    pub y: f32,
-    pub xi: u32,
-    pub yi: u32,
+    pub y: f32
 }
 
 pub struct Colour {
@@ -15,40 +12,59 @@ pub struct Colour {
     pub b: f32
 }
 
-pub fn render_pixels(tree: &ClosureTree, width: u32, height: u32) -> RgbImage {
-    let width_usize = width as usize;
-    let height_usize = height as usize;
+pub fn render_pixels<F>(function: &F, width: u32, height: u32) -> RgbImage
+where
+    F: Sync + Fn(PixelCoordinates) -> Colour,
+{
+    const TILE_SIZE: u32 = 32;
 
-    tree.r.populate_x(width_usize);
-    tree.g.populate_x(width_usize);
-    tree.b.populate_x(width_usize);
-    tree.r.populate_y(height_usize);
-    tree.g.populate_y(height_usize);
-    tree.b.populate_y(height_usize);
+    let tiles_x = (width + TILE_SIZE - 1) / TILE_SIZE;
+    let tiles_y = (height + TILE_SIZE - 1) / TILE_SIZE;
 
-    let buffer: Vec<u8> = (0..height_usize * width_usize)
+    let tiles: Vec<(u32, u32)> = (0..tiles_y)
+        .flat_map(|ty| (0..tiles_x).map(move |tx| (tx * TILE_SIZE, ty * TILE_SIZE)))
+        .collect();
+
+    let partial_tiles: Vec<(u32, u32, RgbImage)> = tiles
         .into_par_iter()
-        .flat_map_iter(|i| {
-            let x_index = i % width_usize;
-            let y_index = i / width_usize;
+        .map(|(x_start, y_start)| {
+            let x_end = (x_start + TILE_SIZE).min(width);
+            let y_end = (y_start + TILE_SIZE).min(height);
+            let tile_width = x_end - x_start;
+            let tile_height = y_end - y_start;
 
-            let x = (x_index as f32 / (width - 1) as f32) * 2.0 - 1.0;
-            let y = (y_index as f32 / (height - 1) as f32) * 2.0 - 1.0;
+            let mut tile_img = RgbImage::new(tile_width, tile_height);
 
-            let r = tree.r.eval(x, y, x_index, y_index);
-            let g = tree.g.eval(x, y, x_index, y_index);
-            let b = tree.b.eval(x, y, x_index, y_index);
+            for py in 0..tile_height {
+                for px in 0..tile_width {
+                    let global_x = x_start + px;
+                    let global_y = y_start + py;
 
-            let r = ((r + 1.0) * 127.5).clamp(0.0, 255.0) as u8;
-            let g = ((g + 1.0) * 127.5).clamp(0.0, 255.0) as u8;
-            let b = ((b + 1.0) * 127.5).clamp(0.0, 255.0) as u8;
+                    let x = (global_x as f32 / (width - 1) as f32) * 2.0 - 1.0;
+                    let y = (global_y as f32 / (height - 1) as f32) * 2.0 - 1.0;
+                    let Colour { r, g, b } = function(PixelCoordinates { x, y });
 
-            vec![r, g, b]
+                    let pixel = Rgb([
+                        ((r + 1.0) * 127.5).clamp(0.0, 255.0) as u8,
+                        ((g + 1.0) * 127.5).clamp(0.0, 255.0) as u8,
+                        ((b + 1.0) * 127.5).clamp(0.0, 255.0) as u8,
+                    ]);
+                    tile_img.put_pixel(px, py, pixel);
+                }
+            }
+
+            (x_start, y_start, tile_img)
         })
         .collect();
 
-    ImageBuffer::from_vec(width, height, buffer)
-        .expect("Failed to construct image from buffer")
+    let mut final_img = RgbImage::new(width, height);
+    for (x_start, y_start, tile) in partial_tiles {
+        for (px, py, pixel) in tile.enumerate_pixels() {
+            final_img.put_pixel(x_start + px, y_start + py, *pixel);
+        }
+    }
+
+    final_img
 }
 
 pub fn fnv1a(input: &str) -> u64 {
