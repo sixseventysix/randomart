@@ -1,40 +1,38 @@
 r channel report:
-Total Nodes: 238
-Total Ops: 170
-Op Counts: {"MixUnbounded": 6, "Sqrt": 12, "Cos": 38, "Sin": 48, "Div": 19, "Add": 12, "Mult": 18, "Exp": 17}
-Leaf Nodes: 68
-Max Depth: 27
-X-only Subtrees: 25
-Y-only Subtrees: 45
-Leaf Depth Histogram: {2: 1, 5: 1, 8: 1, 12: 1, 17: 2, 20: 2, 21: 1, 24: 5, 25: 3, 26: 6, 27: 45}
-X-only Subtree Depth Histogram: {6: 1, 7: 1, 20: 1, 21: 2, 22: 3, 23: 4, 24: 3, 25: 3, 26: 7}
-Y-only Subtree Depth Histogram: {7: 1, 8: 1, 9: 1, 10: 1, 11: 1, 20: 1, 21: 2, 22: 2, 23: 4, 24: 7, 25: 11, 26: 13}
+Total Nodes: 78218
+Total Ops: 49401
+Op Counts: {"Sqrt": 3752, "Mult": 4703, "Cos": 11461, "Add": 4609, "Exp": 3763, "Div": 4720, "Sin": 11465, "MixUnbounded": 4928}
+Leaf Nodes: 28817
+Max Depth: 33
+X-only Subtrees: 14000
+Y-only Subtrees: 13869
+Leaf Depth Histogram: {2: 1, 5: 1, 8: 1, 9: 1, 10: 1, 11: 3, 12: 3, 13: 5, 14: 5, 15: 4, 16: 6, 17: 14, 18: 21, 19: 21, 20: 37, 21: 43, 22: 62, 23: 111, 24: 123, 25: 155, 26: 231, 27: 354, 28: 496, 29: 750, 30: 1215, 31: 1907, 32: 3028, 33: 20218}
+X-only Subtree Op Counts Histogram: {1: 2825, 2: 1254, 3: 948, 4: 382, 5: 286, 6: 130, 7: 105, 8: 49, 9: 32, 10: 16, 11: 14, 12: 5, 13: 2, 14: 8, 15: 1, 16: 3, 19: 1, 24: 1, 26: 1, 30: 1}
+Y-only Subtree Op Counts Histogram: {1: 2790, 2: 1332, 3: 918, 4: 398, 5: 292, 6: 96, 7: 105, 8: 34, 9: 32, 10: 25, 11: 14, 12: 14, 13: 1, 14: 3, 15: 1, 18: 1, 19: 3, 29: 1}
 
 g channel report:
-Total Nodes: 8201
-Total Ops: 5183
-Op Counts: {"Exp": 411, "Add": 476, "Sqrt": 412, "Cos": 1178, "MixUnbounded": 523, "Div": 510, "Mult": 462, "Sin": 1211}
-Leaf Nodes: 3018
-Max Depth: 27
-X-only Subtrees: 1359
-Y-only Subtrees: 1546
-Leaf Depth Histogram: {5: 1, 7: 1, 11: 2, 12: 2, 13: 1, 14: 3, 15: 4, 16: 6, 17: 19, 18: 18, 19: 16, 20: 28, 21: 31, 22: 54, 23: 70, 24: 141, 25: 229, 26: 310, 27: 2082}
-X-only Subtree Depth Histogram: {12: 1, 13: 1, 14: 1, 15: 2, 16: 2, 17: 6, 18: 8, 19: 16, 20: 26, 21: 37, 22: 59, 23: 110, 24: 213, 25: 344, 26: 533}
-Y-only Subtree Depth Histogram: {13: 1, 14: 4, 15: 5, 16: 9, 17: 11, 18: 13, 19: 22, 20: 31, 21: 47, 22: 91, 23: 153, 24: 239, 25: 370, 26: 550}
+Total Nodes: 187476
+Total Ops: 118992
+Op Counts: {"Sin": 27754, "Add": 11087, "Div": 11242, "MixUnbounded": 11673, "Cos": 27834, "Mult": 11135, "Exp": 9186, "Sqrt": 9081}
+Leaf Nodes: 68484
+Max Depth: 33
+X-only Subtrees: 33955
+Y-only Subtrees: 34222
+Leaf Depth Histogram: {6: 3, 7: 2, 8: 1, 9: 2, 10: 3, 11: 4, 12: 8, 13: 15, 14: 16, 15: 20, 16: 13, 17: 27, 18: 27, 19: 64, 20: 76, 21: 106, 22: 128, 23: 178, 24: 304, 25: 407, 26: 596, 27: 843, 28: 1215, 29: 1907, 30: 2922, 31: 4613, 32: 7239, 33: 47745}
+X-only Subtree Op Counts Histogram: {1: 6671, 2: 3015, 3: 2271, 4: 970, 5: 757, 6: 253, 7: 254, 8: 102, 9: 82, 10: 46, 11: 28, 12: 23, 13: 11, 14: 24, 15: 10, 16: 6, 21: 1, 22: 3, 24: 2, 40: 1}
+Y-only Subtree Op Counts Histogram: {1: 6626, 2: 3045, 3: 2252, 4: 949, 5: 766, 6: 309, 7: 265, 8: 87, 9: 99, 10: 46, 11: 39, 12: 17, 13: 6, 14: 7, 15: 14, 16: 5, 17: 7, 19: 3, 21: 1, 22: 1, 30: 1, 32: 1}
 
 b channel report:
-Total Nodes: 70625
-Total Ops: 44804
-Op Counts: {"Sqrt": 3467, "Add": 4254, "Mult": 4077, "Div": 4280, "Sin": 10421, "MixUnbounded": 4403, "Cos": 10465, "Exp": 3437}
-Leaf Nodes: 25821
-Max Depth: 27
-X-only Subtrees: 13097
-Y-only Subtrees: 12607
-Leaf Depth Histogram: {2: 1, 3: 2, 5: 2, 6: 2, 7: 1, 8: 1, 9: 4, 10: 9, 11: 12, 12: 16, 13: 25, 14: 31, 15: 30, 16: 47, 17: 74, 18: 121, 19: 126, 20: 218, 21: 275, 22: 471, 23: 718, 24: 1117, 25: 1753, 26: 2727, 27: 18038}
-X-only Subtree Depth Histogram: {9: 2, 10: 2, 11: 4, 12: 12, 13: 10, 14: 14, 15: 21, 16: 40, 17: 59, 18: 100, 19: 180, 20: 284, 21: 473, 22: 751, 23: 1248, 24: 2001, 25: 3131, 26: 4765}
-Y-only Subtree Depth Histogram: {3: 1, 4: 2, 5: 2, 6: 1, 7: 1, 8: 2, 9: 4, 10: 3, 11: 7, 12: 8, 13: 14, 14: 17, 15: 28, 16: 32, 17: 52, 18: 79, 19: 124, 20: 231, 21: 398, 22: 711, 23: 1164, 24: 1927, 25: 3099, 26: 4700}
-tree generation: 851.598334ms
-simplify: 963.917µs
-tree stats: 2.514583ms
-closure tree creation: 1.387625ms
-hot path (render pixels loop): 734.123041ms
+Total Nodes: 94790
+Total Ops: 60066
+Op Counts: {"Exp": 4718, "Add": 5767, "Sin": 13815, "MixUnbounded": 5906, "Div": 5628, "Mult": 5610, "Cos": 14031, "Sqrt": 4591}
+Leaf Nodes: 34724
+Max Depth: 33
+X-only Subtrees: 16780
+Y-only Subtrees: 17322
+Leaf Depth Histogram: {2: 2, 6: 1, 7: 1, 8: 1, 9: 3, 10: 2, 12: 1, 13: 6, 14: 7, 15: 10, 16: 9, 17: 18, 18: 28, 19: 21, 20: 33, 21: 49, 22: 60, 23: 106, 24: 139, 25: 210, 26: 269, 27: 441, 28: 634, 29: 913, 30: 1453, 31: 2357, 32: 3655, 33: 24295}
+X-only Subtree Op Counts Histogram: {1: 3457, 2: 1532, 3: 1136, 4: 449, 5: 327, 6: 134, 7: 143, 8: 65, 9: 37, 10: 23, 11: 8, 12: 15, 13: 2, 14: 4, 16: 6, 17: 1, 21: 1, 25: 2}
+Y-only Subtree Op Counts Histogram: {1: 3486, 2: 1502, 3: 1141, 4: 446, 5: 400, 6: 165, 7: 107, 8: 52, 9: 48, 10: 17, 11: 25, 12: 20, 13: 10, 14: 2, 15: 5, 18: 3, 19: 1, 22: 1, 38: 1}
+tree generation: 3.626531792s
+simplify: 4.520375ms
+tree stats: 10.600292ms
