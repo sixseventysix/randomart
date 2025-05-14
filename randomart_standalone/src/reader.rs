@@ -10,13 +10,18 @@ pub fn parse_expr(tokens: &mut impl Iterator<Item = String>) -> Node {
             let _open = tokens.next().expect("Expected '(' after const_");
 
             let token = tokens.next().expect("Expected number after const_(");
-            let val = match token.parse::<f32>() {
-                Ok(n) => n,
-                Err(e) => {
-                    eprintln!("Failed to parse float for const_: '{}', error: {}", token, e);
-                    panic!();
-                }
+            let val = match token.as_str() {
+                "inf" => f32::INFINITY,
+                "-inf" => f32::NEG_INFINITY,
+                _ => match token.parse::<f32>() {
+                    Ok(n) => n,
+                    Err(e) => {
+                        eprintln!("Failed to parse float for const_: '{}', error: {}", token, e);
+                        panic!();
+                    }
+                },
             };
+
             Node::Number(val)
         }
         "add" => Node::Add(
