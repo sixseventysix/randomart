@@ -1,7 +1,7 @@
 # randomart
 ![image from randomart](./data/images/My_brain_on_drugs.png)
 
-image generated using the string: `My brain on drugs`
+image generated using the string: `My brain on drugs` with depth = 40
 
 ## references:
 https://netsec.ethz.ch/publications/papers/validation.pdf
