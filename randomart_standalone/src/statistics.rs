@@ -33,7 +33,7 @@ impl TreeStats {
             let mut child_deps = vec![];
             let mut child_op_count = 0;
 
-            let dependency = match node {
+            let _ = match node {
                 X => {
                     stats.leaf_nodes += 1;
                     stats.leaf_depths.push(depth);

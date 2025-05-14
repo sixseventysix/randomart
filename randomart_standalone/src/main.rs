@@ -88,27 +88,27 @@ fn main() {
 
             let formula = format!("{}", generated_node);
 
-            // let start4 = Instant::now();
-            // let closure_tree = ClosureTree::from_node(&generated_node);
-            // let elaps4 = start4.elapsed();
+            let start4 = Instant::now();
+            let closure_tree = ClosureTree::from_node(&generated_node);
+            let elaps4 = start4.elapsed();
 
-            // let rgb_fn = move |coord: PixelCoordinates| closure_tree.eval_rgb(coord.x, coord.y);
+            let rgb_fn = move |coord: PixelCoordinates| closure_tree.eval_rgb(coord.x, coord.y);
 
-            // let start2 = Instant::now();
-            // let img = render_pixels(&rgb_fn, width, height);
-            // let elaps2 = start2.elapsed();
+            let start2 = Instant::now();
+            let img = render_pixels(&rgb_fn, width, height);
+            let elaps2 = start2.elapsed();
 
 
             println!("tree generation: {:?}", elaps5);
             println!("simplify: {:?}", elaps3);
             println!("tree stats: {:?}", elaps6);
-            // println!("closure tree creation: {:?}", elaps4);
-            // println!("hot path (render pixels loop): {:?}", elaps2);
+            println!("closure tree creation: {:?}", elaps4);
+            println!("hot path (render pixels loop): {:?}", elaps2);
 
-            // let output_img_filepath = get_output_path(&output_img_filename);
-            // img.save(output_img_filepath.clone()).expect("failed to save the image");
-            // let output_formula_filepath = get_output_path(&output_formula_filename);
-            // std::fs::write(output_formula_filepath, formula).unwrap();
+            let output_img_filepath = get_output_path(&output_img_filename);
+            img.save(output_img_filepath.clone()).expect("failed to save the image");
+            let output_formula_filepath = get_output_path(&output_formula_filename);
+            std::fs::write(output_formula_filepath, formula).unwrap();
         }
         Some("read") => {
             if args.len() < 3 || args.len() > 6 {
