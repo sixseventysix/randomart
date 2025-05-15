@@ -14,6 +14,27 @@ macro_rules! define_and_register_math_fns {
     };
 }
 
+macro_rules! call_imported_func {
+    ($builder:expr, $module:expr, $name:expr, [$($arg:expr),*], [$($ty:expr),*], $ret_ty:expr) => {{
+        let mut sig = $module.make_signature();
+
+        $(
+            sig.params.push(AbiParam::new($ty));
+        )*
+
+        sig.returns.push(AbiParam::new($ret_ty));
+
+        let func = $module
+            .declare_function($name, Linkage::Import, &sig)
+            .unwrap();
+
+        let local = $module.declare_func_in_func(func, $builder.func);
+        let args = &[$($arg),*];
+        let call = $builder.ins().call(local, args);
+        $builder.inst_results(call)[0]
+    }};
+}
+
 fn codegen_node(
     builder: &mut FunctionBuilder,
     module: &mut JITModule,
@@ -31,98 +52,39 @@ fn codegen_node(
         Node::Add(a, b) => {
             let lhs = codegen_node(builder, module, a, x, y);
             let rhs = codegen_node(builder, module, b, x, y);
-
-            let mut sig = module.make_signature();
-            sig.params.push(AbiParam::new(types::F32));
-            sig.params.push(AbiParam::new(types::F32));
-            sig.returns.push(AbiParam::new(types::F32));
-
-            let func = module.declare_function("my_add", Linkage::Import, &sig).unwrap();
-            let local = module.declare_func_in_func(func, builder.func);
-            let call = builder.ins().call(local, &[lhs, rhs]);
-            builder.inst_results(call)[0]
+            call_imported_func!(builder, module, "my_add", [lhs, rhs],  [types::F32, types::F32], types::F32)
         }
 
         Node::Mult(a, b) => {
             let lhs = codegen_node(builder, module, a, x, y);
             let rhs = codegen_node(builder, module, b, x, y);
-
-            let mut sig = module.make_signature();
-            sig.params.push(AbiParam::new(types::F32));
-            sig.params.push(AbiParam::new(types::F32));
-            sig.returns.push(AbiParam::new(types::F32));
-
-            let func = module.declare_function("my_mul", Linkage::Import, &sig).unwrap();
-            let local = module.declare_func_in_func(func, builder.func);
-            let call = builder.ins().call(local, &[lhs, rhs]);
-            builder.inst_results(call)[0]
+            call_imported_func!(builder, module, "my_mul", [lhs, rhs],  [types::F32, types::F32], types::F32)
         }
 
         Node::Sin(inner) => {
             let arg = codegen_node(builder, module, inner, x, y);
-
-            let mut sig = module.make_signature();
-            sig.params.push(AbiParam::new(types::F32));
-            sig.returns.push(AbiParam::new(types::F32));
-
-            let func = module.declare_function("my_sin", Linkage::Import, &sig).unwrap();
-            let local = module.declare_func_in_func(func, builder.func);
-            let call = builder.ins().call(local, &[arg]);
-            builder.inst_results(call)[0]
+            call_imported_func!(builder, module, "my_sin", [arg], [types::F32], types::F32)
         }
 
         Node::Cos(inner) => {
             let arg = codegen_node(builder, module, inner, x, y);
-
-            let mut sig = module.make_signature();
-            sig.params.push(AbiParam::new(types::F32));
-            sig.returns.push(AbiParam::new(types::F32));
-
-            let func = module.declare_function("my_cos", Linkage::Import, &sig).unwrap();
-            let local = module.declare_func_in_func(func, builder.func);
-            let call = builder.ins().call(local, &[arg]);
-            builder.inst_results(call)[0]
+            call_imported_func!(builder, module, "my_cos", [arg], [types::F32], types::F32)
         }
 
         Node::Sqrt(inner) => {
             let arg = codegen_node(builder, module, inner, x, y);
-
-            let mut sig = module.make_signature();
-            sig.params.push(AbiParam::new(types::F32));
-            sig.returns.push(AbiParam::new(types::F32));
-
-            let func = module.declare_function("my_sqrt", Linkage::Import, &sig).unwrap();
-            let local = module.declare_func_in_func(func, builder.func);
-            let call = builder.ins().call(local, &[arg]);
-            builder.inst_results(call)[0]
+            call_imported_func!(builder, module, "my_sqrt", [arg], [types::F32], types::F32)
         }
 
         Node::Exp(inner) => {
             let arg = codegen_node(builder, module, inner, x, y);
-
-            let mut sig = module.make_signature();
-            sig.params.push(AbiParam::new(types::F32));
-            sig.returns.push(AbiParam::new(types::F32));
-
-            let func = module.declare_function("my_exp", Linkage::Import, &sig).unwrap();
-            let local = module.declare_func_in_func(func, builder.func);
-            let call = builder.ins().call(local, &[arg]);
-            builder.inst_results(call)[0]
+            call_imported_func!(builder, module, "my_exp", [arg], [types::F32], types::F32)
         }
 
         Node::Div(a, b) => {
             let lhs = codegen_node(builder, module, a, x, y);
             let rhs = codegen_node(builder, module, b, x, y);
-
-            let mut sig = module.make_signature();
-            sig.params.push(AbiParam::new(types::F32));
-            sig.params.push(AbiParam::new(types::F32));
-            sig.returns.push(AbiParam::new(types::F32));
-
-            let func = module.declare_function("my_div", Linkage::Import, &sig).unwrap();
-            let local = module.declare_func_in_func(func, builder.func);
-            let call = builder.ins().call(local, &[lhs, rhs]);
-            builder.inst_results(call)[0]
+            call_imported_func!(builder, module, "my_div", [lhs, rhs],  [types::F32, types::F32], types::F32)
         }
 
         Node::MixUnbounded(a, b, c, d) => {
@@ -130,18 +92,7 @@ fn codegen_node(
             let vb = codegen_node(builder, module, b, x, y);
             let vc = codegen_node(builder, module, c, x, y);
             let vd = codegen_node(builder, module, d, x, y);
-
-            let mut sig = module.make_signature();
-            sig.params.push(AbiParam::new(types::F32));
-            sig.params.push(AbiParam::new(types::F32));
-            sig.params.push(AbiParam::new(types::F32));
-            sig.params.push(AbiParam::new(types::F32));
-            sig.returns.push(AbiParam::new(types::F32));
-
-            let func = module.declare_function("my_mixu", Linkage::Import, &sig).unwrap();
-            let local = module.declare_func_in_func(func, builder.func);
-            let call = builder.ins().call(local, &[va, vb, vc, vd]);
-            builder.inst_results(call)[0]
+            call_imported_func!(builder, module, "my_mixu", [va, vb, vc, vd], [types::F32, types::F32, types::F32, types::F32], types::F32)
         }
 
         Node::Triple(_, _, _) => {

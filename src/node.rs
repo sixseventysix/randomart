@@ -95,22 +95,6 @@ impl Node {
     fn simplify(&mut self) {
         use Node::*;
         match self {
-            Add(lhs, rhs) => {
-                lhs.simplify(); 
-                rhs.simplify(); 
-
-                if let (Number(lhs_val), Number(rhs_val)) = (&**lhs, &**rhs) {
-                    *self = Number((lhs_val + rhs_val)/2.0);
-                }
-            }
-            Mult(lhs, rhs) => {
-                lhs.simplify();
-                rhs.simplify();
-
-                if let (Number(lhs_val), Number(rhs_val)) = (&**lhs, &**rhs) {
-                    *self = Number(lhs_val * rhs_val);
-                }
-            }
             Sin(inner) => {
                 inner.simplify();
 
@@ -137,6 +121,23 @@ impl Node {
 
                 if let Number(val) = **inner {
                     *self = Number(val.sqrt().max(0.0));
+                }
+            }
+            
+            Add(lhs, rhs) => {
+                lhs.simplify(); 
+                rhs.simplify(); 
+
+                if let (Number(lhs_val), Number(rhs_val)) = (&**lhs, &**rhs) {
+                    *self = Number((lhs_val + rhs_val)/2.0);
+                }
+            }
+            Mult(lhs, rhs) => {
+                lhs.simplify();
+                rhs.simplify();
+
+                if let (Number(lhs_val), Number(rhs_val)) = (&**lhs, &**rhs) {
+                    *self = Number(lhs_val * rhs_val);
                 }
             }
             Div(lhs, rhs) => {

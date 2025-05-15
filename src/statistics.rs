@@ -11,16 +11,16 @@ enum Dependency {
 
 #[derive(Debug, Default)]
 struct TreeStatsInner {
-    pub total_nodes: usize,
-    pub leaf_nodes: usize,
-    pub max_depth: usize,
-    pub x_only_subtrees: usize,
-    pub y_only_subtrees: usize,
-    pub total_ops: usize,
-    pub op_counts: std::collections::HashMap<&'static str, usize>,
-    pub leaf_depths: Vec<usize>,
-    pub x_only_subtree_op_counts: Vec<usize>,
-    pub y_only_subtree_op_counts: Vec<usize>,
+    total_nodes: usize,
+    leaf_nodes: usize,
+    max_depth: usize,
+    x_only_subtrees: usize,
+    y_only_subtrees: usize,
+    total_ops: usize,
+    op_counts: std::collections::HashMap<&'static str, usize>,
+    leaf_depths: Vec<usize>,
+    x_only_subtree_op_counts: Vec<usize>,
+    y_only_subtree_op_counts: Vec<usize>,
 }
 
 impl TreeStatsInner {

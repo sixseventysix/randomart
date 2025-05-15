@@ -1,7 +1,8 @@
 # randomart
 ![image from randomart](./data/images/My_brain_on_drugs.png)
 
-image generated using the string: `My brain on drugs` with depth = 40
+image generated using the string: `My brain on drugs` with depth = 40\
+(sadly, this cannot be made anymore because i chose multi-threaded tree gen sadface)
 
 ## references:
 https://netsec.ethz.ch/publications/papers/validation.pdf
