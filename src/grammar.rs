@@ -24,7 +24,7 @@ impl GrammarBranches {
     }
 }
 
-pub struct Grammar {
+pub(crate) struct Grammar {
     rules: Vec<GrammarBranches>, 
     rng: LinearCongruentialGenerator
 }
@@ -34,7 +34,7 @@ impl Grammar {
         self.rules.push(branch);
     }
 
-    pub fn default(seed: u64) -> Self {
+    pub(crate) fn default(seed: u64) -> Self {
         let mut grammar = Self {
             rules: Vec::new(),
             rng: LinearCongruentialGenerator::new(seed),
@@ -114,7 +114,24 @@ impl Grammar {
     
     }
 
-    pub fn gen_rule(&mut self, rule: usize, depth: u32) -> Option<Box<Node>> {
+    pub(crate) fn gen_top_rule(&mut self, depth: u32) -> Option<Box<Node>> {
+        let seed_b = self.rng.next_u64();
+        let seed_c = self.rng.next_u64();
+        self.rng.next_u64();
+
+        let (b, c) = rayon::join(
+            || Grammar::default(seed_b).gen_rule(1, depth - 1),
+            || Grammar::default(seed_c).gen_rule(1, depth - 1),
+        );
+        let a = self.gen_rule(1, depth - 1);
+
+        match (a, b, c) {
+            (Some(a), Some(b), Some(c)) => Some(Box::new(Node::Triple(a, b, c))),
+            _ => None,
+        }
+    }
+
+    pub(crate) fn gen_rule(&mut self, rule: usize, depth: u32) -> Option<Box<Node>> {
         if depth <= 0 {
             return None; 
         }
@@ -176,23 +193,10 @@ impl Grammar {
                 let rhs = self.gen_node(rhs, depth)?;
                 Some(Box::new(Node::Mult(lhs, rhs)))
             }
-            Node::Modulo(lhs, rhs) => {
-                let lhs = self.gen_node(lhs, depth)?;
-                let rhs = self.gen_node(rhs, depth)?;
-                Some(Box::new(Node::Modulo(lhs, rhs)))
-            }
             Node::Div(lhs, rhs) => {
                 let lhs = self.gen_node(lhs, depth)?;
                 let rhs = self.gen_node(rhs, depth)?;
                 Some(Box::new(Node::Div(lhs, rhs)))
-            }
-
-            Node::Mix(a, b, c, d) => {
-                let a = self.gen_node(a, depth)?;
-                let b = self.gen_node(b, depth)?;
-                let c = self.gen_node(c, depth)?;
-                let d = self.gen_node(d, depth)?;
-                Some(Box::new(Node::Mix(a, b, c, d)))
             }
 
             Node::MixUnbounded(a, b, c, d) => {

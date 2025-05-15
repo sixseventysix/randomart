@@ -1,18 +1,18 @@
 use image::{RgbImage, Rgb};
 use rayon::prelude::*;
 
-pub struct PixelCoordinates {
+pub(crate) struct PixelCoordinates {
     pub x: f32,
     pub y: f32
 }
 
-pub struct Colour {
+pub(crate) struct Colour {
     pub r: f32,
     pub g: f32,
     pub b: f32
 }
 
-pub fn render_pixels<F>(function: &F, width: u32, height: u32) -> RgbImage
+pub(crate) fn render_pixels<F>(function: &F, width: u32, height: u32) -> RgbImage
 where
     F: Sync + Fn(PixelCoordinates) -> Colour,
 {
@@ -67,7 +67,7 @@ where
     final_img
 }
 
-pub fn fnv1a(input: &str) -> u64 {
+pub(crate) fn fnv1a(input: &str) -> u64 {
     let mut hash: u64 = 0xcbf29ce484222325; 
     let prime: u64 = 0x100000001b3;
 
@@ -79,7 +79,7 @@ pub fn fnv1a(input: &str) -> u64 {
     hash
 }
 
-pub struct LinearCongruentialGenerator {
+pub(crate) struct LinearCongruentialGenerator {
     state: u64, 
     a: u64,    
     c: u64,   
@@ -87,7 +87,7 @@ pub struct LinearCongruentialGenerator {
 }
 
 impl LinearCongruentialGenerator {
-    pub fn new(seed: u64) -> Self {
+    pub(crate) fn new(seed: u64) -> Self {
         Self {
             state: seed,
             a: 1664525,
@@ -96,16 +96,12 @@ impl LinearCongruentialGenerator {
         }
     }
 
-    pub fn next(&mut self) -> u64 {
+    pub(crate) fn next_u64(&mut self) -> u64 {
         self.state = (self.a.wrapping_mul(self.state).wrapping_add(self.c)) % self.m;
         self.state
     }
 
-    pub fn next_float(&mut self) -> f32 {
-        (self.next() as f32) / (self.m as f32)
-    }
-
-    pub fn next_range(&mut self, min: u64, max: u64) -> u64 {
-        min + (self.next() % (max - min))
+    pub(crate) fn next_float(&mut self) -> f32 {
+        (self.next_u64() as f32) / (self.m as f32)
     }
 }

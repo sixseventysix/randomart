@@ -10,7 +10,7 @@ enum Dependency {
 }
 
 #[derive(Debug, Default)]
-pub struct TreeStats {
+struct TreeStatsInner {
     pub total_nodes: usize,
     pub leaf_nodes: usize,
     pub max_depth: usize,
@@ -23,9 +23,9 @@ pub struct TreeStats {
     pub y_only_subtree_op_counts: Vec<usize>,
 }
 
-impl TreeStats {
+impl TreeStatsInner {
     pub fn from_node(node: &Node) -> Self {
-        fn helper(node: &Node, depth: usize, stats: &mut TreeStats) -> (Dependency, usize) {
+        fn helper(node: &Node, depth: usize, stats: &mut TreeStatsInner) -> (Dependency, usize) {
             use crate::node::Node::*;
 
             stats.total_nodes += 1;
@@ -74,14 +74,6 @@ impl TreeStats {
                     child_deps.extend([d1, d2]);
                     child_op_count += o1 + o2;
                 }
-                Modulo(a, b) => {
-                    *stats.op_counts.entry("Modulo".into()).or_default() += 1;
-                    stats.total_ops += 1;
-                    let (d1, o1) = helper(a, depth + 1, stats);
-                    let (d2, o2) = helper(b, depth + 1, stats);
-                    child_deps.extend([d1, d2]);
-                    child_op_count += o1 + o2;
-                }
 
                 Sin(a) => {
                     *stats.op_counts.entry("Sin".into()).or_default() += 1;
@@ -110,17 +102,6 @@ impl TreeStats {
                     let (d, o) = helper(a, depth + 1, stats);
                     child_deps.push(d);
                     child_op_count += o;
-                }
-
-                Mix(a, b, c, d) => {
-                    *stats.op_counts.entry("Mix".into()).or_default() += 1;
-                    stats.total_ops += 1;
-                    let (d1, o1) = helper(a, depth + 1, stats);
-                    let (d2, o2) = helper(b, depth + 1, stats);
-                    let (d3, o3) = helper(c, depth + 1, stats);
-                    let (d4, o4) = helper(d, depth + 1, stats);
-                    child_deps.extend([d1, d2, d3, d4]);
-                    child_op_count += o1 + o2 + o3 + o4;
                 }
                 MixUnbounded(a, b, c, d) => {
                     *stats.op_counts.entry("MixUnbounded".into()).or_default() += 1;
@@ -169,7 +150,7 @@ impl TreeStats {
             }
         }
 
-        let mut stats = TreeStats::default();
+        let mut stats = TreeStatsInner::default();
         helper(node, 0, &mut stats);
         stats
     }
@@ -231,8 +212,38 @@ impl TreeStats {
         println!("Y-only Subtrees: {}", self.y_only_subtrees);
     }
 
-    pub fn report(&self) {
+    fn report(&self) {
         self.summary();
         self.print_all_histograms();
+    }
+}
+
+pub(crate) struct TreeStats {
+    r: TreeStatsInner,
+    g: TreeStatsInner,
+    b: TreeStatsInner
+}
+
+impl TreeStats {
+    pub(crate) fn from_triple(node: &Node) -> Self {
+        let (r, g, b) = match &*node {
+            Node::Triple(r, g, b) => (r, g, b),
+            _ => panic!("Expected Triple node at top level"),
+        };
+        let (r, g): (TreeStatsInner, TreeStatsInner) = rayon::join(
+            || TreeStatsInner::from_node(r),
+            || TreeStatsInner::from_node(g),
+        );
+        let b = TreeStatsInner::from_node(b);
+        Self {r, g, b}
+    }
+
+    pub(crate) fn report(&self) {
+        println!("r channel:");
+        self.r.report();
+        println!("\ng channel:");
+        self.g.report();
+        println!("\nb channel:");
+        self.b.report();
     }
 }

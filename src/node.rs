@@ -1,8 +1,7 @@
 use std::fmt;
-use crate::closure_tree::ClosureNode;
 
 #[derive(Clone, Debug, PartialEq)]
-pub enum Node {
+pub(crate) enum Node {
     X,                       
     Y,                       
     Random,                  
@@ -15,14 +14,12 @@ pub enum Node {
     Add(Box<Node>, Box<Node>), 
     Mult(Box<Node>, Box<Node>),
     Div(Box<Node>, Box<Node>),
-    Modulo(Box<Node>, Box<Node>), 
     Triple(Box<Node>, Box<Node>, Box<Node>), 
-    Mix(Box<Node>, Box<Node>, Box<Node>, Box<Node>),
     MixUnbounded(Box<Node>, Box<Node>, Box<Node>, Box<Node>)
 }
 
 impl Node {
-    pub fn fmt_pretty(&self, f: &mut fmt::Formatter<'_>, indent: usize) -> fmt::Result {
+    fn fmt_pretty(&self, f: &mut fmt::Formatter<'_>, indent: usize) -> fmt::Result {
         let pad = "  ".repeat(indent);
         use Node::*;
         match self {
@@ -67,20 +64,6 @@ impl Node {
                 writeln!(f, "{}div ( ", pad)?;
                 a.fmt_pretty(f, indent + 1)?;
                 b.fmt_pretty(f, indent + 1)?;
-                writeln!(f, "{} ) ", pad)
-            }
-            Modulo(a, b) => {
-                writeln!(f, "{}mod ( ", pad)?;
-                a.fmt_pretty(f, indent + 1)?;
-                b.fmt_pretty(f, indent + 1)?;
-                writeln!(f, "{} ) ", pad)
-            }
-            Mix(a, b, c, d) => {
-                writeln!(f, "{}mix ( ", pad)?;
-                a.fmt_pretty(f, indent + 1)?;
-                b.fmt_pretty(f, indent + 1)?;
-                c.fmt_pretty(f, indent + 1)?;
-                d.fmt_pretty(f, indent + 1)?;
                 writeln!(f, "{} ) ", pad)
             }
             MixUnbounded(a, b, c, d) => {
@@ -168,30 +151,6 @@ impl Node {
                     }
                 }
             }
-            Modulo(lhs, rhs) => {
-                lhs.simplify();
-                rhs.simplify();
-
-                if let (Number(lhs_val), Number(rhs_val)) = (&**lhs, &**rhs) {
-                    if rhs_val.abs() > 1e-6 {
-                        *self = Number(lhs_val % rhs_val);
-                    } else {
-                        *self = Number(0.0); 
-                    }
-                }
-            }
-            Mix(a, b, c, d) => {
-                a.simplify();
-                b.simplify();
-                c.simplify();
-                d.simplify();
-
-                if let (Number(a_val), Number(b_val),Number(c_val), Number(d_val)) = (&**a, &**b, &**c, &**d) {
-                    let numerator = (a_val + 1.0) * (c_val + 1.0) + (b_val + 1.0) * (d_val + 1.0);
-                    let denominator = ((a_val + 1.0) + (b_val + 1.0)).max(1e-6);
-                    *self = Number((numerator / denominator) - 1.0);
-                }
-            }
             MixUnbounded(a, b, c, d) => {
                 a.simplify();
                 b.simplify();
@@ -209,123 +168,15 @@ impl Node {
         }
     }
 
-    pub fn simplify_triple(&mut self) {
+    pub(crate) fn simplify_triple(&mut self) {
         if let Node::Triple(first, second, third) = self {
-            first.simplify(); 
-            second.simplify();
+            rayon::join(
+                || first.simplify(),
+                || second.simplify(),
+            );
             third.simplify();
         } else {
             panic!("expected Node::Triple, encountered {:?}", self);
-        }
-    }
-
-    pub fn to_closure_tree(&self) -> Box<dyn ClosureNode> {
-        use Node::*;
-        match self {
-            X => Box::new(|x, _| x),
-            Y => Box::new(|_, y| y),
-            Number(v) => {
-                let val = *v;
-                Box::new(move |_, _| val)
-            }
-
-            Add(a, b) => {
-                let fa = a.to_closure_tree();
-                let fb = b.to_closure_tree();
-                Box::new(move |x, y| (fa(x, y) + fb(x, y)) / 2.0)
-            }
-
-            Mult(a, b) => {
-                let fa = a.to_closure_tree();
-                let fb = b.to_closure_tree();
-                Box::new(move |x, y| fa(x, y) * fb(x, y))
-            }
-
-            Div(a, b) => {
-                let fa = a.to_closure_tree();
-                let fb = b.to_closure_tree();
-                Box::new(move |x, y| {
-                    let denom = fb(x, y);
-                    if denom.abs() > 1e-6 {
-                        fa(x, y) / denom
-                    } else {
-                        0.0
-                    }
-                })
-            }
-
-            Modulo(a, b) => {
-                let fa = a.to_closure_tree();
-                let fb = b.to_closure_tree();
-                Box::new(move |x, y| {
-                    let denom = fb(x, y);
-                    if denom.abs() > 1e-6 {
-                        fa(x, y) % denom
-                    } else {
-                        0.0
-                    }
-                })
-            }
-
-            Sqrt(inner) => {
-                let f = inner.to_closure_tree();
-                Box::new(move |x, y| f(x, y).sqrt().max(0.0))
-            }
-
-            Sin(inner) => {
-                let f = inner.to_closure_tree();
-                Box::new(move |x, y| f(x, y).sin())
-            }
-
-            Cos(inner) => {
-                let f = inner.to_closure_tree();
-                Box::new(move |x, y| f(x, y).cos())
-            }
-
-            Exp(inner) => {
-                let f = inner.to_closure_tree();
-                Box::new(move |x, y| f(x, y).exp())
-            }
-
-            Mix(a, b, c, d) => {
-                let fa = a.to_closure_tree();
-                let fb = b.to_closure_tree();
-                let fc = c.to_closure_tree();
-                let fd = d.to_closure_tree();
-                Box::new(move |x, y| {
-                    let a = fa(x, y) + 1.0;
-                    let b = fb(x, y) + 1.0;
-                    let c = fc(x, y) + 1.0;
-                    let d = fd(x, y) + 1.0;
-                    let numerator = a * c + b * d;
-                    let denominator = (a + b).max(1e-6);
-                    (numerator / denominator) - 1.0
-                })
-            }
-
-            MixUnbounded(a, b, c, d) => {
-                let fa = a.to_closure_tree();
-                let fb = b.to_closure_tree();
-                let fc = c.to_closure_tree();
-                let fd = d.to_closure_tree();
-                Box::new(move |x, y| {
-                    let a = fa(x, y);
-                    let b = fb(x, y);
-                    let c = fc(x, y);
-                    let d = fd(x, y);
-                    (a * c + b * d) / (a + b + 1e-6)
-                })
-            }
-
-            Random => {
-                panic!("Node::Random should be replaced before compilation");
-            }
-
-            Triple(_, _, _) => {
-                panic!("to_closure_tree() is for scalar nodes, not Triple");
-            }
-
-            _ => unimplemented!("to_closure_tree: missing match arm for {:?}", self),
         }
     }
 }

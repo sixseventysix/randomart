@@ -1,0 +1,44 @@
+
+randomart
+str: spiderman
+depth:40
+width:400 height:400
+generation: 26.810167ms
+r channel:
+Total Nodes: 1
+Size in memory: 40 bytes
+Total Ops: 0
+Op Counts: {}
+Leaf Nodes: 1
+Max Depth: 0
+X-only Subtrees: 0
+Y-only Subtrees: 0
+Leaf Depth Histogram: {0: 1}
+X-only Subtree Op Counts Histogram: {}
+Y-only Subtree Op Counts Histogram: {}
+
+g channel:
+Total Nodes: 984
+Size in memory: 39360 bytes
+Total Ops: 620
+Op Counts: {"Sqrt": 51, "Exp": 52, "Div": 62, "Cos": 146, "Add": 64, "Sin": 132, "MixUnbounded": 62, "Mult": 51}
+Leaf Nodes: 364
+Max Depth: 18
+X-only Subtrees: 165
+Y-only Subtrees: 186
+Leaf Depth Histogram: {2: 1, 5: 1, 7: 1, 8: 2, 9: 2, 10: 1, 11: 3, 12: 6, 13: 1, 14: 5, 15: 15, 16: 21, 17: 44, 18: 261}
+X-only Subtree Op Counts Histogram: {1: 34, 2: 19, 3: 12, 4: 1, 5: 2, 6: 1, 8: 2, 10: 1, 15: 1}
+Y-only Subtree Op Counts Histogram: {1: 46, 2: 21, 3: 13, 4: 4, 5: 3, 6: 1, 7: 2, 11: 1}
+
+b channel:
+Total Nodes: 65
+Size in memory: 2600 bytes
+Total Ops: 52
+Op Counts: {"Cos": 10, "Sqrt": 7, "Add": 4, "Sin": 18, "Div": 3, "Mult": 5, "Exp": 5}
+Leaf Nodes: 13
+Max Depth: 18
+X-only Subtrees: 24
+Y-only Subtrees: 9
+Leaf Depth Histogram: {1: 1, 4: 1, 7: 1, 11: 1, 14: 1, 16: 1, 17: 1, 18: 6}
+X-only Subtree Op Counts Histogram: {2: 3, 5: 1, 6: 1, 8: 1}
+Y-only Subtree Op Counts Histogram: {1: 1, 3: 1, 5: 1}

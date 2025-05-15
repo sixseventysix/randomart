@@ -1,0 +1,1724 @@
+triple ( 
+  const_ ( 0.686373 )
+  div ( 
+    add ( 
+      const_ ( 0.686373 )
+      sin ( 
+        cos ( 
+          mult ( 
+            y
+            div ( 
+              sin ( 
+                sin ( 
+                  x
+                 ) 
+               ) 
+              mult ( 
+                cos ( 
+                  cos ( 
+                    exp ( 
+                      sin ( 
+                        cos ( 
+                          y
+                         ) 
+                       ) 
+                     ) 
+                   ) 
+                 ) 
+                sin ( 
+                  sin ( 
+                    sqrt ( 
+                      div ( 
+                        sqrt ( 
+                          sin ( 
+                            exp ( 
+                              mult ( 
+                                sin ( 
+                                  sqrt ( 
+                                    sqrt ( 
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                                x
+                               ) 
+                             ) 
+                           ) 
+                         ) 
+                        x
+                       ) 
+                     ) 
+                   ) 
+                 ) 
+               ) 
+             ) 
+           ) 
+         ) 
+       ) 
+     ) 
+    add ( 
+      sin ( 
+        cos ( 
+          sin ( 
+            cos ( 
+              sqrt ( 
+                exp ( 
+                  mult ( 
+                    cos ( 
+                      cos ( 
+                        x
+                       ) 
+                     ) 
+                    cos ( 
+                      mixu ( 
+                        add ( 
+                          div ( 
+                            mixu ( 
+                              mult ( 
+                                cos ( 
+                                  cos ( 
+                                    div ( 
+                                      x
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                                sin ( 
+                                  exp ( 
+                                    mult ( 
+                                      const_ ( -0.7524798 )
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                              cos ( 
+                                mixu ( 
+                                  cos ( 
+                                    add ( 
+                                      x
+                                      y
+                                     ) 
+                                   ) 
+                                  exp ( 
+                                    mult ( 
+                                      const_ ( -0.3852179 )
+                                      x
+                                     ) 
+                                   ) 
+                                  sin ( 
+                                    cos ( 
+                                      y
+                                     ) 
+                                   ) 
+                                  mult ( 
+                                    cos ( 
+                                      y
+                                     ) 
+                                    const_ ( 0.9956184 )
+                                   ) 
+                                 ) 
+                               ) 
+                              cos ( 
+                                sin ( 
+                                  cos ( 
+                                    mixu ( 
+                                      x
+                                      const_ ( 0.7603526 )
+                                      const_ ( -0.96767724 )
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                              sin ( 
+                                cos ( 
+                                  exp ( 
+                                    sin ( 
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                            exp ( 
+                              mixu ( 
+                                const_ ( -0.73697233 )
+                                div ( 
+                                  sqrt ( 
+                                    add ( 
+                                      x
+                                      y
+                                     ) 
+                                   ) 
+                                  cos ( 
+                                    sin ( 
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                                sin ( 
+                                  cos ( 
+                                    mult ( 
+                                      x
+                                      const_ ( -0.8885722 )
+                                     ) 
+                                   ) 
+                                 ) 
+                                sin ( 
+                                  exp ( 
+                                    cos ( 
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                           ) 
+                          cos ( 
+                            cos ( 
+                              cos ( 
+                                mult ( 
+                                  y
+                                  x
+                                 ) 
+                               ) 
+                             ) 
+                           ) 
+                         ) 
+                        sin ( 
+                          cos ( 
+                            sin ( 
+                              sqrt ( 
+                                add ( 
+                                  exp ( 
+                                    mixu ( 
+                                      x
+                                      const_ ( -0.06821138 )
+                                      x
+                                      const_ ( 0.20898843 )
+                                     ) 
+                                   ) 
+                                  mixu ( 
+                                    mult ( 
+                                      y
+                                      y
+                                     ) 
+                                    const_ ( 0.04484401 )
+                                    sin ( 
+                                      y
+                                     ) 
+                                    sin ( 
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                           ) 
+                         ) 
+                        exp ( 
+                          y
+                         ) 
+                        sin ( 
+                          sin ( 
+                            div ( 
+                              cos ( 
+                                mixu ( 
+                                  const_ ( 0.3981652 )
+                                  cos ( 
+                                    mixu ( 
+                                      x
+                                      const_ ( -0.3030607 )
+                                      y
+                                      x
+                                     ) 
+                                   ) 
+                                  const_ ( 0.9717953 )
+                                  cos ( 
+                                    sin ( 
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                              cos ( 
+                                y
+                               ) 
+                             ) 
+                           ) 
+                         ) 
+                       ) 
+                     ) 
+                   ) 
+                 ) 
+               ) 
+             ) 
+           ) 
+         ) 
+       ) 
+      sin ( 
+        mixu ( 
+          sin ( 
+            sin ( 
+              cos ( 
+                exp ( 
+                  div ( 
+                    sin ( 
+                      add ( 
+                        sin ( 
+                          div ( 
+                            exp ( 
+                              mixu ( 
+                                x
+                                mult ( 
+                                  div ( 
+                                    cos ( 
+                                      x
+                                     ) 
+                                    sin ( 
+                                      x
+                                     ) 
+                                   ) 
+                                  const_ ( 0.5592178 )
+                                 ) 
+                                const_ ( 0.88755167 )
+                                cos ( 
+                                  y
+                                 ) 
+                               ) 
+                             ) 
+                            add ( 
+                              sqrt ( 
+                                add ( 
+                                  sin ( 
+                                    sin ( 
+                                      x
+                                     ) 
+                                   ) 
+                                  add ( 
+                                    const_ ( 0.80255246 )
+                                    sin ( 
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                              div ( 
+                                add ( 
+                                  add ( 
+                                    const_ ( -0.7901778 )
+                                    sin ( 
+                                      x
+                                     ) 
+                                   ) 
+                                  sin ( 
+                                    cos ( 
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                                cos ( 
+                                  sin ( 
+                                    x
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                           ) 
+                         ) 
+                        cos ( 
+                          sqrt ( 
+                            cos ( 
+                              cos ( 
+                                mult ( 
+                                  add ( 
+                                    cos ( 
+                                      y
+                                     ) 
+                                    sin ( 
+                                      y
+                                     ) 
+                                   ) 
+                                  add ( 
+                                    sin ( 
+                                      x
+                                     ) 
+                                    mult ( 
+                                      y
+                                      const_ ( -0.55451334 )
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                           ) 
+                         ) 
+                       ) 
+                     ) 
+                    add ( 
+                      mult ( 
+                        sin ( 
+                          sqrt ( 
+                            add ( 
+                              sin ( 
+                                sqrt ( 
+                                  sqrt ( 
+                                    sin ( 
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                              exp ( 
+                                cos ( 
+                                  sin ( 
+                                    div ( 
+                                      y
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                           ) 
+                         ) 
+                        mixu ( 
+                          const_ ( -0.8505778 )
+                          exp ( 
+                            div ( 
+                              add ( 
+                                div ( 
+                                  add ( 
+                                    const_ ( 0.8504702 )
+                                    mult ( 
+                                      x
+                                      x
+                                     ) 
+                                   ) 
+                                  y
+                                 ) 
+                                add ( 
+                                  const_ ( -0.17155658 )
+                                  y
+                                 ) 
+                               ) 
+                              mult ( 
+                                add ( 
+                                  add ( 
+                                    sqrt ( 
+                                      x
+                                     ) 
+                                    exp ( 
+                                      y
+                                     ) 
+                                   ) 
+                                  mixu ( 
+                                    mixu ( 
+                                      x
+                                      x
+                                      const_ ( -0.22393167 )
+                                      x
+                                     ) 
+                                    add ( 
+                                      const_ ( 0.9395492 )
+                                      x
+                                     ) 
+                                    div ( 
+                                      y
+                                      x
+                                     ) 
+                                    sin ( 
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                                mixu ( 
+                                  cos ( 
+                                    mixu ( 
+                                      x
+                                      x
+                                      const_ ( -0.8729287 )
+                                      const_ ( 0.48295248 )
+                                     ) 
+                                   ) 
+                                  mixu ( 
+                                    const_ ( -0.7284294 )
+                                    const_ ( 0.054281365 )
+                                    sin ( 
+                                      y
+                                     ) 
+                                    mult ( 
+                                      x
+                                      y
+                                     ) 
+                                   ) 
+                                  mixu ( 
+                                    div ( 
+                                      x
+                                      y
+                                     ) 
+                                    div ( 
+                                      x
+                                      y
+                                     ) 
+                                    y
+                                    exp ( 
+                                      x
+                                     ) 
+                                   ) 
+                                  add ( 
+                                    exp ( 
+                                      y
+                                     ) 
+                                    add ( 
+                                      const_ ( 0.27533185 )
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                           ) 
+                          const_ ( 0.7269973 )
+                          cos ( 
+                            mixu ( 
+                              sin ( 
+                                sin ( 
+                                  sin ( 
+                                    div ( 
+                                      x
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                              const_ ( 0.5424711 )
+                              exp ( 
+                                sin ( 
+                                  cos ( 
+                                    cos ( 
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                              cos ( 
+                                div ( 
+                                  mixu ( 
+                                    x
+                                    add ( 
+                                      y
+                                      x
+                                     ) 
+                                    const_ ( 0.54551524 )
+                                    const_ ( 0.62894344 )
+                                   ) 
+                                  mult ( 
+                                    div ( 
+                                      y
+                                      x
+                                     ) 
+                                    exp ( 
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                           ) 
+                         ) 
+                       ) 
+                      mult ( 
+                        cos ( 
+                          cos ( 
+                            mixu ( 
+                              mult ( 
+                                mult ( 
+                                  div ( 
+                                    x
+                                    sin ( 
+                                      x
+                                     ) 
+                                   ) 
+                                  y
+                                 ) 
+                                cos ( 
+                                  sqrt ( 
+                                    mixu ( 
+                                      x
+                                      x
+                                      x
+                                      const_ ( -0.06544399 )
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                              mult ( 
+                                mult ( 
+                                  sin ( 
+                                    cos ( 
+                                      y
+                                     ) 
+                                   ) 
+                                  mult ( 
+                                    exp ( 
+                                      x
+                                     ) 
+                                    const_ ( -0.94031763 )
+                                   ) 
+                                 ) 
+                                add ( 
+                                  sin ( 
+                                    cos ( 
+                                      x
+                                     ) 
+                                   ) 
+                                  y
+                                 ) 
+                               ) 
+                              sin ( 
+                                mult ( 
+                                  sin ( 
+                                    y
+                                   ) 
+                                  exp ( 
+                                    sqrt ( 
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                              mult ( 
+                                div ( 
+                                  sin ( 
+                                    add ( 
+                                      x
+                                      const_ ( -0.5373466 )
+                                     ) 
+                                   ) 
+                                  sin ( 
+                                    cos ( 
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                                const_ ( 0.7150301 )
+                               ) 
+                             ) 
+                           ) 
+                         ) 
+                        div ( 
+                          cos ( 
+                            cos ( 
+                              exp ( 
+                                exp ( 
+                                  mult ( 
+                                    mult ( 
+                                      y
+                                      y
+                                     ) 
+                                    const_ ( 0.4663285 )
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                           ) 
+                          y
+                         ) 
+                       ) 
+                     ) 
+                   ) 
+                 ) 
+               ) 
+             ) 
+           ) 
+          cos ( 
+            cos ( 
+              cos ( 
+                exp ( 
+                  mult ( 
+                    const_ ( 0.5818242 )
+                    mult ( 
+                      div ( 
+                        sqrt ( 
+                          div ( 
+                            exp ( 
+                              div ( 
+                                sin ( 
+                                  sqrt ( 
+                                    cos ( 
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                                div ( 
+                                  cos ( 
+                                    mixu ( 
+                                      y
+                                      y
+                                      y
+                                      x
+                                     ) 
+                                   ) 
+                                  sin ( 
+                                    cos ( 
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                            sin ( 
+                              cos ( 
+                                exp ( 
+                                  div ( 
+                                    const_ ( 0.45885193 )
+                                    mixu ( 
+                                      x
+                                      y
+                                      y
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                           ) 
+                         ) 
+                        sin ( 
+                          add ( 
+                            cos ( 
+                              add ( 
+                                cos ( 
+                                  sin ( 
+                                    sin ( 
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                                const_ ( 2.2366676 )
+                               ) 
+                             ) 
+                            mult ( 
+                              y
+                              sqrt ( 
+                                add ( 
+                                  exp ( 
+                                    sin ( 
+                                      y
+                                     ) 
+                                   ) 
+                                  mult ( 
+                                    sqrt ( 
+                                      y
+                                     ) 
+                                    mixu ( 
+                                      y
+                                      x
+                                      x
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                           ) 
+                         ) 
+                       ) 
+                      sqrt ( 
+                        sin ( 
+                          sqrt ( 
+                            div ( 
+                              mult ( 
+                                const_ ( 0.5403023 )
+                                y
+                               ) 
+                              mult ( 
+                                sqrt ( 
+                                  exp ( 
+                                    add ( 
+                                      x
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                                cos ( 
+                                  cos ( 
+                                    cos ( 
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                           ) 
+                         ) 
+                       ) 
+                     ) 
+                   ) 
+                 ) 
+               ) 
+             ) 
+           ) 
+          add ( 
+            sin ( 
+              cos ( 
+                cos ( 
+                  cos ( 
+                    cos ( 
+                      cos ( 
+                        mult ( 
+                          sin ( 
+                            add ( 
+                              const_ ( 0.8887111 )
+                              div ( 
+                                div ( 
+                                  sin ( 
+                                    sin ( 
+                                      y
+                                     ) 
+                                   ) 
+                                  div ( 
+                                    cos ( 
+                                      x
+                                     ) 
+                                    const_ ( 0.62792826 )
+                                   ) 
+                                 ) 
+                                div ( 
+                                  mixu ( 
+                                    cos ( 
+                                      y
+                                     ) 
+                                    cos ( 
+                                      y
+                                     ) 
+                                    cos ( 
+                                      x
+                                     ) 
+                                    cos ( 
+                                      y
+                                     ) 
+                                   ) 
+                                  sin ( 
+                                    sin ( 
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                           ) 
+                          add ( 
+                            cos ( 
+                              mult ( 
+                                exp ( 
+                                  sqrt ( 
+                                    sin ( 
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                                const_ ( 0.5152832 )
+                               ) 
+                             ) 
+                            sin ( 
+                              mixu ( 
+                                exp ( 
+                                  sqrt ( 
+                                    div ( 
+                                      y
+                                      const_ ( -0.86483073 )
+                                     ) 
+                                   ) 
+                                 ) 
+                                cos ( 
+                                  cos ( 
+                                    exp ( 
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                                div ( 
+                                  cos ( 
+                                    sqrt ( 
+                                      y
+                                     ) 
+                                   ) 
+                                  sqrt ( 
+                                    cos ( 
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                                sin ( 
+                                  div ( 
+                                    const_ ( 0.8461023 )
+                                    sin ( 
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                           ) 
+                         ) 
+                       ) 
+                     ) 
+                   ) 
+                 ) 
+               ) 
+             ) 
+            exp ( 
+              cos ( 
+                cos ( 
+                  div ( 
+                    exp ( 
+                      add ( 
+                        mixu ( 
+                          exp ( 
+                            mixu ( 
+                              add ( 
+                                cos ( 
+                                  sin ( 
+                                    sin ( 
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                                sqrt ( 
+                                  div ( 
+                                    add ( 
+                                      y
+                                      x
+                                     ) 
+                                    const_ ( 0.11962475 )
+                                   ) 
+                                 ) 
+                               ) 
+                              div ( 
+                                cos ( 
+                                  add ( 
+                                    cos ( 
+                                      y
+                                     ) 
+                                    const_ ( 0.6495193 )
+                                   ) 
+                                 ) 
+                                sin ( 
+                                  mixu ( 
+                                    cos ( 
+                                      y
+                                     ) 
+                                    mixu ( 
+                                      y
+                                      y
+                                      const_ ( -0.5426471 )
+                                      x
+                                     ) 
+                                    sin ( 
+                                      x
+                                     ) 
+                                    const_ ( -0.27718326 )
+                                   ) 
+                                 ) 
+                               ) 
+                              sin ( 
+                                mixu ( 
+                                  const_ ( -0.34060538 )
+                                  mixu ( 
+                                    exp ( 
+                                      x
+                                     ) 
+                                    const_ ( 0.7140228 )
+                                    const_ ( 0.0 )
+                                    add ( 
+                                      y
+                                      y
+                                     ) 
+                                   ) 
+                                  mixu ( 
+                                    cos ( 
+                                      x
+                                     ) 
+                                    cos ( 
+                                      x
+                                     ) 
+                                    cos ( 
+                                      y
+                                     ) 
+                                    mult ( 
+                                      y
+                                      y
+                                     ) 
+                                   ) 
+                                  sqrt ( 
+                                    sin ( 
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                              sin ( 
+                                mixu ( 
+                                  div ( 
+                                    exp ( 
+                                      y
+                                     ) 
+                                    const_ ( -0.8234223 )
+                                   ) 
+                                  cos ( 
+                                    add ( 
+                                      y
+                                      const_ ( -0.8066667 )
+                                     ) 
+                                   ) 
+                                  sin ( 
+                                    sqrt ( 
+                                      x
+                                     ) 
+                                   ) 
+                                  cos ( 
+                                    add ( 
+                                      x
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                           ) 
+                          cos ( 
+                            cos ( 
+                              sin ( 
+                                cos ( 
+                                  sin ( 
+                                    mixu ( 
+                                      const_ ( -0.45324677 )
+                                      y
+                                      const_ ( 0.9831933 )
+                                      const_ ( -0.8837514 )
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                           ) 
+                          cos ( 
+                            cos ( 
+                              cos ( 
+                                sqrt ( 
+                                  sin ( 
+                                    sqrt ( 
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                           ) 
+                          sqrt ( 
+                            exp ( 
+                              sin ( 
+                                cos ( 
+                                  sin ( 
+                                    cos ( 
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                           ) 
+                         ) 
+                        sqrt ( 
+                          sqrt ( 
+                            div ( 
+                              mixu ( 
+                                cos ( 
+                                  add ( 
+                                    const_ ( 0.43830025 )
+                                    add ( 
+                                      y
+                                      const_ ( 0.2964462 )
+                                     ) 
+                                   ) 
+                                 ) 
+                                sqrt ( 
+                                  cos ( 
+                                    div ( 
+                                      y
+                                      const_ ( -0.6545956 )
+                                     ) 
+                                   ) 
+                                 ) 
+                                sin ( 
+                                  mult ( 
+                                    cos ( 
+                                      y
+                                     ) 
+                                    sin ( 
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                                const_ ( 0.92534876 )
+                               ) 
+                              cos ( 
+                                sin ( 
+                                  cos ( 
+                                    sin ( 
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                           ) 
+                         ) 
+                       ) 
+                     ) 
+                    div ( 
+                      sin ( 
+                        cos ( 
+                          y
+                         ) 
+                       ) 
+                      sin ( 
+                        cos ( 
+                          sqrt ( 
+                            sin ( 
+                              sin ( 
+                                div ( 
+                                  add ( 
+                                    sin ( 
+                                      x
+                                     ) 
+                                    cos ( 
+                                      x
+                                     ) 
+                                   ) 
+                                  sin ( 
+                                    x
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                           ) 
+                         ) 
+                       ) 
+                     ) 
+                   ) 
+                 ) 
+               ) 
+             ) 
+           ) 
+          sqrt ( 
+            add ( 
+              div ( 
+                const_ ( 0.86898595 )
+                add ( 
+                  y
+                  sin ( 
+                    add ( 
+                      mult ( 
+                        sin ( 
+                          add ( 
+                            const_ ( 0.054369688 )
+                            cos ( 
+                              div ( 
+                                sin ( 
+                                  mixu ( 
+                                    div ( 
+                                      const_ ( -0.7621281 )
+                                      y
+                                     ) 
+                                    sin ( 
+                                      x
+                                     ) 
+                                    div ( 
+                                      const_ ( 0.28875363 )
+                                      y
+                                     ) 
+                                    const_ ( 0.6809687 )
+                                   ) 
+                                 ) 
+                                const_ ( 0.9749366 )
+                               ) 
+                             ) 
+                           ) 
+                         ) 
+                        cos ( 
+                          mixu ( 
+                            cos ( 
+                              div ( 
+                                sin ( 
+                                  exp ( 
+                                    cos ( 
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                                sin ( 
+                                  div ( 
+                                    add ( 
+                                      x
+                                      x
+                                     ) 
+                                    mult ( 
+                                      x
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                            cos ( 
+                              sin ( 
+                                sin ( 
+                                  mixu ( 
+                                    cos ( 
+                                      x
+                                     ) 
+                                    sqrt ( 
+                                      y
+                                     ) 
+                                    exp ( 
+                                      y
+                                     ) 
+                                    sin ( 
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                            exp ( 
+                              mult ( 
+                                mixu ( 
+                                  sin ( 
+                                    y
+                                   ) 
+                                  const_ ( -0.19150892 )
+                                  exp ( 
+                                    exp ( 
+                                      y
+                                     ) 
+                                   ) 
+                                  sin ( 
+                                    add ( 
+                                      x
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                                mixu ( 
+                                  div ( 
+                                    cos ( 
+                                      x
+                                     ) 
+                                    mixu ( 
+                                      y
+                                      y
+                                      const_ ( 0.27922833 )
+                                      const_ ( 0.425151 )
+                                     ) 
+                                   ) 
+                                  mixu ( 
+                                    const_ ( -0.047328174 )
+                                    sin ( 
+                                      y
+                                     ) 
+                                    const_ ( 1.9355065 )
+                                    const_ ( -0.11288217 )
+                                   ) 
+                                  add ( 
+                                    exp ( 
+                                      x
+                                     ) 
+                                    mixu ( 
+                                      x
+                                      x
+                                      y
+                                      y
+                                     ) 
+                                   ) 
+                                  const_ ( 0.026465932 )
+                                 ) 
+                               ) 
+                             ) 
+                            cos ( 
+                              add ( 
+                                sin ( 
+                                  add ( 
+                                    x
+                                    mult ( 
+                                      const_ ( 0.9060508 )
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                                mult ( 
+                                  y
+                                  const_ ( 0.6812781 )
+                                 ) 
+                               ) 
+                             ) 
+                           ) 
+                         ) 
+                       ) 
+                      exp ( 
+                        cos ( 
+                          div ( 
+                            sqrt ( 
+                              y
+                             ) 
+                            mult ( 
+                              add ( 
+                                mult ( 
+                                  mult ( 
+                                    const_ ( -0.45623612 )
+                                    sin ( 
+                                      y
+                                     ) 
+                                   ) 
+                                  const_ ( 0.0 )
+                                 ) 
+                                add ( 
+                                  div ( 
+                                    cos ( 
+                                      x
+                                     ) 
+                                    const_ ( -0.012548866 )
+                                   ) 
+                                  const_ ( 1.522554 )
+                                 ) 
+                               ) 
+                              sqrt ( 
+                                sqrt ( 
+                                  cos ( 
+                                    y
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                           ) 
+                         ) 
+                       ) 
+                     ) 
+                   ) 
+                 ) 
+               ) 
+              cos ( 
+                sin ( 
+                  div ( 
+                    add ( 
+                      const_ ( -0.5389108 )
+                      div ( 
+                        x
+                        mixu ( 
+                          mixu ( 
+                            cos ( 
+                              add ( 
+                                x
+                                exp ( 
+                                  exp ( 
+                                    y
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                            exp ( 
+                              cos ( 
+                                y
+                               ) 
+                             ) 
+                            cos ( 
+                              div ( 
+                                mult ( 
+                                  cos ( 
+                                    add ( 
+                                      x
+                                      const_ ( 0.9175346 )
+                                     ) 
+                                   ) 
+                                  const_ ( 0.99858266 )
+                                 ) 
+                                sin ( 
+                                  add ( 
+                                    mixu ( 
+                                      y
+                                      y
+                                      y
+                                      const_ ( 0.30819428 )
+                                     ) 
+                                    sin ( 
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                            sqrt ( 
+                              sqrt ( 
+                                div ( 
+                                  sin ( 
+                                    sqrt ( 
+                                      x
+                                     ) 
+                                   ) 
+                                  div ( 
+                                    sin ( 
+                                      x
+                                     ) 
+                                    cos ( 
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                           ) 
+                          cos ( 
+                            cos ( 
+                              cos ( 
+                                cos ( 
+                                  mixu ( 
+                                    const_ ( -0.13830729 )
+                                    cos ( 
+                                      y
+                                     ) 
+                                    sin ( 
+                                      y
+                                     ) 
+                                    const_ ( 0.7178832 )
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                           ) 
+                          mixu ( 
+                            sin ( 
+                              mult ( 
+                                div ( 
+                                  sin ( 
+                                    sin ( 
+                                      y
+                                     ) 
+                                   ) 
+                                  const_ ( 0.235073 )
+                                 ) 
+                                sin ( 
+                                  mixu ( 
+                                    sqrt ( 
+                                      x
+                                     ) 
+                                    exp ( 
+                                      x
+                                     ) 
+                                    const_ ( 0.36572093 )
+                                    sin ( 
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                            sqrt ( 
+                              add ( 
+                                sin ( 
+                                  mixu ( 
+                                    mixu ( 
+                                      const_ ( -0.48311996 )
+                                      const_ ( 0.70282114 )
+                                      x
+                                      x
+                                     ) 
+                                    div ( 
+                                      y
+                                      x
+                                     ) 
+                                    cos ( 
+                                      x
+                                     ) 
+                                    cos ( 
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                                div ( 
+                                  sin ( 
+                                    exp ( 
+                                      x
+                                     ) 
+                                   ) 
+                                  sqrt ( 
+                                    cos ( 
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                            sin ( 
+                              mixu ( 
+                                mixu ( 
+                                  const_ ( -0.23499224 )
+                                  sin ( 
+                                    mult ( 
+                                      y
+                                      const_ ( 0.1536833 )
+                                     ) 
+                                   ) 
+                                  cos ( 
+                                    exp ( 
+                                      y
+                                     ) 
+                                   ) 
+                                  exp ( 
+                                    mixu ( 
+                                      const_ ( 0.88803244 )
+                                      y
+                                      const_ ( 0.18558729 )
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                                sin ( 
+                                  cos ( 
+                                    mixu ( 
+                                      const_ ( 0.43736792 )
+                                      x
+                                      y
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                                y
+                                add ( 
+                                  sin ( 
+                                    exp ( 
+                                      y
+                                     ) 
+                                   ) 
+                                  cos ( 
+                                    mixu ( 
+                                      x
+                                      y
+                                      const_ ( 0.5346278 )
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                            sin ( 
+                              mixu ( 
+                                cos ( 
+                                  sqrt ( 
+                                    add ( 
+                                      y
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                                cos ( 
+                                  cos ( 
+                                    y
+                                   ) 
+                                 ) 
+                                cos ( 
+                                  cos ( 
+                                    sqrt ( 
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                                mixu ( 
+                                  sin ( 
+                                    y
+                                   ) 
+                                  add ( 
+                                    sin ( 
+                                      x
+                                     ) 
+                                    cos ( 
+                                      x
+                                     ) 
+                                   ) 
+                                  cos ( 
+                                    sin ( 
+                                      x
+                                     ) 
+                                   ) 
+                                  mixu ( 
+                                    const_ ( 0.9982048 )
+                                    mult ( 
+                                      y
+                                      y
+                                     ) 
+                                    add ( 
+                                      y
+                                      const_ ( -0.97760403 )
+                                     ) 
+                                    cos ( 
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                           ) 
+                          cos ( 
+                            div ( 
+                              sqrt ( 
+                                cos ( 
+                                  mixu ( 
+                                    cos ( 
+                                      y
+                                     ) 
+                                    cos ( 
+                                      x
+                                     ) 
+                                    const_ ( 0.640693 )
+                                    sqrt ( 
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                              const_ ( 0.5405136 )
+                             ) 
+                           ) 
+                         ) 
+                       ) 
+                     ) 
+                    x
+                   ) 
+                 ) 
+               ) 
+             ) 
+           ) 
+         ) 
+       ) 
+     ) 
+   ) 
+  add ( 
+    const_ ( 0.686373 )
+    sin ( 
+      cos ( 
+        mult ( 
+          y
+          div ( 
+            sin ( 
+              sin ( 
+                x
+               ) 
+             ) 
+            mult ( 
+              cos ( 
+                cos ( 
+                  exp ( 
+                    sin ( 
+                      cos ( 
+                        y
+                       ) 
+                     ) 
+                   ) 
+                 ) 
+               ) 
+              sin ( 
+                sin ( 
+                  sqrt ( 
+                    div ( 
+                      sqrt ( 
+                        sin ( 
+                          exp ( 
+                            mult ( 
+                              sin ( 
+                                sqrt ( 
+                                  sqrt ( 
+                                    sin ( 
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                              x
+                             ) 
+                           ) 
+                         ) 
+                       ) 
+                      mult ( 
+                        add ( 
+                          sin ( 
+                            cos ( 
+                              sin ( 
+                                cos ( 
+                                  sqrt ( 
+                                    exp ( 
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                           ) 
+                          sin ( 
+                            sin ( 
+                              add ( 
+                                sqrt ( 
+                                  div ( 
+                                    cos ( 
+                                      x
+                                     ) 
+                                    const_ ( 0.99982274 )
+                                   ) 
+                                 ) 
+                                cos ( 
+                                  y
+                                 ) 
+                               ) 
+                             ) 
+                           ) 
+                         ) 
+                        sin ( 
+                          sin ( 
+                            sin ( 
+                              add ( 
+                                mult ( 
+                                  sin ( 
+                                    cos ( 
+                                      x
+                                     ) 
+                                   ) 
+                                  sin ( 
+                                    exp ( 
+                                      x
+                                     ) 
+                                   ) 
+                                 ) 
+                                sqrt ( 
+                                  exp ( 
+                                    cos ( 
+                                      y
+                                     ) 
+                                   ) 
+                                 ) 
+                               ) 
+                             ) 
+                           ) 
+                         ) 
+                       ) 
+                     ) 
+                   ) 
+                 ) 
+               ) 
+             ) 
+           ) 
+         ) 
+       ) 
+     ) 
+   ) 
+ ) 

@@ -1,6 +1,6 @@
 use crate::node::Node;
 
-pub fn parse_expr(tokens: &mut impl Iterator<Item = String>) -> Node {
+pub(crate) fn parse_expr(tokens: &mut impl Iterator<Item = String>) -> Node {
     let token = tokens.next().expect("Unexpected end");
 
     match token.as_str() {
@@ -45,12 +45,6 @@ pub fn parse_expr(tokens: &mut impl Iterator<Item = String>) -> Node {
             Box::new(parse_expr(tokens)),
             Box::new(parse_expr(tokens)),
         ),
-        "mix" => Node::Mix(
-            Box::new(parse_expr(tokens)),
-            Box::new(parse_expr(tokens)),
-            Box::new(parse_expr(tokens)),
-            Box::new(parse_expr(tokens)),
-        ),
         "mixu" => Node::MixUnbounded(
             Box::new(parse_expr(tokens)),
             Box::new(parse_expr(tokens)),
@@ -62,7 +56,7 @@ pub fn parse_expr(tokens: &mut impl Iterator<Item = String>) -> Node {
     }
 }
 
-pub fn tokenize(input: &str) -> Vec<String> {
+pub(crate) fn tokenize(input: &str) -> Vec<String> {
     input
         .split_whitespace()
         .map(|s| s.to_string())

@@ -125,40 +125,6 @@ fn codegen_node(
             builder.inst_results(call)[0]
         }
 
-        Node::Modulo(a, b) => {
-            let lhs = codegen_node(builder, module, a, x, y);
-            let rhs = codegen_node(builder, module, b, x, y);
-
-            let mut sig = module.make_signature();
-            sig.params.push(AbiParam::new(types::F32));
-            sig.params.push(AbiParam::new(types::F32));
-            sig.returns.push(AbiParam::new(types::F32));
-
-            let func = module.declare_function("my_mod", Linkage::Import, &sig).unwrap();
-            let local = module.declare_func_in_func(func, builder.func);
-            let call = builder.ins().call(local, &[lhs, rhs]);
-            builder.inst_results(call)[0]
-        }
-
-        Node::Mix(a, b, c, d) => {
-            let va = codegen_node(builder, module, a, x, y);
-            let vb = codegen_node(builder, module, b, x, y);
-            let vc = codegen_node(builder, module, c, x, y);
-            let vd = codegen_node(builder, module, d, x, y);
-
-            let mut sig = module.make_signature();
-            sig.params.push(AbiParam::new(types::F32));
-            sig.params.push(AbiParam::new(types::F32));
-            sig.params.push(AbiParam::new(types::F32));
-            sig.params.push(AbiParam::new(types::F32));
-            sig.returns.push(AbiParam::new(types::F32));
-
-            let func = module.declare_function("my_mix", Linkage::Import, &sig).unwrap();
-            let local = module.declare_func_in_func(func, builder.func);
-            let call = builder.ins().call(local, &[va, vb, vc, vd]);
-            builder.inst_results(call)[0]
-        }
-
         Node::MixUnbounded(a, b, c, d) => {
             let va = codegen_node(builder, module, a, x, y);
             let vb = codegen_node(builder, module, b, x, y);
@@ -192,37 +158,22 @@ fn codegen_node(
     }
 }
 
-pub fn build_jit_function(ast: &Node) -> Box<dyn Fn(f32, f32) -> f32 + Sync> {
+fn build_jit_function(ast: &Node) -> Box<dyn Fn(f32, f32) -> f32 + Sync + Send> {
     let mut builder = JITBuilder::new(cranelift_module::default_libcall_names())
         .expect("Failed to create JITBuilder");
 
     define_and_register_math_fns!(builder, [
-        // Unary functions
         (my_sin, f32, [x: f32], { x.sin() }),
         (my_cos, f32, [x: f32], { x.cos() }),
         (my_sqrt, f32, [x: f32], { x.sqrt().max(0.0) }),
         (my_exp, f32, [x: f32], { x.exp() }),
 
-        // Binary math functions
         (my_add, f32, [a: f32, b: f32], { (a + b) / 2.0 }),
         (my_mul, f32, [a: f32, b: f32], { a * b }),
         (my_div, f32, [a: f32, b: f32], {
             if b.abs() > 1e-6 { a / b } else { 0.0 }
         }),
-        (my_mod, f32, [a: f32, b: f32], {
-            if b.abs() > 1e-6 { a % b } else { 0.0 }
-        }),
 
-        // Quaternary functions
-        (my_mix, f32, [a: f32, b: f32, c: f32, d: f32], {
-            let a = a + 1.0;
-            let b = b + 1.0;
-            let c = c + 1.0;
-            let d = d + 1.0;
-            let numerator = a * c + b * d;
-            let denominator = (a + b).max(1e-6);
-            (numerator / denominator) - 1.0
-        }),
         (my_mixu, f32, [a: f32, b: f32, c: f32, d: f32], {
             (a * c + b * d) / (a + b + 1e-6)
         }),
@@ -263,5 +214,27 @@ pub fn build_jit_function(ast: &Node) -> Box<dyn Fn(f32, f32) -> f32 + Sync> {
 
     let code = module.get_finalized_function(func_id);
     let fn_ptr = unsafe { std::mem::transmute::<_, fn(f32, f32) -> f32>(code) };
-    Box::new(fn_ptr) as Box<dyn Fn(f32, f32) -> f32 + Sync>
+    Box::new(fn_ptr) as Box<dyn Fn(f32, f32) -> f32 + Sync + Send>
+}
+
+pub(crate) fn build_jit_function_triple(node: &Node) 
+-> (
+    Box<dyn Fn(f32, f32) -> f32 + Sync + Send>, 
+    Box<dyn Fn(f32, f32) -> f32 + Sync + Send>,
+    Box<dyn Fn(f32, f32) -> f32 + Sync + Send>,
+)
+{
+    let (r, g, b) = match &*node {
+        Node::Triple(r, g, b) => (r, g, b),
+        _ => panic!("Expected Triple node at top level"),
+    };
+    let (r_jit_fn, g_jit_fn): (
+        Box<dyn Fn(f32, f32) -> f32 + Sync + Send>,
+        Box<dyn Fn(f32, f32) -> f32 + Sync + Send>            
+    ) = rayon::join(
+        || build_jit_function(r),
+        || build_jit_function(g)
+    );
+    let b_jit_fn = build_jit_function(b);
+    (r_jit_fn, g_jit_fn, b_jit_fn)
 }
