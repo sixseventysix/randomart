@@ -222,6 +222,7 @@ impl TreeStats {
 
     fn summary(&self) {
         println!("Total Nodes: {}", self.total_nodes);
+        println!("Size in memory: {} bytes", self.total_nodes * std::mem::size_of::<Node>());
         println!("Total Ops: {}", self.total_ops);
         println!("Op Counts: {:?}", self.op_counts);
         println!("Leaf Nodes: {}", self.leaf_nodes);
