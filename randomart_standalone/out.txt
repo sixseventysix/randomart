@@ -1,47 +1,4983 @@
+function u0:0(f32, f32) -> f32 apple_aarch64 {
+    sig0 = (f32) -> f32 apple_aarch64
+    sig1 = (f32) -> f32 apple_aarch64
+    sig2 = (f32) -> f32 apple_aarch64
+    sig3 = (f32) -> f32 apple_aarch64
+    sig4 = (f32) -> f32 apple_aarch64
+    sig5 = (f32) -> f32 apple_aarch64
+    sig6 = (f32) -> f32 apple_aarch64
+    sig7 = (f32) -> f32 apple_aarch64
+    sig8 = (f32) -> f32 apple_aarch64
+    sig9 = (f32) -> f32 apple_aarch64
+    sig10 = (f32) -> f32 apple_aarch64
+    sig11 = (f32) -> f32 apple_aarch64
+    sig12 = (f32) -> f32 apple_aarch64
+    sig13 = (f32) -> f32 apple_aarch64
+    sig14 = (f32) -> f32 apple_aarch64
+    sig15 = (f32) -> f32 apple_aarch64
+    sig16 = (f32) -> f32 apple_aarch64
+    sig17 = (f32) -> f32 apple_aarch64
+    sig18 = (f32) -> f32 apple_aarch64
+    sig19 = (f32) -> f32 apple_aarch64
+    sig20 = (f32) -> f32 apple_aarch64
+    sig21 = (f32) -> f32 apple_aarch64
+    sig22 = (f32) -> f32 apple_aarch64
+    sig23 = (f32) -> f32 apple_aarch64
+    sig24 = (f32) -> f32 apple_aarch64
+    sig25 = (f32) -> f32 apple_aarch64
+    sig26 = (f32) -> f32 apple_aarch64
+    sig27 = (f32) -> f32 apple_aarch64
+    sig28 = (f32) -> f32 apple_aarch64
+    sig29 = (f32) -> f32 apple_aarch64
+    sig30 = (f32) -> f32 apple_aarch64
+    sig31 = (f32) -> f32 apple_aarch64
+    sig32 = (f32) -> f32 apple_aarch64
+    sig33 = (f32) -> f32 apple_aarch64
+    sig34 = (f32) -> f32 apple_aarch64
+    sig35 = (f32) -> f32 apple_aarch64
+    sig36 = (f32) -> f32 apple_aarch64
+    sig37 = (f32) -> f32 apple_aarch64
+    sig38 = (f32) -> f32 apple_aarch64
+    sig39 = (f32) -> f32 apple_aarch64
+    sig40 = (f32) -> f32 apple_aarch64
+    sig41 = (f32) -> f32 apple_aarch64
+    sig42 = (f32) -> f32 apple_aarch64
+    sig43 = (f32) -> f32 apple_aarch64
+    sig44 = (f32) -> f32 apple_aarch64
+    sig45 = (f32) -> f32 apple_aarch64
+    sig46 = (f32) -> f32 apple_aarch64
+    sig47 = (f32) -> f32 apple_aarch64
+    sig48 = (f32) -> f32 apple_aarch64
+    sig49 = (f32) -> f32 apple_aarch64
+    sig50 = (f32) -> f32 apple_aarch64
+    sig51 = (f32) -> f32 apple_aarch64
+    sig52 = (f32) -> f32 apple_aarch64
+    sig53 = (f32) -> f32 apple_aarch64
+    sig54 = (f32) -> f32 apple_aarch64
+    sig55 = (f32) -> f32 apple_aarch64
+    sig56 = (f32) -> f32 apple_aarch64
+    sig57 = (f32) -> f32 apple_aarch64
+    sig58 = (f32) -> f32 apple_aarch64
+    sig59 = (f32) -> f32 apple_aarch64
+    sig60 = (f32) -> f32 apple_aarch64
+    sig61 = (f32) -> f32 apple_aarch64
+    sig62 = (f32) -> f32 apple_aarch64
+    sig63 = (f32) -> f32 apple_aarch64
+    sig64 = (f32) -> f32 apple_aarch64
+    sig65 = (f32) -> f32 apple_aarch64
+    sig66 = (f32) -> f32 apple_aarch64
+    sig67 = (f32) -> f32 apple_aarch64
+    sig68 = (f32) -> f32 apple_aarch64
+    sig69 = (f32) -> f32 apple_aarch64
+    sig70 = (f32) -> f32 apple_aarch64
+    sig71 = (f32) -> f32 apple_aarch64
+    sig72 = (f32) -> f32 apple_aarch64
+    sig73 = (f32) -> f32 apple_aarch64
+    sig74 = (f32) -> f32 apple_aarch64
+    sig75 = (f32) -> f32 apple_aarch64
+    sig76 = (f32) -> f32 apple_aarch64
+    sig77 = (f32) -> f32 apple_aarch64
+    sig78 = (f32) -> f32 apple_aarch64
+    sig79 = (f32) -> f32 apple_aarch64
+    sig80 = (f32) -> f32 apple_aarch64
+    sig81 = (f32) -> f32 apple_aarch64
+    sig82 = (f32) -> f32 apple_aarch64
+    sig83 = (f32) -> f32 apple_aarch64
+    sig84 = (f32) -> f32 apple_aarch64
+    sig85 = (f32) -> f32 apple_aarch64
+    sig86 = (f32) -> f32 apple_aarch64
+    sig87 = (f32) -> f32 apple_aarch64
+    sig88 = (f32) -> f32 apple_aarch64
+    sig89 = (f32) -> f32 apple_aarch64
+    sig90 = (f32) -> f32 apple_aarch64
+    sig91 = (f32) -> f32 apple_aarch64
+    sig92 = (f32) -> f32 apple_aarch64
+    sig93 = (f32) -> f32 apple_aarch64
+    sig94 = (f32) -> f32 apple_aarch64
+    sig95 = (f32) -> f32 apple_aarch64
+    sig96 = (f32) -> f32 apple_aarch64
+    sig97 = (f32) -> f32 apple_aarch64
+    sig98 = (f32) -> f32 apple_aarch64
+    sig99 = (f32) -> f32 apple_aarch64
+    sig100 = (f32) -> f32 apple_aarch64
+    sig101 = (f32) -> f32 apple_aarch64
+    sig102 = (f32) -> f32 apple_aarch64
+    sig103 = (f32) -> f32 apple_aarch64
+    sig104 = (f32) -> f32 apple_aarch64
+    sig105 = (f32) -> f32 apple_aarch64
+    sig106 = (f32) -> f32 apple_aarch64
+    sig107 = (f32) -> f32 apple_aarch64
+    sig108 = (f32) -> f32 apple_aarch64
+    sig109 = (f32) -> f32 apple_aarch64
+    sig110 = (f32) -> f32 apple_aarch64
+    sig111 = (f32) -> f32 apple_aarch64
+    sig112 = (f32) -> f32 apple_aarch64
+    sig113 = (f32) -> f32 apple_aarch64
+    sig114 = (f32) -> f32 apple_aarch64
+    sig115 = (f32) -> f32 apple_aarch64
+    sig116 = (f32) -> f32 apple_aarch64
+    sig117 = (f32) -> f32 apple_aarch64
+    sig118 = (f32) -> f32 apple_aarch64
+    sig119 = (f32) -> f32 apple_aarch64
+    sig120 = (f32) -> f32 apple_aarch64
+    sig121 = (f32) -> f32 apple_aarch64
+    sig122 = (f32) -> f32 apple_aarch64
+    sig123 = (f32) -> f32 apple_aarch64
+    sig124 = (f32) -> f32 apple_aarch64
+    sig125 = (f32) -> f32 apple_aarch64
+    sig126 = (f32) -> f32 apple_aarch64
+    sig127 = (f32) -> f32 apple_aarch64
+    sig128 = (f32) -> f32 apple_aarch64
+    sig129 = (f32) -> f32 apple_aarch64
+    sig130 = (f32) -> f32 apple_aarch64
+    sig131 = (f32) -> f32 apple_aarch64
+    sig132 = (f32) -> f32 apple_aarch64
+    sig133 = (f32) -> f32 apple_aarch64
+    sig134 = (f32) -> f32 apple_aarch64
+    sig135 = (f32) -> f32 apple_aarch64
+    sig136 = (f32) -> f32 apple_aarch64
+    sig137 = (f32) -> f32 apple_aarch64
+    sig138 = (f32) -> f32 apple_aarch64
+    sig139 = (f32) -> f32 apple_aarch64
+    sig140 = (f32) -> f32 apple_aarch64
+    sig141 = (f32) -> f32 apple_aarch64
+    sig142 = (f32) -> f32 apple_aarch64
+    sig143 = (f32) -> f32 apple_aarch64
+    sig144 = (f32) -> f32 apple_aarch64
+    sig145 = (f32) -> f32 apple_aarch64
+    sig146 = (f32) -> f32 apple_aarch64
+    sig147 = (f32) -> f32 apple_aarch64
+    sig148 = (f32) -> f32 apple_aarch64
+    sig149 = (f32) -> f32 apple_aarch64
+    sig150 = (f32) -> f32 apple_aarch64
+    sig151 = (f32) -> f32 apple_aarch64
+    sig152 = (f32) -> f32 apple_aarch64
+    sig153 = (f32) -> f32 apple_aarch64
+    sig154 = (f32) -> f32 apple_aarch64
+    sig155 = (f32) -> f32 apple_aarch64
+    sig156 = (f32) -> f32 apple_aarch64
+    sig157 = (f32) -> f32 apple_aarch64
+    sig158 = (f32) -> f32 apple_aarch64
+    sig159 = (f32) -> f32 apple_aarch64
+    sig160 = (f32) -> f32 apple_aarch64
+    sig161 = (f32) -> f32 apple_aarch64
+    sig162 = (f32) -> f32 apple_aarch64
+    sig163 = (f32) -> f32 apple_aarch64
+    sig164 = (f32) -> f32 apple_aarch64
+    sig165 = (f32) -> f32 apple_aarch64
+    sig166 = (f32) -> f32 apple_aarch64
+    sig167 = (f32) -> f32 apple_aarch64
+    sig168 = (f32) -> f32 apple_aarch64
+    sig169 = (f32) -> f32 apple_aarch64
+    sig170 = (f32) -> f32 apple_aarch64
+    sig171 = (f32) -> f32 apple_aarch64
+    sig172 = (f32) -> f32 apple_aarch64
+    sig173 = (f32) -> f32 apple_aarch64
+    sig174 = (f32) -> f32 apple_aarch64
+    sig175 = (f32) -> f32 apple_aarch64
+    sig176 = (f32) -> f32 apple_aarch64
+    sig177 = (f32) -> f32 apple_aarch64
+    sig178 = (f32) -> f32 apple_aarch64
+    sig179 = (f32) -> f32 apple_aarch64
+    sig180 = (f32) -> f32 apple_aarch64
+    sig181 = (f32) -> f32 apple_aarch64
+    sig182 = (f32) -> f32 apple_aarch64
+    sig183 = (f32) -> f32 apple_aarch64
+    sig184 = (f32) -> f32 apple_aarch64
+    sig185 = (f32) -> f32 apple_aarch64
+    sig186 = (f32) -> f32 apple_aarch64
+    sig187 = (f32) -> f32 apple_aarch64
+    sig188 = (f32) -> f32 apple_aarch64
+    sig189 = (f32) -> f32 apple_aarch64
+    sig190 = (f32) -> f32 apple_aarch64
+    sig191 = (f32) -> f32 apple_aarch64
+    sig192 = (f32) -> f32 apple_aarch64
+    sig193 = (f32) -> f32 apple_aarch64
+    sig194 = (f32) -> f32 apple_aarch64
+    sig195 = (f32) -> f32 apple_aarch64
+    sig196 = (f32) -> f32 apple_aarch64
+    sig197 = (f32) -> f32 apple_aarch64
+    sig198 = (f32) -> f32 apple_aarch64
+    sig199 = (f32) -> f32 apple_aarch64
+    sig200 = (f32) -> f32 apple_aarch64
+    sig201 = (f32) -> f32 apple_aarch64
+    sig202 = (f32) -> f32 apple_aarch64
+    sig203 = (f32) -> f32 apple_aarch64
+    sig204 = (f32) -> f32 apple_aarch64
+    sig205 = (f32) -> f32 apple_aarch64
+    sig206 = (f32) -> f32 apple_aarch64
+    sig207 = (f32) -> f32 apple_aarch64
+    sig208 = (f32) -> f32 apple_aarch64
+    sig209 = (f32) -> f32 apple_aarch64
+    sig210 = (f32) -> f32 apple_aarch64
+    sig211 = (f32) -> f32 apple_aarch64
+    sig212 = (f32) -> f32 apple_aarch64
+    sig213 = (f32) -> f32 apple_aarch64
+    sig214 = (f32) -> f32 apple_aarch64
+    sig215 = (f32) -> f32 apple_aarch64
+    sig216 = (f32) -> f32 apple_aarch64
+    sig217 = (f32) -> f32 apple_aarch64
+    sig218 = (f32) -> f32 apple_aarch64
+    sig219 = (f32) -> f32 apple_aarch64
+    sig220 = (f32) -> f32 apple_aarch64
+    sig221 = (f32) -> f32 apple_aarch64
+    sig222 = (f32) -> f32 apple_aarch64
+    sig223 = (f32) -> f32 apple_aarch64
+    sig224 = (f32) -> f32 apple_aarch64
+    sig225 = (f32) -> f32 apple_aarch64
+    sig226 = (f32) -> f32 apple_aarch64
+    sig227 = (f32) -> f32 apple_aarch64
+    sig228 = (f32) -> f32 apple_aarch64
+    sig229 = (f32) -> f32 apple_aarch64
+    sig230 = (f32) -> f32 apple_aarch64
+    sig231 = (f32) -> f32 apple_aarch64
+    sig232 = (f32) -> f32 apple_aarch64
+    sig233 = (f32) -> f32 apple_aarch64
+    sig234 = (f32) -> f32 apple_aarch64
+    sig235 = (f32) -> f32 apple_aarch64
+    sig236 = (f32) -> f32 apple_aarch64
+    sig237 = (f32) -> f32 apple_aarch64
+    sig238 = (f32) -> f32 apple_aarch64
+    sig239 = (f32) -> f32 apple_aarch64
+    sig240 = (f32) -> f32 apple_aarch64
+    sig241 = (f32) -> f32 apple_aarch64
+    sig242 = (f32) -> f32 apple_aarch64
+    sig243 = (f32) -> f32 apple_aarch64
+    sig244 = (f32) -> f32 apple_aarch64
+    sig245 = (f32) -> f32 apple_aarch64
+    sig246 = (f32) -> f32 apple_aarch64
+    sig247 = (f32) -> f32 apple_aarch64
+    sig248 = (f32) -> f32 apple_aarch64
+    sig249 = (f32) -> f32 apple_aarch64
+    sig250 = (f32) -> f32 apple_aarch64
+    sig251 = (f32) -> f32 apple_aarch64
+    sig252 = (f32) -> f32 apple_aarch64
+    sig253 = (f32) -> f32 apple_aarch64
+    sig254 = (f32) -> f32 apple_aarch64
+    sig255 = (f32) -> f32 apple_aarch64
+    sig256 = (f32) -> f32 apple_aarch64
+    sig257 = (f32) -> f32 apple_aarch64
+    sig258 = (f32) -> f32 apple_aarch64
+    sig259 = (f32) -> f32 apple_aarch64
+    sig260 = (f32) -> f32 apple_aarch64
+    sig261 = (f32) -> f32 apple_aarch64
+    sig262 = (f32) -> f32 apple_aarch64
+    sig263 = (f32) -> f32 apple_aarch64
+    sig264 = (f32) -> f32 apple_aarch64
+    sig265 = (f32) -> f32 apple_aarch64
+    sig266 = (f32) -> f32 apple_aarch64
+    sig267 = (f32) -> f32 apple_aarch64
+    sig268 = (f32) -> f32 apple_aarch64
+    sig269 = (f32) -> f32 apple_aarch64
+    sig270 = (f32) -> f32 apple_aarch64
+    sig271 = (f32) -> f32 apple_aarch64
+    sig272 = (f32) -> f32 apple_aarch64
+    sig273 = (f32) -> f32 apple_aarch64
+    sig274 = (f32) -> f32 apple_aarch64
+    sig275 = (f32) -> f32 apple_aarch64
+    sig276 = (f32) -> f32 apple_aarch64
+    sig277 = (f32) -> f32 apple_aarch64
+    sig278 = (f32) -> f32 apple_aarch64
+    sig279 = (f32) -> f32 apple_aarch64
+    sig280 = (f32) -> f32 apple_aarch64
+    sig281 = (f32) -> f32 apple_aarch64
+    sig282 = (f32) -> f32 apple_aarch64
+    sig283 = (f32) -> f32 apple_aarch64
+    sig284 = (f32) -> f32 apple_aarch64
+    sig285 = (f32) -> f32 apple_aarch64
+    sig286 = (f32) -> f32 apple_aarch64
+    sig287 = (f32) -> f32 apple_aarch64
+    sig288 = (f32) -> f32 apple_aarch64
+    sig289 = (f32) -> f32 apple_aarch64
+    sig290 = (f32) -> f32 apple_aarch64
+    sig291 = (f32) -> f32 apple_aarch64
+    sig292 = (f32) -> f32 apple_aarch64
+    sig293 = (f32) -> f32 apple_aarch64
+    sig294 = (f32) -> f32 apple_aarch64
+    sig295 = (f32) -> f32 apple_aarch64
+    sig296 = (f32) -> f32 apple_aarch64
+    sig297 = (f32) -> f32 apple_aarch64
+    sig298 = (f32) -> f32 apple_aarch64
+    sig299 = (f32) -> f32 apple_aarch64
+    sig300 = (f32) -> f32 apple_aarch64
+    sig301 = (f32) -> f32 apple_aarch64
+    sig302 = (f32) -> f32 apple_aarch64
+    sig303 = (f32) -> f32 apple_aarch64
+    sig304 = (f32) -> f32 apple_aarch64
+    sig305 = (f32) -> f32 apple_aarch64
+    sig306 = (f32) -> f32 apple_aarch64
+    sig307 = (f32) -> f32 apple_aarch64
+    sig308 = (f32) -> f32 apple_aarch64
+    sig309 = (f32) -> f32 apple_aarch64
+    sig310 = (f32) -> f32 apple_aarch64
+    sig311 = (f32) -> f32 apple_aarch64
+    sig312 = (f32) -> f32 apple_aarch64
+    sig313 = (f32) -> f32 apple_aarch64
+    sig314 = (f32) -> f32 apple_aarch64
+    sig315 = (f32) -> f32 apple_aarch64
+    sig316 = (f32) -> f32 apple_aarch64
+    sig317 = (f32) -> f32 apple_aarch64
+    sig318 = (f32) -> f32 apple_aarch64
+    sig319 = (f32) -> f32 apple_aarch64
+    sig320 = (f32) -> f32 apple_aarch64
+    sig321 = (f32) -> f32 apple_aarch64
+    sig322 = (f32) -> f32 apple_aarch64
+    sig323 = (f32) -> f32 apple_aarch64
+    sig324 = (f32) -> f32 apple_aarch64
+    sig325 = (f32) -> f32 apple_aarch64
+    sig326 = (f32) -> f32 apple_aarch64
+    sig327 = (f32) -> f32 apple_aarch64
+    sig328 = (f32) -> f32 apple_aarch64
+    sig329 = (f32) -> f32 apple_aarch64
+    sig330 = (f32) -> f32 apple_aarch64
+    sig331 = (f32) -> f32 apple_aarch64
+    sig332 = (f32) -> f32 apple_aarch64
+    sig333 = (f32) -> f32 apple_aarch64
+    sig334 = (f32) -> f32 apple_aarch64
+    sig335 = (f32) -> f32 apple_aarch64
+    sig336 = (f32) -> f32 apple_aarch64
+    sig337 = (f32) -> f32 apple_aarch64
+    sig338 = (f32) -> f32 apple_aarch64
+    sig339 = (f32) -> f32 apple_aarch64
+    sig340 = (f32) -> f32 apple_aarch64
+    sig341 = (f32) -> f32 apple_aarch64
+    sig342 = (f32) -> f32 apple_aarch64
+    sig343 = (f32) -> f32 apple_aarch64
+    sig344 = (f32) -> f32 apple_aarch64
+    sig345 = (f32) -> f32 apple_aarch64
+    sig346 = (f32) -> f32 apple_aarch64
+    sig347 = (f32) -> f32 apple_aarch64
+    sig348 = (f32) -> f32 apple_aarch64
+    sig349 = (f32) -> f32 apple_aarch64
+    sig350 = (f32) -> f32 apple_aarch64
+    sig351 = (f32) -> f32 apple_aarch64
+    sig352 = (f32) -> f32 apple_aarch64
+    sig353 = (f32) -> f32 apple_aarch64
+    sig354 = (f32) -> f32 apple_aarch64
+    sig355 = (f32) -> f32 apple_aarch64
+    fn0 = u0:1 sig0
+    fn1 = u0:1 sig1
+    fn2 = u0:2 sig2
+    fn3 = u0:1 sig3
+    fn4 = u0:3 sig4
+    fn5 = u0:2 sig5
+    fn6 = u0:2 sig6
+    fn7 = u0:4 sig7
+    fn8 = u0:1 sig8
+    fn9 = u0:1 sig9
+    fn10 = u0:1 sig10
+    fn11 = u0:3 sig11
+    fn12 = u0:1 sig12
+    fn13 = u0:4 sig13
+    fn14 = u0:2 sig14
+    fn15 = u0:4 sig15
+    fn16 = u0:4 sig16
+    fn17 = u0:1 sig17
+    fn18 = u0:1 sig18
+    fn19 = u0:1 sig19
+    fn20 = u0:3 sig20
+    fn21 = u0:1 sig21
+    fn22 = u0:4 sig22
+    fn23 = u0:1 sig23
+    fn24 = u0:1 sig24
+    fn25 = u0:2 sig25
+    fn26 = u0:1 sig26
+    fn27 = u0:2 sig27
+    fn28 = u0:1 sig28
+    fn29 = u0:2 sig29
+    fn30 = u0:2 sig30
+    fn31 = u0:1 sig31
+    fn32 = u0:1 sig32
+    fn33 = u0:1 sig33
+    fn34 = u0:1 sig34
+    fn35 = u0:4 sig35
+    fn36 = u0:2 sig36
+    fn37 = u0:4 sig37
+    fn38 = u0:1 sig38
+    fn39 = u0:1 sig39
+    fn40 = u0:1 sig40
+    fn41 = u0:2 sig41
+    fn42 = u0:3 sig42
+    fn43 = u0:1 sig43
+    fn44 = u0:2 sig44
+    fn45 = u0:3 sig45
+    fn46 = u0:3 sig46
+    fn47 = u0:1 sig47
+    fn48 = u0:1 sig48
+    fn49 = u0:4 sig49
+    fn50 = u0:1 sig50
+    fn51 = u0:1 sig51
+    fn52 = u0:3 sig52
+    fn53 = u0:2 sig53
+    fn54 = u0:2 sig54
+    fn55 = u0:2 sig55
+    fn56 = u0:1 sig56
+    fn57 = u0:2 sig57
+    fn58 = u0:2 sig58
+    fn59 = u0:2 sig59
+    fn60 = u0:3 sig60
+    fn61 = u0:2 sig61
+    fn62 = u0:1 sig62
+    fn63 = u0:1 sig63
+    fn64 = u0:1 sig64
+    fn65 = u0:1 sig65
+    fn66 = u0:1 sig66
+    fn67 = u0:4 sig67
+    fn68 = u0:4 sig68
+    fn69 = u0:1 sig69
+    fn70 = u0:1 sig70
+    fn71 = u0:1 sig71
+    fn72 = u0:1 sig72
+    fn73 = u0:1 sig73
+    fn74 = u0:1 sig74
+    fn75 = u0:3 sig75
+    fn76 = u0:3 sig76
+    fn77 = u0:3 sig77
+    fn78 = u0:2 sig78
+    fn79 = u0:3 sig79
+    fn80 = u0:1 sig80
+    fn81 = u0:1 sig81
+    fn82 = u0:3 sig82
+    fn83 = u0:4 sig83
+    fn84 = u0:2 sig84
+    fn85 = u0:1 sig85
+    fn86 = u0:1 sig86
+    fn87 = u0:3 sig87
+    fn88 = u0:3 sig88
+    fn89 = u0:4 sig89
+    fn90 = u0:4 sig90
+    fn91 = u0:4 sig91
+    fn92 = u0:1 sig92
+    fn93 = u0:2 sig93
+    fn94 = u0:1 sig94
+    fn95 = u0:2 sig95
+    fn96 = u0:1 sig96
+    fn97 = u0:2 sig97
+    fn98 = u0:2 sig98
+    fn99 = u0:2 sig99
+    fn100 = u0:1 sig100
+    fn101 = u0:1 sig101
+    fn102 = u0:2 sig102
+    fn103 = u0:3 sig103
+    fn104 = u0:1 sig104
+    fn105 = u0:1 sig105
+    fn106 = u0:2 sig106
+    fn107 = u0:2 sig107
+    fn108 = u0:1 sig108
+    fn109 = u0:2 sig109
+    fn110 = u0:2 sig110
+    fn111 = u0:2 sig111
+    fn112 = u0:2 sig112
+    fn113 = u0:1 sig113
+    fn114 = u0:4 sig114
+    fn115 = u0:1 sig115
+    fn116 = u0:4 sig116
+    fn117 = u0:2 sig117
+    fn118 = u0:2 sig118
+    fn119 = u0:2 sig119
+    fn120 = u0:1 sig120
+    fn121 = u0:1 sig121
+    fn122 = u0:1 sig122
+    fn123 = u0:3 sig123
+    fn124 = u0:1 sig124
+    fn125 = u0:1 sig125
+    fn126 = u0:2 sig126
+    fn127 = u0:2 sig127
+    fn128 = u0:1 sig128
+    fn129 = u0:1 sig129
+    fn130 = u0:1 sig130
+    fn131 = u0:2 sig131
+    fn132 = u0:2 sig132
+    fn133 = u0:1 sig133
+    fn134 = u0:1 sig134
+    fn135 = u0:2 sig135
+    fn136 = u0:2 sig136
+    fn137 = u0:2 sig137
+    fn138 = u0:3 sig138
+    fn139 = u0:1 sig139
+    fn140 = u0:2 sig140
+    fn141 = u0:2 sig141
+    fn142 = u0:2 sig142
+    fn143 = u0:1 sig143
+    fn144 = u0:1 sig144
+    fn145 = u0:2 sig145
+    fn146 = u0:1 sig146
+    fn147 = u0:3 sig147
+    fn148 = u0:4 sig148
+    fn149 = u0:4 sig149
+    fn150 = u0:1 sig150
+    fn151 = u0:2 sig151
+    fn152 = u0:2 sig152
+    fn153 = u0:4 sig153
+    fn154 = u0:3 sig154
+    fn155 = u0:4 sig155
+    fn156 = u0:1 sig156
+    fn157 = u0:1 sig157
+    fn158 = u0:2 sig158
+    fn159 = u0:2 sig159
+    fn160 = u0:2 sig160
+    fn161 = u0:2 sig161
+    fn162 = u0:2 sig162
+    fn163 = u0:1 sig163
+    fn164 = u0:2 sig164
+    fn165 = u0:2 sig165
+    fn166 = u0:2 sig166
+    fn167 = u0:2 sig167
+    fn168 = u0:1 sig168
+    fn169 = u0:2 sig169
+    fn170 = u0:4 sig170
+    fn171 = u0:2 sig171
+    fn172 = u0:4 sig172
+    fn173 = u0:2 sig173
+    fn174 = u0:3 sig174
+    fn175 = u0:2 sig175
+    fn176 = u0:2 sig176
+    fn177 = u0:2 sig177
+    fn178 = u0:3 sig178
+    fn179 = u0:1 sig179
+    fn180 = u0:3 sig180
+    fn181 = u0:2 sig181
+    fn182 = u0:3 sig182
+    fn183 = u0:4 sig183
+    fn184 = u0:1 sig184
+    fn185 = u0:2 sig185
+    fn186 = u0:2 sig186
+    fn187 = u0:1 sig187
+    fn188 = u0:1 sig188
+    fn189 = u0:2 sig189
+    fn190 = u0:1 sig190
+    fn191 = u0:2 sig191
+    fn192 = u0:3 sig192
+    fn193 = u0:1 sig193
+    fn194 = u0:2 sig194
+    fn195 = u0:2 sig195
+    fn196 = u0:4 sig196
+    fn197 = u0:1 sig197
+    fn198 = u0:1 sig198
+    fn199 = u0:4 sig199
+    fn200 = u0:2 sig200
+    fn201 = u0:1 sig201
+    fn202 = u0:2 sig202
+    fn203 = u0:1 sig203
+    fn204 = u0:2 sig204
+    fn205 = u0:2 sig205
+    fn206 = u0:3 sig206
+    fn207 = u0:1 sig207
+    fn208 = u0:2 sig208
+    fn209 = u0:1 sig209
+    fn210 = u0:2 sig210
+    fn211 = u0:1 sig211
+    fn212 = u0:2 sig212
+    fn213 = u0:1 sig213
+    fn214 = u0:1 sig214
+    fn215 = u0:2 sig215
+    fn216 = u0:1 sig216
+    fn217 = u0:2 sig217
+    fn218 = u0:1 sig218
+    fn219 = u0:1 sig219
+    fn220 = u0:3 sig220
+    fn221 = u0:2 sig221
+    fn222 = u0:3 sig222
+    fn223 = u0:2 sig223
+    fn224 = u0:2 sig224
+    fn225 = u0:1 sig225
+    fn226 = u0:1 sig226
+    fn227 = u0:2 sig227
+    fn228 = u0:1 sig228
+    fn229 = u0:3 sig229
+    fn230 = u0:3 sig230
+    fn231 = u0:1 sig231
+    fn232 = u0:4 sig232
+    fn233 = u0:4 sig233
+    fn234 = u0:2 sig234
+    fn235 = u0:2 sig235
+    fn236 = u0:4 sig236
+    fn237 = u0:4 sig237
+    fn238 = u0:2 sig238
+    fn239 = u0:1 sig239
+    fn240 = u0:1 sig240
+    fn241 = u0:3 sig241
+    fn242 = u0:2 sig242
+    fn243 = u0:1 sig243
+    fn244 = u0:2 sig244
+    fn245 = u0:4 sig245
+    fn246 = u0:2 sig246
+    fn247 = u0:2 sig247
+    fn248 = u0:1 sig248
+    fn249 = u0:2 sig249
+    fn250 = u0:2 sig250
+    fn251 = u0:2 sig251
+    fn252 = u0:1 sig252
+    fn253 = u0:4 sig253
+    fn254 = u0:3 sig254
+    fn255 = u0:2 sig255
+    fn256 = u0:2 sig256
+    fn257 = u0:4 sig257
+    fn258 = u0:3 sig258
+    fn259 = u0:2 sig259
+    fn260 = u0:1 sig260
+    fn261 = u0:3 sig261
+    fn262 = u0:2 sig262
+    fn263 = u0:2 sig263
+    fn264 = u0:1 sig264
+    fn265 = u0:2 sig265
+    fn266 = u0:2 sig266
+    fn267 = u0:4 sig267
+    fn268 = u0:2 sig268
+    fn269 = u0:3 sig269
+    fn270 = u0:4 sig270
+    fn271 = u0:1 sig271
+    fn272 = u0:4 sig272
+    fn273 = u0:2 sig273
+    fn274 = u0:1 sig274
+    fn275 = u0:4 sig275
+    fn276 = u0:2 sig276
+    fn277 = u0:1 sig277
+    fn278 = u0:1 sig278
+    fn279 = u0:1 sig279
+    fn280 = u0:2 sig280
+    fn281 = u0:2 sig281
+    fn282 = u0:1 sig282
+    fn283 = u0:1 sig283
+    fn284 = u0:2 sig284
+    fn285 = u0:1 sig285
+    fn286 = u0:1 sig286
+    fn287 = u0:2 sig287
+    fn288 = u0:2 sig288
+    fn289 = u0:3 sig289
+    fn290 = u0:1 sig290
+    fn291 = u0:2 sig291
+    fn292 = u0:2 sig292
+    fn293 = u0:2 sig293
+    fn294 = u0:2 sig294
+    fn295 = u0:1 sig295
+    fn296 = u0:2 sig296
+    fn297 = u0:4 sig297
+    fn298 = u0:1 sig298
+    fn299 = u0:1 sig299
+    fn300 = u0:1 sig300
+    fn301 = u0:3 sig301
+    fn302 = u0:1 sig302
+    fn303 = u0:2 sig303
+    fn304 = u0:1 sig304
+    fn305 = u0:1 sig305
+    fn306 = u0:1 sig306
+    fn307 = u0:1 sig307
+    fn308 = u0:4 sig308
+    fn309 = u0:4 sig309
+    fn310 = u0:1 sig310
+    fn311 = u0:2 sig311
+    fn312 = u0:2 sig312
+    fn313 = u0:1 sig313
+    fn314 = u0:1 sig314
+    fn315 = u0:3 sig315
+    fn316 = u0:2 sig316
+    fn317 = u0:1 sig317
+    fn318 = u0:3 sig318
+    fn319 = u0:2 sig319
+    fn320 = u0:1 sig320
+    fn321 = u0:1 sig321
+    fn322 = u0:2 sig322
+    fn323 = u0:4 sig323
+    fn324 = u0:3 sig324
+    fn325 = u0:2 sig325
+    fn326 = u0:3 sig326
+    fn327 = u0:2 sig327
+    fn328 = u0:1 sig328
+    fn329 = u0:1 sig329
+    fn330 = u0:4 sig330
+    fn331 = u0:3 sig331
+    fn332 = u0:2 sig332
+    fn333 = u0:1 sig333
+    fn334 = u0:2 sig334
+    fn335 = u0:2 sig335
+    fn336 = u0:3 sig336
+    fn337 = u0:2 sig337
+    fn338 = u0:2 sig338
+    fn339 = u0:1 sig339
+    fn340 = u0:2 sig340
+    fn341 = u0:4 sig341
+    fn342 = u0:2 sig342
+    fn343 = u0:3 sig343
+    fn344 = u0:2 sig344
+    fn345 = u0:2 sig345
+    fn346 = u0:2 sig346
+    fn347 = u0:2 sig347
+    fn348 = u0:1 sig348
+    fn349 = u0:2 sig349
+    fn350 = u0:1 sig350
+    fn351 = u0:2 sig351
+    fn352 = u0:2 sig352
+    fn353 = u0:1 sig353
+    fn354 = u0:1 sig354
+    fn355 = u0:3 sig355
+
+block0(v0: f32, v1: f32):
+    v2 = f32const 0x1.5f6c48p-1
+    v3 = call fn0(v0)
+    v4 = call fn1(v3)
+    v5 = call fn2(v1)
+    v6 = call fn3(v5)
+    v7 = call fn4(v6)
+    v8 = call fn5(v7)
+    v9 = call fn6(v8)
+    v10 = f32const 0.0
+    v11 = fmax v0, v10  ; v10 = 0.0
+    v12 = call fn7(v11)
+    v13 = call fn8(v12)
+    v14 = call fn9(v0)
+    v15 = call fn10(v14)
+    v16 = fmul v13, v15
+    v17 = call fn11(v16)
+    v18 = call fn12(v17)
+    v19 = f32const 0.0
+    v20 = fmax v18, v19  ; v19 = 0.0
+    v21 = call fn13(v20)
+    v22 = call fn14(v0)
+    v23 = f32const 0.0
+    v24 = fmax v22, v23  ; v23 = 0.0
+    v25 = call fn15(v24)
+    v26 = f32const 0.0
+    v27 = fmax v0, v26  ; v26 = 0.0
+    v28 = call fn16(v27)
+    v29 = call fn17(v28)
+    v30 = fadd v25, v29
+    v31 = call fn18(v30)
+    v32 = f32const 0x1.ed7022p0
+    v33 = f32const 0x1.0c6f7ap-20
+    v34 = fabs v1
+    v35 = fcmp gt v34, v33  ; v33 = 0x1.0c6f7ap-20
+    v36 = f32const 0.0
+    v37 = fdiv v0, v1
+    v38 = select v35, v37, v36  ; v36 = 0.0
+    v39 = f32const 0x1.0c6f7ap-20
+    v40 = fabs v38
+    v41 = fcmp gt v40, v39  ; v39 = 0x1.0c6f7ap-20
+    v42 = f32const 0.0
+    v43 = fdiv v32, v38  ; v32 = 0x1.ed7022p0
+    v44 = select v41, v43, v42  ; v42 = 0.0
+    v45 = call fn19(v44)
+    v46 = call fn20(v45)
+    v47 = f32const 0x1.0c6f7ap-20
+    v48 = fabs v46
+    v49 = fcmp gt v48, v47  ; v47 = 0x1.0c6f7ap-20
+    v50 = f32const 0.0
+    v51 = fdiv v31, v46
+    v52 = select v49, v51, v50  ; v50 = 0.0
+    v53 = call fn21(v52)
+    v54 = f32const 0x1.0c6f7ap-20
+    v55 = fabs v53
+    v56 = fcmp gt v55, v54  ; v54 = 0x1.0c6f7ap-20
+    v57 = f32const 0.0
+    v58 = fdiv v21, v53
+    v59 = select v56, v58, v57  ; v57 = 0.0
+    v60 = f32const 0.0
+    v61 = fmax v59, v60  ; v60 = 0.0
+    v62 = call fn22(v61)
+    v63 = call fn23(v62)
+    v64 = call fn24(v63)
+    v65 = fmul v9, v64
+    v66 = f32const 0x1.0c6f7ap-20
+    v67 = fabs v65
+    v68 = fcmp gt v67, v66  ; v66 = 0x1.0c6f7ap-20
+    v69 = f32const 0.0
+    v70 = fdiv v4, v65
+    v71 = select v68, v70, v69  ; v69 = 0.0
+    v72 = fmul v1, v71
+    v73 = call fn25(v72)
+    v74 = call fn26(v73)
+    v75 = fadd v2, v74  ; v2 = 0x1.5f6c48p-1
+    v76 = f32const 0x1.552e06p-1
+    v77 = f32const -0x1.39fa2ep-2
+    v78 = call fn27(v0)
+    v79 = call fn28(v78)
+    v80 = call fn29(v79)
+    v81 = call fn30(v80)
+    v82 = call fn31(v81)
+    v83 = f32const 0x1.b9d8c4p0
+    v84 = f32const 0x1.1ae000p-1
+    v85 = fmul v1, v84  ; v84 = 0x1.1ae000p-1
+    v86 = call fn32(v85)
+    v87 = call fn33(v86)
+    v88 = call fn34(v0)
+    v89 = f32const 0.0
+    v90 = fmax v88, v89  ; v89 = 0.0
+    v91 = call fn35(v90)
+    v92 = call fn36(v91)
+    v93 = fadd v87, v92
+    v94 = fadd v83, v93  ; v83 = 0x1.b9d8c4p0
+    v95 = fmul v82, v94
+    v96 = f32const -0x1.072cb0p-2
+    v97 = fmul v96, v0  ; v96 = -0x1.072cb0p-2
+    v98 = fmul v0, v1
+    v99 = fadd v97, v98
+    v100 = fadd v96, v0  ; v96 = -0x1.072cb0p-2
+    v101 = f32const 0x1.0c6f7ap-20
+    v102 = fadd v100, v101  ; v101 = 0x1.0c6f7ap-20
+    v103 = fdiv v99, v102
+    v104 = f32const 0.0
+    v105 = fmax v0, v104  ; v104 = 0.0
+    v106 = call fn37(v105)
+    v107 = fmul v103, v106
+    v108 = call fn38(v107)
+    v109 = call fn39(v0)
+    v110 = call fn40(v1)
+    v111 = call fn41(v0)
+    v112 = f32const -0x1.b5b924p-1
+    v113 = fmul v1, v112  ; v112 = -0x1.b5b924p-1
+    v114 = fmul v0, v0
+    v115 = fadd v113, v114
+    v116 = fadd v1, v0
+    v117 = f32const 0x1.0c6f7ap-20
+    v118 = fadd v116, v117  ; v117 = 0x1.0c6f7ap-20
+    v119 = fdiv v115, v118
+    v120 = fmul v109, v111
+    v121 = fmul v110, v119
+    v122 = fadd v120, v121
+    v123 = fadd v109, v110
+    v124 = f32const 0x1.0c6f7ap-20
+    v125 = fadd v123, v124  ; v124 = 0x1.0c6f7ap-20
+    v126 = fdiv v122, v125
+    v127 = call fn42(v126)
+    v128 = call fn43(v0)
+    v129 = call fn44(v128)
+    v130 = call fn45(v129)
+    v131 = call fn46(v1)
+    v132 = f32const 0x1.915700p-2
+    v133 = fadd v132, v0  ; v132 = 0x1.915700p-2
+    v134 = f32const 0x1.0c6f7ap-20
+    v135 = fabs v133
+    v136 = fcmp gt v135, v134  ; v134 = 0x1.0c6f7ap-20
+    v137 = f32const 0.0
+    v138 = fdiv v131, v133
+    v139 = select v136, v138, v137  ; v137 = 0.0
+    v140 = call fn47(v139)
+    v141 = fmul v108, v130
+    v142 = fmul v127, v140
+    v143 = fadd v141, v142
+    v144 = fadd v108, v127
+    v145 = f32const 0x1.0c6f7ap-20
+    v146 = fadd v144, v145  ; v145 = 0x1.0c6f7ap-20
+    v147 = fdiv v143, v146
+    v148 = call fn48(v147)
+    v149 = fadd v148, v0
+    v150 = f32const 0x1.0c6f7ap-20
+    v151 = fabs v149
+    v152 = fcmp gt v151, v150  ; v150 = 0x1.0c6f7ap-20
+    v153 = f32const 0.0
+    v154 = fdiv v95, v149
+    v155 = select v152, v154, v153  ; v153 = 0.0
+    v156 = fmul v77, v155  ; v77 = -0x1.39fa2ep-2
+    v157 = f32const 0.0
+    v158 = f32const 0x1.0c6f7ap-20
+    v159 = fabs v1
+    v160 = fcmp gt v159, v158  ; v158 = 0x1.0c6f7ap-20
+    v161 = f32const 0.0
+    v162 = fdiv v1, v1
+    v163 = select v160, v162, v161  ; v161 = 0.0
+    v164 = f32const 0.0
+    v165 = fmax v163, v164  ; v164 = 0.0
+    v166 = call fn49(v165)
+    v167 = call fn50(v166)
+    v168 = call fn51(v0)
+    v169 = call fn52(v168)
+    v170 = call fn53(v169)
+    v171 = f32const 0x1.0c6f7ap-20
+    v172 = fabs v170
+    v173 = fcmp gt v172, v171  ; v171 = 0x1.0c6f7ap-20
+    v174 = f32const 0.0
+    v175 = fdiv v167, v170
+    v176 = select v173, v175, v174  ; v174 = 0.0
+    v177 = f32const -0x1.ec85bcp-1
+    v178 = f32const 0x1.f7474cp-1
+    v179 = fmul v0, v0
+    v180 = fmul v178, v0  ; v178 = 0x1.f7474cp-1
+    v181 = fadd v179, v180
+    v182 = fadd v0, v178  ; v178 = 0x1.f7474cp-1
+    v183 = f32const 0x1.0c6f7ap-20
+    v184 = fadd v182, v183  ; v183 = 0x1.0c6f7ap-20
+    v185 = fdiv v181, v184
+    v186 = f32const 0x1.5bc000p-12
+    v187 = fadd v186, v1  ; v186 = 0x1.5bc000p-12
+    v188 = fmul v177, v185  ; v177 = -0x1.ec85bcp-1
+    v189 = fmul v1, v187
+    v190 = fadd v188, v189
+    v191 = fadd v177, v1  ; v177 = -0x1.ec85bcp-1
+    v192 = f32const 0x1.0c6f7ap-20
+    v193 = fadd v191, v192  ; v192 = 0x1.0c6f7ap-20
+    v194 = fdiv v190, v193
+    v195 = f32const 0x1.82aba0p-2
+    v196 = fadd v0, v195  ; v195 = 0x1.82aba0p-2
+    v197 = f32const 0x1.eeaeacp-1
+    v198 = f32const 0x1.0c6f7ap-20
+    v199 = fabs v197  ; v197 = 0x1.eeaeacp-1
+    v200 = fcmp gt v199, v198  ; v198 = 0x1.0c6f7ap-20
+    v201 = f32const 0.0
+    v202 = fdiv v196, v197  ; v197 = 0x1.eeaeacp-1
+    v203 = select v200, v202, v201  ; v201 = 0.0
+    v204 = f32const 0x1.0c6f7ap-20
+    v205 = fabs v203
+    v206 = fcmp gt v205, v204  ; v204 = 0x1.0c6f7ap-20
+    v207 = f32const 0.0
+    v208 = fdiv v194, v203
+    v209 = select v206, v208, v207  ; v207 = 0.0
+    v210 = call fn54(v209)
+    v211 = f32const -0x1.388780p-2
+    v212 = f32const 0x1.eb40d8p-1
+    v213 = fmul v176, v211  ; v211 = -0x1.388780p-2
+    v214 = fmul v210, v212  ; v212 = 0x1.eb40d8p-1
+    v215 = fadd v213, v214
+    v216 = fadd v176, v210
+    v217 = f32const 0x1.0c6f7ap-20
+    v218 = fadd v216, v217  ; v217 = 0x1.0c6f7ap-20
+    v219 = fdiv v215, v218
+    v220 = call fn55(v0)
+    v221 = f32const 0x1.780a18p-1
+    v222 = f32const 0x1.0c6f7ap-20
+    v223 = fabs v221  ; v221 = 0x1.780a18p-1
+    v224 = fcmp gt v223, v222  ; v222 = 0x1.0c6f7ap-20
+    v225 = f32const 0.0
+    v226 = fdiv v220, v221  ; v221 = 0x1.780a18p-1
+    v227 = select v224, v226, v225  ; v225 = 0.0
+    v228 = call fn56(v227)
+    v229 = call fn57(v228)
+    v230 = call fn58(v1)
+    v231 = call fn59(v230)
+    v232 = fmul v229, v231
+    v233 = fmul v219, v232
+    v234 = call fn60(v233)
+    v235 = call fn61(v0)
+    v236 = fadd v234, v235
+    v237 = call fn62(v0)
+    v238 = call fn63(v237)
+    v239 = call fn64(v238)
+    v240 = call fn65(v239)
+    v241 = call fn66(v240)
+    v242 = f32const 0.0
+    v243 = fmax v241, v242  ; v242 = 0.0
+    v244 = call fn67(v243)
+    v245 = f32const -0x1.91b874p-1
+    v246 = fadd v1, v0
+    v247 = f32const 0x1.8a80f0p-2
+    v248 = f32const 0x1.0c6f7ap-20
+    v249 = fabs v247  ; v247 = 0x1.8a80f0p-2
+    v250 = fcmp gt v249, v248  ; v248 = 0x1.0c6f7ap-20
+    v251 = f32const 0.0
+    v252 = fdiv v246, v247  ; v247 = 0x1.8a80f0p-2
+    v253 = select v250, v252, v251  ; v251 = 0.0
+    v254 = f32const 0.0
+    v255 = fmax v253, v254  ; v254 = 0.0
+    v256 = call fn68(v255)
+    v257 = call fn69(v256)
+    v258 = call fn70(v257)
+    v259 = f32const 0x1.0c6f7ap-20
+    v260 = fabs v258
+    v261 = fcmp gt v260, v259  ; v259 = 0x1.0c6f7ap-20
+    v262 = f32const 0.0
+    v263 = fdiv v245, v258  ; v245 = -0x1.91b874p-1
+    v264 = select v261, v263, v262  ; v262 = 0.0
+    v265 = fadd v244, v264
+    v266 = call fn71(v1)
+    v267 = call fn72(v266)
+    v268 = call fn73(v267)
+    v269 = call fn74(v268)
+    v270 = f32const 0x1.5a5570p-1
+    v271 = f32const -0x1.5db400p-9
+    v272 = fmul v0, v271  ; v271 = -0x1.5db400p-9
+    v273 = fmul v270, v1  ; v270 = 0x1.5a5570p-1
+    v274 = fadd v272, v273
+    v275 = fadd v0, v270  ; v270 = 0x1.5a5570p-1
+    v276 = f32const 0x1.0c6f7ap-20
+    v277 = fadd v275, v276  ; v276 = 0x1.0c6f7ap-20
+    v278 = fdiv v274, v277
+    v279 = call fn75(v278)
+    v280 = f32const -0x1.4f3c84p-1
+    v281 = call fn76(v0)
+    v282 = f32const 0x1.279e10p-2
+    v283 = fadd v282, v1  ; v282 = 0x1.279e10p-2
+    v284 = call fn77(v283)
+    v285 = fmul v279, v281
+    v286 = fmul v280, v284  ; v280 = -0x1.4f3c84p-1
+    v287 = fadd v285, v286
+    v288 = fadd v279, v280  ; v280 = -0x1.4f3c84p-1
+    v289 = f32const 0x1.0c6f7ap-20
+    v290 = fadd v288, v289  ; v289 = 0x1.0c6f7ap-20
+    v291 = fdiv v287, v290
+    v292 = f32const 0x1.4a402ep-2
+    v293 = f32const 0x1.65c964p-1
+    v294 = call fn78(v1)
+    v295 = call fn79(v294)
+    v296 = fadd v1, v0
+    v297 = call fn80(v0)
+    v298 = fadd v296, v297
+    v299 = call fn81(v0)
+    v300 = call fn82(v299)
+    v301 = fmul v295, v298
+    v302 = fmul v1, v300
+    v303 = fadd v301, v302
+    v304 = fadd v295, v1
+    v305 = f32const 0x1.0c6f7ap-20
+    v306 = fadd v304, v305  ; v305 = 0x1.0c6f7ap-20
+    v307 = fdiv v303, v306
+    v308 = fmul v291, v293  ; v293 = 0x1.65c964p-1
+    v309 = fmul v292, v307  ; v292 = 0x1.4a402ep-2
+    v310 = fadd v308, v309
+    v311 = fadd v291, v292  ; v292 = 0x1.4a402ep-2
+    v312 = f32const 0x1.0c6f7ap-20
+    v313 = fadd v311, v312  ; v312 = 0x1.0c6f7ap-20
+    v314 = fdiv v310, v313
+    v315 = fadd v269, v314
+    v316 = f32const 0.0
+    v317 = fmax v315, v316  ; v316 = 0.0
+    v318 = call fn83(v317)
+    v319 = call fn84(v318)
+    v320 = fmul v265, v319
+    v321 = fmul v156, v236
+    v322 = fmul v157, v320  ; v157 = 0.0
+    v323 = fadd v321, v322
+    v324 = fadd v156, v157  ; v157 = 0.0
+    v325 = f32const 0x1.0c6f7ap-20
+    v326 = fadd v324, v325  ; v325 = 0x1.0c6f7ap-20
+    v327 = fdiv v323, v326
+    v328 = f32const 0x1.80ef10p0
+    v329 = f32const 0x1.0c6f7ap-20
+    v330 = fabs v328  ; v328 = 0x1.80ef10p0
+    v331 = fcmp gt v330, v329  ; v329 = 0x1.0c6f7ap-20
+    v332 = f32const 0.0
+    v333 = fdiv v0, v328  ; v328 = 0x1.80ef10p0
+    v334 = select v331, v333, v332  ; v332 = 0.0
+    v335 = f32const 0x1.28ee72p1
+    v336 = f32const 0x1.c566a4p-1
+    v337 = call fn85(v1)
+    v338 = call fn86(v337)
+    v339 = f32const 0x1.0c6f7ap-20
+    v340 = fabs v338
+    v341 = fcmp gt v340, v339  ; v339 = 0x1.0c6f7ap-20
+    v342 = f32const 0.0
+    v343 = fdiv v336, v338  ; v336 = 0x1.c566a4p-1
+    v344 = select v341, v343, v342  ; v342 = 0.0
+    v345 = call fn87(v344)
+    v346 = fmul v0, v335  ; v335 = 0x1.28ee72p1
+    v347 = fmul v334, v345
+    v348 = fadd v346, v347
+    v349 = fadd v0, v334
+    v350 = f32const 0x1.0c6f7ap-20
+    v351 = fadd v349, v350  ; v350 = 0x1.0c6f7ap-20
+    v352 = fdiv v348, v351
+    v353 = f32const 0x1.26185ep1
+    v354 = call fn88(v1)
+    v355 = f32const 0.0
+    v356 = fmax v354, v355  ; v355 = 0.0
+    v357 = call fn89(v356)
+    v358 = f32const 0x1.d9bf60p-2
+    v359 = fmul v353, v0  ; v353 = 0x1.26185ep1
+    v360 = fmul v357, v358  ; v358 = 0x1.d9bf60p-2
+    v361 = fadd v359, v360
+    v362 = fadd v353, v357  ; v353 = 0x1.26185ep1
+    v363 = f32const 0x1.0c6f7ap-20
+    v364 = fadd v362, v363  ; v363 = 0x1.0c6f7ap-20
+    v365 = fdiv v361, v364
+    v366 = f32const 0.0
+    v367 = fmax v365, v366  ; v366 = 0.0
+    v368 = call fn90(v367)
+    v369 = f32const 0x1.2f09f4p-1
+    v370 = f32const 0.0
+    v371 = fmax v0, v370  ; v370 = 0.0
+    v372 = call fn91(v371)
+    v373 = call fn92(v372)
+    v374 = f32const 0x1.0c6f7ap-20
+    v375 = fabs v373
+    v376 = fcmp gt v375, v374  ; v374 = 0x1.0c6f7ap-20
+    v377 = f32const 0.0
+    v378 = fdiv v369, v373  ; v369 = 0x1.2f09f4p-1
+    v379 = select v376, v378, v377  ; v377 = 0.0
+    v380 = call fn93(v0)
+    v381 = call fn94(v380)
+    v382 = call fn95(v381)
+    v383 = fmul v379, v382
+    v384 = f32const -0x1.54d748p-3
+    v385 = f32const -0x1.b89e32p-2
+    v386 = fmul v368, v384  ; v384 = -0x1.54d748p-3
+    v387 = fmul v383, v385  ; v385 = -0x1.b89e32p-2
+    v388 = fadd v386, v387
+    v389 = fadd v368, v383
+    v390 = f32const 0x1.0c6f7ap-20
+    v391 = fadd v389, v390  ; v390 = 0x1.0c6f7ap-20
+    v392 = fdiv v388, v391
+    v393 = f32const 0x1.000000p0
+    v394 = fmul v392, v393  ; v393 = 0x1.000000p0
+    v395 = call fn96(v1)
+    v396 = call fn97(v395)
+    v397 = call fn98(v396)
+    v398 = call fn99(v397)
+    v399 = call fn100(v398)
+    v400 = call fn101(v399)
+    v401 = fadd v394, v400
+    v402 = f32const 0x1.0c6f7ap-20
+    v403 = fabs v401
+    v404 = fcmp gt v403, v402  ; v402 = 0x1.0c6f7ap-20
+    v405 = f32const 0.0
+    v406 = fdiv v352, v401
+    v407 = select v404, v406, v405  ; v405 = 0.0
+    v408 = f32const -0x1.0f45d8p-2
+    v409 = fmul v0, v1
+    v410 = fmul v0, v408  ; v408 = -0x1.0f45d8p-2
+    v411 = fadd v409, v410
+    v412 = fadd v0, v0
+    v413 = f32const 0x1.0c6f7ap-20
+    v414 = fadd v412, v413  ; v413 = 0x1.0c6f7ap-20
+    v415 = fdiv v411, v414
+    v416 = call fn102(v415)
+    v417 = call fn103(v416)
+    v418 = call fn104(v417)
+    v419 = f32const -0x1.12bbdcp-1
+    v420 = fmul v418, v419  ; v419 = -0x1.12bbdcp-1
+    v421 = call fn105(v420)
+    v422 = f32const 0x1.fe868cp-1
+    v423 = call fn106(v0)
+    v424 = f32const 0x1.0c6f7ap-20
+    v425 = fabs v423
+    v426 = fcmp gt v425, v424  ; v424 = 0x1.0c6f7ap-20
+    v427 = f32const 0.0
+    v428 = fdiv v422, v423  ; v422 = 0x1.fe868cp-1
+    v429 = select v426, v428, v427  ; v427 = 0.0
+    v430 = call fn107(v0)
+    v431 = call fn108(v430)
+    v432 = f32const 0x1.a41c08p-1
+    v433 = fmul v1, v0
+    v434 = call fn109(v433)
+    v435 = fmul v429, v432  ; v432 = 0x1.a41c08p-1
+    v436 = fmul v431, v434
+    v437 = fadd v435, v436
+    v438 = fadd v429, v431
+    v439 = f32const 0x1.0c6f7ap-20
+    v440 = fadd v438, v439  ; v439 = 0x1.0c6f7ap-20
+    v441 = fdiv v437, v440
+    v442 = f32const 0x1.6ff366p-1
+    v443 = call fn110(v0)
+    v444 = f32const 0x1.0c6f7ap-20
+    v445 = fabs v1
+    v446 = fcmp gt v445, v444  ; v444 = 0x1.0c6f7ap-20
+    v447 = f32const 0.0
+    v448 = fdiv v0, v1
+    v449 = select v446, v448, v447  ; v447 = 0.0
+    v450 = call fn111(v1)
+    v451 = fmul v442, v449  ; v442 = 0x1.6ff366p-1
+    v452 = fmul v443, v450
+    v453 = fadd v451, v452
+    v454 = fadd v442, v443  ; v442 = 0x1.6ff366p-1
+    v455 = f32const 0x1.0c6f7ap-20
+    v456 = fadd v454, v455  ; v455 = 0x1.0c6f7ap-20
+    v457 = fdiv v453, v456
+    v458 = call fn112(v457)
+    v459 = fadd v441, v458
+    v460 = f32const 0x1.0c6f7ap-20
+    v461 = fabs v0
+    v462 = fcmp gt v461, v460  ; v460 = 0x1.0c6f7ap-20
+    v463 = f32const 0.0
+    v464 = fdiv v459, v0
+    v465 = select v462, v464, v463  ; v463 = 0.0
+    v466 = call fn113(v465)
+    v467 = fmul v421, v466
+    v468 = f32const 0.0
+    v469 = fmax v1, v468  ; v468 = 0.0
+    v470 = call fn114(v469)
+    v471 = f32const 0x1.2adf40p-3
+    v472 = f32const 0x1.0c6f7ap-20
+    v473 = fabs v471  ; v471 = 0x1.2adf40p-3
+    v474 = fcmp gt v473, v472  ; v472 = 0x1.0c6f7ap-20
+    v475 = f32const 0.0
+    v476 = fdiv v470, v471  ; v471 = 0x1.2adf40p-3
+    v477 = select v474, v476, v475  ; v475 = 0.0
+    v478 = call fn115(v0)
+    v479 = f32const 0.0
+    v480 = fmax v478, v479  ; v479 = 0.0
+    v481 = call fn116(v480)
+    v482 = fmul v477, v481
+    v483 = f32const 0x1.6977d0p-3
+    v484 = fmul v483, v0  ; v483 = 0x1.6977d0p-3
+    v485 = call fn117(v484)
+    v486 = call fn118(v485)
+    v487 = f32const 0x1.728a46p0
+    v488 = f32const 0x1.0c6f7ap-20
+    v489 = fabs v1
+    v490 = fcmp gt v489, v488  ; v488 = 0x1.0c6f7ap-20
+    v491 = f32const 0.0
+    v492 = fdiv v0, v1
+    v493 = select v490, v492, v491  ; v491 = 0.0
+    v494 = call fn119(v493)
+    v495 = fmul v487, v494  ; v487 = 0x1.728a46p0
+    v496 = call fn120(v0)
+    v497 = fmul v482, v495
+    v498 = fmul v486, v496
+    v499 = fadd v497, v498
+    v500 = fadd v482, v486
+    v501 = f32const 0x1.0c6f7ap-20
+    v502 = fadd v500, v501  ; v501 = 0x1.0c6f7ap-20
+    v503 = fdiv v499, v502
+    v504 = call fn121(v503)
+    v505 = call fn122(v504)
+    v506 = call fn123(v505)
+    v507 = f32const 0x1.0c6f7ap-20
+    v508 = fabs v506
+    v509 = fcmp gt v508, v507  ; v507 = 0x1.0c6f7ap-20
+    v510 = f32const 0.0
+    v511 = fdiv v467, v506
+    v512 = select v509, v511, v510  ; v510 = 0.0
+    v513 = fadd v407, v512
+    v514 = fmul v327, v513
+    v515 = call fn124(v514)
+    v516 = f32const 0x1.300802p-1
+    v517 = call fn125(v1)
+    v518 = call fn126(v1)
+    v519 = call fn127(v1)
+    v520 = call fn128(v1)
+    v521 = fmul v517, v519
+    v522 = fmul v518, v520
+    v523 = fadd v521, v522
+    v524 = fadd v517, v518
+    v525 = f32const 0x1.0c6f7ap-20
+    v526 = fadd v524, v525  ; v525 = 0x1.0c6f7ap-20
+    v527 = fdiv v523, v526
+    v528 = f32const -0x1.a4c15ep-1
+    v529 = f32const -0x1.9cf108p-1
+    v530 = fmul v0, v528  ; v528 = -0x1.a4c15ep-1
+    v531 = fmul v0, v529  ; v529 = -0x1.9cf108p-1
+    v532 = fadd v530, v531
+    v533 = fadd v0, v0
+    v534 = f32const 0x1.0c6f7ap-20
+    v535 = fadd v533, v534  ; v534 = 0x1.0c6f7ap-20
+    v536 = fdiv v532, v535
+    v537 = fmul v536, v0
+    v538 = fadd v527, v537
+    v539 = call fn129(v1)
+    v540 = call fn130(v539)
+    v541 = call fn131(v540)
+    v542 = fadd v538, v541
+    v543 = fadd v516, v542  ; v516 = 0x1.300802p-1
+    v544 = call fn132(v543)
+    v545 = call fn133(v1)
+    v546 = call fn134(v545)
+    v547 = call fn135(v546)
+    v548 = call fn136(v547)
+    v549 = fmul v544, v548
+    v550 = call fn137(v549)
+    v551 = call fn138(v550)
+    v552 = call fn139(v551)
+    v553 = call fn140(v552)
+    v554 = fmul v515, v553
+    v555 = call fn141(v1)
+    v556 = call fn142(v1)
+    v557 = f32const 0x1.0c6f7ap-20
+    v558 = fabs v556
+    v559 = fcmp gt v558, v557  ; v557 = 0x1.0c6f7ap-20
+    v560 = f32const 0.0
+    v561 = fdiv v555, v556
+    v562 = select v559, v561, v560  ; v560 = 0.0
+    v563 = fmul v554, v562
+    v564 = f32const -0x1.d1a600p-2
+    v565 = f32const -0x1.9cde54p-2
+    v566 = call fn143(v1)
+    v567 = call fn144(v566)
+    v568 = fmul v564, v565  ; v564 = -0x1.d1a600p-2, v565 = -0x1.9cde54p-2
+    v569 = fmul v1, v567
+    v570 = fadd v568, v569
+    v571 = fadd v564, v1  ; v564 = -0x1.d1a600p-2
+    v572 = f32const 0x1.0c6f7ap-20
+    v573 = fadd v571, v572  ; v572 = 0x1.0c6f7ap-20
+    v574 = fdiv v570, v573
+    v575 = call fn145(v574)
+    v576 = call fn146(v0)
+    v577 = call fn147(v576)
+    v578 = f32const 0.0
+    v579 = fmax v577, v578  ; v578 = 0.0
+    v580 = call fn148(v579)
+    v581 = fmul v575, v580
+    v582 = f32const 0x1.f75e50p-1
+    v583 = f32const 0x1.0d57a0p-4
+    v584 = fmul v583, v1  ; v583 = 0x1.0d57a0p-4
+    v585 = f32const 0.0
+    v586 = fmax v0, v585  ; v585 = 0.0
+    v587 = call fn149(v586)
+    v588 = fadd v584, v587
+    v589 = f32const 0x1.0c6f7ap-20
+    v590 = fabs v588
+    v591 = fcmp gt v590, v589  ; v589 = 0x1.0c6f7ap-20
+    v592 = f32const 0.0
+    v593 = fdiv v582, v588  ; v582 = 0x1.f75e50p-1
+    v594 = select v591, v593, v592  ; v592 = 0.0
+    v595 = call fn150(v594)
+    v596 = call fn151(v595)
+    v597 = fadd v581, v596
+    v598 = call fn152(v597)
+    v599 = f32const 0.0
+    v600 = fmax v598, v599  ; v599 = 0.0
+    v601 = call fn153(v600)
+    v602 = call fn154(v601)
+    v603 = f32const 0.0
+    v604 = fmax v602, v603  ; v603 = 0.0
+    v605 = call fn155(v604)
+    v606 = call fn156(v605)
+    v607 = fmul v0, v0
+    v608 = call fn157(v607)
+    v609 = call fn158(v608)
+    v610 = call fn159(v0)
+    v611 = call fn160(v0)
+    v612 = fmul v610, v611
+    v613 = call fn161(v612)
+    v614 = f32const 0x1.0c6f7ap-20
+    v615 = fabs v613
+    v616 = fcmp gt v615, v614  ; v614 = 0x1.0c6f7ap-20
+    v617 = f32const 0.0
+    v618 = fdiv v609, v613
+    v619 = select v616, v618, v617  ; v617 = 0.0
+    v620 = call fn162(v619)
+    v621 = call fn163(v620)
+    v622 = call fn164(v1)
+    v623 = call fn165(v622)
+    v624 = call fn166(v623)
+    v625 = fmul v621, v624
+    v626 = call fn167(v625)
+    v627 = f32const 0x1.895d8ep-1
+    v628 = fmul v0, v1
+    v629 = fmul v1, v0
+    v630 = fadd v628, v629
+    v631 = fadd v0, v1
+    v632 = f32const 0x1.0c6f7ap-20
+    v633 = fadd v631, v632  ; v632 = 0x1.0c6f7ap-20
+    v634 = fdiv v630, v633
+    v635 = fmul v627, v634  ; v627 = 0x1.895d8ep-1
+    v636 = call fn168(v635)
+    v637 = call fn169(v1)
+    v638 = f32const 0x1.0c6f7ap-20
+    v639 = fabs v0
+    v640 = fcmp gt v639, v638  ; v638 = 0x1.0c6f7ap-20
+    v641 = f32const 0.0
+    v642 = fdiv v1, v0
+    v643 = select v640, v642, v641  ; v641 = 0.0
+    v644 = fmul v637, v643
+    v645 = f32const 0.0
+    v646 = fmax v644, v645  ; v645 = 0.0
+    v647 = call fn170(v646)
+    v648 = fmul v636, v647
+    v649 = call fn171(v648)
+    v650 = f32const 0.0
+    v651 = fmax v649, v650  ; v650 = 0.0
+    v652 = call fn172(v651)
+    v653 = call fn173(v652)
+    v654 = call fn174(v653)
+    v655 = fmul v626, v654
+    v656 = call fn175(v655)
+    v657 = call fn176(v656)
+    v658 = fmul v606, v657
+    v659 = call fn177(v658)
+    v660 = call fn178(v0)
+    v661 = f32const -0x1.170040p-1
+    v662 = call fn179(v1)
+    v663 = fmul v661, v662  ; v661 = -0x1.170040p-1
+    v664 = call fn180(v663)
+    v665 = fadd v1, v1
+    v666 = call fn181(v665)
+    v667 = f32const 0x1.f9be06p-1
+    v668 = fadd v666, v667  ; v667 = 0x1.f9be06p-1
+    v669 = fmul v664, v668
+    v670 = call fn182(v669)
+    v671 = f32const 0.0
+    v672 = fmax v670, v671  ; v671 = 0.0
+    v673 = call fn183(v672)
+    v674 = fmul v660, v673
+    v675 = call fn184(v0)
+    v676 = f32const 0x1.216298p-1
+    v677 = f32const 0x1.0c6f7ap-20
+    v678 = fabs v676  ; v676 = 0x1.216298p-1
+    v679 = fcmp gt v678, v677  ; v677 = 0x1.0c6f7ap-20
+    v680 = f32const 0.0
+    v681 = fdiv v675, v676  ; v676 = 0x1.216298p-1
+    v682 = select v679, v681, v680  ; v680 = 0.0
+    v683 = call fn185(v682)
+    v684 = call fn186(v683)
+    v685 = call fn187(v0)
+    v686 = call fn188(v685)
+    v687 = call fn189(v686)
+    v688 = call fn190(v687)
+    v689 = fadd v684, v688
+    v690 = call fn191(v1)
+    v691 = call fn192(v690)
+    v692 = call fn193(v691)
+    v693 = call fn194(v692)
+    v694 = call fn195(v693)
+    v695 = f32const 0.0
+    v696 = fmax v0, v695  ; v695 = 0.0
+    v697 = call fn196(v696)
+    v698 = f32const 0x1.0c6f7ap-20
+    v699 = fabs v0
+    v700 = fcmp gt v699, v698  ; v698 = 0x1.0c6f7ap-20
+    v701 = f32const 0.0
+    v702 = fdiv v1, v0
+    v703 = select v700, v702, v701  ; v701 = 0.0
+    v704 = fadd v697, v703
+    v705 = call fn197(v704)
+    v706 = call fn198(v0)
+    v707 = f32const 0.0
+    v708 = fmax v706, v707  ; v707 = 0.0
+    v709 = call fn199(v708)
+    v710 = fadd v705, v709
+    v711 = call fn200(v710)
+    v712 = fadd v694, v711
+    v713 = f32const 0x1.0c6f7ap-20
+    v714 = fabs v712
+    v715 = fcmp gt v714, v713  ; v713 = 0x1.0c6f7ap-20
+    v716 = f32const 0.0
+    v717 = fdiv v689, v712
+    v718 = select v715, v717, v716  ; v716 = 0.0
+    v719 = fadd v674, v718
+    v720 = call fn201(v719)
+    v721 = call fn202(v720)
+    v722 = call fn203(v721)
+    v723 = call fn204(v1)
+    v724 = f32const 0x1.a35b80p-3
+    v725 = fadd v1, v724  ; v724 = 0x1.a35b80p-3
+    v726 = fmul v723, v725
+    v727 = call fn205(v726)
+    v728 = call fn206(v727)
+    v729 = call fn207(v728)
+    v730 = call fn208(v729)
+    v731 = call fn209(v730)
+    v732 = call fn210(v1)
+    v733 = call fn211(v732)
+    v734 = call fn212(v733)
+    v735 = fadd v731, v734
+    v736 = call fn213(v1)
+    v737 = f32const -0x1.3818f0p-3
+    v738 = fadd v736, v737  ; v737 = -0x1.3818f0p-3
+    v739 = call fn214(v738)
+    v740 = f32const -0x1.c3ff04p-2
+    v741 = fmul v0, v740  ; v740 = -0x1.c3ff04p-2
+    v742 = f32const -0x1.e37946p-1
+    v743 = fmul v742, v1  ; v742 = -0x1.e37946p-1
+    v744 = fmul v1, v0
+    v745 = fadd v743, v744
+    v746 = fadd v742, v1  ; v742 = -0x1.e37946p-1
+    v747 = f32const 0x1.0c6f7ap-20
+    v748 = fadd v746, v747  ; v747 = 0x1.0c6f7ap-20
+    v749 = fdiv v745, v748
+    v750 = f32const 0x1.0c6f7ap-20
+    v751 = fabs v749
+    v752 = fcmp gt v751, v750  ; v750 = 0x1.0c6f7ap-20
+    v753 = f32const 0.0
+    v754 = fdiv v741, v749
+    v755 = select v752, v754, v753  ; v753 = 0.0
+    v756 = f32const 0x1.40bc7cp-1
+    v757 = fadd v755, v756  ; v756 = 0x1.40bc7cp-1
+    v758 = fmul v739, v757
+    v759 = call fn215(v758)
+    v760 = call fn216(v0)
+    v761 = call fn217(v760)
+    v762 = call fn218(v761)
+    v763 = call fn219(v0)
+    v764 = call fn220(v763)
+    v765 = call fn221(v0)
+    v766 = call fn222(v765)
+    v767 = f32const 0x1.0c6f7ap-20
+    v768 = fabs v766
+    v769 = fcmp gt v768, v767  ; v767 = 0x1.0c6f7ap-20
+    v770 = f32const 0.0
+    v771 = fdiv v764, v766
+    v772 = select v769, v771, v770  ; v770 = 0.0
+    v773 = fadd v762, v772
+    v774 = call fn223(v773)
+    v775 = f32const 0x1.0c6f7ap-20
+    v776 = fabs v774
+    v777 = fcmp gt v776, v775  ; v775 = 0x1.0c6f7ap-20
+    v778 = f32const 0.0
+    v779 = fdiv v759, v774
+    v780 = select v777, v779, v778  ; v778 = 0.0
+    v781 = f32const 0x1.409344p-1
+    v782 = fmul v0, v1
+    v783 = call fn224(v782)
+    v784 = call fn225(v783)
+    v785 = f32const 0x1.0c6f7ap-20
+    v786 = fabs v0
+    v787 = fcmp gt v786, v785  ; v785 = 0x1.0c6f7ap-20
+    v788 = f32const 0.0
+    v789 = fdiv v784, v0
+    v790 = select v787, v789, v788  ; v788 = 0.0
+    v791 = f32const 0x1.0c6f7ap-20
+    v792 = fabs v790
+    v793 = fcmp gt v792, v791  ; v791 = 0x1.0c6f7ap-20
+    v794 = f32const 0.0
+    v795 = fdiv v781, v790  ; v781 = 0x1.409344p-1
+    v796 = select v793, v795, v794  ; v794 = 0.0
+    v797 = call fn226(v796)
+    v798 = f32const 0x1.dedf08p-1
+    v799 = f32const 0x1.73a208p-1
+    v800 = call fn227(v0)
+    v801 = f32const 0x1.0c6f7ap-20
+    v802 = fabs v800
+    v803 = fcmp gt v802, v801  ; v801 = 0x1.0c6f7ap-20
+    v804 = f32const 0.0
+    v805 = fdiv v799, v800  ; v799 = 0x1.73a208p-1
+    v806 = select v803, v805, v804  ; v804 = 0.0
+    v807 = fmul v798, v806  ; v798 = 0x1.dedf08p-1
+    v808 = call fn228(v807)
+    v809 = call fn229(v808)
+    v810 = call fn230(v809)
+    v811 = call fn231(v0)
+    v812 = f32const 0x1.e2779ap-1
+    v813 = fadd v811, v812  ; v812 = 0x1.e2779ap-1
+    v814 = f32const 0.0
+    v815 = fmax v813, v814  ; v814 = 0.0
+    v816 = call fn232(v815)
+    v817 = f32const 0x1.93104ap-1
+    v818 = f32const 0x1.0c6f7ap-20
+    v819 = fabs v817  ; v817 = 0x1.93104ap-1
+    v820 = fcmp gt v819, v818  ; v818 = 0x1.0c6f7ap-20
+    v821 = f32const 0.0
+    v822 = fdiv v816, v817  ; v817 = 0x1.93104ap-1
+    v823 = select v820, v822, v821  ; v821 = 0.0
+    v824 = f32const 0.0
+    v825 = fmax v823, v824  ; v824 = 0.0
+    v826 = call fn233(v825)
+    v827 = call fn234(v826)
+    v828 = fmul v780, v810
+    v829 = fmul v797, v827
+    v830 = fadd v828, v829
+    v831 = fadd v780, v797
+    v832 = f32const 0x1.0c6f7ap-20
+    v833 = fadd v831, v832  ; v832 = 0x1.0c6f7ap-20
+    v834 = fdiv v830, v833
+    v835 = call fn235(v834)
+    v836 = fadd v735, v835
+    v837 = f32const 0.0
+    v838 = fmax v836, v837  ; v837 = 0.0
+    v839 = call fn236(v838)
+    v840 = f32const 0.0
+    v841 = fmax v839, v840  ; v840 = 0.0
+    v842 = call fn237(v841)
+    v843 = fadd v722, v842
+    v844 = call fn238(v843)
+    v845 = f32const -0x1.47827ap-2
+    v846 = f32const -0x1.7698e0p-5
+    v847 = fadd v1, v846  ; v846 = -0x1.7698e0p-5
+    v848 = f32const 0x1.58068cp0
+    v849 = fmul v847, v848  ; v848 = 0x1.58068cp0
+    v850 = call fn239(v849)
+    v851 = call fn240(v850)
+    v852 = f32const 0x1.a7bcd0p-2
+    v853 = fadd v852, v1  ; v852 = 0x1.a7bcd0p-2
+    v854 = call fn241(v853)
+    v855 = call fn242(v854)
+    v856 = call fn243(v855)
+    v857 = call fn244(v0)
+    v858 = f32const 0.0
+    v859 = fmax v1, v858  ; v858 = 0.0
+    v860 = call fn245(v859)
+    v861 = fadd v857, v860
+    v862 = f32const 0x1.e8d23ep-1
+    v863 = call fn246(v0)
+    v864 = f32const 0x1.ed82c4p-1
+    v865 = fadd v863, v864  ; v864 = 0x1.ed82c4p-1
+    v866 = f32const 0x1.53bf10p-1
+    v867 = fmul v861, v865
+    v868 = fmul v862, v866  ; v862 = 0x1.e8d23ep-1, v866 = 0x1.53bf10p-1
+    v869 = fadd v867, v868
+    v870 = fadd v861, v862  ; v862 = 0x1.e8d23ep-1
+    v871 = f32const 0x1.0c6f7ap-20
+    v872 = fadd v870, v871  ; v871 = 0x1.0c6f7ap-20
+    v873 = fdiv v869, v872
+    v874 = call fn247(v873)
+    v875 = fmul v845, v856  ; v845 = -0x1.47827ap-2
+    v876 = fmul v851, v874
+    v877 = fadd v875, v876
+    v878 = fadd v845, v851  ; v845 = -0x1.47827ap-2
+    v879 = f32const 0x1.0c6f7ap-20
+    v880 = fadd v878, v879  ; v879 = 0x1.0c6f7ap-20
+    v881 = fdiv v877, v880
+    v882 = f32const 0x1.000000p0
+    v883 = f32const -0x1.d32720p-4
+    v884 = f32const 0x1.0c6f7ap-20
+    v885 = fabs v883  ; v883 = -0x1.d32720p-4
+    v886 = fcmp gt v885, v884  ; v884 = 0x1.0c6f7ap-20
+    v887 = f32const 0.0
+    v888 = fdiv v1, v883  ; v883 = -0x1.d32720p-4
+    v889 = select v886, v888, v887  ; v887 = 0.0
+    v890 = call fn248(v889)
+    v891 = call fn249(v890)
+    v892 = call fn250(v891)
+    v893 = call fn251(v892)
+    v894 = call fn252(v1)
+    v895 = fmul v881, v893
+    v896 = fmul v882, v894  ; v882 = 0x1.000000p0
+    v897 = fadd v895, v896
+    v898 = fadd v881, v882  ; v882 = 0x1.000000p0
+    v899 = f32const 0x1.0c6f7ap-20
+    v900 = fadd v898, v899  ; v899 = 0x1.0c6f7ap-20
+    v901 = fdiv v897, v900
+    v902 = f32const 0.0
+    v903 = fmax v901, v902  ; v902 = 0.0
+    v904 = call fn253(v903)
+    v905 = call fn254(v904)
+    v906 = fmul v1, v1
+    v907 = call fn255(v906)
+    v908 = call fn256(v1)
+    v909 = f32const 0.0
+    v910 = f32const 0.0
+    v911 = fmax v1, v910  ; v910 = 0.0
+    v912 = call fn257(v911)
+    v913 = fmul v908, v909  ; v909 = 0.0
+    v914 = fmul v0, v912
+    v915 = fadd v913, v914
+    v916 = fadd v908, v0
+    v917 = f32const 0x1.0c6f7ap-20
+    v918 = fadd v916, v917  ; v917 = 0x1.0c6f7ap-20
+    v919 = fdiv v915, v918
+    v920 = fadd v1, v0
+    v921 = call fn258(v920)
+    v922 = fadd v1, v0
+    v923 = f32const -0x1.493aa0p-2
+    v924 = fadd v923, v1  ; v923 = -0x1.493aa0p-2
+    v925 = fmul v922, v924
+    v926 = fmul v907, v921
+    v927 = fmul v919, v925
+    v928 = fadd v926, v927
+    v929 = fadd v907, v919
+    v930 = f32const 0x1.0c6f7ap-20
+    v931 = fadd v929, v930  ; v930 = 0x1.0c6f7ap-20
+    v932 = fdiv v928, v931
+    v933 = call fn259(v932)
+    v934 = call fn260(v933)
+    v935 = f32const 0x1.f12cc0p-3
+    v936 = f32const 0x1.d8308cp0
+    v937 = call fn261(v0)
+    v938 = call fn262(v937)
+    v939 = call fn263(v938)
+    v940 = call fn264(v939)
+    v941 = call fn265(v940)
+    v942 = fmul v934, v936  ; v936 = 0x1.d8308cp0
+    v943 = fmul v935, v941  ; v935 = 0x1.f12cc0p-3
+    v944 = fadd v942, v943
+    v945 = fadd v934, v935  ; v935 = 0x1.f12cc0p-3
+    v946 = f32const 0x1.0c6f7ap-20
+    v947 = fadd v945, v946  ; v946 = 0x1.0c6f7ap-20
+    v948 = fdiv v944, v947
+    v949 = call fn266(v948)
+    v950 = f32const 0x1.5dc522p-1
+    v951 = f32const -0x1.4cc344p-1
+    v952 = f32const 0x1.0c6f7ap-20
+    v953 = fabs v951  ; v951 = -0x1.4cc344p-1
+    v954 = fcmp gt v953, v952  ; v952 = 0x1.0c6f7ap-20
+    v955 = f32const 0.0
+    v956 = fdiv v1, v951  ; v951 = -0x1.4cc344p-1
+    v957 = select v954, v956, v955  ; v955 = 0.0
+    v958 = f32const 0.0
+    v959 = fmax v957, v958  ; v958 = 0.0
+    v960 = call fn267(v959)
+    v961 = f32const 0x1.45bd6cp-1
+    v962 = f32const 0x1.0c6f7ap-20
+    v963 = fabs v961  ; v961 = 0x1.45bd6cp-1
+    v964 = fcmp gt v963, v962  ; v962 = 0x1.0c6f7ap-20
+    v965 = f32const 0.0
+    v966 = fdiv v960, v961  ; v961 = 0x1.45bd6cp-1
+    v967 = select v964, v966, v965  ; v965 = 0.0
+    v968 = call fn268(v967)
+    v969 = fadd v0, v1
+    v970 = call fn269(v969)
+    v971 = f32const 0.0
+    v972 = fmax v970, v971  ; v971 = 0.0
+    v973 = call fn270(v972)
+    v974 = call fn271(v973)
+    v975 = fmul v968, v974
+    v976 = fmul v950, v975  ; v950 = 0x1.5dc522p-1
+    v977 = f32const 0.0
+    v978 = fmax v1, v977  ; v977 = 0.0
+    v979 = call fn272(v978)
+    v980 = fmul v976, v979
+    v981 = fadd v949, v980
+    v982 = f32const -0x1.3fa4dcp-1
+    v983 = fadd v982, v1  ; v982 = -0x1.3fa4dcp-1
+    v984 = f32const 0x1.3dfab8p-2
+    v985 = fadd v983, v984  ; v984 = 0x1.3dfab8p-2
+    v986 = call fn273(v985)
+    v987 = call fn274(v1)
+    v988 = f32const 0.0
+    v989 = fmax v987, v988  ; v988 = 0.0
+    v990 = call fn275(v989)
+    v991 = call fn276(v990)
+    v992 = fmul v986, v991
+    v993 = f32const 0x1.181ed4p-1
+    v994 = fmul v992, v993  ; v993 = 0x1.181ed4p-1
+    v995 = f32const -0x1.5cc7a8p-2
+    v996 = f32const 0x1.000000p0
+    v997 = call fn277(v0)
+    v998 = f32const 0x1.87bd1ep-1
+    v999 = f32const 0x1.0c6f7ap-20
+    v1000 = fabs v998  ; v998 = 0x1.87bd1ep-1
+    v1001 = fcmp gt v1000, v999  ; v999 = 0x1.0c6f7ap-20
+    v1002 = f32const 0.0
+    v1003 = fdiv v997, v998  ; v998 = 0x1.87bd1ep-1
+    v1004 = select v1001, v1003, v1002  ; v1002 = 0.0
+    v1005 = call fn278(v0)
+    v1006 = f32const -0x1.4d4c74p-2
+    v1007 = fmul v1006, v1  ; v1006 = -0x1.4d4c74p-2
+    v1008 = fmul v0, v1
+    v1009 = fadd v1007, v1008
+    v1010 = fadd v1006, v0  ; v1006 = -0x1.4d4c74p-2
+    v1011 = f32const 0x1.0c6f7ap-20
+    v1012 = fadd v1010, v1011  ; v1011 = 0x1.0c6f7ap-20
+    v1013 = fdiv v1009, v1012
+    v1014 = call fn279(v1013)
+    v1015 = fmul v996, v1005  ; v996 = 0x1.000000p0
+    v1016 = fmul v1004, v1014
+    v1017 = fadd v1015, v1016
+    v1018 = fadd v996, v1004  ; v996 = 0x1.000000p0
+    v1019 = f32const 0x1.0c6f7ap-20
+    v1020 = fadd v1018, v1019  ; v1019 = 0x1.0c6f7ap-20
+    v1021 = fdiv v1017, v1020
+    v1022 = call fn280(v1)
+    v1023 = fadd v1022, v1
+    v1024 = call fn281(v1023)
+    v1025 = fmul v995, v0  ; v995 = -0x1.5cc7a8p-2
+    v1026 = fmul v1021, v1024
+    v1027 = fadd v1025, v1026
+    v1028 = fadd v995, v1021  ; v995 = -0x1.5cc7a8p-2
+    v1029 = f32const 0x1.0c6f7ap-20
+    v1030 = fadd v1028, v1029  ; v1029 = 0x1.0c6f7ap-20
+    v1031 = fdiv v1027, v1030
+    v1032 = call fn282(v1031)
+    v1033 = f32const 0x1.0c6f7ap-20
+    v1034 = fabs v1032
+    v1035 = fcmp gt v1034, v1033  ; v1033 = 0x1.0c6f7ap-20
+    v1036 = f32const 0.0
+    v1037 = fdiv v994, v1032
+    v1038 = select v1035, v1037, v1036  ; v1036 = 0.0
+    v1039 = call fn283(v1038)
+    v1040 = call fn284(v1039)
+    v1041 = call fn285(v1)
+    v1042 = call fn286(v1)
+    v1043 = fmul v1041, v1042
+    v1044 = call fn287(v1043)
+    v1045 = call fn288(v1)
+    v1046 = call fn289(v1045)
+    v1047 = call fn290(v1046)
+    v1048 = fmul v1044, v1047
+    v1049 = fmul v0, v1
+    v1050 = call fn291(v1049)
+    v1051 = call fn292(v1)
+    v1052 = call fn293(v1051)
+    v1053 = f32const 0x1.4c515ep1
+    v1054 = f32const 0x1.fc4d70p-1
+    v1055 = fmul v0, v1053  ; v1053 = 0x1.4c515ep1
+    v1056 = fmul v1, v1054  ; v1054 = 0x1.fc4d70p-1
+    v1057 = fadd v1055, v1056
+    v1058 = fadd v0, v1
+    v1059 = f32const 0x1.0c6f7ap-20
+    v1060 = fadd v1058, v1059  ; v1059 = 0x1.0c6f7ap-20
+    v1061 = fdiv v1057, v1060
+    v1062 = fmul v1050, v1061
+    v1063 = fmul v1052, v1
+    v1064 = fadd v1062, v1063
+    v1065 = fadd v1050, v1052
+    v1066 = f32const 0x1.0c6f7ap-20
+    v1067 = fadd v1065, v1066  ; v1066 = 0x1.0c6f7ap-20
+    v1068 = fdiv v1064, v1067
+    v1069 = call fn294(v1068)
+    v1070 = fadd v1048, v1069
+    v1071 = call fn295(v1070)
+    v1072 = call fn296(v1071)
+    v1073 = f32const 0.0
+    v1074 = fmax v1072, v1073  ; v1073 = 0.0
+    v1075 = call fn297(v1074)
+    v1076 = fmul v905, v1040
+    v1077 = fmul v981, v1075
+    v1078 = fadd v1076, v1077
+    v1079 = fadd v905, v981
+    v1080 = f32const 0x1.0c6f7ap-20
+    v1081 = fadd v1079, v1080  ; v1080 = 0x1.0c6f7ap-20
+    v1082 = fdiv v1078, v1081
+    v1083 = call fn298(v1082)
+    v1084 = f32const 0x1.b55d5ap-2
+    v1085 = f32const 0x1.ffbd90p-1
+    v1086 = fadd v1085, v1  ; v1085 = 0x1.ffbd90p-1
+    v1087 = f32const 0x1.0c6f7ap-20
+    v1088 = fabs v1
+    v1089 = fcmp gt v1088, v1087  ; v1087 = 0x1.0c6f7ap-20
+    v1090 = f32const 0.0
+    v1091 = fdiv v0, v1
+    v1092 = select v1089, v1091, v1090  ; v1090 = 0.0
+    v1093 = f32const 0x1.1d03f8p-1
+    v1094 = call fn299(v1)
+    v1095 = fmul v1086, v1093  ; v1093 = 0x1.1d03f8p-1
+    v1096 = fmul v1092, v1094
+    v1097 = fadd v1095, v1096
+    v1098 = fadd v1086, v1092
+    v1099 = f32const 0x1.0c6f7ap-20
+    v1100 = fadd v1098, v1099  ; v1099 = 0x1.0c6f7ap-20
+    v1101 = fdiv v1097, v1100
+    v1102 = f32const -0x1.0ff280p-1
+    v1103 = fadd v1101, v1102  ; v1102 = -0x1.0ff280p-1
+    v1104 = call fn300(v1103)
+    v1105 = f32const 0x1.d7a914p-1
+    v1106 = fadd v1105, v0  ; v1105 = 0x1.d7a914p-1
+    v1107 = f32const 0x1.20bb54p-1
+    v1108 = fmul v1106, v1107  ; v1107 = 0x1.20bb54p-1
+    v1109 = call fn301(v1108)
+    v1110 = call fn302(v1)
+    v1111 = f32const 0.0
+    v1112 = f32const 0x1.0c6f7ap-20
+    v1113 = fabs v1111  ; v1111 = 0.0
+    v1114 = fcmp gt v1113, v1112  ; v1112 = 0x1.0c6f7ap-20
+    v1115 = f32const 0.0
+    v1116 = fdiv v1110, v1111  ; v1111 = 0.0
+    v1117 = select v1114, v1116, v1115  ; v1115 = 0.0
+    v1118 = call fn303(v1117)
+    v1119 = fmul v1109, v1118
+    v1120 = call fn304(v0)
+    v1121 = call fn305(v0)
+    v1122 = f32const 0x1.0c6f7ap-20
+    v1123 = fabs v1121
+    v1124 = fcmp gt v1123, v1122  ; v1122 = 0x1.0c6f7ap-20
+    v1125 = f32const 0.0
+    v1126 = fdiv v1120, v1121
+    v1127 = select v1124, v1126, v1125  ; v1125 = 0.0
+    v1128 = call fn306(v1127)
+    v1129 = call fn307(v1128)
+    v1130 = f32const 0x1.774780p-5
+    v1131 = fmul v0, v1130  ; v1130 = 0x1.774780p-5
+    v1132 = f32const 0.0
+    v1133 = fmax v1131, v1132  ; v1132 = 0.0
+    v1134 = call fn308(v1133)
+    v1135 = fadd v1, v1
+    v1136 = fmul v1134, v1135
+    v1137 = f32const 0.0
+    v1138 = fmax v1136, v1137  ; v1137 = 0.0
+    v1139 = call fn309(v1138)
+    v1140 = fmul v1104, v1129
+    v1141 = fmul v1119, v1139
+    v1142 = fadd v1140, v1141
+    v1143 = fadd v1104, v1119
+    v1144 = f32const 0x1.0c6f7ap-20
+    v1145 = fadd v1143, v1144  ; v1144 = 0x1.0c6f7ap-20
+    v1146 = fdiv v1142, v1145
+    v1147 = fadd v1084, v1146  ; v1084 = 0x1.b55d5ap-2
+    v1148 = call fn310(v1147)
+    v1149 = call fn311(v1148)
+    v1150 = call fn312(v1149)
+    v1151 = call fn313(v1150)
+    v1152 = fadd v1, v0
+    v1153 = call fn314(v1152)
+    v1154 = call fn315(v1153)
+    v1155 = call fn316(v1154)
+    v1156 = call fn317(v1)
+    v1157 = call fn318(v0)
+    v1158 = call fn319(v1)
+    v1159 = f32const 0x1.c42ee0p-1
+    v1160 = f32const 0x1.0c6f7ap-20
+    v1161 = fabs v1
+    v1162 = fcmp gt v1161, v1160  ; v1160 = 0x1.0c6f7ap-20
+    v1163 = f32const 0.0
+    v1164 = fdiv v1159, v1  ; v1159 = 0x1.c42ee0p-1
+    v1165 = select v1162, v1164, v1163  ; v1163 = 0.0
+    v1166 = fmul v1156, v1158
+    v1167 = fmul v1157, v1165
+    v1168 = fadd v1166, v1167
+    v1169 = fadd v1156, v1157
+    v1170 = f32const 0x1.0c6f7ap-20
+    v1171 = fadd v1169, v1170  ; v1170 = 0x1.0c6f7ap-20
+    v1172 = fdiv v1168, v1171
+    v1173 = call fn320(v0)
+    v1174 = call fn321(v1173)
+    v1175 = fmul v1172, v1174
+    v1176 = call fn322(v1175)
+    v1177 = fadd v1155, v1176
+    v1178 = f32const 0x1.0c6f7ap-20
+    v1179 = fabs v0
+    v1180 = fcmp gt v1179, v1178  ; v1178 = 0x1.0c6f7ap-20
+    v1181 = f32const 0.0
+    v1182 = fdiv v1177, v0
+    v1183 = select v1180, v1182, v1181  ; v1181 = 0.0
+    v1184 = f32const -0x1.a9f554p-2
+    v1185 = f32const 0x1.387d54p-1
+    v1186 = f32const 0x1.7bdd10p-3
+    v1187 = f32const -0x1.80cd40p-5
+    v1188 = f32const 0x1.13a520p-4
+    v1189 = fmul v1186, v0  ; v1186 = 0x1.7bdd10p-3
+    v1190 = fmul v1187, v1188  ; v1187 = -0x1.80cd40p-5, v1188 = 0x1.13a520p-4
+    v1191 = fadd v1189, v1190
+    v1192 = fadd v1186, v1187  ; v1186 = 0x1.7bdd10p-3, v1187 = -0x1.80cd40p-5
+    v1193 = f32const 0x1.0c6f7ap-20
+    v1194 = fadd v1192, v1193  ; v1193 = 0x1.0c6f7ap-20
+    v1195 = fdiv v1191, v1194
+    v1196 = f32const 0.0
+    v1197 = fmax v0, v1196  ; v1196 = 0.0
+    v1198 = call fn323(v1197)
+    v1199 = f32const 0x1.0c6f7ap-20
+    v1200 = fabs v1198
+    v1201 = fcmp gt v1200, v1199  ; v1199 = 0x1.0c6f7ap-20
+    v1202 = f32const 0.0
+    v1203 = fdiv v1195, v1198
+    v1204 = select v1201, v1203, v1202  ; v1202 = 0.0
+    v1205 = call fn324(v1204)
+    v1206 = call fn325(v1205)
+    v1207 = call fn326(v1206)
+    v1208 = call fn327(v0)
+    v1209 = call fn328(v1208)
+    v1210 = call fn329(v1209)
+    v1211 = f32const 0x1.b46710p-1
+    v1212 = fmul v0, v1211  ; v1211 = 0x1.b46710p-1
+    v1213 = f32const 0.0
+    v1214 = fmax v1212, v1213  ; v1213 = 0.0
+    v1215 = call fn330(v1214)
+    v1216 = fmul v1, v1
+    v1217 = call fn331(v1216)
+    v1218 = fmul v1215, v1217
+    v1219 = call fn332(v0)
+    v1220 = fadd v0, v1219
+    v1221 = f32const -0x1.374760p-5
+    v1222 = f32const 0x1.0c6f7ap-20
+    v1223 = fabs v1221  ; v1221 = -0x1.374760p-5
+    v1224 = fcmp gt v1223, v1222  ; v1222 = 0x1.0c6f7ap-20
+    v1225 = f32const 0.0
+    v1226 = fdiv v1, v1221  ; v1221 = -0x1.374760p-5
+    v1227 = select v1224, v1226, v1225  ; v1225 = 0.0
+    v1228 = call fn333(v1227)
+    v1229 = call fn334(v0)
+    v1230 = call fn335(v1229)
+    v1231 = f32const 0x1.3e6baap-1
+    v1232 = fmul v1220, v1230
+    v1233 = fmul v1228, v1231  ; v1231 = 0x1.3e6baap-1
+    v1234 = fadd v1232, v1233
+    v1235 = fadd v1220, v1228
+    v1236 = f32const 0x1.0c6f7ap-20
+    v1237 = fadd v1235, v1236  ; v1236 = 0x1.0c6f7ap-20
+    v1238 = fdiv v1234, v1237
+    v1239 = call fn336(v0)
+    v1240 = call fn337(v1239)
+    v1241 = call fn338(v1240)
+    v1242 = fmul v1210, v1238
+    v1243 = fmul v1218, v1241
+    v1244 = fadd v1242, v1243
+    v1245 = fadd v1210, v1218
+    v1246 = f32const 0x1.0c6f7ap-20
+    v1247 = fadd v1245, v1246  ; v1246 = 0x1.0c6f7ap-20
+    v1248 = fdiv v1244, v1247
+    v1249 = f32const 0x1.0c6f7ap-20
+    v1250 = fabs v0
+    v1251 = fcmp gt v1250, v1249  ; v1249 = 0x1.0c6f7ap-20
+    v1252 = f32const 0.0
+    v1253 = fdiv v0, v0
+    v1254 = select v1251, v1253, v1252  ; v1252 = 0.0
+    v1255 = call fn339(v1254)
+    v1256 = call fn340(v1255)
+    v1257 = f32const 0.0
+    v1258 = fmax v1, v1257  ; v1257 = 0.0
+    v1259 = call fn341(v1258)
+    v1260 = call fn342(v0)
+    v1261 = call fn343(v1260)
+    v1262 = call fn344(v1261)
+    v1263 = f32const -0x1.6ff308p-3
+    v1264 = f32const 0x1.0c6f7ap-20
+    v1265 = fabs v1263  ; v1263 = -0x1.6ff308p-3
+    v1266 = fcmp gt v1265, v1264  ; v1264 = 0x1.0c6f7ap-20
+    v1267 = f32const 0.0
+    v1268 = fdiv v0, v1263  ; v1263 = -0x1.6ff308p-3
+    v1269 = select v1266, v1268, v1267  ; v1267 = 0.0
+    v1270 = call fn345(v1269)
+    v1271 = fmul v1256, v1262
+    v1272 = fmul v1259, v1270
+    v1273 = fadd v1271, v1272
+    v1274 = fadd v1256, v1259
+    v1275 = f32const 0x1.0c6f7ap-20
+    v1276 = fadd v1274, v1275  ; v1275 = 0x1.0c6f7ap-20
+    v1277 = fdiv v1273, v1276
+    v1278 = f32const 0x1.54d284p-2
+    v1279 = call fn346(v1)
+    v1280 = call fn347(v1279)
+    v1281 = call fn348(v1280)
+    v1282 = call fn349(v1281)
+    v1283 = fmul v1248, v1278  ; v1278 = 0x1.54d284p-2
+    v1284 = fmul v1277, v1282
+    v1285 = fadd v1283, v1284
+    v1286 = fadd v1248, v1277
+    v1287 = f32const 0x1.0c6f7ap-20
+    v1288 = fadd v1286, v1287  ; v1287 = 0x1.0c6f7ap-20
+    v1289 = fdiv v1285, v1288
+    v1290 = fadd v1207, v1289
+    v1291 = fmul v1183, v1185  ; v1185 = 0x1.387d54p-1
+    v1292 = fmul v1184, v1290  ; v1184 = -0x1.a9f554p-2
+    v1293 = fadd v1291, v1292
+    v1294 = fadd v1183, v1184  ; v1184 = -0x1.a9f554p-2
+    v1295 = f32const 0x1.0c6f7ap-20
+    v1296 = fadd v1294, v1295  ; v1295 = 0x1.0c6f7ap-20
+    v1297 = fdiv v1293, v1296
+    v1298 = call fn350(v1297)
+    v1299 = call fn351(v1298)
+    v1300 = call fn352(v1299)
+    v1301 = fmul v0, v1151
+    v1302 = fmul v1083, v1300
+    v1303 = fadd v1301, v1302
+    v1304 = fadd v0, v1083
+    v1305 = f32const 0x1.0c6f7ap-20
+    v1306 = fadd v1304, v1305  ; v1305 = 0x1.0c6f7ap-20
+    v1307 = fdiv v1303, v1306
+    v1308 = call fn353(v1307)
+    v1309 = call fn354(v1308)
+    v1310 = fmul v563, v844
+    v1311 = fmul v659, v1309
+    v1312 = fadd v1310, v1311
+    v1313 = fadd v563, v659
+    v1314 = f32const 0x1.0c6f7ap-20
+    v1315 = fadd v1313, v1314  ; v1314 = 0x1.0c6f7ap-20
+    v1316 = fdiv v1312, v1315
+    v1317 = f32const 0x1.0c6f7ap-20
+    v1318 = fabs v1316
+    v1319 = fcmp gt v1318, v1317  ; v1317 = 0x1.0c6f7ap-20
+    v1320 = f32const 0.0
+    v1321 = fdiv v76, v1316  ; v76 = 0x1.552e06p-1
+    v1322 = select v1319, v1321, v1320  ; v1320 = 0.0
+    v1323 = call fn355(v1322)
+    v1324 = f32const 0x1.0c6f7ap-20
+    v1325 = fabs v1323
+    v1326 = fcmp gt v1325, v1324  ; v1324 = 0x1.0c6f7ap-20
+    v1327 = f32const 0.0
+    v1328 = fdiv v75, v1323
+    v1329 = select v1326, v1328, v1327  ; v1327 = 0.0
+    return v1329
+}
+
+function u0:0(f32, f32) -> f32 apple_aarch64 {
+block0(v0: f32, v1: f32):
+    return v1
+}
+
+function u0:0(f32, f32) -> f32 apple_aarch64 {
+    sig0 = (f32) -> f32 apple_aarch64
+    sig1 = (f32) -> f32 apple_aarch64
+    sig2 = (f32) -> f32 apple_aarch64
+    sig3 = (f32) -> f32 apple_aarch64
+    sig4 = (f32) -> f32 apple_aarch64
+    sig5 = (f32) -> f32 apple_aarch64
+    sig6 = (f32) -> f32 apple_aarch64
+    sig7 = (f32) -> f32 apple_aarch64
+    sig8 = (f32) -> f32 apple_aarch64
+    sig9 = (f32) -> f32 apple_aarch64
+    sig10 = (f32) -> f32 apple_aarch64
+    sig11 = (f32) -> f32 apple_aarch64
+    sig12 = (f32) -> f32 apple_aarch64
+    sig13 = (f32) -> f32 apple_aarch64
+    sig14 = (f32) -> f32 apple_aarch64
+    sig15 = (f32) -> f32 apple_aarch64
+    sig16 = (f32) -> f32 apple_aarch64
+    sig17 = (f32) -> f32 apple_aarch64
+    sig18 = (f32) -> f32 apple_aarch64
+    sig19 = (f32) -> f32 apple_aarch64
+    sig20 = (f32) -> f32 apple_aarch64
+    sig21 = (f32) -> f32 apple_aarch64
+    sig22 = (f32) -> f32 apple_aarch64
+    sig23 = (f32) -> f32 apple_aarch64
+    sig24 = (f32) -> f32 apple_aarch64
+    sig25 = (f32) -> f32 apple_aarch64
+    sig26 = (f32) -> f32 apple_aarch64
+    sig27 = (f32) -> f32 apple_aarch64
+    sig28 = (f32) -> f32 apple_aarch64
+    sig29 = (f32) -> f32 apple_aarch64
+    sig30 = (f32) -> f32 apple_aarch64
+    sig31 = (f32) -> f32 apple_aarch64
+    sig32 = (f32) -> f32 apple_aarch64
+    sig33 = (f32) -> f32 apple_aarch64
+    sig34 = (f32) -> f32 apple_aarch64
+    sig35 = (f32) -> f32 apple_aarch64
+    sig36 = (f32) -> f32 apple_aarch64
+    sig37 = (f32) -> f32 apple_aarch64
+    sig38 = (f32) -> f32 apple_aarch64
+    sig39 = (f32) -> f32 apple_aarch64
+    sig40 = (f32) -> f32 apple_aarch64
+    sig41 = (f32) -> f32 apple_aarch64
+    sig42 = (f32) -> f32 apple_aarch64
+    sig43 = (f32) -> f32 apple_aarch64
+    sig44 = (f32) -> f32 apple_aarch64
+    sig45 = (f32) -> f32 apple_aarch64
+    sig46 = (f32) -> f32 apple_aarch64
+    sig47 = (f32) -> f32 apple_aarch64
+    sig48 = (f32) -> f32 apple_aarch64
+    sig49 = (f32) -> f32 apple_aarch64
+    sig50 = (f32) -> f32 apple_aarch64
+    sig51 = (f32) -> f32 apple_aarch64
+    sig52 = (f32) -> f32 apple_aarch64
+    sig53 = (f32) -> f32 apple_aarch64
+    sig54 = (f32) -> f32 apple_aarch64
+    sig55 = (f32) -> f32 apple_aarch64
+    sig56 = (f32) -> f32 apple_aarch64
+    sig57 = (f32) -> f32 apple_aarch64
+    sig58 = (f32) -> f32 apple_aarch64
+    sig59 = (f32) -> f32 apple_aarch64
+    sig60 = (f32) -> f32 apple_aarch64
+    sig61 = (f32) -> f32 apple_aarch64
+    sig62 = (f32) -> f32 apple_aarch64
+    sig63 = (f32) -> f32 apple_aarch64
+    sig64 = (f32) -> f32 apple_aarch64
+    sig65 = (f32) -> f32 apple_aarch64
+    sig66 = (f32) -> f32 apple_aarch64
+    sig67 = (f32) -> f32 apple_aarch64
+    sig68 = (f32) -> f32 apple_aarch64
+    sig69 = (f32) -> f32 apple_aarch64
+    sig70 = (f32) -> f32 apple_aarch64
+    sig71 = (f32) -> f32 apple_aarch64
+    sig72 = (f32) -> f32 apple_aarch64
+    sig73 = (f32) -> f32 apple_aarch64
+    sig74 = (f32) -> f32 apple_aarch64
+    sig75 = (f32) -> f32 apple_aarch64
+    sig76 = (f32) -> f32 apple_aarch64
+    sig77 = (f32) -> f32 apple_aarch64
+    sig78 = (f32) -> f32 apple_aarch64
+    sig79 = (f32) -> f32 apple_aarch64
+    sig80 = (f32) -> f32 apple_aarch64
+    sig81 = (f32) -> f32 apple_aarch64
+    sig82 = (f32) -> f32 apple_aarch64
+    sig83 = (f32) -> f32 apple_aarch64
+    sig84 = (f32) -> f32 apple_aarch64
+    sig85 = (f32) -> f32 apple_aarch64
+    sig86 = (f32) -> f32 apple_aarch64
+    sig87 = (f32) -> f32 apple_aarch64
+    sig88 = (f32) -> f32 apple_aarch64
+    sig89 = (f32) -> f32 apple_aarch64
+    sig90 = (f32) -> f32 apple_aarch64
+    sig91 = (f32) -> f32 apple_aarch64
+    sig92 = (f32) -> f32 apple_aarch64
+    sig93 = (f32) -> f32 apple_aarch64
+    sig94 = (f32) -> f32 apple_aarch64
+    sig95 = (f32) -> f32 apple_aarch64
+    sig96 = (f32) -> f32 apple_aarch64
+    sig97 = (f32) -> f32 apple_aarch64
+    sig98 = (f32) -> f32 apple_aarch64
+    sig99 = (f32) -> f32 apple_aarch64
+    sig100 = (f32) -> f32 apple_aarch64
+    sig101 = (f32) -> f32 apple_aarch64
+    sig102 = (f32) -> f32 apple_aarch64
+    sig103 = (f32) -> f32 apple_aarch64
+    sig104 = (f32) -> f32 apple_aarch64
+    sig105 = (f32) -> f32 apple_aarch64
+    sig106 = (f32) -> f32 apple_aarch64
+    sig107 = (f32) -> f32 apple_aarch64
+    sig108 = (f32) -> f32 apple_aarch64
+    sig109 = (f32) -> f32 apple_aarch64
+    sig110 = (f32) -> f32 apple_aarch64
+    sig111 = (f32) -> f32 apple_aarch64
+    sig112 = (f32) -> f32 apple_aarch64
+    sig113 = (f32) -> f32 apple_aarch64
+    sig114 = (f32) -> f32 apple_aarch64
+    sig115 = (f32) -> f32 apple_aarch64
+    sig116 = (f32) -> f32 apple_aarch64
+    sig117 = (f32) -> f32 apple_aarch64
+    sig118 = (f32) -> f32 apple_aarch64
+    sig119 = (f32) -> f32 apple_aarch64
+    sig120 = (f32) -> f32 apple_aarch64
+    sig121 = (f32) -> f32 apple_aarch64
+    sig122 = (f32) -> f32 apple_aarch64
+    sig123 = (f32) -> f32 apple_aarch64
+    sig124 = (f32) -> f32 apple_aarch64
+    sig125 = (f32) -> f32 apple_aarch64
+    sig126 = (f32) -> f32 apple_aarch64
+    sig127 = (f32) -> f32 apple_aarch64
+    sig128 = (f32) -> f32 apple_aarch64
+    sig129 = (f32) -> f32 apple_aarch64
+    sig130 = (f32) -> f32 apple_aarch64
+    sig131 = (f32) -> f32 apple_aarch64
+    sig132 = (f32) -> f32 apple_aarch64
+    sig133 = (f32) -> f32 apple_aarch64
+    sig134 = (f32) -> f32 apple_aarch64
+    sig135 = (f32) -> f32 apple_aarch64
+    sig136 = (f32) -> f32 apple_aarch64
+    sig137 = (f32) -> f32 apple_aarch64
+    sig138 = (f32) -> f32 apple_aarch64
+    sig139 = (f32) -> f32 apple_aarch64
+    sig140 = (f32) -> f32 apple_aarch64
+    sig141 = (f32) -> f32 apple_aarch64
+    sig142 = (f32) -> f32 apple_aarch64
+    sig143 = (f32) -> f32 apple_aarch64
+    sig144 = (f32) -> f32 apple_aarch64
+    sig145 = (f32) -> f32 apple_aarch64
+    sig146 = (f32) -> f32 apple_aarch64
+    sig147 = (f32) -> f32 apple_aarch64
+    sig148 = (f32) -> f32 apple_aarch64
+    sig149 = (f32) -> f32 apple_aarch64
+    sig150 = (f32) -> f32 apple_aarch64
+    sig151 = (f32) -> f32 apple_aarch64
+    sig152 = (f32) -> f32 apple_aarch64
+    sig153 = (f32) -> f32 apple_aarch64
+    sig154 = (f32) -> f32 apple_aarch64
+    sig155 = (f32) -> f32 apple_aarch64
+    sig156 = (f32) -> f32 apple_aarch64
+    sig157 = (f32) -> f32 apple_aarch64
+    sig158 = (f32) -> f32 apple_aarch64
+    sig159 = (f32) -> f32 apple_aarch64
+    sig160 = (f32) -> f32 apple_aarch64
+    sig161 = (f32) -> f32 apple_aarch64
+    sig162 = (f32) -> f32 apple_aarch64
+    sig163 = (f32) -> f32 apple_aarch64
+    sig164 = (f32) -> f32 apple_aarch64
+    sig165 = (f32) -> f32 apple_aarch64
+    sig166 = (f32) -> f32 apple_aarch64
+    sig167 = (f32) -> f32 apple_aarch64
+    sig168 = (f32) -> f32 apple_aarch64
+    sig169 = (f32) -> f32 apple_aarch64
+    sig170 = (f32) -> f32 apple_aarch64
+    sig171 = (f32) -> f32 apple_aarch64
+    sig172 = (f32) -> f32 apple_aarch64
+    sig173 = (f32) -> f32 apple_aarch64
+    sig174 = (f32) -> f32 apple_aarch64
+    sig175 = (f32) -> f32 apple_aarch64
+    sig176 = (f32) -> f32 apple_aarch64
+    sig177 = (f32) -> f32 apple_aarch64
+    sig178 = (f32) -> f32 apple_aarch64
+    sig179 = (f32) -> f32 apple_aarch64
+    sig180 = (f32) -> f32 apple_aarch64
+    sig181 = (f32) -> f32 apple_aarch64
+    sig182 = (f32) -> f32 apple_aarch64
+    sig183 = (f32) -> f32 apple_aarch64
+    sig184 = (f32) -> f32 apple_aarch64
+    sig185 = (f32) -> f32 apple_aarch64
+    sig186 = (f32) -> f32 apple_aarch64
+    sig187 = (f32) -> f32 apple_aarch64
+    sig188 = (f32) -> f32 apple_aarch64
+    sig189 = (f32) -> f32 apple_aarch64
+    sig190 = (f32) -> f32 apple_aarch64
+    sig191 = (f32) -> f32 apple_aarch64
+    sig192 = (f32) -> f32 apple_aarch64
+    sig193 = (f32) -> f32 apple_aarch64
+    sig194 = (f32) -> f32 apple_aarch64
+    sig195 = (f32) -> f32 apple_aarch64
+    sig196 = (f32) -> f32 apple_aarch64
+    sig197 = (f32) -> f32 apple_aarch64
+    sig198 = (f32) -> f32 apple_aarch64
+    sig199 = (f32) -> f32 apple_aarch64
+    sig200 = (f32) -> f32 apple_aarch64
+    sig201 = (f32) -> f32 apple_aarch64
+    sig202 = (f32) -> f32 apple_aarch64
+    sig203 = (f32) -> f32 apple_aarch64
+    sig204 = (f32) -> f32 apple_aarch64
+    sig205 = (f32) -> f32 apple_aarch64
+    sig206 = (f32) -> f32 apple_aarch64
+    sig207 = (f32) -> f32 apple_aarch64
+    sig208 = (f32) -> f32 apple_aarch64
+    sig209 = (f32) -> f32 apple_aarch64
+    sig210 = (f32) -> f32 apple_aarch64
+    sig211 = (f32) -> f32 apple_aarch64
+    sig212 = (f32) -> f32 apple_aarch64
+    sig213 = (f32) -> f32 apple_aarch64
+    sig214 = (f32) -> f32 apple_aarch64
+    sig215 = (f32) -> f32 apple_aarch64
+    sig216 = (f32) -> f32 apple_aarch64
+    sig217 = (f32) -> f32 apple_aarch64
+    sig218 = (f32) -> f32 apple_aarch64
+    sig219 = (f32) -> f32 apple_aarch64
+    sig220 = (f32) -> f32 apple_aarch64
+    sig221 = (f32) -> f32 apple_aarch64
+    sig222 = (f32) -> f32 apple_aarch64
+    sig223 = (f32) -> f32 apple_aarch64
+    sig224 = (f32) -> f32 apple_aarch64
+    sig225 = (f32) -> f32 apple_aarch64
+    sig226 = (f32) -> f32 apple_aarch64
+    sig227 = (f32) -> f32 apple_aarch64
+    sig228 = (f32) -> f32 apple_aarch64
+    sig229 = (f32) -> f32 apple_aarch64
+    sig230 = (f32) -> f32 apple_aarch64
+    sig231 = (f32) -> f32 apple_aarch64
+    sig232 = (f32) -> f32 apple_aarch64
+    sig233 = (f32) -> f32 apple_aarch64
+    sig234 = (f32) -> f32 apple_aarch64
+    sig235 = (f32) -> f32 apple_aarch64
+    sig236 = (f32) -> f32 apple_aarch64
+    sig237 = (f32) -> f32 apple_aarch64
+    sig238 = (f32) -> f32 apple_aarch64
+    sig239 = (f32) -> f32 apple_aarch64
+    sig240 = (f32) -> f32 apple_aarch64
+    sig241 = (f32) -> f32 apple_aarch64
+    sig242 = (f32) -> f32 apple_aarch64
+    sig243 = (f32) -> f32 apple_aarch64
+    sig244 = (f32) -> f32 apple_aarch64
+    sig245 = (f32) -> f32 apple_aarch64
+    sig246 = (f32) -> f32 apple_aarch64
+    sig247 = (f32) -> f32 apple_aarch64
+    sig248 = (f32) -> f32 apple_aarch64
+    sig249 = (f32) -> f32 apple_aarch64
+    sig250 = (f32) -> f32 apple_aarch64
+    sig251 = (f32) -> f32 apple_aarch64
+    sig252 = (f32) -> f32 apple_aarch64
+    sig253 = (f32) -> f32 apple_aarch64
+    sig254 = (f32) -> f32 apple_aarch64
+    sig255 = (f32) -> f32 apple_aarch64
+    sig256 = (f32) -> f32 apple_aarch64
+    sig257 = (f32) -> f32 apple_aarch64
+    sig258 = (f32) -> f32 apple_aarch64
+    sig259 = (f32) -> f32 apple_aarch64
+    sig260 = (f32) -> f32 apple_aarch64
+    sig261 = (f32) -> f32 apple_aarch64
+    sig262 = (f32) -> f32 apple_aarch64
+    sig263 = (f32) -> f32 apple_aarch64
+    sig264 = (f32) -> f32 apple_aarch64
+    sig265 = (f32) -> f32 apple_aarch64
+    sig266 = (f32) -> f32 apple_aarch64
+    sig267 = (f32) -> f32 apple_aarch64
+    sig268 = (f32) -> f32 apple_aarch64
+    sig269 = (f32) -> f32 apple_aarch64
+    sig270 = (f32) -> f32 apple_aarch64
+    sig271 = (f32) -> f32 apple_aarch64
+    sig272 = (f32) -> f32 apple_aarch64
+    sig273 = (f32) -> f32 apple_aarch64
+    sig274 = (f32) -> f32 apple_aarch64
+    sig275 = (f32) -> f32 apple_aarch64
+    sig276 = (f32) -> f32 apple_aarch64
+    sig277 = (f32) -> f32 apple_aarch64
+    sig278 = (f32) -> f32 apple_aarch64
+    sig279 = (f32) -> f32 apple_aarch64
+    sig280 = (f32) -> f32 apple_aarch64
+    sig281 = (f32) -> f32 apple_aarch64
+    sig282 = (f32) -> f32 apple_aarch64
+    sig283 = (f32) -> f32 apple_aarch64
+    sig284 = (f32) -> f32 apple_aarch64
+    sig285 = (f32) -> f32 apple_aarch64
+    sig286 = (f32) -> f32 apple_aarch64
+    sig287 = (f32) -> f32 apple_aarch64
+    sig288 = (f32) -> f32 apple_aarch64
+    sig289 = (f32) -> f32 apple_aarch64
+    sig290 = (f32) -> f32 apple_aarch64
+    sig291 = (f32) -> f32 apple_aarch64
+    sig292 = (f32) -> f32 apple_aarch64
+    sig293 = (f32) -> f32 apple_aarch64
+    sig294 = (f32) -> f32 apple_aarch64
+    sig295 = (f32) -> f32 apple_aarch64
+    sig296 = (f32) -> f32 apple_aarch64
+    sig297 = (f32) -> f32 apple_aarch64
+    sig298 = (f32) -> f32 apple_aarch64
+    sig299 = (f32) -> f32 apple_aarch64
+    sig300 = (f32) -> f32 apple_aarch64
+    sig301 = (f32) -> f32 apple_aarch64
+    sig302 = (f32) -> f32 apple_aarch64
+    sig303 = (f32) -> f32 apple_aarch64
+    sig304 = (f32) -> f32 apple_aarch64
+    sig305 = (f32) -> f32 apple_aarch64
+    sig306 = (f32) -> f32 apple_aarch64
+    sig307 = (f32) -> f32 apple_aarch64
+    sig308 = (f32) -> f32 apple_aarch64
+    sig309 = (f32) -> f32 apple_aarch64
+    sig310 = (f32) -> f32 apple_aarch64
+    sig311 = (f32) -> f32 apple_aarch64
+    sig312 = (f32) -> f32 apple_aarch64
+    sig313 = (f32) -> f32 apple_aarch64
+    sig314 = (f32) -> f32 apple_aarch64
+    sig315 = (f32) -> f32 apple_aarch64
+    sig316 = (f32) -> f32 apple_aarch64
+    sig317 = (f32) -> f32 apple_aarch64
+    sig318 = (f32) -> f32 apple_aarch64
+    sig319 = (f32) -> f32 apple_aarch64
+    sig320 = (f32) -> f32 apple_aarch64
+    sig321 = (f32) -> f32 apple_aarch64
+    sig322 = (f32) -> f32 apple_aarch64
+    sig323 = (f32) -> f32 apple_aarch64
+    sig324 = (f32) -> f32 apple_aarch64
+    sig325 = (f32) -> f32 apple_aarch64
+    sig326 = (f32) -> f32 apple_aarch64
+    sig327 = (f32) -> f32 apple_aarch64
+    sig328 = (f32) -> f32 apple_aarch64
+    sig329 = (f32) -> f32 apple_aarch64
+    sig330 = (f32) -> f32 apple_aarch64
+    sig331 = (f32) -> f32 apple_aarch64
+    sig332 = (f32) -> f32 apple_aarch64
+    sig333 = (f32) -> f32 apple_aarch64
+    sig334 = (f32) -> f32 apple_aarch64
+    sig335 = (f32) -> f32 apple_aarch64
+    sig336 = (f32) -> f32 apple_aarch64
+    sig337 = (f32) -> f32 apple_aarch64
+    sig338 = (f32) -> f32 apple_aarch64
+    sig339 = (f32) -> f32 apple_aarch64
+    sig340 = (f32) -> f32 apple_aarch64
+    sig341 = (f32) -> f32 apple_aarch64
+    sig342 = (f32) -> f32 apple_aarch64
+    sig343 = (f32) -> f32 apple_aarch64
+    sig344 = (f32) -> f32 apple_aarch64
+    sig345 = (f32) -> f32 apple_aarch64
+    sig346 = (f32) -> f32 apple_aarch64
+    sig347 = (f32) -> f32 apple_aarch64
+    sig348 = (f32) -> f32 apple_aarch64
+    sig349 = (f32) -> f32 apple_aarch64
+    sig350 = (f32) -> f32 apple_aarch64
+    sig351 = (f32) -> f32 apple_aarch64
+    sig352 = (f32) -> f32 apple_aarch64
+    sig353 = (f32) -> f32 apple_aarch64
+    sig354 = (f32) -> f32 apple_aarch64
+    sig355 = (f32) -> f32 apple_aarch64
+    sig356 = (f32) -> f32 apple_aarch64
+    sig357 = (f32) -> f32 apple_aarch64
+    sig358 = (f32) -> f32 apple_aarch64
+    sig359 = (f32) -> f32 apple_aarch64
+    sig360 = (f32) -> f32 apple_aarch64
+    sig361 = (f32) -> f32 apple_aarch64
+    sig362 = (f32) -> f32 apple_aarch64
+    sig363 = (f32) -> f32 apple_aarch64
+    sig364 = (f32) -> f32 apple_aarch64
+    sig365 = (f32) -> f32 apple_aarch64
+    sig366 = (f32) -> f32 apple_aarch64
+    sig367 = (f32) -> f32 apple_aarch64
+    sig368 = (f32) -> f32 apple_aarch64
+    sig369 = (f32) -> f32 apple_aarch64
+    sig370 = (f32) -> f32 apple_aarch64
+    sig371 = (f32) -> f32 apple_aarch64
+    sig372 = (f32) -> f32 apple_aarch64
+    sig373 = (f32) -> f32 apple_aarch64
+    sig374 = (f32) -> f32 apple_aarch64
+    sig375 = (f32) -> f32 apple_aarch64
+    sig376 = (f32) -> f32 apple_aarch64
+    sig377 = (f32) -> f32 apple_aarch64
+    sig378 = (f32) -> f32 apple_aarch64
+    sig379 = (f32) -> f32 apple_aarch64
+    sig380 = (f32) -> f32 apple_aarch64
+    sig381 = (f32) -> f32 apple_aarch64
+    sig382 = (f32) -> f32 apple_aarch64
+    sig383 = (f32) -> f32 apple_aarch64
+    sig384 = (f32) -> f32 apple_aarch64
+    sig385 = (f32) -> f32 apple_aarch64
+    sig386 = (f32) -> f32 apple_aarch64
+    sig387 = (f32) -> f32 apple_aarch64
+    sig388 = (f32) -> f32 apple_aarch64
+    sig389 = (f32) -> f32 apple_aarch64
+    sig390 = (f32) -> f32 apple_aarch64
+    sig391 = (f32) -> f32 apple_aarch64
+    sig392 = (f32) -> f32 apple_aarch64
+    sig393 = (f32) -> f32 apple_aarch64
+    sig394 = (f32) -> f32 apple_aarch64
+    sig395 = (f32) -> f32 apple_aarch64
+    sig396 = (f32) -> f32 apple_aarch64
+    sig397 = (f32) -> f32 apple_aarch64
+    sig398 = (f32) -> f32 apple_aarch64
+    sig399 = (f32) -> f32 apple_aarch64
+    sig400 = (f32) -> f32 apple_aarch64
+    sig401 = (f32) -> f32 apple_aarch64
+    sig402 = (f32) -> f32 apple_aarch64
+    sig403 = (f32) -> f32 apple_aarch64
+    sig404 = (f32) -> f32 apple_aarch64
+    sig405 = (f32) -> f32 apple_aarch64
+    sig406 = (f32) -> f32 apple_aarch64
+    sig407 = (f32) -> f32 apple_aarch64
+    sig408 = (f32) -> f32 apple_aarch64
+    sig409 = (f32) -> f32 apple_aarch64
+    sig410 = (f32) -> f32 apple_aarch64
+    sig411 = (f32) -> f32 apple_aarch64
+    sig412 = (f32) -> f32 apple_aarch64
+    sig413 = (f32) -> f32 apple_aarch64
+    sig414 = (f32) -> f32 apple_aarch64
+    sig415 = (f32) -> f32 apple_aarch64
+    sig416 = (f32) -> f32 apple_aarch64
+    sig417 = (f32) -> f32 apple_aarch64
+    sig418 = (f32) -> f32 apple_aarch64
+    sig419 = (f32) -> f32 apple_aarch64
+    sig420 = (f32) -> f32 apple_aarch64
+    sig421 = (f32) -> f32 apple_aarch64
+    sig422 = (f32) -> f32 apple_aarch64
+    sig423 = (f32) -> f32 apple_aarch64
+    sig424 = (f32) -> f32 apple_aarch64
+    sig425 = (f32) -> f32 apple_aarch64
+    sig426 = (f32) -> f32 apple_aarch64
+    sig427 = (f32) -> f32 apple_aarch64
+    sig428 = (f32) -> f32 apple_aarch64
+    sig429 = (f32) -> f32 apple_aarch64
+    sig430 = (f32) -> f32 apple_aarch64
+    sig431 = (f32) -> f32 apple_aarch64
+    sig432 = (f32) -> f32 apple_aarch64
+    sig433 = (f32) -> f32 apple_aarch64
+    sig434 = (f32) -> f32 apple_aarch64
+    sig435 = (f32) -> f32 apple_aarch64
+    sig436 = (f32) -> f32 apple_aarch64
+    sig437 = (f32) -> f32 apple_aarch64
+    sig438 = (f32) -> f32 apple_aarch64
+    sig439 = (f32) -> f32 apple_aarch64
+    sig440 = (f32) -> f32 apple_aarch64
+    sig441 = (f32) -> f32 apple_aarch64
+    sig442 = (f32) -> f32 apple_aarch64
+    sig443 = (f32) -> f32 apple_aarch64
+    sig444 = (f32) -> f32 apple_aarch64
+    sig445 = (f32) -> f32 apple_aarch64
+    sig446 = (f32) -> f32 apple_aarch64
+    sig447 = (f32) -> f32 apple_aarch64
+    sig448 = (f32) -> f32 apple_aarch64
+    sig449 = (f32) -> f32 apple_aarch64
+    sig450 = (f32) -> f32 apple_aarch64
+    sig451 = (f32) -> f32 apple_aarch64
+    sig452 = (f32) -> f32 apple_aarch64
+    sig453 = (f32) -> f32 apple_aarch64
+    sig454 = (f32) -> f32 apple_aarch64
+    sig455 = (f32) -> f32 apple_aarch64
+    sig456 = (f32) -> f32 apple_aarch64
+    sig457 = (f32) -> f32 apple_aarch64
+    sig458 = (f32) -> f32 apple_aarch64
+    sig459 = (f32) -> f32 apple_aarch64
+    sig460 = (f32) -> f32 apple_aarch64
+    sig461 = (f32) -> f32 apple_aarch64
+    sig462 = (f32) -> f32 apple_aarch64
+    sig463 = (f32) -> f32 apple_aarch64
+    sig464 = (f32) -> f32 apple_aarch64
+    sig465 = (f32) -> f32 apple_aarch64
+    sig466 = (f32) -> f32 apple_aarch64
+    sig467 = (f32) -> f32 apple_aarch64
+    sig468 = (f32) -> f32 apple_aarch64
+    sig469 = (f32) -> f32 apple_aarch64
+    sig470 = (f32) -> f32 apple_aarch64
+    sig471 = (f32) -> f32 apple_aarch64
+    sig472 = (f32) -> f32 apple_aarch64
+    sig473 = (f32) -> f32 apple_aarch64
+    sig474 = (f32) -> f32 apple_aarch64
+    sig475 = (f32) -> f32 apple_aarch64
+    sig476 = (f32) -> f32 apple_aarch64
+    sig477 = (f32) -> f32 apple_aarch64
+    sig478 = (f32) -> f32 apple_aarch64
+    sig479 = (f32) -> f32 apple_aarch64
+    sig480 = (f32) -> f32 apple_aarch64
+    sig481 = (f32) -> f32 apple_aarch64
+    sig482 = (f32) -> f32 apple_aarch64
+    sig483 = (f32) -> f32 apple_aarch64
+    sig484 = (f32) -> f32 apple_aarch64
+    sig485 = (f32) -> f32 apple_aarch64
+    sig486 = (f32) -> f32 apple_aarch64
+    sig487 = (f32) -> f32 apple_aarch64
+    sig488 = (f32) -> f32 apple_aarch64
+    sig489 = (f32) -> f32 apple_aarch64
+    sig490 = (f32) -> f32 apple_aarch64
+    sig491 = (f32) -> f32 apple_aarch64
+    sig492 = (f32) -> f32 apple_aarch64
+    sig493 = (f32) -> f32 apple_aarch64
+    sig494 = (f32) -> f32 apple_aarch64
+    sig495 = (f32) -> f32 apple_aarch64
+    sig496 = (f32) -> f32 apple_aarch64
+    sig497 = (f32) -> f32 apple_aarch64
+    fn0 = u0:1 sig0
+    fn1 = u0:1 sig1
+    fn2 = u0:2 sig2
+    fn3 = u0:1 sig3
+    fn4 = u0:3 sig4
+    fn5 = u0:1 sig5
+    fn6 = u0:3 sig6
+    fn7 = u0:3 sig7
+    fn8 = u0:1 sig8
+    fn9 = u0:4 sig9
+    fn10 = u0:3 sig10
+    fn11 = u0:1 sig11
+    fn12 = u0:3 sig12
+    fn13 = u0:1 sig13
+    fn14 = u0:2 sig14
+    fn15 = u0:3 sig15
+    fn16 = u0:4 sig16
+    fn17 = u0:2 sig17
+    fn18 = u0:2 sig18
+    fn19 = u0:3 sig19
+    fn20 = u0:1 sig20
+    fn21 = u0:1 sig21
+    fn22 = u0:3 sig22
+    fn23 = u0:3 sig23
+    fn24 = u0:3 sig24
+    fn25 = u0:1 sig25
+    fn26 = u0:1 sig26
+    fn27 = u0:4 sig27
+    fn28 = u0:1 sig28
+    fn29 = u0:1 sig29
+    fn30 = u0:4 sig30
+    fn31 = u0:2 sig31
+    fn32 = u0:3 sig32
+    fn33 = u0:3 sig33
+    fn34 = u0:3 sig34
+    fn35 = u0:3 sig35
+    fn36 = u0:4 sig36
+    fn37 = u0:4 sig37
+    fn38 = u0:1 sig38
+    fn39 = u0:3 sig39
+    fn40 = u0:1 sig40
+    fn41 = u0:3 sig41
+    fn42 = u0:1 sig42
+    fn43 = u0:3 sig43
+    fn44 = u0:1 sig44
+    fn45 = u0:3 sig45
+    fn46 = u0:4 sig46
+    fn47 = u0:3 sig47
+    fn48 = u0:1 sig48
+    fn49 = u0:1 sig49
+    fn50 = u0:1 sig50
+    fn51 = u0:3 sig51
+    fn52 = u0:4 sig52
+    fn53 = u0:1 sig53
+    fn54 = u0:2 sig54
+    fn55 = u0:3 sig55
+    fn56 = u0:1 sig56
+    fn57 = u0:4 sig57
+    fn58 = u0:1 sig58
+    fn59 = u0:1 sig59
+    fn60 = u0:1 sig60
+    fn61 = u0:3 sig61
+    fn62 = u0:3 sig62
+    fn63 = u0:1 sig63
+    fn64 = u0:1 sig64
+    fn65 = u0:4 sig65
+    fn66 = u0:1 sig66
+    fn67 = u0:1 sig67
+    fn68 = u0:3 sig68
+    fn69 = u0:1 sig69
+    fn70 = u0:1 sig70
+    fn71 = u0:4 sig71
+    fn72 = u0:1 sig72
+    fn73 = u0:3 sig73
+    fn74 = u0:4 sig74
+    fn75 = u0:3 sig75
+    fn76 = u0:3 sig76
+    fn77 = u0:1 sig77
+    fn78 = u0:1 sig78
+    fn79 = u0:3 sig79
+    fn80 = u0:4 sig80
+    fn81 = u0:1 sig81
+    fn82 = u0:3 sig82
+    fn83 = u0:3 sig83
+    fn84 = u0:4 sig84
+    fn85 = u0:1 sig85
+    fn86 = u0:4 sig86
+    fn87 = u0:1 sig87
+    fn88 = u0:3 sig88
+    fn89 = u0:1 sig89
+    fn90 = u0:4 sig90
+    fn91 = u0:1 sig91
+    fn92 = u0:1 sig92
+    fn93 = u0:4 sig93
+    fn94 = u0:1 sig94
+    fn95 = u0:1 sig95
+    fn96 = u0:3 sig96
+    fn97 = u0:3 sig97
+    fn98 = u0:1 sig98
+    fn99 = u0:3 sig99
+    fn100 = u0:4 sig100
+    fn101 = u0:3 sig101
+    fn102 = u0:2 sig102
+    fn103 = u0:1 sig103
+    fn104 = u0:1 sig104
+    fn105 = u0:2 sig105
+    fn106 = u0:3 sig106
+    fn107 = u0:2 sig107
+    fn108 = u0:4 sig108
+    fn109 = u0:2 sig109
+    fn110 = u0:1 sig110
+    fn111 = u0:2 sig111
+    fn112 = u0:3 sig112
+    fn113 = u0:3 sig113
+    fn114 = u0:3 sig114
+    fn115 = u0:1 sig115
+    fn116 = u0:3 sig116
+    fn117 = u0:1 sig117
+    fn118 = u0:4 sig118
+    fn119 = u0:1 sig119
+    fn120 = u0:3 sig120
+    fn121 = u0:1 sig121
+    fn122 = u0:2 sig122
+    fn123 = u0:1 sig123
+    fn124 = u0:1 sig124
+    fn125 = u0:1 sig125
+    fn126 = u0:3 sig126
+    fn127 = u0:4 sig127
+    fn128 = u0:3 sig128
+    fn129 = u0:3 sig129
+    fn130 = u0:1 sig130
+    fn131 = u0:1 sig131
+    fn132 = u0:1 sig132
+    fn133 = u0:3 sig133
+    fn134 = u0:3 sig134
+    fn135 = u0:1 sig135
+    fn136 = u0:1 sig136
+    fn137 = u0:1 sig137
+    fn138 = u0:1 sig138
+    fn139 = u0:4 sig139
+    fn140 = u0:3 sig140
+    fn141 = u0:2 sig141
+    fn142 = u0:2 sig142
+    fn143 = u0:4 sig143
+    fn144 = u0:1 sig144
+    fn145 = u0:1 sig145
+    fn146 = u0:2 sig146
+    fn147 = u0:3 sig147
+    fn148 = u0:2 sig148
+    fn149 = u0:2 sig149
+    fn150 = u0:1 sig150
+    fn151 = u0:1 sig151
+    fn152 = u0:1 sig152
+    fn153 = u0:1 sig153
+    fn154 = u0:1 sig154
+    fn155 = u0:3 sig155
+    fn156 = u0:1 sig156
+    fn157 = u0:3 sig157
+    fn158 = u0:1 sig158
+    fn159 = u0:1 sig159
+    fn160 = u0:3 sig160
+    fn161 = u0:1 sig161
+    fn162 = u0:3 sig162
+    fn163 = u0:3 sig163
+    fn164 = u0:3 sig164
+    fn165 = u0:1 sig165
+    fn166 = u0:3 sig166
+    fn167 = u0:1 sig167
+    fn168 = u0:3 sig168
+    fn169 = u0:1 sig169
+    fn170 = u0:1 sig170
+    fn171 = u0:1 sig171
+    fn172 = u0:1 sig172
+    fn173 = u0:1 sig173
+    fn174 = u0:1 sig174
+    fn175 = u0:3 sig175
+    fn176 = u0:3 sig176
+    fn177 = u0:4 sig177
+    fn178 = u0:2 sig178
+    fn179 = u0:1 sig179
+    fn180 = u0:3 sig180
+    fn181 = u0:1 sig181
+    fn182 = u0:3 sig182
+    fn183 = u0:1 sig183
+    fn184 = u0:1 sig184
+    fn185 = u0:1 sig185
+    fn186 = u0:1 sig186
+    fn187 = u0:3 sig187
+    fn188 = u0:3 sig188
+    fn189 = u0:3 sig189
+    fn190 = u0:1 sig190
+    fn191 = u0:1 sig191
+    fn192 = u0:2 sig192
+    fn193 = u0:4 sig193
+    fn194 = u0:3 sig194
+    fn195 = u0:1 sig195
+    fn196 = u0:1 sig196
+    fn197 = u0:1 sig197
+    fn198 = u0:3 sig198
+    fn199 = u0:1 sig199
+    fn200 = u0:1 sig200
+    fn201 = u0:1 sig201
+    fn202 = u0:3 sig202
+    fn203 = u0:1 sig203
+    fn204 = u0:1 sig204
+    fn205 = u0:3 sig205
+    fn206 = u0:1 sig206
+    fn207 = u0:2 sig207
+    fn208 = u0:1 sig208
+    fn209 = u0:1 sig209
+    fn210 = u0:4 sig210
+    fn211 = u0:3 sig211
+    fn212 = u0:4 sig212
+    fn213 = u0:1 sig213
+    fn214 = u0:3 sig214
+    fn215 = u0:3 sig215
+    fn216 = u0:3 sig216
+    fn217 = u0:1 sig217
+    fn218 = u0:1 sig218
+    fn219 = u0:1 sig219
+    fn220 = u0:2 sig220
+    fn221 = u0:3 sig221
+    fn222 = u0:3 sig222
+    fn223 = u0:1 sig223
+    fn224 = u0:1 sig224
+    fn225 = u0:4 sig225
+    fn226 = u0:1 sig226
+    fn227 = u0:3 sig227
+    fn228 = u0:1 sig228
+    fn229 = u0:1 sig229
+    fn230 = u0:3 sig230
+    fn231 = u0:3 sig231
+    fn232 = u0:1 sig232
+    fn233 = u0:3 sig233
+    fn234 = u0:3 sig234
+    fn235 = u0:2 sig235
+    fn236 = u0:4 sig236
+    fn237 = u0:1 sig237
+    fn238 = u0:1 sig238
+    fn239 = u0:3 sig239
+    fn240 = u0:4 sig240
+    fn241 = u0:2 sig241
+    fn242 = u0:2 sig242
+    fn243 = u0:4 sig243
+    fn244 = u0:2 sig244
+    fn245 = u0:3 sig245
+    fn246 = u0:4 sig246
+    fn247 = u0:3 sig247
+    fn248 = u0:4 sig248
+    fn249 = u0:1 sig249
+    fn250 = u0:2 sig250
+    fn251 = u0:3 sig251
+    fn252 = u0:2 sig252
+    fn253 = u0:3 sig253
+    fn254 = u0:1 sig254
+    fn255 = u0:1 sig255
+    fn256 = u0:3 sig256
+    fn257 = u0:1 sig257
+    fn258 = u0:4 sig258
+    fn259 = u0:1 sig259
+    fn260 = u0:1 sig260
+    fn261 = u0:2 sig261
+    fn262 = u0:1 sig262
+    fn263 = u0:1 sig263
+    fn264 = u0:2 sig264
+    fn265 = u0:1 sig265
+    fn266 = u0:2 sig266
+    fn267 = u0:2 sig267
+    fn268 = u0:1 sig268
+    fn269 = u0:1 sig269
+    fn270 = u0:3 sig270
+    fn271 = u0:4 sig271
+    fn272 = u0:2 sig272
+    fn273 = u0:1 sig273
+    fn274 = u0:3 sig274
+    fn275 = u0:3 sig275
+    fn276 = u0:4 sig276
+    fn277 = u0:1 sig277
+    fn278 = u0:1 sig278
+    fn279 = u0:1 sig279
+    fn280 = u0:1 sig280
+    fn281 = u0:3 sig281
+    fn282 = u0:1 sig282
+    fn283 = u0:2 sig283
+    fn284 = u0:2 sig284
+    fn285 = u0:3 sig285
+    fn286 = u0:4 sig286
+    fn287 = u0:3 sig287
+    fn288 = u0:1 sig288
+    fn289 = u0:1 sig289
+    fn290 = u0:2 sig290
+    fn291 = u0:1 sig291
+    fn292 = u0:3 sig292
+    fn293 = u0:1 sig293
+    fn294 = u0:3 sig294
+    fn295 = u0:1 sig295
+    fn296 = u0:3 sig296
+    fn297 = u0:4 sig297
+    fn298 = u0:3 sig298
+    fn299 = u0:3 sig299
+    fn300 = u0:3 sig300
+    fn301 = u0:3 sig301
+    fn302 = u0:3 sig302
+    fn303 = u0:1 sig303
+    fn304 = u0:3 sig304
+    fn305 = u0:3 sig305
+    fn306 = u0:3 sig306
+    fn307 = u0:1 sig307
+    fn308 = u0:3 sig308
+    fn309 = u0:1 sig309
+    fn310 = u0:1 sig310
+    fn311 = u0:1 sig311
+    fn312 = u0:3 sig312
+    fn313 = u0:4 sig313
+    fn314 = u0:3 sig314
+    fn315 = u0:1 sig315
+    fn316 = u0:4 sig316
+    fn317 = u0:1 sig317
+    fn318 = u0:3 sig318
+    fn319 = u0:2 sig319
+    fn320 = u0:3 sig320
+    fn321 = u0:3 sig321
+    fn322 = u0:1 sig322
+    fn323 = u0:2 sig323
+    fn324 = u0:1 sig324
+    fn325 = u0:3 sig325
+    fn326 = u0:3 sig326
+    fn327 = u0:3 sig327
+    fn328 = u0:3 sig328
+    fn329 = u0:1 sig329
+    fn330 = u0:3 sig330
+    fn331 = u0:3 sig331
+    fn332 = u0:1 sig332
+    fn333 = u0:1 sig333
+    fn334 = u0:1 sig334
+    fn335 = u0:3 sig335
+    fn336 = u0:1 sig336
+    fn337 = u0:1 sig337
+    fn338 = u0:3 sig338
+    fn339 = u0:3 sig339
+    fn340 = u0:1 sig340
+    fn341 = u0:1 sig341
+    fn342 = u0:1 sig342
+    fn343 = u0:3 sig343
+    fn344 = u0:2 sig344
+    fn345 = u0:3 sig345
+    fn346 = u0:3 sig346
+    fn347 = u0:1 sig347
+    fn348 = u0:1 sig348
+    fn349 = u0:1 sig349
+    fn350 = u0:1 sig350
+    fn351 = u0:4 sig351
+    fn352 = u0:1 sig352
+    fn353 = u0:1 sig353
+    fn354 = u0:1 sig354
+    fn355 = u0:4 sig355
+    fn356 = u0:1 sig356
+    fn357 = u0:4 sig357
+    fn358 = u0:3 sig358
+    fn359 = u0:1 sig359
+    fn360 = u0:3 sig360
+    fn361 = u0:3 sig361
+    fn362 = u0:1 sig362
+    fn363 = u0:3 sig363
+    fn364 = u0:1 sig364
+    fn365 = u0:1 sig365
+    fn366 = u0:1 sig366
+    fn367 = u0:4 sig367
+    fn368 = u0:3 sig368
+    fn369 = u0:2 sig369
+    fn370 = u0:4 sig370
+    fn371 = u0:1 sig371
+    fn372 = u0:2 sig372
+    fn373 = u0:3 sig373
+    fn374 = u0:3 sig374
+    fn375 = u0:2 sig375
+    fn376 = u0:2 sig376
+    fn377 = u0:1 sig377
+    fn378 = u0:3 sig378
+    fn379 = u0:1 sig379
+    fn380 = u0:3 sig380
+    fn381 = u0:3 sig381
+    fn382 = u0:1 sig382
+    fn383 = u0:2 sig383
+    fn384 = u0:4 sig384
+    fn385 = u0:1 sig385
+    fn386 = u0:3 sig386
+    fn387 = u0:3 sig387
+    fn388 = u0:1 sig388
+    fn389 = u0:3 sig389
+    fn390 = u0:3 sig390
+    fn391 = u0:1 sig391
+    fn392 = u0:3 sig392
+    fn393 = u0:3 sig393
+    fn394 = u0:3 sig394
+    fn395 = u0:1 sig395
+    fn396 = u0:1 sig396
+    fn397 = u0:3 sig397
+    fn398 = u0:3 sig398
+    fn399 = u0:3 sig399
+    fn400 = u0:1 sig400
+    fn401 = u0:3 sig401
+    fn402 = u0:1 sig402
+    fn403 = u0:1 sig403
+    fn404 = u0:1 sig404
+    fn405 = u0:1 sig405
+    fn406 = u0:3 sig406
+    fn407 = u0:3 sig407
+    fn408 = u0:1 sig408
+    fn409 = u0:1 sig409
+    fn410 = u0:1 sig410
+    fn411 = u0:4 sig411
+    fn412 = u0:1 sig412
+    fn413 = u0:1 sig413
+    fn414 = u0:3 sig414
+    fn415 = u0:3 sig415
+    fn416 = u0:1 sig416
+    fn417 = u0:3 sig417
+    fn418 = u0:1 sig418
+    fn419 = u0:1 sig419
+    fn420 = u0:4 sig420
+    fn421 = u0:1 sig421
+    fn422 = u0:1 sig422
+    fn423 = u0:3 sig423
+    fn424 = u0:4 sig424
+    fn425 = u0:1 sig425
+    fn426 = u0:2 sig426
+    fn427 = u0:1 sig427
+    fn428 = u0:3 sig428
+    fn429 = u0:1 sig429
+    fn430 = u0:2 sig430
+    fn431 = u0:3 sig431
+    fn432 = u0:1 sig432
+    fn433 = u0:2 sig433
+    fn434 = u0:2 sig434
+    fn435 = u0:3 sig435
+    fn436 = u0:3 sig436
+    fn437 = u0:3 sig437
+    fn438 = u0:3 sig438
+    fn439 = u0:1 sig439
+    fn440 = u0:3 sig440
+    fn441 = u0:3 sig441
+    fn442 = u0:3 sig442
+    fn443 = u0:3 sig443
+    fn444 = u0:1 sig444
+    fn445 = u0:2 sig445
+    fn446 = u0:3 sig446
+    fn447 = u0:1 sig447
+    fn448 = u0:3 sig448
+    fn449 = u0:1 sig449
+    fn450 = u0:3 sig450
+    fn451 = u0:3 sig451
+    fn452 = u0:3 sig452
+    fn453 = u0:1 sig453
+    fn454 = u0:1 sig454
+    fn455 = u0:1 sig455
+    fn456 = u0:1 sig456
+    fn457 = u0:1 sig457
+    fn458 = u0:3 sig458
+    fn459 = u0:1 sig459
+    fn460 = u0:3 sig460
+    fn461 = u0:3 sig461
+    fn462 = u0:1 sig462
+    fn463 = u0:2 sig463
+    fn464 = u0:2 sig464
+    fn465 = u0:3 sig465
+    fn466 = u0:3 sig466
+    fn467 = u0:3 sig467
+    fn468 = u0:3 sig468
+    fn469 = u0:3 sig469
+    fn470 = u0:1 sig470
+    fn471 = u0:3 sig471
+    fn472 = u0:2 sig472
+    fn473 = u0:1 sig473
+    fn474 = u0:2 sig474
+    fn475 = u0:1 sig475
+    fn476 = u0:1 sig476
+    fn477 = u0:4 sig477
+    fn478 = u0:1 sig478
+    fn479 = u0:1 sig479
+    fn480 = u0:1 sig480
+    fn481 = u0:3 sig481
+    fn482 = u0:3 sig482
+    fn483 = u0:1 sig483
+    fn484 = u0:2 sig484
+    fn485 = u0:1 sig485
+    fn486 = u0:1 sig486
+    fn487 = u0:1 sig487
+    fn488 = u0:1 sig488
+    fn489 = u0:1 sig489
+    fn490 = u0:1 sig490
+    fn491 = u0:1 sig491
+    fn492 = u0:4 sig492
+    fn493 = u0:1 sig493
+    fn494 = u0:4 sig494
+    fn495 = u0:4 sig495
+    fn496 = u0:2 sig496
+    fn497 = u0:1 sig497
+
+block0(v0: f32, v1: f32):
+    v2 = call fn0(v0)
+    v3 = call fn1(v2)
+    v4 = call fn2(v3)
+    v5 = call fn3(v4)
+    v6 = call fn4(v5)
+    v7 = call fn5(v6)
+    v8 = call fn6(v7)
+    v9 = call fn7(v8)
+    v10 = fadd v0, v1
+    v11 = call fn8(v1)
+    v12 = fmul v10, v11
+    v13 = f32const 0.0
+    v14 = fmax v12, v13  ; v13 = 0.0
+    v15 = call fn9(v14)
+    v16 = call fn10(v15)
+    v17 = call fn11(v16)
+    v18 = call fn12(v17)
+    v19 = call fn13(v18)
+    v20 = call fn14(v19)
+    v21 = call fn15(v1)
+    v22 = f32const 0.0
+    v23 = fmax v21, v22  ; v22 = 0.0
+    v24 = call fn16(v23)
+    v25 = f32const -0x1.462384p-1
+    v26 = fadd v1, v1
+    v27 = fmul v25, v26  ; v25 = -0x1.462384p-1
+    v28 = call fn17(v27)
+    v29 = fmul v24, v28
+    v30 = f32const -0x1.6a7f8cp-2
+    v31 = fadd v30, v1  ; v30 = -0x1.6a7f8cp-2
+    v32 = call fn18(v1)
+    v33 = fmul v31, v32
+    v34 = call fn19(v33)
+    v35 = call fn20(v0)
+    v36 = fmul v0, v0
+    v37 = f32const 0x1.0c6f7ap-20
+    v38 = fabs v36
+    v39 = fcmp gt v38, v37  ; v37 = 0x1.0c6f7ap-20
+    v40 = f32const 0.0
+    v41 = fdiv v35, v36
+    v42 = select v39, v41, v40  ; v40 = 0.0
+    v43 = call fn21(v1)
+    v44 = f32const 0x1.5f4290p-1
+    v45 = fadd v1, v44  ; v44 = 0x1.5f4290p-1
+    v46 = fmul v43, v45
+    v47 = f32const 0x1.0c6f7ap-20
+    v48 = fabs v46
+    v49 = fcmp gt v48, v47  ; v47 = 0x1.0c6f7ap-20
+    v50 = f32const 0.0
+    v51 = fdiv v42, v46
+    v52 = select v49, v51, v50  ; v50 = 0.0
+    v53 = call fn22(v1)
+    v54 = call fn23(v53)
+    v55 = call fn24(v54)
+    v56 = f32const 0x1.598f28p-1
+    v57 = fmul v56, v1  ; v56 = 0x1.598f28p-1
+    v58 = call fn25(v57)
+    v59 = call fn26(v58)
+    v60 = fmul v34, v55
+    v61 = fmul v52, v59
+    v62 = fadd v60, v61
+    v63 = fadd v34, v52
+    v64 = f32const 0x1.0c6f7ap-20
+    v65 = fadd v63, v64  ; v64 = 0x1.0c6f7ap-20
+    v66 = fdiv v62, v65
+    v67 = fadd v29, v66
+    v68 = f32const 0.0
+    v69 = fmax v67, v68  ; v68 = 0.0
+    v70 = call fn27(v69)
+    v71 = call fn28(v70)
+    v72 = call fn29(v71)
+    v73 = f32const 0.0
+    v74 = fmax v0, v73  ; v73 = 0.0
+    v75 = call fn30(v74)
+    v76 = call fn31(v1)
+    v77 = fadd v75, v76
+    v78 = call fn32(v77)
+    v79 = f32const 0x1.1876b0p-2
+    v80 = fadd v1, v1
+    v81 = f32const 0x1.362724p-1
+    v82 = f32const -0x1.c13140p-1
+    v83 = fmul v81, v0  ; v81 = 0x1.362724p-1
+    v84 = fmul v0, v82  ; v82 = -0x1.c13140p-1
+    v85 = fadd v83, v84
+    v86 = fadd v81, v0  ; v81 = 0x1.362724p-1
+    v87 = f32const 0x1.0c6f7ap-20
+    v88 = fadd v86, v87  ; v87 = 0x1.0c6f7ap-20
+    v89 = fdiv v85, v88
+    v90 = fadd v80, v89
+    v91 = call fn33(v90)
+    v92 = call fn34(v1)
+    v93 = f32const -0x1.2301d0p-4
+    v94 = call fn35(v0)
+    v95 = f32const 0x1.a37e60p-2
+    v96 = fadd v95, v1  ; v95 = 0x1.a37e60p-2
+    v97 = fmul v92, v94
+    v98 = fmul v93, v96  ; v93 = -0x1.2301d0p-4
+    v99 = fadd v97, v98
+    v100 = fadd v92, v93  ; v93 = -0x1.2301d0p-4
+    v101 = f32const 0x1.0c6f7ap-20
+    v102 = fadd v100, v101  ; v101 = 0x1.0c6f7ap-20
+    v103 = fdiv v99, v102
+    v104 = f32const 0.0
+    v105 = fmax v103, v104  ; v104 = 0.0
+    v106 = call fn36(v105)
+    v107 = fmul v78, v91
+    v108 = fmul v79, v106  ; v79 = 0x1.1876b0p-2
+    v109 = fadd v107, v108
+    v110 = fadd v78, v79  ; v79 = 0x1.1876b0p-2
+    v111 = f32const 0x1.0c6f7ap-20
+    v112 = fadd v110, v111  ; v111 = 0x1.0c6f7ap-20
+    v113 = fdiv v109, v112
+    v114 = fadd v0, v113
+    v115 = f32const 0.0
+    v116 = fmax v114, v115  ; v115 = 0.0
+    v117 = call fn37(v116)
+    v118 = call fn38(v117)
+    v119 = call fn39(v118)
+    v120 = fmul v9, v72
+    v121 = fmul v20, v119
+    v122 = fadd v120, v121
+    v123 = fadd v9, v20
+    v124 = f32const 0x1.0c6f7ap-20
+    v125 = fadd v123, v124  ; v124 = 0x1.0c6f7ap-20
+    v126 = fdiv v122, v125
+    v127 = call fn40(v126)
+    v128 = call fn41(v127)
+    v129 = call fn42(v128)
+    v130 = call fn43(v129)
+    v131 = f32const -0x1.550b8ep-1
+    v132 = call fn44(v0)
+    v133 = call fn45(v132)
+    v134 = f32const 0.0
+    v135 = fmax v133, v134  ; v134 = 0.0
+    v136 = call fn46(v135)
+    v137 = call fn47(v136)
+    v138 = call fn48(v137)
+    v139 = call fn49(v0)
+    v140 = call fn50(v139)
+    v141 = call fn51(v140)
+    v142 = fmul v130, v138
+    v143 = fmul v131, v141  ; v131 = -0x1.550b8ep-1
+    v144 = fadd v142, v143
+    v145 = fadd v130, v131  ; v131 = -0x1.550b8ep-1
+    v146 = f32const 0x1.0c6f7ap-20
+    v147 = fadd v145, v146  ; v146 = 0x1.0c6f7ap-20
+    v148 = fdiv v144, v147
+    v149 = f32const 0.0
+    v150 = fmax v148, v149  ; v149 = 0.0
+    v151 = call fn52(v150)
+    v152 = call fn53(v151)
+    v153 = f32const -0x1.59f5eep-3
+    v154 = f32const 0x1.2454a0p-1
+    v155 = call fn54(v1)
+    v156 = fadd v154, v155  ; v154 = 0x1.2454a0p-1
+    v157 = fmul v0, v0
+    v158 = call fn55(v157)
+    v159 = fmul v156, v158
+    v160 = fmul v153, v159  ; v153 = -0x1.59f5eep-3
+    v161 = call fn56(v160)
+    v162 = f32const 0x1.dbe1fcp-1
+    v163 = fmul v161, v162  ; v162 = 0x1.dbe1fcp-1
+    v164 = f32const 0.0
+    v165 = fmax v163, v164  ; v164 = 0.0
+    v166 = call fn57(v165)
+    v167 = f32const 0x1.3e9234p-1
+    v168 = call fn58(v1)
+    v169 = call fn59(v168)
+    v170 = call fn60(v169)
+    v171 = call fn61(v170)
+    v172 = call fn62(v0)
+    v173 = call fn63(v172)
+    v174 = call fn64(v173)
+    v175 = f32const 0.0
+    v176 = fmax v174, v175  ; v175 = 0.0
+    v177 = call fn65(v176)
+    v178 = fadd v171, v177
+    v179 = call fn66(v178)
+    v180 = fmul v167, v179  ; v167 = 0x1.3e9234p-1
+    v181 = fadd v166, v180
+    v182 = call fn67(v0)
+    v183 = call fn68(v182)
+    v184 = call fn69(v183)
+    v185 = call fn70(v184)
+    v186 = f32const 0.0
+    v187 = fmax v185, v186  ; v186 = 0.0
+    v188 = call fn71(v187)
+    v189 = call fn72(v188)
+    v190 = f32const 0x1.a1f3c4p-1
+    v191 = fmul v189, v190  ; v190 = 0x1.a1f3c4p-1
+    v192 = f32const -0x1.c4a9a0p-1
+    v193 = call fn73(v1)
+    v194 = f32const 0.0
+    v195 = fmax v193, v194  ; v194 = 0.0
+    v196 = call fn74(v195)
+    v197 = call fn75(v0)
+    v198 = call fn76(v1)
+    v199 = call fn77(v1)
+    v200 = call fn78(v0)
+    v201 = fmul v197, v199
+    v202 = fmul v198, v200
+    v203 = fadd v201, v202
+    v204 = fadd v197, v198
+    v205 = f32const 0x1.0c6f7ap-20
+    v206 = fadd v204, v205  ; v205 = 0x1.0c6f7ap-20
+    v207 = fdiv v203, v206
+    v208 = f32const -0x1.10d1e0p-3
+    v209 = f32const 0x1.d2854ep-1
+    v210 = fmul v196, v208  ; v208 = -0x1.10d1e0p-3
+    v211 = fmul v207, v209  ; v209 = 0x1.d2854ep-1
+    v212 = fadd v210, v211
+    v213 = fadd v196, v207
+    v214 = f32const 0x1.0c6f7ap-20
+    v215 = fadd v213, v214  ; v214 = 0x1.0c6f7ap-20
+    v216 = fdiv v212, v215
+    v217 = f32const 0x1.723650p-1
+    v218 = call fn79(v1)
+    v219 = f32const 0.0
+    v220 = fmax v1, v219  ; v219 = 0.0
+    v221 = call fn80(v220)
+    v222 = f32const 0.0
+    v223 = fmul v217, v221  ; v217 = 0x1.723650p-1
+    v224 = fmul v218, v222  ; v222 = 0.0
+    v225 = fadd v223, v224
+    v226 = fadd v217, v218  ; v217 = 0x1.723650p-1
+    v227 = f32const 0x1.0c6f7ap-20
+    v228 = fadd v226, v227  ; v227 = 0x1.0c6f7ap-20
+    v229 = fdiv v225, v228
+    v230 = call fn81(v229)
+    v231 = fadd v216, v230
+    v232 = call fn82(v231)
+    v233 = call fn83(v0)
+    v234 = f32const 0.0
+    v235 = fmax v233, v234  ; v234 = 0.0
+    v236 = call fn84(v235)
+    v237 = call fn85(v236)
+    v238 = f32const 0.0
+    v239 = fmax v237, v238  ; v238 = 0.0
+    v240 = call fn86(v239)
+    v241 = call fn87(v240)
+    v242 = f32const -0x1.0a2720p-3
+    v243 = fadd v242, v0  ; v242 = -0x1.0a2720p-3
+    v244 = call fn88(v243)
+    v245 = call fn89(v244)
+    v246 = f32const 0.0
+    v247 = fmax v245, v246  ; v246 = 0.0
+    v248 = call fn90(v247)
+    v249 = call fn91(v248)
+    v250 = call fn92(v0)
+    v251 = f32const 0.0
+    v252 = fmax v250, v251  ; v251 = 0.0
+    v253 = call fn93(v252)
+    v254 = call fn94(v253)
+    v255 = call fn95(v254)
+    v256 = f32const 0x1.37311ap-1
+    v257 = call fn96(v1)
+    v258 = call fn97(v1)
+    v259 = call fn98(v1)
+    v260 = fmul v256, v258  ; v256 = 0x1.37311ap-1
+    v261 = fmul v257, v259
+    v262 = fadd v260, v261
+    v263 = fadd v256, v257  ; v256 = 0x1.37311ap-1
+    v264 = f32const 0x1.0c6f7ap-20
+    v265 = fadd v263, v264  ; v264 = 0x1.0c6f7ap-20
+    v266 = fdiv v262, v265
+    v267 = call fn99(v266)
+    v268 = f32const 0.0
+    v269 = fmax v267, v268  ; v268 = 0.0
+    v270 = call fn100(v269)
+    v271 = f32const 0x1.0c6f7ap-20
+    v272 = fabs v270
+    v273 = fcmp gt v272, v271  ; v271 = 0x1.0c6f7ap-20
+    v274 = f32const 0.0
+    v275 = fdiv v255, v270
+    v276 = select v273, v275, v274  ; v274 = 0.0
+    v277 = fmul v232, v249
+    v278 = fmul v241, v276
+    v279 = fadd v277, v278
+    v280 = fadd v232, v241
+    v281 = f32const 0x1.0c6f7ap-20
+    v282 = fadd v280, v281  ; v281 = 0x1.0c6f7ap-20
+    v283 = fdiv v279, v282
+    v284 = f32const 0x1.ff295ap-1
+    v285 = call fn101(v1)
+    v286 = call fn102(v285)
+    v287 = f32const 0x1.0c6f7ap-20
+    v288 = fabs v286
+    v289 = fcmp gt v288, v287  ; v287 = 0x1.0c6f7ap-20
+    v290 = f32const 0.0
+    v291 = fdiv v284, v286  ; v284 = 0x1.ff295ap-1
+    v292 = select v289, v291, v290  ; v290 = 0.0
+    v293 = call fn103(v292)
+    v294 = call fn104(v293)
+    v295 = call fn105(v294)
+    v296 = fmul v192, v1  ; v192 = -0x1.c4a9a0p-1
+    v297 = fmul v283, v295
+    v298 = fadd v296, v297
+    v299 = fadd v192, v283  ; v192 = -0x1.c4a9a0p-1
+    v300 = f32const 0x1.0c6f7ap-20
+    v301 = fadd v299, v300  ; v300 = 0x1.0c6f7ap-20
+    v302 = fdiv v298, v301
+    v303 = call fn106(v1)
+    v304 = call fn107(v303)
+    v305 = f32const 0.0
+    v306 = fmax v304, v305  ; v305 = 0.0
+    v307 = call fn108(v306)
+    v308 = call fn109(v307)
+    v309 = call fn110(v308)
+    v310 = call fn111(v309)
+    v311 = f32const 0x1.8033e8p-1
+    v312 = f32const 0x1.66b500p-1
+    v313 = fmul v311, v312  ; v311 = 0x1.8033e8p-1, v312 = 0x1.66b500p-1
+    v314 = fmul v1, v0
+    v315 = fadd v313, v314
+    v316 = fadd v311, v1  ; v311 = 0x1.8033e8p-1
+    v317 = f32const 0x1.0c6f7ap-20
+    v318 = fadd v316, v317  ; v317 = 0x1.0c6f7ap-20
+    v319 = fdiv v315, v318
+    v320 = call fn112(v319)
+    v321 = call fn113(v320)
+    v322 = call fn114(v321)
+    v323 = call fn115(v0)
+    v324 = f32const 0x1.5fc552p0
+    v325 = fmul v323, v324  ; v324 = 0x1.5fc552p0
+    v326 = call fn116(v325)
+    v327 = call fn117(v0)
+    v328 = fmul v326, v327
+    v329 = f32const 0x1.e1d2eep1
+    v330 = f32const 0.0
+    v331 = fmax v1, v330  ; v330 = 0.0
+    v332 = call fn118(v331)
+    v333 = f32const 0x1.fb68e2p-1
+    v334 = f32const 0x1.3806e0p-2
+    v335 = fmul v0, v334  ; v334 = 0x1.3806e0p-2
+    v336 = fmul v332, v333  ; v333 = 0x1.fb68e2p-1
+    v337 = fmul v1, v335
+    v338 = fadd v336, v337
+    v339 = fadd v332, v1
+    v340 = f32const 0x1.0c6f7ap-20
+    v341 = fadd v339, v340  ; v340 = 0x1.0c6f7ap-20
+    v342 = fdiv v338, v341
+    v343 = f32const -0x1.1ab126p-1
+    v344 = f32const 0x1.0c6f7ap-20
+    v345 = fabs v0
+    v346 = fcmp gt v345, v344  ; v344 = 0x1.0c6f7ap-20
+    v347 = f32const 0.0
+    v348 = fdiv v343, v0  ; v343 = -0x1.1ab126p-1
+    v349 = select v346, v348, v347  ; v347 = 0.0
+    v350 = call fn119(v349)
+    v351 = fadd v342, v350
+    v352 = call fn120(v351)
+    v353 = fmul v322, v329  ; v329 = 0x1.e1d2eep1
+    v354 = fmul v328, v352
+    v355 = fadd v353, v354
+    v356 = fadd v322, v328
+    v357 = f32const 0x1.0c6f7ap-20
+    v358 = fadd v356, v357  ; v357 = 0x1.0c6f7ap-20
+    v359 = fdiv v355, v358
+    v360 = call fn121(v359)
+    v361 = fadd v310, v360
+    v362 = call fn122(v1)
+    v363 = call fn123(v362)
+    v364 = call fn124(v1)
+    v365 = fmul v1, v0
+    v366 = fadd v364, v365
+    v367 = f32const 0x1.a6b924p-1
+    v368 = call fn125(v1)
+    v369 = call fn126(v368)
+    v370 = fmul v363, v367  ; v367 = 0x1.a6b924p-1
+    v371 = fmul v366, v369
+    v372 = fadd v370, v371
+    v373 = fadd v363, v366
+    v374 = f32const 0x1.0c6f7ap-20
+    v375 = fadd v373, v374  ; v374 = 0x1.0c6f7ap-20
+    v376 = fdiv v372, v375
+    v377 = f32const 0.0
+    v378 = fmax v376, v377  ; v377 = 0.0
+    v379 = call fn127(v378)
+    v380 = call fn128(v379)
+    v381 = call fn129(v380)
+    v382 = call fn130(v1)
+    v383 = call fn131(v382)
+    v384 = call fn132(v383)
+    v385 = fadd v0, v0
+    v386 = f32const 0x1.6cece0p-4
+    v387 = fmul v386, v1  ; v386 = 0x1.6cece0p-4
+    v388 = f32const 0x1.2d00f4p-1
+    v389 = fadd v0, v388  ; v388 = 0x1.2d00f4p-1
+    v390 = f32const -0x1.b405f0p-4
+    v391 = fadd v0, v390  ; v390 = -0x1.b405f0p-4
+    v392 = fmul v385, v389
+    v393 = fmul v387, v391
+    v394 = fadd v392, v393
+    v395 = fadd v385, v387
+    v396 = f32const 0x1.0c6f7ap-20
+    v397 = fadd v395, v396  ; v396 = 0x1.0c6f7ap-20
+    v398 = fdiv v394, v397
+    v399 = call fn133(v398)
+    v400 = f32const 0x1.ba9238p-2
+    v401 = call fn134(v0)
+    v402 = fmul v400, v401  ; v400 = 0x1.ba9238p-2
+    v403 = call fn135(v402)
+    v404 = f32const 0x1.7e0ec4p-2
+    v405 = call fn136(v1)
+    v406 = f32const 0x1.0c6f7ap-20
+    v407 = fabs v405
+    v408 = fcmp gt v407, v406  ; v406 = 0x1.0c6f7ap-20
+    v409 = f32const 0.0
+    v410 = fdiv v404, v405  ; v404 = 0x1.7e0ec4p-2
+    v411 = select v408, v410, v409  ; v409 = 0.0
+    v412 = f32const -0x1.d3a4a8p-2
+    v413 = fadd v0, v412  ; v412 = -0x1.d3a4a8p-2
+    v414 = call fn137(v413)
+    v415 = f32const 0x1.0c6f7ap-20
+    v416 = fabs v414
+    v417 = fcmp gt v416, v415  ; v415 = 0x1.0c6f7ap-20
+    v418 = f32const 0.0
+    v419 = fdiv v411, v414
+    v420 = select v417, v419, v418  ; v418 = 0.0
+    v421 = fmul v384, v403
+    v422 = fmul v399, v420
+    v423 = fadd v421, v422
+    v424 = fadd v384, v399
+    v425 = f32const 0x1.0c6f7ap-20
+    v426 = fadd v424, v425  ; v425 = 0x1.0c6f7ap-20
+    v427 = fdiv v423, v426
+    v428 = call fn138(v427)
+    v429 = f32const 0.0
+    v430 = fmax v428, v429  ; v429 = 0.0
+    v431 = call fn139(v430)
+    v432 = f32const 0x1.7ea986p-1
+    v433 = f32const -0x1.3182a8p-1
+    v434 = fmul v1, v433  ; v433 = -0x1.3182a8p-1
+    v435 = call fn140(v434)
+    v436 = call fn141(v1)
+    v437 = call fn142(v436)
+    v438 = f32const -0x1.348da6p-1
+    v439 = f32const 0x1.0c6f7ap-20
+    v440 = fabs v1
+    v441 = fcmp gt v440, v439  ; v439 = 0x1.0c6f7ap-20
+    v442 = f32const 0.0
+    v443 = fdiv v438, v1  ; v438 = -0x1.348da6p-1
+    v444 = select v441, v443, v442  ; v442 = 0.0
+    v445 = f32const 0.0
+    v446 = fmax v444, v445  ; v445 = 0.0
+    v447 = call fn143(v446)
+    v448 = f32const 0x1.09c23ap1
+    v449 = fmul v435, v447
+    v450 = fmul v437, v448  ; v448 = 0x1.09c23ap1
+    v451 = fadd v449, v450
+    v452 = fadd v435, v437
+    v453 = f32const 0x1.0c6f7ap-20
+    v454 = fadd v452, v453  ; v453 = 0x1.0c6f7ap-20
+    v455 = fdiv v451, v454
+    v456 = call fn144(v455)
+    v457 = call fn145(v456)
+    v458 = call fn146(v457)
+    v459 = fmul v381, v432  ; v432 = 0x1.7ea986p-1
+    v460 = fmul v431, v458
+    v461 = fadd v459, v460
+    v462 = fadd v381, v431
+    v463 = f32const 0x1.0c6f7ap-20
+    v464 = fadd v462, v463  ; v463 = 0x1.0c6f7ap-20
+    v465 = fdiv v461, v464
+    v466 = fmul v191, v361
+    v467 = fmul v302, v465
+    v468 = fadd v466, v467
+    v469 = fadd v191, v302
+    v470 = f32const 0x1.0c6f7ap-20
+    v471 = fadd v469, v470  ; v470 = 0x1.0c6f7ap-20
+    v472 = fdiv v468, v471
+    v473 = f32const 0x1.8ae148p-1
+    v474 = call fn147(v1)
+    v475 = call fn148(v0)
+    v476 = call fn149(v475)
+    v477 = call fn150(v476)
+    v478 = f32const -0x1.45fd30p-1
+    v479 = fmul v1, v478  ; v478 = -0x1.45fd30p-1
+    v480 = call fn151(v479)
+    v481 = f32const 0x1.0c6f7ap-20
+    v482 = fabs v480
+    v483 = fcmp gt v482, v481  ; v481 = 0x1.0c6f7ap-20
+    v484 = f32const 0.0
+    v485 = fdiv v1, v480
+    v486 = select v483, v485, v484  ; v484 = 0.0
+    v487 = fmul v0, v477
+    v488 = fmul v474, v486
+    v489 = fadd v487, v488
+    v490 = fadd v0, v474
+    v491 = f32const 0x1.0c6f7ap-20
+    v492 = fadd v490, v491  ; v491 = 0x1.0c6f7ap-20
+    v493 = fdiv v489, v492
+    v494 = call fn152(v493)
+    v495 = call fn153(v494)
+    v496 = call fn154(v1)
+    v497 = f32const -0x1.081712p-4
+    v498 = call fn155(v0)
+    v499 = fmul v497, v498  ; v497 = -0x1.081712p-4
+    v500 = f32const 0x1.624758p-2
+    v501 = fadd v500, v1  ; v500 = 0x1.624758p-2
+    v502 = call fn156(v501)
+    v503 = f32const 0x1.0c6f7ap-20
+    v504 = fabs v502
+    v505 = fcmp gt v504, v503  ; v503 = 0x1.0c6f7ap-20
+    v506 = f32const 0.0
+    v507 = fdiv v499, v502
+    v508 = select v505, v507, v506  ; v506 = 0.0
+    v509 = call fn157(v1)
+    v510 = call fn158(v509)
+    v511 = call fn159(v510)
+    v512 = f32const -0x1.ca3ee6p-1
+    v513 = fmul v512, v1  ; v512 = -0x1.ca3ee6p-1
+    v514 = call fn160(v0)
+    v515 = fadd v513, v514
+    v516 = f32const 0x1.7a1000p-1
+    v517 = call fn161(v1)
+    v518 = call fn162(v517)
+    v519 = fmul v515, v516  ; v516 = 0x1.7a1000p-1
+    v520 = fmul v1, v518
+    v521 = fadd v519, v520
+    v522 = fadd v515, v1
+    v523 = f32const 0x1.0c6f7ap-20
+    v524 = fadd v522, v523  ; v523 = 0x1.0c6f7ap-20
+    v525 = fdiv v521, v524
+    v526 = fmul v496, v511
+    v527 = fmul v508, v525
+    v528 = fadd v526, v527
+    v529 = fadd v496, v508
+    v530 = f32const 0x1.0c6f7ap-20
+    v531 = fadd v529, v530  ; v530 = 0x1.0c6f7ap-20
+    v532 = fdiv v528, v531
+    v533 = call fn163(v532)
+    v534 = call fn164(v533)
+    v535 = f32const 0x1.0c6f7ap-20
+    v536 = fabs v534
+    v537 = fcmp gt v536, v535  ; v535 = 0x1.0c6f7ap-20
+    v538 = f32const 0.0
+    v539 = fdiv v495, v534
+    v540 = select v537, v539, v538  ; v538 = 0.0
+    v541 = call fn165(v540)
+    v542 = fmul v181, v473  ; v473 = 0x1.8ae148p-1
+    v543 = fmul v472, v541
+    v544 = fadd v542, v543
+    v545 = fadd v181, v472
+    v546 = f32const 0x1.0c6f7ap-20
+    v547 = fadd v545, v546  ; v546 = 0x1.0c6f7ap-20
+    v548 = fdiv v544, v547
+    v549 = call fn166(v1)
+    v550 = call fn167(v549)
+    v551 = f32const 0x1.e9fff0p-1
+    v552 = fmul v550, v551  ; v551 = 0x1.e9fff0p-1
+    v553 = call fn168(v552)
+    v554 = call fn169(v553)
+    v555 = call fn170(v554)
+    v556 = call fn171(v555)
+    v557 = call fn172(v556)
+    v558 = f32const 0x1.7891bcp-1
+    v559 = call fn173(v1)
+    v560 = call fn174(v559)
+    v561 = call fn175(v560)
+    v562 = call fn176(v561)
+    v563 = f32const 0.0
+    v564 = fmax v562, v563  ; v563 = 0.0
+    v565 = call fn177(v564)
+    v566 = call fn178(v565)
+    v567 = call fn179(v566)
+    v568 = call fn180(v0)
+    v569 = call fn181(v568)
+    v570 = f32const 0x1.938b56p-1
+    v571 = f32const 0x1.0c6f7ap-20
+    v572 = fabs v0
+    v573 = fcmp gt v572, v571  ; v571 = 0x1.0c6f7ap-20
+    v574 = f32const 0.0
+    v575 = fdiv v1, v0
+    v576 = select v573, v575, v574  ; v574 = 0.0
+    v577 = fmul v570, v576  ; v570 = 0x1.938b56p-1
+    v578 = f32const 0x1.c6e9ecp-1
+    v579 = fadd v578, v1  ; v578 = 0x1.c6e9ecp-1
+    v580 = call fn182(v1)
+    v581 = fmul v579, v580
+    v582 = f32const 0x1.d8faa8p-2
+    v583 = fmul v569, v581
+    v584 = fmul v577, v582  ; v582 = 0x1.d8faa8p-2
+    v585 = fadd v583, v584
+    v586 = fadd v569, v577
+    v587 = f32const 0x1.0c6f7ap-20
+    v588 = fadd v586, v587  ; v587 = 0x1.0c6f7ap-20
+    v589 = fdiv v585, v588
+    v590 = call fn183(v0)
+    v591 = call fn184(v590)
+    v592 = call fn185(v591)
+    v593 = f32const 0x1.301818p-2
+    v594 = f32const 0x1.3c6eb4p-1
+    v595 = fmul v1, v593  ; v593 = 0x1.301818p-2
+    v596 = fmul v0, v594  ; v594 = 0x1.3c6eb4p-1
+    v597 = fadd v595, v596
+    v598 = fadd v1, v0
+    v599 = f32const 0x1.0c6f7ap-20
+    v600 = fadd v598, v599  ; v599 = 0x1.0c6f7ap-20
+    v601 = fdiv v597, v600
+    v602 = call fn186(v601)
+    v603 = call fn187(v602)
+    v604 = f32const 0x1.3838a6p1
+    v605 = fmul v589, v603
+    v606 = fmul v592, v604  ; v604 = 0x1.3838a6p1
+    v607 = fadd v605, v606
+    v608 = fadd v589, v592
+    v609 = f32const 0x1.0c6f7ap-20
+    v610 = fadd v608, v609  ; v609 = 0x1.0c6f7ap-20
+    v611 = fdiv v607, v610
+    v612 = fmul v1, v0
+    v613 = fmul v1, v1
+    v614 = fadd v612, v613
+    v615 = fadd v1, v1
+    v616 = f32const 0x1.0c6f7ap-20
+    v617 = fadd v615, v616  ; v616 = 0x1.0c6f7ap-20
+    v618 = fdiv v614, v617
+    v619 = f32const 0x1.8a4490p-2
+    v620 = fmul v0, v619  ; v619 = 0x1.8a4490p-2
+    v621 = f32const 0x1.1881a0p-4
+    v622 = f32const -0x1.257d04p-1
+    v623 = fmul v622, v1  ; v622 = -0x1.257d04p-1
+    v624 = fmul v618, v621  ; v621 = 0x1.1881a0p-4
+    v625 = fmul v620, v623
+    v626 = fadd v624, v625
+    v627 = fadd v618, v620
+    v628 = f32const 0x1.0c6f7ap-20
+    v629 = fadd v627, v628  ; v628 = 0x1.0c6f7ap-20
+    v630 = fdiv v626, v629
+    v631 = f32const -0x1.298640p-4
+    v632 = f32const 0x1.0c6f7ap-20
+    v633 = fabs v0
+    v634 = fcmp gt v633, v632  ; v632 = 0x1.0c6f7ap-20
+    v635 = f32const 0.0
+    v636 = fdiv v631, v0  ; v631 = -0x1.298640p-4
+    v637 = select v634, v636, v635  ; v635 = 0.0
+    v638 = call fn188(v637)
+    v639 = f32const 0x1.0c6f7ap-20
+    v640 = fabs v638
+    v641 = fcmp gt v640, v639  ; v639 = 0x1.0c6f7ap-20
+    v642 = f32const 0.0
+    v643 = fdiv v630, v638
+    v644 = select v641, v643, v642  ; v642 = 0.0
+    v645 = call fn189(v644)
+    v646 = fmul v611, v645
+    v647 = call fn190(v646)
+    v648 = call fn191(v647)
+    v649 = f32const 0x1.7fa72ap-2
+    v650 = fmul v558, v648  ; v558 = 0x1.7891bcp-1
+    v651 = fmul v567, v649  ; v649 = 0x1.7fa72ap-2
+    v652 = fadd v650, v651
+    v653 = fadd v558, v567  ; v558 = 0x1.7891bcp-1
+    v654 = f32const 0x1.0c6f7ap-20
+    v655 = fadd v653, v654  ; v654 = 0x1.0c6f7ap-20
+    v656 = fdiv v652, v655
+    v657 = f32const 0x1.0c6f7ap-20
+    v658 = fabs v656
+    v659 = fcmp gt v658, v657  ; v657 = 0x1.0c6f7ap-20
+    v660 = f32const 0.0
+    v661 = fdiv v557, v656
+    v662 = select v659, v661, v660  ; v660 = 0.0
+    v663 = fmul v548, v662
+    v664 = call fn192(v663)
+    v665 = f32const 0.0
+    v666 = fmax v1, v665  ; v665 = 0.0
+    v667 = call fn193(v666)
+    v668 = call fn194(v667)
+    v669 = call fn195(v668)
+    v670 = call fn196(v669)
+    v671 = f32const 0x1.4585fcp-2
+    v672 = call fn197(v1)
+    v673 = fadd v671, v672  ; v671 = 0x1.4585fcp-2
+    v674 = call fn198(v673)
+    v675 = call fn199(v1)
+    v676 = fmul v674, v675
+    v677 = f32const -0x1.0105b8p-1
+    v678 = fmul v0, v1
+    v679 = fmul v1, v677  ; v677 = -0x1.0105b8p-1
+    v680 = fadd v678, v679
+    v681 = fadd v0, v1
+    v682 = f32const 0x1.0c6f7ap-20
+    v683 = fadd v681, v682  ; v682 = 0x1.0c6f7ap-20
+    v684 = fdiv v680, v683
+    v685 = call fn200(v684)
+    v686 = call fn201(v685)
+    v687 = call fn202(v1)
+    v688 = call fn203(v0)
+    v689 = f32const 0x1.0c6f7ap-20
+    v690 = fabs v688
+    v691 = fcmp gt v690, v689  ; v689 = 0x1.0c6f7ap-20
+    v692 = f32const 0.0
+    v693 = fdiv v687, v688
+    v694 = select v691, v693, v692  ; v692 = 0.0
+    v695 = call fn204(v694)
+    v696 = f32const 0x1.0c6f7ap-20
+    v697 = fabs v0
+    v698 = fcmp gt v697, v696  ; v696 = 0x1.0c6f7ap-20
+    v699 = f32const 0.0
+    v700 = fdiv v1, v0
+    v701 = select v698, v700, v699  ; v699 = 0.0
+    v702 = call fn205(v701)
+    v703 = call fn206(v1)
+    v704 = call fn207(v703)
+    v705 = fmul v702, v704
+    v706 = fmul v686, v705
+    v707 = fmul v695, v0
+    v708 = fadd v706, v707
+    v709 = fadd v686, v695
+    v710 = f32const 0x1.0c6f7ap-20
+    v711 = fadd v709, v710  ; v710 = 0x1.0c6f7ap-20
+    v712 = fdiv v708, v711
+    v713 = call fn208(v712)
+    v714 = call fn209(v713)
+    v715 = fmul v676, v714
+    v716 = f32const 0.0
+    v717 = fmax v715, v716  ; v716 = 0.0
+    v718 = call fn210(v717)
+    v719 = f32const -0x1.5508d8p-2
+    v720 = f32const 0x1.0c6f7ap-20
+    v721 = fabs v719  ; v719 = -0x1.5508d8p-2
+    v722 = fcmp gt v721, v720  ; v720 = 0x1.0c6f7ap-20
+    v723 = f32const 0.0
+    v724 = fdiv v0, v719  ; v719 = -0x1.5508d8p-2
+    v725 = select v722, v724, v723  ; v723 = 0.0
+    v726 = f32const 0x1.4110dap0
+    v727 = fadd v0, v0
+    v728 = fmul v725, v727
+    v729 = fmul v726, v0  ; v726 = 0x1.4110dap0
+    v730 = fadd v728, v729
+    v731 = fadd v725, v726  ; v726 = 0x1.4110dap0
+    v732 = f32const 0x1.0c6f7ap-20
+    v733 = fadd v731, v732  ; v732 = 0x1.0c6f7ap-20
+    v734 = fdiv v730, v733
+    v735 = call fn211(v734)
+    v736 = f32const 0.0
+    v737 = fmax v735, v736  ; v736 = 0.0
+    v738 = call fn212(v737)
+    v739 = call fn213(v738)
+    v740 = call fn214(v739)
+    v741 = call fn215(v1)
+    v742 = call fn216(v741)
+    v743 = call fn217(v742)
+    v744 = call fn218(v743)
+    v745 = call fn219(v0)
+    v746 = fadd v0, v745
+    v747 = call fn220(v746)
+    v748 = call fn221(v747)
+    v749 = f32const 0x1.0c6f7ap-20
+    v750 = fabs v748
+    v751 = fcmp gt v750, v749  ; v749 = 0x1.0c6f7ap-20
+    v752 = f32const 0.0
+    v753 = fdiv v744, v748
+    v754 = select v751, v753, v752  ; v752 = 0.0
+    v755 = call fn222(v754)
+    v756 = f32const 0x1.8e1fb4p-1
+    v757 = f32const 0x1.450590p-1
+    v758 = call fn223(v1)
+    v759 = call fn224(v758)
+    v760 = fmul v1, v757  ; v757 = 0x1.450590p-1
+    v761 = fmul v756, v759  ; v756 = 0x1.8e1fb4p-1
+    v762 = fadd v760, v761
+    v763 = fadd v1, v756  ; v756 = 0x1.8e1fb4p-1
+    v764 = f32const 0x1.0c6f7ap-20
+    v765 = fadd v763, v764  ; v764 = 0x1.0c6f7ap-20
+    v766 = fdiv v762, v765
+    v767 = f32const 0.0
+    v768 = fmax v766, v767  ; v767 = 0.0
+    v769 = call fn225(v768)
+    v770 = call fn226(v0)
+    v771 = fmul v769, v770
+    v772 = f32const 0x1.11cfd8p-1
+    v773 = fmul v772, v1  ; v772 = 0x1.11cfd8p-1
+    v774 = f32const -0x1.1878c8p-1
+    v775 = fadd v774, v1  ; v774 = -0x1.1878c8p-1
+    v776 = fmul v773, v775
+    v777 = call fn227(v776)
+    v778 = call fn228(v0)
+    v779 = call fn229(v778)
+    v780 = call fn230(v779)
+    v781 = fmul v777, v780
+    v782 = call fn231(v781)
+    v783 = f32const 0x1.0c6f7ap-20
+    v784 = fabs v782
+    v785 = fcmp gt v784, v783  ; v783 = 0x1.0c6f7ap-20
+    v786 = f32const 0.0
+    v787 = fdiv v771, v782
+    v788 = select v785, v787, v786  ; v786 = 0.0
+    v789 = f32const 0x1.6aba0ap-1
+    v790 = fmul v740, v788
+    v791 = fmul v755, v789  ; v789 = 0x1.6aba0ap-1
+    v792 = fadd v790, v791
+    v793 = fadd v740, v755
+    v794 = f32const 0x1.0c6f7ap-20
+    v795 = fadd v793, v794  ; v794 = 0x1.0c6f7ap-20
+    v796 = fdiv v792, v795
+    v797 = call fn232(v796)
+    v798 = fmul v718, v797
+    v799 = call fn233(v1)
+    v800 = call fn234(v799)
+    v801 = call fn235(v0)
+    v802 = fadd v800, v801
+    v803 = f32const 0.0
+    v804 = fmax v802, v803  ; v803 = 0.0
+    v805 = call fn236(v804)
+    v806 = call fn237(v805)
+    v807 = f32const 0x1.371e82p1
+    v808 = f32const 0x1.d44880p-1
+    v809 = fmul v0, v808  ; v808 = 0x1.d44880p-1
+    v810 = fmul v807, v809  ; v807 = 0x1.371e82p1
+    v811 = call fn238(v810)
+    v812 = call fn239(v811)
+    v813 = f32const 0.0
+    v814 = fmax v812, v813  ; v813 = 0.0
+    v815 = call fn240(v814)
+    v816 = fadd v815, v0
+    v817 = call fn241(v816)
+    v818 = call fn242(v817)
+    v819 = f32const -0x1.c7f6fep-1
+    v820 = fadd v1, v819  ; v819 = -0x1.c7f6fep-1
+    v821 = f32const 0.0
+    v822 = fmax v820, v821  ; v821 = 0.0
+    v823 = call fn243(v822)
+    v824 = fadd v0, v1
+    v825 = f32const 0x1.0ce51cp1
+    v826 = fmul v824, v825  ; v825 = 0x1.0ce51cp1
+    v827 = fmul v823, v826
+    v828 = call fn244(v827)
+    v829 = f32const 0x1.0c6f7ap-20
+    v830 = fabs v1
+    v831 = fcmp gt v830, v829  ; v829 = 0x1.0c6f7ap-20
+    v832 = f32const 0.0
+    v833 = fdiv v1, v1
+    v834 = select v831, v833, v832  ; v832 = 0.0
+    v835 = call fn245(v834)
+    v836 = f32const 0.0
+    v837 = fmax v835, v836  ; v836 = 0.0
+    v838 = call fn246(v837)
+    v839 = call fn247(v838)
+    v840 = f32const 0x1.0c6f7ap-20
+    v841 = fabs v839
+    v842 = fcmp gt v841, v840  ; v840 = 0x1.0c6f7ap-20
+    v843 = f32const 0.0
+    v844 = fdiv v828, v839
+    v845 = select v842, v844, v843  ; v843 = 0.0
+    v846 = f32const 0.0
+    v847 = fmax v1, v846  ; v846 = 0.0
+    v848 = call fn248(v847)
+    v849 = call fn249(v848)
+    v850 = call fn250(v0)
+    v851 = f32const 0x1.308e98p-1
+    v852 = fmul v845, v850
+    v853 = fmul v849, v851  ; v851 = 0x1.308e98p-1
+    v854 = fadd v852, v853
+    v855 = fadd v845, v849
+    v856 = f32const 0x1.0c6f7ap-20
+    v857 = fadd v855, v856  ; v856 = 0x1.0c6f7ap-20
+    v858 = fdiv v854, v857
+    v859 = call fn251(v858)
+    v860 = call fn252(v859)
+    v861 = fadd v818, v860
+    v862 = fmul v670, v806
+    v863 = fmul v798, v861
+    v864 = fadd v862, v863
+    v865 = fadd v670, v798
+    v866 = f32const 0x1.0c6f7ap-20
+    v867 = fadd v865, v866  ; v866 = 0x1.0c6f7ap-20
+    v868 = fdiv v864, v867
+    v869 = call fn253(v868)
+    v870 = fadd v664, v869
+    v871 = call fn254(v870)
+    v872 = f32const 0x1.60da26p-1
+    v873 = call fn255(v1)
+    v874 = fmul v873, v0
+    v875 = call fn256(v874)
+    v876 = call fn257(v875)
+    v877 = f32const 0.0
+    v878 = fmax v876, v877  ; v877 = 0.0
+    v879 = call fn258(v878)
+    v880 = call fn259(v0)
+    v881 = call fn260(v1)
+    v882 = fmul v880, v881
+    v883 = call fn261(v882)
+    v884 = call fn262(v883)
+    v885 = f32const -0x1.80567cp-2
+    v886 = fmul v1, v885  ; v885 = -0x1.80567cp-2
+    v887 = fmul v1, v0
+    v888 = fadd v886, v887
+    v889 = fadd v1, v1
+    v890 = f32const 0x1.0c6f7ap-20
+    v891 = fadd v889, v890  ; v890 = 0x1.0c6f7ap-20
+    v892 = fdiv v888, v891
+    v893 = call fn263(v892)
+    v894 = f32const 0x1.9639f2p-1
+    v895 = f32const 0x1.0c6f7ap-20
+    v896 = fabs v894  ; v894 = 0x1.9639f2p-1
+    v897 = fcmp gt v896, v895  ; v895 = 0x1.0c6f7ap-20
+    v898 = f32const 0.0
+    v899 = fdiv v893, v894  ; v894 = 0x1.9639f2p-1
+    v900 = select v897, v899, v898  ; v898 = 0.0
+    v901 = f32const 0x1.d1fd36p-2
+    v902 = call fn264(v0)
+    v903 = call fn265(v902)
+    v904 = f32const -0x1.942ee6p-4
+    v905 = f32const 0x1.0c6f7ap-20
+    v906 = fabs v904  ; v904 = -0x1.942ee6p-4
+    v907 = fcmp gt v906, v905  ; v905 = 0x1.0c6f7ap-20
+    v908 = f32const 0.0
+    v909 = fdiv v903, v904  ; v904 = -0x1.942ee6p-4
+    v910 = select v907, v909, v908  ; v908 = 0.0
+    v911 = call fn266(v0)
+    v912 = call fn267(v911)
+    v913 = call fn268(v0)
+    v914 = call fn269(v0)
+    v915 = fadd v913, v914
+    v916 = f32const -0x1.243828p-2
+    v917 = call fn270(v1)
+    v918 = f32const 0x1.4b60eep-2
+    v919 = f32const 0x1.0c6f7ap-20
+    v920 = fabs v918  ; v918 = 0x1.4b60eep-2
+    v921 = fcmp gt v920, v919  ; v919 = 0x1.0c6f7ap-20
+    v922 = f32const 0.0
+    v923 = fdiv v917, v918  ; v918 = 0x1.4b60eep-2
+    v924 = select v921, v923, v922  ; v922 = 0.0
+    v925 = fmul v912, v916  ; v916 = -0x1.243828p-2
+    v926 = fmul v915, v924
+    v927 = fadd v925, v926
+    v928 = fadd v912, v915
+    v929 = f32const 0x1.0c6f7ap-20
+    v930 = fadd v928, v929  ; v929 = 0x1.0c6f7ap-20
+    v931 = fdiv v927, v930
+    v932 = fmul v900, v910
+    v933 = fmul v901, v931  ; v901 = 0x1.d1fd36p-2
+    v934 = fadd v932, v933
+    v935 = fadd v900, v901  ; v901 = 0x1.d1fd36p-2
+    v936 = f32const 0x1.0c6f7ap-20
+    v937 = fadd v935, v936  ; v936 = 0x1.0c6f7ap-20
+    v938 = fdiv v934, v937
+    v939 = fmul v1, v1
+    v940 = fmul v0, v0
+    v941 = fadd v939, v940
+    v942 = fadd v1, v0
+    v943 = f32const 0x1.0c6f7ap-20
+    v944 = fadd v942, v943  ; v943 = 0x1.0c6f7ap-20
+    v945 = fdiv v941, v944
+    v946 = f32const 0.0
+    v947 = fmax v0, v946  ; v946 = 0.0
+    v948 = call fn271(v947)
+    v949 = fadd v945, v948
+    v950 = f32const -0x1.9776fcp-1
+    v951 = f32const 0x1.0c76c0p-5
+    v952 = f32const 0x1.854b3cp-1
+    v953 = fmul v950, v1  ; v950 = -0x1.9776fcp-1
+    v954 = fmul v951, v952  ; v951 = 0x1.0c76c0p-5, v952 = 0x1.854b3cp-1
+    v955 = fadd v953, v954
+    v956 = fadd v950, v951  ; v950 = -0x1.9776fcp-1, v951 = 0x1.0c76c0p-5
+    v957 = f32const 0x1.0c6f7ap-20
+    v958 = fadd v956, v957  ; v957 = 0x1.0c6f7ap-20
+    v959 = fdiv v955, v958
+    v960 = call fn272(v959)
+    v961 = fadd v949, v960
+    v962 = call fn273(v961)
+    v963 = call fn274(v1)
+    v964 = call fn275(v0)
+    v965 = fmul v963, v964
+    v966 = f32const 0x1.0c6f7ap-20
+    v967 = fabs v965
+    v968 = fcmp gt v967, v966  ; v966 = 0x1.0c6f7ap-20
+    v969 = f32const 0.0
+    v970 = fdiv v0, v965
+    v971 = select v968, v970, v969  ; v969 = 0.0
+    v972 = f32const 0.0
+    v973 = fmax v971, v972  ; v972 = 0.0
+    v974 = call fn276(v973)
+    v975 = fmul v884, v962
+    v976 = fmul v938, v974
+    v977 = fadd v975, v976
+    v978 = fadd v884, v938
+    v979 = f32const 0x1.0c6f7ap-20
+    v980 = fadd v978, v979  ; v979 = 0x1.0c6f7ap-20
+    v981 = fdiv v977, v980
+    v982 = fmul v879, v981
+    v983 = call fn277(v982)
+    v984 = call fn278(v983)
+    v985 = call fn279(v0)
+    v986 = f32const 0x1.be30b8p-2
+    v987 = fadd v985, v986  ; v986 = 0x1.be30b8p-2
+    v988 = call fn280(v987)
+    v989 = call fn281(v988)
+    v990 = call fn282(v989)
+    v991 = f32const 0x1.5b5926p1
+    v992 = call fn283(v1)
+    v993 = call fn284(v0)
+    v994 = call fn285(v0)
+    v995 = fmul v0, v0
+    v996 = fmul v992, v994
+    v997 = fmul v993, v995
+    v998 = fadd v996, v997
+    v999 = fadd v992, v993
+    v1000 = f32const 0x1.0c6f7ap-20
+    v1001 = fadd v999, v1000  ; v1000 = 0x1.0c6f7ap-20
+    v1002 = fdiv v998, v1001
+    v1003 = f32const 0.0
+    v1004 = fmax v0, v1003  ; v1003 = 0.0
+    v1005 = call fn286(v1004)
+    v1006 = f32const -0x1.4819a6p-2
+    v1007 = call fn287(v1)
+    v1008 = call fn288(v1)
+    v1009 = fmul v1005, v1007
+    v1010 = fmul v1006, v1008  ; v1006 = -0x1.4819a6p-2
+    v1011 = fadd v1009, v1010
+    v1012 = fadd v1005, v1006  ; v1006 = -0x1.4819a6p-2
+    v1013 = f32const 0x1.0c6f7ap-20
+    v1014 = fadd v1012, v1013  ; v1013 = 0x1.0c6f7ap-20
+    v1015 = fdiv v1011, v1014
+    v1016 = call fn289(v0)
+    v1017 = fmul v991, v1015  ; v991 = 0x1.5b5926p1
+    v1018 = fmul v1002, v1016
+    v1019 = fadd v1017, v1018
+    v1020 = fadd v991, v1002  ; v991 = 0x1.5b5926p1
+    v1021 = f32const 0x1.0c6f7ap-20
+    v1022 = fadd v1020, v1021  ; v1021 = 0x1.0c6f7ap-20
+    v1023 = fdiv v1019, v1022
+    v1024 = call fn290(v0)
+    v1025 = call fn291(v1024)
+    v1026 = call fn292(v1)
+    v1027 = call fn293(v1)
+    v1028 = fmul v1026, v1027
+    v1029 = fmul v1025, v1028
+    v1030 = f32const 0x1.0c6f7ap-20
+    v1031 = fabs v1029
+    v1032 = fcmp gt v1031, v1030  ; v1030 = 0x1.0c6f7ap-20
+    v1033 = f32const 0.0
+    v1034 = fdiv v1023, v1029
+    v1035 = select v1032, v1034, v1033  ; v1033 = 0.0
+    v1036 = call fn294(v1035)
+    v1037 = f32const 0x1.0c6f7ap-20
+    v1038 = fabs v1036
+    v1039 = fcmp gt v1038, v1037  ; v1037 = 0x1.0c6f7ap-20
+    v1040 = f32const 0.0
+    v1041 = fdiv v990, v1036
+    v1042 = select v1039, v1041, v1040  ; v1040 = 0.0
+    v1043 = call fn295(v1042)
+    v1044 = call fn296(v1043)
+    v1045 = fadd v984, v1044
+    v1046 = fmul v872, v1045  ; v872 = 0x1.60da26p-1
+    v1047 = f32const -0x1.b1b880p-7
+    v1048 = fadd v0, v1047  ; v1047 = -0x1.b1b880p-7
+    v1049 = f32const 0.0
+    v1050 = fmax v1, v1049  ; v1049 = 0.0
+    v1051 = call fn297(v1050)
+    v1052 = fadd v1048, v1051
+    v1053 = f32const 0x1.0c6f7ap-20
+    v1054 = fabs v1
+    v1055 = fcmp gt v1054, v1053  ; v1053 = 0x1.0c6f7ap-20
+    v1056 = f32const 0.0
+    v1057 = fdiv v1052, v1
+    v1058 = select v1055, v1057, v1056  ; v1056 = 0.0
+    v1059 = call fn298(v0)
+    v1060 = fadd v0, v0
+    v1061 = f32const 0x1.e37700p-2
+    v1062 = f32const 0x1.0c6f7ap-20
+    v1063 = fabs v0
+    v1064 = fcmp gt v1063, v1062  ; v1062 = 0x1.0c6f7ap-20
+    v1065 = f32const 0.0
+    v1066 = fdiv v1, v0
+    v1067 = select v1064, v1066, v1065  ; v1065 = 0.0
+    v1068 = fmul v1059, v1061  ; v1061 = 0x1.e37700p-2
+    v1069 = fmul v1060, v1067
+    v1070 = fadd v1068, v1069
+    v1071 = fadd v1059, v1060
+    v1072 = f32const 0x1.0c6f7ap-20
+    v1073 = fadd v1071, v1072  ; v1072 = 0x1.0c6f7ap-20
+    v1074 = fdiv v1070, v1073
+    v1075 = call fn299(v1074)
+    v1076 = fadd v1058, v1075
+    v1077 = call fn300(v0)
+    v1078 = call fn301(v1077)
+    v1079 = call fn302(v0)
+    v1080 = call fn303(v1079)
+    v1081 = fmul v1078, v1080
+    v1082 = f32const 0x1.ff8db8p-1
+    v1083 = fmul v1081, v1082  ; v1082 = 0x1.ff8db8p-1
+    v1084 = fmul v1076, v1083
+    v1085 = call fn304(v1084)
+    v1086 = call fn305(v0)
+    v1087 = call fn306(v0)
+    v1088 = call fn307(v1087)
+    v1089 = call fn308(v1088)
+    v1090 = f32const 0x1.0c6f7ap-20
+    v1091 = fabs v1089
+    v1092 = fcmp gt v1091, v1090  ; v1090 = 0x1.0c6f7ap-20
+    v1093 = f32const 0.0
+    v1094 = fdiv v1086, v1089
+    v1095 = select v1092, v1094, v1093  ; v1093 = 0.0
+    v1096 = call fn309(v0)
+    v1097 = f32const 0x1.0c6f7ap-20
+    v1098 = fabs v1096
+    v1099 = fcmp gt v1098, v1097  ; v1097 = 0x1.0c6f7ap-20
+    v1100 = f32const 0.0
+    v1101 = fdiv v1095, v1096
+    v1102 = select v1099, v1101, v1100  ; v1100 = 0.0
+    v1103 = call fn310(v1102)
+    v1104 = fmul v1085, v1103
+    v1105 = call fn311(v0)
+    v1106 = f32const 0x1.2aa526p1
+    v1107 = f32const 0x1.cd6ba8p-1
+    v1108 = f32const 0x1.0c6f7ap-20
+    v1109 = fabs v1107  ; v1107 = 0x1.cd6ba8p-1
+    v1110 = fcmp gt v1109, v1108  ; v1108 = 0x1.0c6f7ap-20
+    v1111 = f32const 0.0
+    v1112 = fdiv v0, v1107  ; v1107 = 0x1.cd6ba8p-1
+    v1113 = select v1110, v1112, v1111  ; v1111 = 0.0
+    v1114 = f32const 0x1.e40226p-1
+    v1115 = fmul v1105, v1113
+    v1116 = fmul v1106, v1114  ; v1106 = 0x1.2aa526p1, v1114 = 0x1.e40226p-1
+    v1117 = fadd v1115, v1116
+    v1118 = fadd v1105, v1106  ; v1106 = 0x1.2aa526p1
+    v1119 = f32const 0x1.0c6f7ap-20
+    v1120 = fadd v1118, v1119  ; v1119 = 0x1.0c6f7ap-20
+    v1121 = fdiv v1117, v1120
+    v1122 = call fn312(v1)
+    v1123 = f32const 0x1.ec1996p-1
+    v1124 = f32const 0x1.0c6f7ap-20
+    v1125 = fabs v1123  ; v1123 = 0x1.ec1996p-1
+    v1126 = fcmp gt v1125, v1124  ; v1124 = 0x1.0c6f7ap-20
+    v1127 = f32const 0.0
+    v1128 = fdiv v1122, v1123  ; v1123 = 0x1.ec1996p-1
+    v1129 = select v1126, v1128, v1127  ; v1127 = 0.0
+    v1130 = fmul v1121, v1129
+    v1131 = f32const 0x1.4e5bf2p-1
+    v1132 = f32const 0x1.5ca0f0p-3
+    v1133 = f32const 0x1.0c6f7ap-20
+    v1134 = fabs v1132  ; v1132 = 0x1.5ca0f0p-3
+    v1135 = fcmp gt v1134, v1133  ; v1133 = 0x1.0c6f7ap-20
+    v1136 = f32const 0.0
+    v1137 = fdiv v1, v1132  ; v1132 = 0x1.5ca0f0p-3
+    v1138 = select v1135, v1137, v1136  ; v1136 = 0.0
+    v1139 = f32const 0.0
+    v1140 = fmax v1138, v1139  ; v1139 = 0.0
+    v1141 = call fn313(v1140)
+    v1142 = f32const 0x1.0c6f7ap-20
+    v1143 = fabs v1141
+    v1144 = fcmp gt v1143, v1142  ; v1142 = 0x1.0c6f7ap-20
+    v1145 = f32const 0.0
+    v1146 = fdiv v1131, v1141  ; v1131 = 0x1.4e5bf2p-1
+    v1147 = select v1144, v1146, v1145  ; v1145 = 0.0
+    v1148 = call fn314(v0)
+    v1149 = call fn315(v0)
+    v1150 = f32const 0x1.0c6f7ap-20
+    v1151 = fabs v1149
+    v1152 = fcmp gt v1151, v1150  ; v1150 = 0x1.0c6f7ap-20
+    v1153 = f32const 0.0
+    v1154 = fdiv v1148, v1149
+    v1155 = select v1152, v1154, v1153  ; v1153 = 0.0
+    v1156 = f32const 0.0
+    v1157 = fmax v1155, v1156  ; v1156 = 0.0
+    v1158 = call fn316(v1157)
+    v1159 = f32const 0x1.0c6f7ap-20
+    v1160 = fabs v1
+    v1161 = fcmp gt v1160, v1159  ; v1159 = 0x1.0c6f7ap-20
+    v1162 = f32const 0.0
+    v1163 = fdiv v0, v1
+    v1164 = select v1161, v1163, v1162  ; v1162 = 0.0
+    v1165 = call fn317(v1164)
+    v1166 = call fn318(v1165)
+    v1167 = fmul v1130, v1158
+    v1168 = fmul v1147, v1166
+    v1169 = fadd v1167, v1168
+    v1170 = fadd v1130, v1147
+    v1171 = f32const 0x1.0c6f7ap-20
+    v1172 = fadd v1170, v1171  ; v1171 = 0x1.0c6f7ap-20
+    v1173 = fdiv v1169, v1172
+    v1174 = call fn319(v1173)
+    v1175 = call fn320(v1174)
+    v1176 = call fn321(v1175)
+    v1177 = fmul v1104, v1176
+    v1178 = call fn322(v1177)
+    v1179 = call fn323(v1178)
+    v1180 = fmul v1046, v1179
+    v1181 = call fn324(v1180)
+    v1182 = call fn325(v1181)
+    v1183 = fmul v871, v1182
+    v1184 = fmul v1, v1183
+    v1185 = call fn326(v1)
+    v1186 = call fn327(v1185)
+    v1187 = f32const 0x1.fb31fcp0
+    v1188 = f32const 0x1.3a52bap-1
+    v1189 = call fn328(v1)
+    v1190 = call fn329(v1189)
+    v1191 = f32const 0x1.0c6f7ap-20
+    v1192 = fabs v1190
+    v1193 = fcmp gt v1192, v1191  ; v1191 = 0x1.0c6f7ap-20
+    v1194 = f32const 0.0
+    v1195 = fdiv v1188, v1190  ; v1188 = 0x1.3a52bap-1
+    v1196 = select v1193, v1195, v1194  ; v1194 = 0.0
+    v1197 = call fn330(v1196)
+    v1198 = call fn331(v1197)
+    v1199 = f32const 0x1.83e568p-1
+    v1200 = f32const 0.0
+    v1201 = f32const 0x1.05397cp1
+    v1202 = fmul v0, v0
+    v1203 = call fn332(v0)
+    v1204 = fmul v1200, v1202  ; v1200 = 0.0
+    v1205 = fmul v1201, v1203  ; v1201 = 0x1.05397cp1
+    v1206 = fadd v1204, v1205
+    v1207 = fadd v1200, v1201  ; v1200 = 0.0, v1201 = 0x1.05397cp1
+    v1208 = f32const 0x1.0c6f7ap-20
+    v1209 = fadd v1207, v1208  ; v1208 = 0x1.0c6f7ap-20
+    v1210 = fdiv v1206, v1209
+    v1211 = f32const 0x1.0c6f7ap-20
+    v1212 = fabs v1210
+    v1213 = fcmp gt v1212, v1211  ; v1211 = 0x1.0c6f7ap-20
+    v1214 = f32const 0.0
+    v1215 = fdiv v1199, v1210  ; v1199 = 0x1.83e568p-1
+    v1216 = select v1213, v1215, v1214  ; v1214 = 0.0
+    v1217 = call fn333(v1216)
+    v1218 = call fn334(v1217)
+    v1219 = call fn335(v1)
+    v1220 = call fn336(v0)
+    v1221 = call fn337(v0)
+    v1222 = f32const 0x1.0c6f7ap-20
+    v1223 = fabs v1221
+    v1224 = fcmp gt v1223, v1222  ; v1222 = 0x1.0c6f7ap-20
+    v1225 = f32const 0.0
+    v1226 = fdiv v1220, v1221
+    v1227 = select v1224, v1226, v1225  ; v1225 = 0.0
+    v1228 = call fn338(v1227)
+    v1229 = f32const 0x1.0c6f7ap-20
+    v1230 = fabs v1228
+    v1231 = fcmp gt v1230, v1229  ; v1229 = 0x1.0c6f7ap-20
+    v1232 = f32const 0.0
+    v1233 = fdiv v1219, v1228
+    v1234 = select v1231, v1233, v1232  ; v1232 = 0.0
+    v1235 = call fn339(v1234)
+    v1236 = call fn340(v1)
+    v1237 = call fn341(v1236)
+    v1238 = call fn342(v1237)
+    v1239 = f32const -0x1.2ef668p-1
+    v1240 = fmul v1239, v0  ; v1239 = -0x1.2ef668p-1
+    v1241 = call fn343(v1240)
+    v1242 = call fn344(v1241)
+    v1243 = fadd v1238, v1242
+    v1244 = call fn345(v1243)
+    v1245 = fmul v1198, v1235
+    v1246 = fmul v1218, v1244
+    v1247 = fadd v1245, v1246
+    v1248 = fadd v1198, v1218
+    v1249 = f32const 0x1.0c6f7ap-20
+    v1250 = fadd v1248, v1249  ; v1249 = 0x1.0c6f7ap-20
+    v1251 = fdiv v1247, v1250
+    v1252 = call fn346(v1)
+    v1253 = call fn347(v1252)
+    v1254 = call fn348(v1253)
+    v1255 = fmul v1251, v1254
+    v1256 = call fn349(v1)
+    v1257 = call fn350(v0)
+    v1258 = f32const 0.0
+    v1259 = fmax v1257, v1258  ; v1258 = 0.0
+    v1260 = call fn351(v1259)
+    v1261 = call fn352(v1260)
+    v1262 = call fn353(v1261)
+    v1263 = f32const 0x1.388e18p-1
+    v1264 = fadd v0, v1263  ; v1263 = 0x1.388e18p-1
+    v1265 = call fn354(v1264)
+    v1266 = f32const 0.0
+    v1267 = fmax v1265, v1266  ; v1266 = 0.0
+    v1268 = call fn355(v1267)
+    v1269 = call fn356(v1268)
+    v1270 = fmul v1262, v1269
+    v1271 = f32const 0.0
+    v1272 = fmax v1270, v1271  ; v1271 = 0.0
+    v1273 = call fn357(v1272)
+    v1274 = call fn358(v0)
+    v1275 = call fn359(v1)
+    v1276 = call fn360(v0)
+    v1277 = f32const 0x1.0c6f7ap-20
+    v1278 = fabs v1276
+    v1279 = fcmp gt v1278, v1277  ; v1277 = 0x1.0c6f7ap-20
+    v1280 = f32const 0.0
+    v1281 = fdiv v1275, v1276
+    v1282 = select v1279, v1281, v1280  ; v1280 = 0.0
+    v1283 = fmul v0, v1
+    v1284 = call fn361(v1283)
+    v1285 = fadd v1282, v1284
+    v1286 = f32const 0x1.0c6f7ap-20
+    v1287 = fabs v1285
+    v1288 = fcmp gt v1287, v1286  ; v1286 = 0x1.0c6f7ap-20
+    v1289 = f32const 0.0
+    v1290 = fdiv v1274, v1285
+    v1291 = select v1288, v1290, v1289  ; v1289 = 0.0
+    v1292 = call fn362(v1291)
+    v1293 = f32const 0x1.0a6a24p-1
+    v1294 = call fn363(v0)
+    v1295 = call fn364(v1)
+    v1296 = f32const 0x1.f29914p-1
+    v1297 = f32const 0x1.2a65d0p-1
+    v1298 = fadd v1297, v1  ; v1297 = 0x1.2a65d0p-1
+    v1299 = fmul v1294, v1296  ; v1296 = 0x1.f29914p-1
+    v1300 = fmul v1295, v1298
+    v1301 = fadd v1299, v1300
+    v1302 = fadd v1294, v1295
+    v1303 = f32const 0x1.0c6f7ap-20
+    v1304 = fadd v1302, v1303  ; v1303 = 0x1.0c6f7ap-20
+    v1305 = fdiv v1301, v1304
+    v1306 = call fn365(v0)
+    v1307 = call fn366(v1)
+    v1308 = fmul v1306, v1307
+    v1309 = f32const 0.0
+    v1310 = fmax v0, v1309  ; v1309 = 0.0
+    v1311 = call fn367(v1310)
+    v1312 = call fn368(v1311)
+    v1313 = fmul v1293, v1308  ; v1293 = 0x1.0a6a24p-1
+    v1314 = fmul v1305, v1312
+    v1315 = fadd v1313, v1314
+    v1316 = fadd v1293, v1305  ; v1293 = 0x1.0a6a24p-1
+    v1317 = f32const 0x1.0c6f7ap-20
+    v1318 = fadd v1316, v1317  ; v1317 = 0x1.0c6f7ap-20
+    v1319 = fdiv v1315, v1318
+    v1320 = call fn369(v1)
+    v1321 = f32const 0.0
+    v1322 = fmax v1320, v1321  ; v1321 = 0.0
+    v1323 = call fn370(v1322)
+    v1324 = fmul v1319, v1323
+    v1325 = call fn371(v1)
+    v1326 = call fn372(v0)
+    v1327 = f32const 0x1.0c6f7ap-20
+    v1328 = fabs v1326
+    v1329 = fcmp gt v1328, v1327  ; v1327 = 0x1.0c6f7ap-20
+    v1330 = f32const 0.0
+    v1331 = fdiv v1325, v1326
+    v1332 = select v1329, v1331, v1330  ; v1330 = 0.0
+    v1333 = call fn373(v0)
+    v1334 = call fn374(v1333)
+    v1335 = f32const 0x1.9b0596p-3
+    v1336 = fadd v0, v1
+    v1337 = f32const 0x1.0c6f7ap-20
+    v1338 = fabs v1336
+    v1339 = fcmp gt v1338, v1337  ; v1337 = 0x1.0c6f7ap-20
+    v1340 = f32const 0.0
+    v1341 = fdiv v1335, v1336  ; v1335 = 0x1.9b0596p-3
+    v1342 = select v1339, v1341, v1340  ; v1340 = 0.0
+    v1343 = call fn375(v1)
+    v1344 = call fn376(v1)
+    v1345 = fadd v1343, v1344
+    v1346 = fmul v1334, v1345
+    v1347 = fmul v1342, v1
+    v1348 = fadd v1346, v1347
+    v1349 = fadd v1334, v1342
+    v1350 = f32const 0x1.0c6f7ap-20
+    v1351 = fadd v1349, v1350  ; v1350 = 0x1.0c6f7ap-20
+    v1352 = fdiv v1348, v1351
+    v1353 = call fn377(v1)
+    v1354 = call fn378(v1353)
+    v1355 = call fn379(v1354)
+    v1356 = fadd v1352, v1355
+    v1357 = call fn380(v0)
+    v1358 = call fn381(v1357)
+    v1359 = f32const 0x1.95d7c0p-1
+    v1360 = fadd v1359, v0  ; v1359 = 0x1.95d7c0p-1
+    v1361 = f32const -0x1.571c44p-3
+    v1362 = fadd v1360, v1361  ; v1361 = -0x1.571c44p-3
+    v1363 = call fn382(v0)
+    v1364 = call fn383(v0)
+    v1365 = f32const 0.0
+    v1366 = fmax v0, v1365  ; v1365 = 0.0
+    v1367 = call fn384(v1366)
+    v1368 = fadd v1364, v1367
+    v1369 = fmul v1358, v1363
+    v1370 = fmul v1362, v1368
+    v1371 = fadd v1369, v1370
+    v1372 = fadd v1358, v1362
+    v1373 = f32const 0x1.0c6f7ap-20
+    v1374 = fadd v1372, v1373  ; v1373 = 0x1.0c6f7ap-20
+    v1375 = fdiv v1371, v1374
+    v1376 = call fn385(v0)
+    v1377 = call fn386(v1376)
+    v1378 = call fn387(v1377)
+    v1379 = fmul v1375, v1378
+    v1380 = fmul v1324, v1356
+    v1381 = fmul v1332, v1379
+    v1382 = fadd v1380, v1381
+    v1383 = fadd v1324, v1332
+    v1384 = f32const 0x1.0c6f7ap-20
+    v1385 = fadd v1383, v1384  ; v1384 = 0x1.0c6f7ap-20
+    v1386 = fdiv v1382, v1385
+    v1387 = f32const 0x1.0c6f7ap-20
+    v1388 = fabs v1386
+    v1389 = fcmp gt v1388, v1387  ; v1387 = 0x1.0c6f7ap-20
+    v1390 = f32const 0.0
+    v1391 = fdiv v1292, v1386
+    v1392 = select v1389, v1391, v1390  ; v1390 = 0.0
+    v1393 = f32const 0x1.0c6f7ap-20
+    v1394 = fabs v0
+    v1395 = fcmp gt v1394, v1393  ; v1393 = 0x1.0c6f7ap-20
+    v1396 = f32const 0.0
+    v1397 = fdiv v1, v0
+    v1398 = select v1395, v1397, v1396  ; v1396 = 0.0
+    v1399 = f32const 0x1.0c6f7ap-20
+    v1400 = fabs v1398
+    v1401 = fcmp gt v1400, v1399  ; v1399 = 0x1.0c6f7ap-20
+    v1402 = f32const 0.0
+    v1403 = fdiv v1, v1398
+    v1404 = select v1401, v1403, v1402  ; v1402 = 0.0
+    v1405 = call fn388(v1404)
+    v1406 = call fn389(v1405)
+    v1407 = call fn390(v1406)
+    v1408 = call fn391(v1407)
+    v1409 = fmul v1256, v1392
+    v1410 = fmul v1273, v1408
+    v1411 = fadd v1409, v1410
+    v1412 = fadd v1256, v1273
+    v1413 = f32const 0x1.0c6f7ap-20
+    v1414 = fadd v1412, v1413  ; v1413 = 0x1.0c6f7ap-20
+    v1415 = fdiv v1411, v1414
+    v1416 = f32const 0x1.0c6f7ap-20
+    v1417 = fabs v1415
+    v1418 = fcmp gt v1417, v1416  ; v1416 = 0x1.0c6f7ap-20
+    v1419 = f32const 0.0
+    v1420 = fdiv v1255, v1415
+    v1421 = select v1418, v1420, v1419  ; v1419 = 0.0
+    v1422 = call fn392(v1421)
+    v1423 = call fn393(v1422)
+    v1424 = f32const 0x1.d39f90p-2
+    v1425 = fmul v1, v0
+    v1426 = fmul v1424, v0  ; v1424 = 0x1.d39f90p-2
+    v1427 = fadd v1425, v1426
+    v1428 = fadd v1, v1424  ; v1424 = 0x1.d39f90p-2
+    v1429 = f32const 0x1.0c6f7ap-20
+    v1430 = fadd v1428, v1429  ; v1429 = 0x1.0c6f7ap-20
+    v1431 = fdiv v1427, v1430
+    v1432 = f32const 0x1.0edc20p-1
+    v1433 = fadd v1431, v1432  ; v1432 = 0x1.0edc20p-1
+    v1434 = call fn394(v1433)
+    v1435 = call fn395(v1434)
+    v1436 = f32const 0x1.f54454p-1
+    v1437 = call fn396(v1)
+    v1438 = call fn397(v1437)
+    v1439 = call fn398(v1438)
+    v1440 = call fn399(v0)
+    v1441 = call fn400(v1)
+    v1442 = fadd v1440, v1441
+    v1443 = call fn401(v1)
+    v1444 = call fn402(v1443)
+    v1445 = f32const 0x1.0c6f7ap-20
+    v1446 = fabs v1444
+    v1447 = fcmp gt v1446, v1445  ; v1445 = 0x1.0c6f7ap-20
+    v1448 = f32const 0.0
+    v1449 = fdiv v1442, v1444
+    v1450 = select v1447, v1449, v1448  ; v1448 = 0.0
+    v1451 = call fn403(v1)
+    v1452 = call fn404(v1)
+    v1453 = f32const 0x1.0c6f7ap-20
+    v1454 = fabs v1452
+    v1455 = fcmp gt v1454, v1453  ; v1453 = 0x1.0c6f7ap-20
+    v1456 = f32const 0.0
+    v1457 = fdiv v1451, v1452
+    v1458 = select v1455, v1457, v1456  ; v1456 = 0.0
+    v1459 = call fn405(v1458)
+    v1460 = fmul v1436, v1450  ; v1436 = 0x1.f54454p-1
+    v1461 = fmul v1439, v1459
+    v1462 = fadd v1460, v1461
+    v1463 = fadd v1436, v1439  ; v1436 = 0x1.f54454p-1
+    v1464 = f32const 0x1.0c6f7ap-20
+    v1465 = fadd v1463, v1464  ; v1464 = 0x1.0c6f7ap-20
+    v1466 = fdiv v1462, v1465
+    v1467 = f32const 0x1.0c6f7ap-20
+    v1468 = fabs v1466
+    v1469 = fcmp gt v1468, v1467  ; v1467 = 0x1.0c6f7ap-20
+    v1470 = f32const 0.0
+    v1471 = fdiv v1435, v1466
+    v1472 = select v1469, v1471, v1470  ; v1470 = 0.0
+    v1473 = call fn406(v1472)
+    v1474 = call fn407(v1473)
+    v1475 = call fn408(v1474)
+    v1476 = call fn409(v1475)
+    v1477 = fmul v0, v1
+    v1478 = fmul v0, v0
+    v1479 = fadd v1477, v1478
+    v1480 = fadd v0, v0
+    v1481 = f32const 0x1.0c6f7ap-20
+    v1482 = fadd v1480, v1481  ; v1481 = 0x1.0c6f7ap-20
+    v1483 = fdiv v1479, v1482
+    v1484 = call fn410(v1483)
+    v1485 = f32const 0.0
+    v1486 = fmax v0, v1485  ; v1485 = 0.0
+    v1487 = call fn411(v1486)
+    v1488 = call fn412(v1487)
+    v1489 = f32const 0x1.0c6f7ap-20
+    v1490 = fabs v1488
+    v1491 = fcmp gt v1490, v1489  ; v1489 = 0x1.0c6f7ap-20
+    v1492 = f32const 0.0
+    v1493 = fdiv v1484, v1488
+    v1494 = select v1491, v1493, v1492  ; v1492 = 0.0
+    v1495 = f32const -0x1.8b3d64p-2
+    v1496 = fmul v1495, v1  ; v1495 = -0x1.8b3d64p-2
+    v1497 = call fn413(v1496)
+    v1498 = f32const 0x1.0c6f7ap-20
+    v1499 = fabs v0
+    v1500 = fcmp gt v1499, v1498  ; v1498 = 0x1.0c6f7ap-20
+    v1501 = f32const 0.0
+    v1502 = fdiv v1, v0
+    v1503 = select v1500, v1502, v1501  ; v1501 = 0.0
+    v1504 = f32const -0x1.0a23d4p-1
+    v1505 = fmul v0, v1504  ; v1504 = -0x1.0a23d4p-1
+    v1506 = fmul v1503, v1505
+    v1507 = f32const 0x1.a6893ap-5
+    v1508 = fmul v0, v0
+    v1509 = f32const 0x1.0c6f7ap-20
+    v1510 = fabs v1508
+    v1511 = fcmp gt v1510, v1509  ; v1509 = 0x1.0c6f7ap-20
+    v1512 = f32const 0.0
+    v1513 = fdiv v1507, v1508  ; v1507 = 0x1.a6893ap-5
+    v1514 = select v1511, v1513, v1512  ; v1512 = 0.0
+    v1515 = call fn414(v0)
+    v1516 = call fn415(v1515)
+    v1517 = fmul v1497, v1514
+    v1518 = fmul v1506, v1516
+    v1519 = fadd v1517, v1518
+    v1520 = fadd v1497, v1506
+    v1521 = f32const 0x1.0c6f7ap-20
+    v1522 = fadd v1520, v1521  ; v1521 = 0x1.0c6f7ap-20
+    v1523 = fdiv v1519, v1522
+    v1524 = f32const 0x1.0c6f7ap-20
+    v1525 = fabs v1523
+    v1526 = fcmp gt v1525, v1524  ; v1524 = 0x1.0c6f7ap-20
+    v1527 = f32const 0.0
+    v1528 = fdiv v1494, v1523
+    v1529 = select v1526, v1528, v1527  ; v1527 = 0.0
+    v1530 = call fn416(v1529)
+    v1531 = call fn417(v1530)
+    v1532 = call fn418(v0)
+    v1533 = fmul v1532, v0
+    v1534 = call fn419(v1533)
+    v1535 = fadd v1531, v1534
+    v1536 = f32const 0.0
+    v1537 = fmax v1535, v1536  ; v1536 = 0.0
+    v1538 = call fn420(v1537)
+    v1539 = f32const 0x1.949b96p-3
+    v1540 = f32const 0x1.6331cap-1
+    v1541 = call fn421(v0)
+    v1542 = fmul v1540, v1541  ; v1540 = 0x1.6331cap-1
+    v1543 = call fn422(v1542)
+    v1544 = fmul v1543, v0
+    v1545 = fmul v0, v0
+    v1546 = fadd v1544, v1545
+    v1547 = fadd v1543, v0
+    v1548 = f32const 0x1.0c6f7ap-20
+    v1549 = fadd v1547, v1548  ; v1548 = 0x1.0c6f7ap-20
+    v1550 = fdiv v1546, v1549
+    v1551 = fadd v1539, v1550  ; v1539 = 0x1.949b96p-3
+    v1552 = f32const 0x1.0c6f7ap-20
+    v1553 = fabs v1
+    v1554 = fcmp gt v1553, v1552  ; v1552 = 0x1.0c6f7ap-20
+    v1555 = f32const 0.0
+    v1556 = fdiv v1551, v1
+    v1557 = select v1554, v1556, v1555  ; v1555 = 0.0
+    v1558 = call fn423(v1557)
+    v1559 = f32const 0.0
+    v1560 = fmax v1558, v1559  ; v1559 = 0.0
+    v1561 = call fn424(v1560)
+    v1562 = fmul v1538, v1561
+    v1563 = fadd v1476, v1562
+    v1564 = fadd v1423, v1563
+    v1565 = f32const 0x1.c125d4p-1
+    v1566 = call fn425(v0)
+    v1567 = call fn426(v1)
+    v1568 = fadd v1566, v1567
+    v1569 = call fn427(v0)
+    v1570 = call fn428(v1)
+    v1571 = fmul v1569, v1570
+    v1572 = f32const -0x1.3cdfd6p-3
+    v1573 = call fn429(v0)
+    v1574 = fadd v1572, v1573  ; v1572 = -0x1.3cdfd6p-3
+    v1575 = fmul v1565, v1571  ; v1565 = 0x1.c125d4p-1
+    v1576 = fmul v1568, v1574
+    v1577 = fadd v1575, v1576
+    v1578 = fadd v1565, v1568  ; v1565 = 0x1.c125d4p-1
+    v1579 = f32const 0x1.0c6f7ap-20
+    v1580 = fadd v1578, v1579  ; v1579 = 0x1.0c6f7ap-20
+    v1581 = fdiv v1577, v1580
+    v1582 = f32const 0x1.e9b580p-3
+    v1583 = fmul v0, v1582  ; v1582 = 0x1.e9b580p-3
+    v1584 = fadd v0, v1583
+    v1585 = f32const 0x1.0c6f7ap-20
+    v1586 = fabs v1584
+    v1587 = fcmp gt v1586, v1585  ; v1585 = 0x1.0c6f7ap-20
+    v1588 = f32const 0.0
+    v1589 = fdiv v0, v1584
+    v1590 = select v1587, v1589, v1588  ; v1588 = 0.0
+    v1591 = f32const -0x1.1cbf30p-1
+    v1592 = f32const 0x1.494ae0p-4
+    v1593 = f32const 0x1.24ce9cp-1
+    v1594 = fmul v0, v1592  ; v1592 = 0x1.494ae0p-4
+    v1595 = fmul v0, v1593  ; v1593 = 0x1.24ce9cp-1
+    v1596 = fadd v1594, v1595
+    v1597 = fadd v0, v0
+    v1598 = f32const 0x1.0c6f7ap-20
+    v1599 = fadd v1597, v1598  ; v1598 = 0x1.0c6f7ap-20
+    v1600 = fdiv v1596, v1599
+    v1601 = fmul v1591, v1600  ; v1591 = -0x1.1cbf30p-1
+    v1602 = call fn430(v1601)
+    v1603 = f32const 0x1.f911e0p-1
+    v1604 = fadd v0, v1
+    v1605 = fadd v1603, v1604  ; v1603 = 0x1.f911e0p-1
+    v1606 = call fn431(v1605)
+    v1607 = fmul v1581, v1602
+    v1608 = fmul v1590, v1606
+    v1609 = fadd v1607, v1608
+    v1610 = fadd v1581, v1590
+    v1611 = f32const 0x1.0c6f7ap-20
+    v1612 = fadd v1610, v1611  ; v1611 = 0x1.0c6f7ap-20
+    v1613 = fdiv v1609, v1612
+    v1614 = call fn432(v0)
+    v1615 = call fn433(v1614)
+    v1616 = fmul v1613, v1615
+    v1617 = call fn434(v1616)
+    v1618 = call fn435(v1617)
+    v1619 = call fn436(v1618)
+    v1620 = call fn437(v1619)
+    v1621 = call fn438(v1620)
+    v1622 = call fn439(v1621)
+    v1623 = f32const 0x1.32737cp-1
+    v1624 = call fn440(v0)
+    v1625 = f32const 0x1.a9f320p-4
+    v1626 = fmul v0, v1625  ; v1625 = 0x1.a9f320p-4
+    v1627 = f32const 0x1.0c6f7ap-20
+    v1628 = fabs v1626
+    v1629 = fcmp gt v1628, v1627  ; v1627 = 0x1.0c6f7ap-20
+    v1630 = f32const 0.0
+    v1631 = fdiv v1624, v1626
+    v1632 = select v1629, v1631, v1630  ; v1630 = 0.0
+    v1633 = f32const 0x1.0c6f7ap-20
+    v1634 = fabs v1
+    v1635 = fcmp gt v1634, v1633  ; v1633 = 0x1.0c6f7ap-20
+    v1636 = f32const 0.0
+    v1637 = fdiv v1632, v1
+    v1638 = select v1635, v1637, v1636  ; v1636 = 0.0
+    v1639 = fmul v1623, v1638  ; v1623 = 0x1.32737cp-1
+    v1640 = call fn441(v1639)
+    v1641 = call fn442(v1640)
+    v1642 = call fn443(v1641)
+    v1643 = call fn444(v1642)
+    v1644 = call fn445(v1643)
+    v1645 = f32const 0x1.a8c310p-1
+    v1646 = call fn446(v1)
+    v1647 = call fn447(v1646)
+    v1648 = call fn448(v1647)
+    v1649 = call fn449(v1)
+    v1650 = call fn450(v0)
+    v1651 = f32const -0x1.ba0c70p-1
+    v1652 = f32const -0x1.819350p-4
+    v1653 = fmul v1, v0
+    v1654 = fmul v1651, v1652  ; v1651 = -0x1.ba0c70p-1, v1652 = -0x1.819350p-4
+    v1655 = fadd v1653, v1654
+    v1656 = fadd v1, v1651  ; v1651 = -0x1.ba0c70p-1
+    v1657 = f32const 0x1.0c6f7ap-20
+    v1658 = fadd v1656, v1657  ; v1657 = 0x1.0c6f7ap-20
+    v1659 = fdiv v1655, v1658
+    v1660 = fmul v1649, v1659
+    v1661 = fmul v1650, v1
+    v1662 = fadd v1660, v1661
+    v1663 = fadd v1649, v1650
+    v1664 = f32const 0x1.0c6f7ap-20
+    v1665 = fadd v1663, v1664  ; v1664 = 0x1.0c6f7ap-20
+    v1666 = fdiv v1662, v1665
+    v1667 = f32const -0x1.4a5cb2p-1
+    v1668 = call fn451(v1)
+    v1669 = fadd v1667, v1668  ; v1667 = -0x1.4a5cb2p-1
+    v1670 = fadd v1666, v1669
+    v1671 = fmul v1648, v1670
+    v1672 = call fn452(v0)
+    v1673 = call fn453(v1672)
+    v1674 = call fn454(v0)
+    v1675 = call fn455(v1674)
+    v1676 = call fn456(v1)
+    v1677 = f32const 0x1.d6be1ap-1
+    v1678 = fmul v1676, v1677  ; v1677 = 0x1.d6be1ap-1
+    v1679 = f32const 0x1.0c6f7ap-20
+    v1680 = fabs v1678
+    v1681 = fcmp gt v1680, v1679  ; v1679 = 0x1.0c6f7ap-20
+    v1682 = f32const 0.0
+    v1683 = fdiv v1675, v1678
+    v1684 = select v1681, v1683, v1682  ; v1682 = 0.0
+    v1685 = fmul v1673, v1684
+    v1686 = f32const 0x1.0c6f7ap-20
+    v1687 = fabs v1685
+    v1688 = fcmp gt v1687, v1686  ; v1686 = 0x1.0c6f7ap-20
+    v1689 = f32const 0.0
+    v1690 = fdiv v1671, v1685
+    v1691 = select v1688, v1690, v1689  ; v1689 = 0.0
+    v1692 = call fn457(v1691)
+    v1693 = f32const 0x1.0c6f7ap-20
+    v1694 = fabs v1692
+    v1695 = fcmp gt v1694, v1693  ; v1693 = 0x1.0c6f7ap-20
+    v1696 = f32const 0.0
+    v1697 = fdiv v1645, v1692  ; v1645 = 0x1.a8c310p-1
+    v1698 = select v1695, v1697, v1696  ; v1696 = 0.0
+    v1699 = call fn458(v1698)
+    v1700 = call fn459(v1699)
+    v1701 = f32const 0x1.0c6f7ap-20
+    v1702 = fabs v1700
+    v1703 = fcmp gt v1702, v1701  ; v1701 = 0x1.0c6f7ap-20
+    v1704 = f32const 0.0
+    v1705 = fdiv v1644, v1700
+    v1706 = select v1703, v1705, v1704  ; v1704 = 0.0
+    v1707 = call fn460(v1706)
+    v1708 = fmul v1, v1
+    v1709 = fmul v1, v1
+    v1710 = fmul v0, v1
+    v1711 = fadd v1709, v1710
+    v1712 = fadd v1, v0
+    v1713 = f32const 0x1.0c6f7ap-20
+    v1714 = fadd v1712, v1713  ; v1713 = 0x1.0c6f7ap-20
+    v1715 = fdiv v1711, v1714
+    v1716 = f32const 0x1.86af04p-1
+    v1717 = fadd v0, v1716  ; v1716 = 0x1.86af04p-1
+    v1718 = fmul v1715, v1717
+    v1719 = call fn461(v1718)
+    v1720 = call fn462(v1719)
+    v1721 = call fn463(v1720)
+    v1722 = f32const -0x1.da7028p-1
+    v1723 = f32const 0x1.3cfea0p-4
+    v1724 = f32const -0x1.3117dcp-1
+    v1725 = fmul v1722, v1  ; v1722 = -0x1.da7028p-1
+    v1726 = fmul v1723, v1724  ; v1723 = 0x1.3cfea0p-4, v1724 = -0x1.3117dcp-1
+    v1727 = fadd v1725, v1726
+    v1728 = fadd v1722, v1723  ; v1722 = -0x1.da7028p-1, v1723 = 0x1.3cfea0p-4
+    v1729 = f32const 0x1.0c6f7ap-20
+    v1730 = fadd v1728, v1729  ; v1729 = 0x1.0c6f7ap-20
+    v1731 = fdiv v1727, v1730
+    v1732 = call fn464(v1731)
+    v1733 = f32const -0x1.907ca0p-1
+    v1734 = f32const -0x1.7fff2ap-1
+    v1735 = f32const -0x1.ce5564p-2
+    v1736 = fmul v1733, v1734  ; v1733 = -0x1.907ca0p-1, v1734 = -0x1.7fff2ap-1
+    v1737 = fmul v1, v1735  ; v1735 = -0x1.ce5564p-2
+    v1738 = fadd v1736, v1737
+    v1739 = fadd v1733, v1  ; v1733 = -0x1.907ca0p-1
+    v1740 = f32const 0x1.0c6f7ap-20
+    v1741 = fadd v1739, v1740  ; v1740 = 0x1.0c6f7ap-20
+    v1742 = fdiv v1738, v1741
+    v1743 = fmul v0, v0
+    v1744 = f32const 0x1.0c6f7ap-20
+    v1745 = fabs v1743
+    v1746 = fcmp gt v1745, v1744  ; v1744 = 0x1.0c6f7ap-20
+    v1747 = f32const 0.0
+    v1748 = fdiv v1742, v1743
+    v1749 = select v1746, v1748, v1747  ; v1747 = 0.0
+    v1750 = f32const -0x1.28048cp-1
+    v1751 = f32const 0x1.0c6f7ap-20
+    v1752 = fabs v0
+    v1753 = fcmp gt v1752, v1751  ; v1751 = 0x1.0c6f7ap-20
+    v1754 = f32const 0.0
+    v1755 = fdiv v1750, v0  ; v1750 = -0x1.28048cp-1
+    v1756 = select v1753, v1755, v1754  ; v1754 = 0.0
+    v1757 = f32const -0x1.dae2eep-1
+    v1758 = fadd v1757, v0  ; v1757 = -0x1.dae2eep-1
+    v1759 = call fn465(v1)
+    v1760 = f32const 0x1.f39658p-1
+    v1761 = fmul v1756, v1759
+    v1762 = fmul v1758, v1760  ; v1760 = 0x1.f39658p-1
+    v1763 = fadd v1761, v1762
+    v1764 = fadd v1756, v1758
+    v1765 = f32const 0x1.0c6f7ap-20
+    v1766 = fadd v1764, v1765  ; v1765 = 0x1.0c6f7ap-20
+    v1767 = fdiv v1763, v1766
+    v1768 = call fn466(v0)
+    v1769 = call fn467(v1768)
+    v1770 = fmul v1732, v1767
+    v1771 = fmul v1749, v1769
+    v1772 = fadd v1770, v1771
+    v1773 = fadd v1732, v1749
+    v1774 = f32const 0x1.0c6f7ap-20
+    v1775 = fadd v1773, v1774  ; v1774 = 0x1.0c6f7ap-20
+    v1776 = fdiv v1772, v1775
+    v1777 = call fn468(v1776)
+    v1778 = call fn469(v1)
+    v1779 = call fn470(v1)
+    v1780 = f32const 0x1.ffd4e4p-1
+    v1781 = f32const 0x1.0c6f7ap-20
+    v1782 = fabs v0
+    v1783 = fcmp gt v1782, v1781  ; v1781 = 0x1.0c6f7ap-20
+    v1784 = f32const 0.0
+    v1785 = fdiv v1, v0
+    v1786 = select v1783, v1785, v1784  ; v1784 = 0.0
+    v1787 = fmul v1778, v1780  ; v1780 = 0x1.ffd4e4p-1
+    v1788 = fmul v1779, v1786
+    v1789 = fadd v1787, v1788
+    v1790 = fadd v1778, v1779
+    v1791 = f32const 0x1.0c6f7ap-20
+    v1792 = fadd v1790, v1791  ; v1791 = 0x1.0c6f7ap-20
+    v1793 = fdiv v1789, v1792
+    v1794 = call fn471(v1793)
+    v1795 = call fn472(v1794)
+    v1796 = call fn473(v1)
+    v1797 = call fn474(v1796)
+    v1798 = call fn475(v1797)
+    v1799 = call fn476(v1798)
+    v1800 = f32const 0x1.4fd620p-1
+    v1801 = fmul v0, v0
+    v1802 = fmul v1800, v1  ; v1800 = 0x1.4fd620p-1
+    v1803 = fadd v1801, v1802
+    v1804 = fadd v0, v1800  ; v1800 = 0x1.4fd620p-1
+    v1805 = f32const 0x1.0c6f7ap-20
+    v1806 = fadd v1804, v1805  ; v1805 = 0x1.0c6f7ap-20
+    v1807 = fdiv v1803, v1806
+    v1808 = f32const 0.0
+    v1809 = fmax v1, v1808  ; v1808 = 0.0
+    v1810 = call fn477(v1809)
+    v1811 = fmul v1807, v1810
+    v1812 = call fn478(v1811)
+    v1813 = call fn479(v0)
+    v1814 = call fn480(v1813)
+    v1815 = call fn481(v1814)
+    v1816 = call fn482(v1)
+    v1817 = call fn483(v1816)
+    v1818 = call fn484(v1817)
+    v1819 = f32const 0x1.80ba82p-2
+    v1820 = fmul v1812, v1818
+    v1821 = fmul v1815, v1819  ; v1819 = 0x1.80ba82p-2
+    v1822 = fadd v1820, v1821
+    v1823 = fadd v1812, v1815
+    v1824 = f32const 0x1.0c6f7ap-20
+    v1825 = fadd v1823, v1824  ; v1824 = 0x1.0c6f7ap-20
+    v1826 = fdiv v1822, v1825
+    v1827 = fmul v1777, v1799
+    v1828 = fmul v1795, v1826
+    v1829 = fadd v1827, v1828
+    v1830 = fadd v1777, v1795
+    v1831 = f32const 0x1.0c6f7ap-20
+    v1832 = fadd v1830, v1831  ; v1831 = 0x1.0c6f7ap-20
+    v1833 = fdiv v1829, v1832
+    v1834 = f32const 0x1.0c6f7ap-20
+    v1835 = fabs v1833
+    v1836 = fcmp gt v1835, v1834  ; v1834 = 0x1.0c6f7ap-20
+    v1837 = f32const 0.0
+    v1838 = fdiv v1721, v1833
+    v1839 = select v1836, v1838, v1837  ; v1837 = 0.0
+    v1840 = call fn485(v1839)
+    v1841 = call fn486(v1840)
+    v1842 = call fn487(v0)
+    v1843 = call fn488(v1842)
+    v1844 = fmul v1, v1843
+    v1845 = call fn489(v1844)
+    v1846 = call fn490(v1845)
+    v1847 = call fn491(v1846)
+    v1848 = f32const 0.0
+    v1849 = fmax v1847, v1848  ; v1848 = 0.0
+    v1850 = call fn492(v1849)
+    v1851 = call fn493(v1850)
+    v1852 = f32const 0x1.0c6f7ap-20
+    v1853 = fabs v1851
+    v1854 = fcmp gt v1853, v1852  ; v1852 = 0x1.0c6f7ap-20
+    v1855 = f32const 0.0
+    v1856 = fdiv v1841, v1851
+    v1857 = select v1854, v1856, v1855  ; v1855 = 0.0
+    v1858 = f32const 0.0
+    v1859 = fmax v1857, v1858  ; v1858 = 0.0
+    v1860 = call fn494(v1859)
+    v1861 = fadd v1708, v1860
+    v1862 = fmul v1564, v1707
+    v1863 = fmul v1622, v1861
+    v1864 = fadd v1862, v1863
+    v1865 = fadd v1564, v1622
+    v1866 = f32const 0x1.0c6f7ap-20
+    v1867 = fadd v1865, v1866  ; v1866 = 0x1.0c6f7ap-20
+    v1868 = fdiv v1864, v1867
+    v1869 = f32const 0.0
+    v1870 = fmax v1868, v1869  ; v1869 = 0.0
+    v1871 = call fn495(v1870)
+    v1872 = call fn496(v1871)
+    v1873 = call fn497(v1872)
+    v1874 = fmul v1184, v1187  ; v1187 = 0x1.fb31fcp0
+    v1875 = fmul v1186, v1873
+    v1876 = fadd v1874, v1875
+    v1877 = fadd v1184, v1186
+    v1878 = f32const 0x1.0c6f7ap-20
+    v1879 = fadd v1877, v1878  ; v1878 = 0x1.0c6f7ap-20
+    v1880 = fdiv v1876, v1879
+    v1881 = fmul v152, v1880
+    return v1881
+}
+
+r(0.0, 0.0) = 0.4111435
+g(0.5, 0.5) = 0.5
+b(1.0, 1.0) = -1.0187243
 randomart
-str: My brain on drugs
+str: spiderman
 depth:40
 width:400 height:400
 
 
 R channel report:
-Total Nodes: 493
-Total Ops: 314
-Op Counts: {"Mult": 28, "Div": 23, "Add": 34, "Sin": 64, "Cos": 85, "Sqrt": 25, "Exp": 24, "MixUnbounded": 31}
-Leaf Nodes: 179
+Total Nodes: 897
+Total Ops: 578
+Op Counts: {"Sqrt": 42, "Div": 54, "Add": 60, "Cos": 135, "MixUnbounded": 48, "Sin": 134, "Exp": 45, "Mult": 60}
+Leaf Nodes: 319
 Max Depth: 17
-X-only Subtrees: 90
-Y-only Subtrees: 79
-Leaf Depth Histogram: {4: 3, 5: 1, 6: 1, 7: 1, 8: 1, 9: 1, 10: 1, 11: 1, 13: 9, 14: 8, 15: 7, 16: 18, 17: 127}
-X-only Subtree Op Counts Histogram: {1: 28, 2: 9, 3: 5, 4: 1, 5: 2, 7: 1, 8: 1}
-Y-only Subtree Op Counts Histogram: {1: 14, 2: 7, 3: 2, 4: 8, 5: 1, 10: 1}
+X-only Subtrees: 173
+Y-only Subtrees: 156
+Leaf Depth Histogram: {2: 1, 3: 1, 5: 1, 7: 3, 8: 1, 9: 1, 10: 1, 11: 5, 12: 14, 13: 15, 14: 7, 15: 28, 16: 40, 17: 201}
+X-only Subtree Op Counts Histogram: {1: 24, 2: 19, 3: 14, 4: 1, 5: 4, 6: 3, 9: 1, 10: 2}
+Y-only Subtree Op Counts Histogram: {1: 29, 2: 6, 3: 14, 4: 8, 5: 2, 8: 3, 12: 1}
 
 G channel report:
-Total Nodes: 1875
-Total Ops: 1208
-Op Counts: {"Sqrt": 85, "Div": 140, "Cos": 264, "Mult": 115, "MixUnbounded": 97, "Exp": 81, "Sin": 306, "Add": 120}
-Leaf Nodes: 667
-Max Depth: 17
-X-only Subtrees: 367
-Y-only Subtrees: 304
-Leaf Depth Histogram: {3: 1, 4: 2, 5: 1, 6: 2, 7: 1, 8: 5, 9: 5, 10: 5, 11: 11, 12: 12, 13: 17, 14: 26, 15: 56, 16: 65, 17: 458}
-X-only Subtree Op Counts Histogram: {1: 60, 2: 28, 3: 34, 4: 11, 5: 3, 6: 6, 8: 1, 13: 1, 18: 1, 19: 1}
-Y-only Subtree Op Counts Histogram: {1: 69, 2: 16, 3: 26, 4: 9, 5: 8, 6: 1, 7: 2, 9: 2, 12: 1}
+Total Nodes: 1
+Total Ops: 0
+Op Counts: {}
+Leaf Nodes: 1
+Max Depth: 0
+X-only Subtrees: 0
+Y-only Subtrees: 0
+Leaf Depth Histogram: {0: 1}
+X-only Subtree Op Counts Histogram: {}
+Y-only Subtree Op Counts Histogram: {}
 
 B channel report:
-Total Nodes: 1712
-Total Ops: 1067
-Op Counts: {"MixUnbounded": 110, "Mult": 113, "Sqrt": 75, "Add": 107, "Sin": 227, "Exp": 88, "Div": 94, "Cos": 253}
-Leaf Nodes: 645
+Total Nodes: 1273
+Total Ops: 806
+Op Counts: {"Div": 70, "Sqrt": 53, "Add": 70, "MixUnbounded": 79, "Sin": 172, "Exp": 54, "Cos": 219, "Mult": 89}
+Leaf Nodes: 467
 Max Depth: 17
-X-only Subtrees: 313
-Y-only Subtrees: 278
-Leaf Depth Histogram: {5: 1, 7: 1, 8: 1, 9: 6, 10: 6, 11: 8, 12: 11, 13: 26, 14: 20, 15: 51, 16: 56, 17: 458}
-X-only Subtree Op Counts Histogram: {1: 56, 2: 28, 3: 26, 4: 10, 5: 5, 7: 2, 9: 1, 10: 2, 21: 1}
-Y-only Subtree Op Counts Histogram: {1: 62, 2: 31, 3: 19, 4: 9, 5: 5, 6: 2, 8: 2, 10: 1}
+X-only Subtrees: 246
+Y-only Subtrees: 228
+Leaf Depth Histogram: {2: 1, 3: 1, 4: 2, 7: 1, 8: 3, 9: 2, 10: 2, 11: 7, 12: 7, 13: 7, 14: 19, 15: 38, 16: 50, 17: 327}
+X-only Subtree Op Counts Histogram: {1: 62, 2: 14, 3: 19, 4: 4, 5: 7, 6: 1, 7: 2, 8: 1, 9: 1, 13: 1}
+Y-only Subtree Op Counts Histogram: {1: 59, 2: 17, 3: 17, 4: 9, 5: 1, 6: 3, 7: 1, 8: 1, 10: 1}
 
-tree generation: 55.974041ms
-simplify: 55.917µs
-tree stats: 164.917µs
-closure tree creation: 79.958µs
-hot path (render pixels loop): 447.652917ms
+tree generation: 44.388917ms
+simplify: 41.5µs
+tree stats: 147.792µs
+fn creation via cranelift: 15.704917ms
+hot path (render pixels loop): 48.083833ms

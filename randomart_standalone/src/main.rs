@@ -72,9 +72,9 @@ fn main() {
                 _ => panic!("Expected Triple node at top level"),
             };
             let start6 = Instant::now();
-            let _r_stats = TreeStats::from_node(r);
-            let _g_stats = TreeStats::from_node(g);
-            let _b_stats = TreeStats::from_node(b);
+            let r_stats = TreeStats::from_node(r);
+            let g_stats = TreeStats::from_node(g);
+            let b_stats = TreeStats::from_node(b);
             let elaps6 = start6.elapsed();
 
             let formula = format!("{}", generated_node);
@@ -84,11 +84,14 @@ fn main() {
             let g_jit_fn = build_jit_function(g);
             let b_jit_fn = build_jit_function(b);
             let elaps7 = start7.elapsed();
-
+            println!("r(0.0, 0.0) = {}", r_jit_fn(0.0, 0.0));
+            println!("g(0.5, 0.5) = {}", g_jit_fn(0.5, 0.5));
+            println!("b(1.0, 1.0) = {}", b_jit_fn(1.0, 1.0));
             // let start4 = Instant::now();
             // let closure_tree = ClosureTree::from_node(&generated_node);
             // let elaps4 = start4.elapsed();
 
+            // let rgb_fn = move |coord: PixelCoordinates| closure_tree.eval_rgb(coord.x, coord.y);
             let rgb_fn = move |coord: PixelCoordinates| {
                 Colour {
                     r: r_jit_fn(coord.x, coord.y),
@@ -101,16 +104,17 @@ fn main() {
             let img = render_pixels(&rgb_fn, width, height);
             let elaps2 = start2.elapsed();
 
-            // println!("randomart\nstr: {string}\ndepth:{depth}\nwidth:{width} height:{height}\n\n");
-            // println!("R channel report:");
-            // r_stats.report();
-            // println!("\nG channel report:");
-            // g_stats.report();
-            // println!("\nB channel report:");
-            // b_stats.report();
+            println!("randomart\nstr: {string}\ndepth:{depth}\nwidth:{width} height:{height}\n\n");
+            println!("R channel report:");
+            r_stats.report();
+            println!("\nG channel report:");
+            g_stats.report();
+            println!("\nB channel report:");
+            b_stats.report();
             println!("\ntree generation: {:?}", elaps5);
             println!("simplify: {:?}", elaps3);
             println!("tree stats: {:?}", elaps6);
+            // println!("closure tree creation: {:?}", elaps4);
             println!("fn creation via cranelift: {:?}", elaps7);
             println!("hot path (render pixels loop): {:?}", elaps2);
 

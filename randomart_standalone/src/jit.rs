@@ -15,7 +15,7 @@ fn codegen_node(
     match node {
         Node::X => x,
         Node::Y => y,
-        Node::Number(val) => builder.ins().f32const(*val),
+        Node::Number(val) => builder.ins().f32const(Ieee32::with_float(*val)),
 
         Node::Add(a, b) => {
             let lhs = codegen_node(builder, module, a, x, y);
@@ -32,28 +32,43 @@ fn codegen_node(
         Node::Div(a, b) => {
             let lhs = codegen_node(builder, module, a, x, y);
             let rhs = codegen_node(builder, module, b, x, y);
-            builder.ins().fdiv(lhs, rhs)
+
+            let epsilon = builder.ins().f32const(1e-6);
+            let abs_rhs = builder.ins().fabs(rhs);
+            let cmp = builder.ins().fcmp(FloatCC::GreaterThan, abs_rhs, epsilon);
+
+            let zero = builder.ins().f32const(0.0);
+            let div_val = builder.ins().fdiv(lhs, rhs);
+            builder.ins().select(cmp, div_val, zero)
         }
 
         Node::Modulo(a, b) => {
             let lhs = codegen_node(builder, module, a, x, y);
             let rhs = codegen_node(builder, module, b, x, y);
 
+            let abs_rhs = builder.ins().fabs(rhs);
+            let epsilon = builder.ins().f32const(1e-6);
+            let is_safe = builder.ins().fcmp(FloatCC::GreaterThan, abs_rhs, epsilon);
+
             let mut sig = module.make_signature();
             sig.params.push(AbiParam::new(types::F32));
             sig.params.push(AbiParam::new(types::F32));
             sig.returns.push(AbiParam::new(types::F32));
-
             let fmodf_func = module
                 .declare_function("fmodf", Linkage::Import, &sig)
                 .unwrap();
             let local = module.declare_func_in_func(fmodf_func, builder.func);
-            let call_inst = builder.ins().call(local, &[lhs, rhs]);
-            builder.inst_results(call_inst)[0]
+            let fmod_call = builder.ins().call(local, &[lhs, rhs]);
+            let mod_val = builder.inst_results(fmod_call)[0];
+
+            let zero = builder.ins().f32const(0.0);
+            builder.ins().select(is_safe, mod_val, zero)
         }
 
         Node::Sqrt(a) => {
             let val = codegen_node(builder, module, a, x, y);
+            let zero = builder.ins().f32const(0.0);
+            let safe_val = builder.ins().fmax(val, zero);
 
             let mut sig = module.make_signature();
             sig.params.push(AbiParam::new(types::F32));
@@ -63,7 +78,7 @@ fn codegen_node(
                 .declare_function("sqrtf", Linkage::Import, &sig)
                 .unwrap();
             let local = module.declare_func_in_func(sqrtf_func, builder.func);
-            let call_inst = builder.ins().call(local, &[val]);
+            let call_inst = builder.ins().call(local, &[safe_val]);
             builder.inst_results(call_inst)[0]
         }
 
