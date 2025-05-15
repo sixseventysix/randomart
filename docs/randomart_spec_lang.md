@@ -10,19 +10,17 @@ nested functions representation in this specific format:
 |-----------------------|----------------------------------------------------------|-------|
 | `x`                   | Returns the x-coordinate                                 | 0     |
 | `y`                   | Returns the y-coordinate                                 | 0     |
-| `const_ ( v )`        | Constant float value `v`                                 | 1     |
-| `add ( a b )`         | Computes the average: `(a + b) / 2`                      | 2     |
-| `mult ( a b )`        | Computes the product: `a * b`                            | 2     |
-| `div ( a b )`         | Computes division: `a / b` with safe fallback to 0       | 2     |
-| `mod ( a b )`         | Computes modulo: `a % b` with safe fallback to 0         | 2     |
-| `sin ( a )`           | Computes sine of `a`                                     | 1     |
-| `cos ( a )`           | Computes cosine of `a`                                   | 1     |
-| `exp ( a )`           | Computes exponential: `e^a`                              | 1     |
-| `sqrt ( a )`          | Computes square root of `a`, clamps to 0 if negative     | 1     |
-| `mix ( a b c d )`     | Blends `a` and `b` weighted by `c` and `d`, bounded      | 4     |
-| `mixu ( a b c d )`    | Unbounded version: `(a*c + b*d) / (a + b + ε)`           | 4     |
-| `triple ( a b c )` *  | Groups three channels (R, G, B)                          | 3     |
-| `rule ( n )` *        | Refers to grammar rule number `n`                        | 1     |
+| `const_ v`            | Constant float value `v`                                 | 1     |
+| `add  a b`            | Computes the average: `(a + b) / 2`                      | 2     |
+| `mult  a b`           | Computes the product: `a * b`                            | 2     |
+| `div  a b`            | Computes division: `a / b` with safe fallback to 0       | 2     |
+| `sin  a`              | Computes sine of `a`                                     | 1     |
+| `cos  a`              | Computes cosine of `a`                                   | 1     |
+| `exp  a`              | Computes exponential: `e^a`                              | 1     |
+| `sqrt  a`             | Computes square root of `a`, clamps to 0 if negative     | 1     |
+| `mixu  a b c d`       | Unbounded version: `(a*c + b*d) / (a + b + epsilon)`     | 4     |
+| `triple  a b c` *     | Groups three channels R, G,                              | 3     |
+| `rule  n` *           | Refers to grammar rule number `n`                        | 1     |
 | `random` *            | Placeholder, replaced by a constant in `[-1, 1]`         | 0     |
 
 > those marked with * are only used in tree generation, not in evaluation
