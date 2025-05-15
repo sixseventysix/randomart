@@ -3,6 +3,17 @@ use cranelift_jit::{JITBuilder, JITModule};
 use cranelift_module::{Module, Linkage};
 use crate::node::Node;
 
+macro_rules! define_and_register_math_fns {
+    ($builder:ident, [$(($name:ident, $ret:ty, [$($arg:ident : $typ:ty),*], $body:block)),* $(,)?]) => {
+        $(
+            extern "C" fn $name($($arg: $typ),*) -> $ret {
+                $body
+            }
+            $builder.symbol(stringify!($name), $name as *const u8);
+        )*
+    };
+}
+
 fn codegen_node(
     builder: &mut FunctionBuilder,
     module: &mut JITModule,
@@ -185,44 +196,37 @@ pub fn build_jit_function(ast: &Node) -> Box<dyn Fn(f32, f32) -> f32 + Sync> {
     let mut builder = JITBuilder::new(cranelift_module::default_libcall_names())
         .expect("Failed to create JITBuilder");
 
-    extern "C" fn my_sin(x: f32) -> f32 { x.sin() }
-    extern "C" fn my_cos(x: f32) -> f32 { x.cos() }
-    extern "C" fn my_sqrt(x: f32) -> f32 { x.sqrt().max(0.0) }
-    extern "C" fn my_exp(x: f32) -> f32 { x.exp() }
+    define_and_register_math_fns!(builder, [
+        // Unary functions
+        (my_sin, f32, [x: f32], { x.sin() }),
+        (my_cos, f32, [x: f32], { x.cos() }),
+        (my_sqrt, f32, [x: f32], { x.sqrt().max(0.0) }),
+        (my_exp, f32, [x: f32], { x.exp() }),
 
-    extern "C" fn my_add(a: f32, b: f32) -> f32 { (a + b) / 2.0 }
-    extern "C" fn my_mul(a: f32, b: f32) -> f32 { a * b }
-    extern "C" fn my_div(a: f32, b: f32) -> f32 {
-        if b.abs() > 1e-6 { a / b } else { 0.0 }
-    }
-    extern "C" fn my_mod(a: f32, b: f32) -> f32 {
-        if b.abs() > 1e-6 { a % b } else { 0.0 }
-    }
-    extern "C" fn my_mix(a: f32, b: f32, c: f32, d: f32) -> f32 {
-        let a = a + 1.0;
-        let b = b + 1.0;
-        let c = c + 1.0;
-        let d = d + 1.0;
-        let numerator = a * c + b * d;
-        let denominator = (a + b).max(1e-6);
-        (numerator / denominator) - 1.0
-    }
-    extern "C" fn my_mixu(a: f32, b: f32, c: f32, d: f32) -> f32 {
-        (a * c + b * d) / (a + b + 1e-6)
-    }
+        // Binary math functions
+        (my_add, f32, [a: f32, b: f32], { (a + b) / 2.0 }),
+        (my_mul, f32, [a: f32, b: f32], { a * b }),
+        (my_div, f32, [a: f32, b: f32], {
+            if b.abs() > 1e-6 { a / b } else { 0.0 }
+        }),
+        (my_mod, f32, [a: f32, b: f32], {
+            if b.abs() > 1e-6 { a % b } else { 0.0 }
+        }),
 
-    builder.symbol("my_sin", my_sin as *const u8);
-    builder.symbol("my_cos", my_cos as *const u8);
-    builder.symbol("my_sqrt", my_sqrt as *const u8);
-    builder.symbol("my_exp", my_exp as *const u8);
-
-    builder.symbol("my_add", my_add as *const u8);
-    builder.symbol("my_mul", my_mul as *const u8);
-    builder.symbol("my_div", my_div as *const u8);
-    builder.symbol("my_mod", my_mod as *const u8);
-
-    builder.symbol("my_mix", my_mix as *const u8);
-    builder.symbol("my_mixu", my_mixu as *const u8);
+        // Quaternary functions
+        (my_mix, f32, [a: f32, b: f32, c: f32, d: f32], {
+            let a = a + 1.0;
+            let b = b + 1.0;
+            let c = c + 1.0;
+            let d = d + 1.0;
+            let numerator = a * c + b * d;
+            let denominator = (a + b).max(1e-6);
+            (numerator / denominator) - 1.0
+        }),
+        (my_mixu, f32, [a: f32, b: f32, c: f32, d: f32], {
+            (a * c + b * d) / (a + b + 1e-6)
+        }),
+    ]);
 
     let mut module = JITModule::new(builder);
 
