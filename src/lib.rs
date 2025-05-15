@@ -1,9 +1,9 @@
-pub mod utils;
-pub mod reader;
-pub mod grammar;
-pub mod node;
-pub mod statistics;
-pub mod jit;
+mod utils;
+mod reader;
+mod grammar;
+mod node;
+mod statistics;
+mod jit;
 
 use crate::{
     utils::{ fnv1a, render_pixels, PixelCoordinates, Colour }, 
