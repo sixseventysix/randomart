@@ -1,16 +1,16 @@
 use crate::node::Node;
 
-pub(crate) fn parse_expr(tokens: &mut impl Iterator<Item = String>) -> Node {
+pub(crate) fn parse_expr<'a>(tokens: &mut impl Iterator<Item = &'a str>) -> Node {
     let token = tokens.next().expect("Unexpected end");
 
-    match token.as_str() {
+    match token {
         "x" => Node::X,
         "y" => Node::Y,
         "const_" => {
             let _open = tokens.next().expect("Expected '(' after const_");
 
             let token = tokens.next().expect("Expected number after const_(");
-            let val = match token.as_str() {
+            let val = match token {
                 "inf" => f32::INFINITY,
                 "-inf" => f32::NEG_INFINITY,
                 _ => match token.parse::<f32>() {
@@ -56,9 +56,6 @@ pub(crate) fn parse_expr(tokens: &mut impl Iterator<Item = String>) -> Node {
     }
 }
 
-pub(crate) fn tokenize(input: &str) -> Vec<String> {
-    input
-        .split_whitespace()
-        .map(|s| s.to_string())
-        .collect()
+pub(crate) fn tokenize(input: &str) -> Vec<&str> {
+    input.split_whitespace().collect()
 }
