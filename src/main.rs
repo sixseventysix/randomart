@@ -1,4 +1,4 @@
-use randomart_standalone::{
+use randomart::{
     utils::{ fnv1a, render_pixels, PixelCoordinates, Colour }, 
     grammar::Grammar, 
     closure_tree::ClosureTree,
