@@ -8,7 +8,7 @@ mod jit;
 use crate::{
     utils::{ fnv1a, render_pixels, PixelCoordinates, Colour }, 
     grammar::Grammar, 
-    reader::{tokenize, parse_expr},
+    reader::{TokenStream, parse_expr},
     statistics::{TreeStats},
     jit::build_jit_function_triple
 };
@@ -91,12 +91,11 @@ impl RandomArtRead {
         let input = std::fs::read_to_string(format!("{}.txt", &self.input_file)).expect("Failed to read file");
 
         let start1 = Instant::now();
-        let tokens = tokenize(&input);
+        let mut ts = TokenStream::new(&input);
         let elaps1 = start1.elapsed();
 
         let start2 = Instant::now();
-        let mut iter = tokens.into_iter();
-        let node = parse_expr(&mut iter);
+        let node = parse_expr(&mut ts);
         let elaps2 = start2.elapsed();
 
         let start3 = Instant::now();

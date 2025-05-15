@@ -25,61 +25,61 @@ impl Node {
         match self {
             X => writeln!(f, "{}x", pad),
             Y => writeln!(f, "{}y", pad),
-            Number(n) => writeln!(f, "{}const_ ( {:?} )", pad, n),
+            Number(n) => writeln!(f, "{}const_ {:?}", pad, n),
             Random => writeln!(f, "{}random", pad),
-            Rule(r) => writeln!(f, "{}rule ( {} ) ", pad, r),
+            Rule(r) => writeln!(f, "{}rule {}", pad, r),
             Sin(inner) => {
-                writeln!(f, "{}sin ( ", pad)?;
+                writeln!(f, "{}sin ", pad)?;
                 inner.fmt_pretty(f, indent + 1)?;
-                writeln!(f, "{} ) ", pad)
+                Ok(())
             }
             Cos(inner) => {
-                writeln!(f, "{}cos ( ", pad)?;
+                writeln!(f, "{}cos ", pad)?;
                 inner.fmt_pretty(f, indent + 1)?;
-                writeln!(f, "{} ) ", pad)
+                Ok(())
             }
             Exp(inner) => {
-                writeln!(f, "{}exp ( ", pad)?;
+                writeln!(f, "{}exp ", pad)?;
                 inner.fmt_pretty(f, indent + 1)?;
-                writeln!(f, "{} ) ", pad)
+                Ok(())
             }
             Sqrt(inner) => {
-                writeln!(f, "{}sqrt ( ", pad)?;
+                writeln!(f, "{}sqrt ", pad)?;
                 inner.fmt_pretty(f, indent + 1)?;
-                writeln!(f, "{} ) ", pad)
+                Ok(())
             }
             Add(a, b) => {
-                writeln!(f, "{}add ( ", pad)?;
+                writeln!(f, "{}add ", pad)?;
                 a.fmt_pretty(f, indent + 1)?;
                 b.fmt_pretty(f, indent + 1)?;
-                writeln!(f, "{} ) ", pad)
+                Ok(())
             }
             Mult(a, b) => {
-                writeln!(f, "{}mult ( ", pad)?;
+                writeln!(f, "{}mult ", pad)?;
                 a.fmt_pretty(f, indent + 1)?;
                 b.fmt_pretty(f, indent + 1)?;
-                writeln!(f, "{} ) ", pad)
+                Ok(())
             }
             Div(a, b) => {
-                writeln!(f, "{}div ( ", pad)?;
+                writeln!(f, "{}div ", pad)?;
                 a.fmt_pretty(f, indent + 1)?;
                 b.fmt_pretty(f, indent + 1)?;
-                writeln!(f, "{} ) ", pad)
+                Ok(())
             }
             MixUnbounded(a, b, c, d) => {
-                writeln!(f, "{}mixu ( ", pad)?;
+                writeln!(f, "{}mixu ", pad)?;
                 a.fmt_pretty(f, indent + 1)?;
                 b.fmt_pretty(f, indent + 1)?;
                 c.fmt_pretty(f, indent + 1)?;
                 d.fmt_pretty(f, indent + 1)?;
-                writeln!(f, "{} ) ", pad)
+                Ok(())
             }
             Triple(a, b, c) => {
-                writeln!(f, "{}triple ( ", pad)?;
+                writeln!(f, "{}triple ", pad)?;
                 a.fmt_pretty(f, indent + 1)?;
                 b.fmt_pretty(f, indent + 1)?;
                 c.fmt_pretty(f, indent + 1)?;
-                writeln!(f, "{} ) ", pad)
+                Ok(())
             }
         }
     }

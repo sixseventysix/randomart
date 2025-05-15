@@ -3,7 +3,7 @@ randomart
 str: spiderman
 depth:60
 width:400 height:400
-generation: 476.085375ms
+
 r channel:
 Total Nodes: 1
 Size in memory: 40 bytes
@@ -21,7 +21,7 @@ g channel:
 Total Nodes: 46877
 Size in memory: 1875080 bytes
 Total Ops: 29816
-Op Counts: {"Sin": 6919, "Mult": 2820, "Exp": 2307, "Div": 2802, "Add": 2822, "Cos": 6872, "MixUnbounded": 2872, "Sqrt": 2402}
+Op Counts: {"Exp": 2307, "Mult": 2820, "MixUnbounded": 2872, "Cos": 6872, "Div": 2802, "Sqrt": 2402, "Add": 2822, "Sin": 6919}
 Leaf Nodes: 17061
 Max Depth: 28
 X-only Subtrees: 8655
@@ -34,7 +34,7 @@ b channel:
 Total Nodes: 3559
 Size in memory: 142360 bytes
 Total Ops: 2290
-Op Counts: {"MixUnbounded": 210, "Add": 202, "Sin": 556, "Mult": 215, "Sqrt": 178, "Div": 221, "Exp": 184, "Cos": 524}
+Op Counts: {"Div": 221, "Sin": 556, "Mult": 215, "MixUnbounded": 210, "Exp": 184, "Cos": 524, "Add": 202, "Sqrt": 178}
 Leaf Nodes: 1269
 Max Depth: 28
 X-only Subtrees: 657
@@ -42,3 +42,11 @@ Y-only Subtrees: 675
 Leaf Depth Histogram: {1: 1, 4: 1, 7: 1, 11: 1, 16: 2, 17: 4, 18: 1, 19: 7, 20: 10, 21: 10, 22: 20, 23: 19, 24: 36, 25: 50, 26: 85, 27: 162, 28: 859}
 X-only Subtree Op Counts Histogram: {1: 132, 2: 55, 3: 33, 4: 16, 5: 13, 6: 14, 7: 3, 8: 4, 9: 4, 23: 1}
 Y-only Subtree Op Counts Histogram: {1: 107, 2: 66, 3: 52, 4: 34, 5: 13, 6: 1, 7: 2, 9: 3, 10: 2, 15: 1}
+
+
+generate_tree_parallel: 487.750167ms
+simplify: 592.417µs
+stats: 1.394333ms
+saving formula as string: 3.045708ms
+building jit compiled fn: 166.433ms
+render pixels: 3.856750417s
