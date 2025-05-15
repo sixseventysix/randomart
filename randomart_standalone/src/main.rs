@@ -1,10 +1,11 @@
 use randomart_standalone::{
-    utils::{ fnv1a, render_pixels, PixelCoordinates }, 
+    utils::{ fnv1a, render_pixels, PixelCoordinates, Colour }, 
     grammar::Grammar, 
     closure_tree::ClosureTree,
     reader::{tokenize, parse_expr},
     statistics::{TreeStats},
-    node::Node
+    node::Node,
+    jit::build_jit_function
 };
 use std::{
     env, 
@@ -66,40 +67,51 @@ fn main() {
             generated_node.simplify_triple();
             let elaps3 = start3.elapsed();
 
-            let start6 = Instant::now();
             let (r, g, b) = match &*generated_node {
                 Node::Triple(r, g, b) => (r, g, b),
                 _ => panic!("Expected Triple node at top level"),
             };
-
-            let r_stats = TreeStats::from_node(r);
-            let g_stats = TreeStats::from_node(g);
-            let b_stats = TreeStats::from_node(b);
+            let start6 = Instant::now();
+            let _r_stats = TreeStats::from_node(r);
+            let _g_stats = TreeStats::from_node(g);
+            let _b_stats = TreeStats::from_node(b);
             let elaps6 = start6.elapsed();
 
             let formula = format!("{}", generated_node);
 
-            let start4 = Instant::now();
-            let closure_tree = ClosureTree::from_node(&generated_node);
-            let elaps4 = start4.elapsed();
+            let start7 = Instant::now();
+            let r_jit_fn = build_jit_function(r);
+            let g_jit_fn = build_jit_function(g);
+            let b_jit_fn = build_jit_function(b);
+            let elaps7 = start7.elapsed();
 
-            let rgb_fn = move |coord: PixelCoordinates| closure_tree.eval_rgb(coord.x, coord.y);
+            // let start4 = Instant::now();
+            // let closure_tree = ClosureTree::from_node(&generated_node);
+            // let elaps4 = start4.elapsed();
+
+            let rgb_fn = move |coord: PixelCoordinates| {
+                Colour {
+                    r: r_jit_fn(coord.x, coord.y),
+                    g: g_jit_fn(coord.x, coord.y),
+                    b: b_jit_fn(coord.x, coord.y),
+                }
+            };
 
             let start2 = Instant::now();
             let img = render_pixels(&rgb_fn, width, height);
             let elaps2 = start2.elapsed();
 
-            println!("randomart\nstr: {string}\ndepth:{depth}\nwidth:{width} height:{height}\n\n");
-            println!("R channel report:");
-            r_stats.report();
-            println!("\nG channel report:");
-            g_stats.report();
-            println!("\nB channel report:");
-            b_stats.report();
+            // println!("randomart\nstr: {string}\ndepth:{depth}\nwidth:{width} height:{height}\n\n");
+            // println!("R channel report:");
+            // r_stats.report();
+            // println!("\nG channel report:");
+            // g_stats.report();
+            // println!("\nB channel report:");
+            // b_stats.report();
             println!("\ntree generation: {:?}", elaps5);
             println!("simplify: {:?}", elaps3);
             println!("tree stats: {:?}", elaps6);
-            println!("closure tree creation: {:?}", elaps4);
+            println!("fn creation via cranelift: {:?}", elaps7);
             println!("hot path (render pixels loop): {:?}", elaps2);
 
             let output_img_filepath = get_output_path(&output_img_filename);

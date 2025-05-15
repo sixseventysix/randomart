@@ -4,5 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+cranelift = "0.119.0"
+cranelift-jit = "0.119"
+cranelift-module = "0.119"
 image = "0.25.6"
 rayon = "1.10.0"
