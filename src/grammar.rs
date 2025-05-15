@@ -114,7 +114,7 @@ impl Grammar {
     
     }
 
-    pub(crate) fn gen_top_rule(&mut self, depth: u32) -> Option<Box<Node>> {
+    pub(crate) fn generate_tree_parallel(&mut self, depth: u32) -> Option<Box<Node>> {
         let seed_b = self.rng.next_u64();
         let seed_c = self.rng.next_u64();
         self.rng.next_u64();

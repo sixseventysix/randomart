@@ -32,30 +32,50 @@ impl RandomArtGenerate {
         let seed = fnv1a(&self.string);
         let mut grammar = Grammar::default(seed);
 
-        let start = Instant::now();
-        let mut node = grammar.gen_top_rule(self.depth).unwrap();
-        let elaps_gen = start.elapsed();
+        let start1 = Instant::now();
+        let mut node = grammar.generate_tree_parallel(self.depth).unwrap();
+        let elaps1 = start1.elapsed();
 
+        let start2 = Instant::now();
         node.simplify_triple();
-        let stats = TreeStats::from_triple(&node);
-        let formula = format!("{}", node);
+        let elaps2 = start2.elapsed();
 
+        let start3 = Instant::now();
+        let stats = TreeStats::from_triple(&node);
+        let elaps3 = start3.elapsed();
+        
+        let start4 = Instant::now();
+        let formula = format!("{}", node);
+        let elaps4 = start4.elapsed();
+
+        let start5 = Instant::now();
         let (r_jit_fn, g_jit_fn, b_jit_fn) = build_jit_function_triple(&node);
         let rgb_fn = |coord: PixelCoordinates| Colour {
             r: r_jit_fn(coord.x, coord.y),
             g: g_jit_fn(coord.x, coord.y),
             b: b_jit_fn(coord.x, coord.y),
         };
+        let elaps5 = start5.elapsed();
 
+        let start6 = Instant::now();
         let img = render_pixels(&rgb_fn, self.width, self.height);
+        let elaps6 = start6.elapsed();
+
         let output_img = get_output_path(&format!("{}.png", self.output_file_namespace));
         let output_formula = get_output_path(&format!("{}.txt", self.output_file_namespace));
         img.save(output_img).unwrap();
         std::fs::write(output_formula, formula).unwrap();
 
-        println!("\nrandomart\nstr: {}\ndepth:{}\nwidth:{} height:{}\ngeneration: {:?}", 
-            self.string, self.depth, self.width, self.height, elaps_gen);
+        println!("\nrandomart\nstr: {}\ndepth:{}\nwidth:{} height:{}\n", 
+            self.string, self.depth, self.width, self.height);
         stats.report();
+
+        println!("\n\ngenerate_tree_parallel: {:?}", elaps1);
+        println!("simplify: {:?}", elaps2);
+        println!("stats: {:?}", elaps3);
+        println!("saving formula as string: {:?}", elaps4);
+        println!("building jit compiled fn: {:?}", elaps5);
+        println!("render pixels: {:?}", elaps6);
     }
  }
 
@@ -68,19 +88,34 @@ pub struct RandomArtRead {
 
 impl RandomArtRead {
     pub fn run(&self) {
-        let input = std::fs::read_to_string(&self.input_file).expect("Failed to read file");
+        let input = std::fs::read_to_string(format!("{}.txt", &self.input_file)).expect("Failed to read file");
+
+        let start1 = Instant::now();
         let tokens = tokenize(&input);
+        let elaps1 = start1.elapsed();
+
+        let start2 = Instant::now();
         let mut iter = tokens.into_iter();
         let node = parse_expr(&mut iter);
+        let elaps2 = start2.elapsed();
 
+        let start3 = Instant::now();
         let (r_jit_fn, g_jit_fn, b_jit_fn) = build_jit_function_triple(&node);
         let rgb_fn = |coord: PixelCoordinates| Colour {
             r: r_jit_fn(coord.x, coord.y),
             g: g_jit_fn(coord.x, coord.y),
             b: b_jit_fn(coord.x, coord.y),
         };
+        let elaps3 = start3.elapsed();
 
+        let start4 = Instant::now();
         let img = render_pixels(&rgb_fn, self.width, self.height);
+        let elaps4 = start4.elapsed();
+
+        println!("tokenize: {:?}", elaps1);
+        println!("parse_expr: {:?}", elaps2);
+        println!("building jit compiled fn: {:?}", elaps3);
+        println!("render pixels: {:?}", elaps4);
         img.save(format!("{}.png", self.output_file_namespace)).unwrap();
     }
 }

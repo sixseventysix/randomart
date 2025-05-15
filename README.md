@@ -4,6 +4,13 @@
 image generated using the string: `My brain on drugs` with depth = 40\
 (sadly, this cannot be made anymore because i chose multi-threaded tree gen sadface)
 
+## generate mode
+takes string and maximum depth as inputs, outputs the image and its respective formula in a txt file
+
+## read mode
+takes file name as input. no need to mention ".txt" in the name
+> this reads from .txt files strictly
+
 ## references:
 https://netsec.ethz.ch/publications/papers/validation.pdf
 
