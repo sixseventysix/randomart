@@ -20,143 +20,151 @@ fn codegen_node(
         Node::Add(a, b) => {
             let lhs = codegen_node(builder, module, a, x, y);
             let rhs = codegen_node(builder, module, b, x, y);
-            builder.ins().fadd(lhs, rhs)
+
+            let mut sig = module.make_signature();
+            sig.params.push(AbiParam::new(types::F32));
+            sig.params.push(AbiParam::new(types::F32));
+            sig.returns.push(AbiParam::new(types::F32));
+
+            let func = module.declare_function("my_add", Linkage::Import, &sig).unwrap();
+            let local = module.declare_func_in_func(func, builder.func);
+            let call = builder.ins().call(local, &[lhs, rhs]);
+            builder.inst_results(call)[0]
         }
 
         Node::Mult(a, b) => {
             let lhs = codegen_node(builder, module, a, x, y);
             let rhs = codegen_node(builder, module, b, x, y);
-            builder.ins().fmul(lhs, rhs)
-        }
-
-        Node::Div(a, b) => {
-            let lhs = codegen_node(builder, module, a, x, y);
-            let rhs = codegen_node(builder, module, b, x, y);
-
-            let epsilon = builder.ins().f32const(1e-6);
-            let abs_rhs = builder.ins().fabs(rhs);
-            let cmp = builder.ins().fcmp(FloatCC::GreaterThan, abs_rhs, epsilon);
-
-            let zero = builder.ins().f32const(0.0);
-            let div_val = builder.ins().fdiv(lhs, rhs);
-            builder.ins().select(cmp, div_val, zero)
-        }
-
-        Node::Modulo(a, b) => {
-            let lhs = codegen_node(builder, module, a, x, y);
-            let rhs = codegen_node(builder, module, b, x, y);
-
-            let abs_rhs = builder.ins().fabs(rhs);
-            let epsilon = builder.ins().f32const(1e-6);
-            let is_safe = builder.ins().fcmp(FloatCC::GreaterThan, abs_rhs, epsilon);
 
             let mut sig = module.make_signature();
             sig.params.push(AbiParam::new(types::F32));
             sig.params.push(AbiParam::new(types::F32));
             sig.returns.push(AbiParam::new(types::F32));
-            let fmodf_func = module
-                .declare_function("fmodf", Linkage::Import, &sig)
-                .unwrap();
-            let local = module.declare_func_in_func(fmodf_func, builder.func);
-            let fmod_call = builder.ins().call(local, &[lhs, rhs]);
-            let mod_val = builder.inst_results(fmod_call)[0];
 
-            let zero = builder.ins().f32const(0.0);
-            builder.ins().select(is_safe, mod_val, zero)
-        }
-
-        Node::Sqrt(a) => {
-            let val = codegen_node(builder, module, a, x, y);
-            let zero = builder.ins().f32const(0.0);
-            let safe_val = builder.ins().fmax(val, zero);
-
-            let mut sig = module.make_signature();
-            sig.params.push(AbiParam::new(types::F32));
-            sig.returns.push(AbiParam::new(types::F32));
-
-            let sqrtf_func = module
-                .declare_function("sqrtf", Linkage::Import, &sig)
-                .unwrap();
-            let local = module.declare_func_in_func(sqrtf_func, builder.func);
-            let call_inst = builder.ins().call(local, &[safe_val]);
-            builder.inst_results(call_inst)[0]
+            let func = module.declare_function("my_mul", Linkage::Import, &sig).unwrap();
+            let local = module.declare_func_in_func(func, builder.func);
+            let call = builder.ins().call(local, &[lhs, rhs]);
+            builder.inst_results(call)[0]
         }
 
         Node::Sin(inner) => {
             let arg = codegen_node(builder, module, inner, x, y);
+
             let mut sig = module.make_signature();
             sig.params.push(AbiParam::new(types::F32));
             sig.returns.push(AbiParam::new(types::F32));
 
-            let sinf_func = module.declare_function("sinf", Linkage::Import, &sig).unwrap();
-            let local = module.declare_func_in_func(sinf_func, builder.func);
+            let func = module.declare_function("my_sin", Linkage::Import, &sig).unwrap();
+            let local = module.declare_func_in_func(func, builder.func);
             let call = builder.ins().call(local, &[arg]);
             builder.inst_results(call)[0]
         }
 
         Node::Cos(inner) => {
             let arg = codegen_node(builder, module, inner, x, y);
+
             let mut sig = module.make_signature();
             sig.params.push(AbiParam::new(types::F32));
             sig.returns.push(AbiParam::new(types::F32));
 
-            let cosf_func = module.declare_function("cosf", Linkage::Import, &sig).unwrap();
-            let local = module.declare_func_in_func(cosf_func, builder.func);
+            let func = module.declare_function("my_cos", Linkage::Import, &sig).unwrap();
+            let local = module.declare_func_in_func(func, builder.func);
+            let call = builder.ins().call(local, &[arg]);
+            builder.inst_results(call)[0]
+        }
+
+        Node::Sqrt(inner) => {
+            let arg = codegen_node(builder, module, inner, x, y);
+
+            let mut sig = module.make_signature();
+            sig.params.push(AbiParam::new(types::F32));
+            sig.returns.push(AbiParam::new(types::F32));
+
+            let func = module.declare_function("my_sqrt", Linkage::Import, &sig).unwrap();
+            let local = module.declare_func_in_func(func, builder.func);
             let call = builder.ins().call(local, &[arg]);
             builder.inst_results(call)[0]
         }
 
         Node::Exp(inner) => {
             let arg = codegen_node(builder, module, inner, x, y);
+
             let mut sig = module.make_signature();
             sig.params.push(AbiParam::new(types::F32));
             sig.returns.push(AbiParam::new(types::F32));
 
-            let expf_func = module.declare_function("expf", Linkage::Import, &sig).unwrap();
-            let local = module.declare_func_in_func(expf_func, builder.func);
+            let func = module.declare_function("my_exp", Linkage::Import, &sig).unwrap();
+            let local = module.declare_func_in_func(func, builder.func);
             let call = builder.ins().call(local, &[arg]);
             builder.inst_results(call)[0]
         }
 
+        Node::Div(a, b) => {
+            let lhs = codegen_node(builder, module, a, x, y);
+            let rhs = codegen_node(builder, module, b, x, y);
+
+            let mut sig = module.make_signature();
+            sig.params.push(AbiParam::new(types::F32));
+            sig.params.push(AbiParam::new(types::F32));
+            sig.returns.push(AbiParam::new(types::F32));
+
+            let func = module.declare_function("my_div", Linkage::Import, &sig).unwrap();
+            let local = module.declare_func_in_func(func, builder.func);
+            let call = builder.ins().call(local, &[lhs, rhs]);
+            builder.inst_results(call)[0]
+        }
+
+        Node::Modulo(a, b) => {
+            let lhs = codegen_node(builder, module, a, x, y);
+            let rhs = codegen_node(builder, module, b, x, y);
+
+            let mut sig = module.make_signature();
+            sig.params.push(AbiParam::new(types::F32));
+            sig.params.push(AbiParam::new(types::F32));
+            sig.returns.push(AbiParam::new(types::F32));
+
+            let func = module.declare_function("my_mod", Linkage::Import, &sig).unwrap();
+            let local = module.declare_func_in_func(func, builder.func);
+            let call = builder.ins().call(local, &[lhs, rhs]);
+            builder.inst_results(call)[0]
+        }
+
         Node::Mix(a, b, c, d) => {
-            let a = codegen_node(builder, module, a, x, y);
-            let b = codegen_node(builder, module, b, x, y);
-            let c = codegen_node(builder, module, c, x, y);
-            let d = codegen_node(builder, module, d, x, y);
+            let va = codegen_node(builder, module, a, x, y);
+            let vb = codegen_node(builder, module, b, x, y);
+            let vc = codegen_node(builder, module, c, x, y);
+            let vd = codegen_node(builder, module, d, x, y);
 
-            let one = builder.ins().f32const(1.0);
-            let a1 = builder.ins().fadd(a, one);
-            let b1 = builder.ins().fadd(b, one);
-            let c1 = builder.ins().fadd(c, one);
-            let d1 = builder.ins().fadd(d, one);
+            let mut sig = module.make_signature();
+            sig.params.push(AbiParam::new(types::F32));
+            sig.params.push(AbiParam::new(types::F32));
+            sig.params.push(AbiParam::new(types::F32));
+            sig.params.push(AbiParam::new(types::F32));
+            sig.returns.push(AbiParam::new(types::F32));
 
-            let ac = builder.ins().fmul(a1, c1);
-            let bd = builder.ins().fmul(b1, d1);
-            let numerator = builder.ins().fadd(ac, bd);
-
-            let ab = builder.ins().fadd(a1, b1);
-            let epsilon = builder.ins().f32const(1e-6);
-            let denom = builder.ins().fmax(ab, epsilon);
-
-            let div = builder.ins().fdiv(numerator, denom);
-            builder.ins().fsub(div, one)
+            let func = module.declare_function("my_mix", Linkage::Import, &sig).unwrap();
+            let local = module.declare_func_in_func(func, builder.func);
+            let call = builder.ins().call(local, &[va, vb, vc, vd]);
+            builder.inst_results(call)[0]
         }
 
         Node::MixUnbounded(a, b, c, d) => {
-            let a = codegen_node(builder, module, a, x, y);
-            let b = codegen_node(builder, module, b, x, y);
-            let c = codegen_node(builder, module, c, x, y);
-            let d = codegen_node(builder, module, d, x, y);
+            let va = codegen_node(builder, module, a, x, y);
+            let vb = codegen_node(builder, module, b, x, y);
+            let vc = codegen_node(builder, module, c, x, y);
+            let vd = codegen_node(builder, module, d, x, y);
 
-            let ac = builder.ins().fmul(a, c);
-            let bd = builder.ins().fmul(b, d);
-            let numerator = builder.ins().fadd(ac, bd);
+            let mut sig = module.make_signature();
+            sig.params.push(AbiParam::new(types::F32));
+            sig.params.push(AbiParam::new(types::F32));
+            sig.params.push(AbiParam::new(types::F32));
+            sig.params.push(AbiParam::new(types::F32));
+            sig.returns.push(AbiParam::new(types::F32));
 
-            let ab = builder.ins().fadd(a, b);
-            let epsilon = builder.ins().f32const(1e-6);
-            let denom = builder.ins().fadd(ab, epsilon);
-
-            builder.ins().fdiv(numerator, denom)
+            let func = module.declare_function("my_mixu", Linkage::Import, &sig).unwrap();
+            let local = module.declare_func_in_func(func, builder.func);
+            let call = builder.ins().call(local, &[va, vb, vc, vd]);
+            builder.inst_results(call)[0]
         }
 
         Node::Triple(_, _, _) => {
@@ -174,8 +182,48 @@ fn codegen_node(
 }
 
 pub fn build_jit_function(ast: &Node) -> Box<dyn Fn(f32, f32) -> f32 + Sync> {
-    let builder = JITBuilder::new(cranelift_module::default_libcall_names())
+    let mut builder = JITBuilder::new(cranelift_module::default_libcall_names())
         .expect("Failed to create JITBuilder");
+
+    extern "C" fn my_sin(x: f32) -> f32 { x.sin() }
+    extern "C" fn my_cos(x: f32) -> f32 { x.cos() }
+    extern "C" fn my_sqrt(x: f32) -> f32 { x.sqrt().max(0.0) }
+    extern "C" fn my_exp(x: f32) -> f32 { x.exp() }
+
+    extern "C" fn my_add(a: f32, b: f32) -> f32 { (a + b) / 2.0 }
+    extern "C" fn my_mul(a: f32, b: f32) -> f32 { a * b }
+    extern "C" fn my_div(a: f32, b: f32) -> f32 {
+        if b.abs() > 1e-6 { a / b } else { 0.0 }
+    }
+    extern "C" fn my_mod(a: f32, b: f32) -> f32 {
+        if b.abs() > 1e-6 { a % b } else { 0.0 }
+    }
+    extern "C" fn my_mix(a: f32, b: f32, c: f32, d: f32) -> f32 {
+        let a = a + 1.0;
+        let b = b + 1.0;
+        let c = c + 1.0;
+        let d = d + 1.0;
+        let numerator = a * c + b * d;
+        let denominator = (a + b).max(1e-6);
+        (numerator / denominator) - 1.0
+    }
+    extern "C" fn my_mixu(a: f32, b: f32, c: f32, d: f32) -> f32 {
+        (a * c + b * d) / (a + b + 1e-6)
+    }
+
+    builder.symbol("my_sin", my_sin as *const u8);
+    builder.symbol("my_cos", my_cos as *const u8);
+    builder.symbol("my_sqrt", my_sqrt as *const u8);
+    builder.symbol("my_exp", my_exp as *const u8);
+
+    builder.symbol("my_add", my_add as *const u8);
+    builder.symbol("my_mul", my_mul as *const u8);
+    builder.symbol("my_div", my_div as *const u8);
+    builder.symbol("my_mod", my_mod as *const u8);
+
+    builder.symbol("my_mix", my_mix as *const u8);
+    builder.symbol("my_mixu", my_mixu as *const u8);
+
     let mut module = JITModule::new(builder);
 
     let mut sig = module.make_signature();

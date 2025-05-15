@@ -84,9 +84,6 @@ fn main() {
             let g_jit_fn = build_jit_function(g);
             let b_jit_fn = build_jit_function(b);
             let elaps7 = start7.elapsed();
-            println!("r(0.0, 0.0) = {}", r_jit_fn(0.0, 0.0));
-            println!("g(0.5, 0.5) = {}", g_jit_fn(0.5, 0.5));
-            println!("b(1.0, 1.0) = {}", b_jit_fn(1.0, 1.0));
             // let start4 = Instant::now();
             // let closure_tree = ClosureTree::from_node(&generated_node);
             // let elaps4 = start4.elapsed();
