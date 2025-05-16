@@ -73,9 +73,9 @@ where
 pub(crate) fn derive_seeds(base: u64) -> (u64, u64, u64) {
     let s = base.to_le_bytes();
     (
-        xxh3_64(&[s.as_slice(), b"-0"].concat()),
-        xxh3_64(&[s.as_slice(), b"-1"].concat()),
-        xxh3_64(&[s.as_slice(), b"-2"].concat()),
+        xxh3_64(&[s.as_slice(), b"-a"].concat()),
+        xxh3_64(&[s.as_slice(), b"-b"].concat()),
+        xxh3_64(&[s.as_slice(), b"-c"].concat()),
     )
 }
 
