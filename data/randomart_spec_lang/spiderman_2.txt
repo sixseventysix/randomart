@@ -1,0 +1,894 @@
+triple 
+  cos 
+    mixu 
+      mult 
+        sin 
+          div 
+            exp 
+              sqrt 
+                sqrt 
+                  sqrt 
+                    sqrt 
+                      mult 
+                        const_ 0.8589252
+                        cos 
+                          sin 
+                            x
+            div 
+              cos 
+                cos 
+                  mult 
+                    mult 
+                      sin 
+                        exp 
+                          cos 
+                            y
+                      cos 
+                        y
+                    sqrt 
+                      div 
+                        div 
+                          cos 
+                            x
+                          sin 
+                            y
+                        mult 
+                          cos 
+                            y
+                          sin 
+                            y
+              cos 
+                cos 
+                  sin 
+                    sqrt 
+                      sin 
+                        exp 
+                          sqrt 
+                            x
+        const_ 0.51481426
+      cos 
+        cos 
+          div 
+            mixu 
+              sin 
+                mixu 
+                  sin 
+                    div 
+                      cos 
+                        add 
+                          mixu 
+                            y
+                            const_ -0.067509055
+                            x
+                            y
+                          cos 
+                            y
+                      cos 
+                        exp 
+                          add 
+                            y
+                            x
+                  sqrt 
+                    cos 
+                      sin 
+                        cos 
+                          cos 
+                            y
+                  const_ 0.7276589
+                  y
+              mixu 
+                cos 
+                  exp 
+                    cos 
+                      sqrt 
+                        cos 
+                          mixu 
+                            y
+                            const_ -0.78379416
+                            x
+                            const_ -0.73953915
+                cos 
+                  mult 
+                    const_ 0.88826346
+                    cos 
+                      sin 
+                        cos 
+                          div 
+                            const_ 0.86801374
+                            x
+                sin 
+                  sin 
+                    sqrt 
+                      exp 
+                        exp 
+                          mult 
+                            y
+                            y
+                sin 
+                  cos 
+                    div 
+                      sqrt 
+                        sin 
+                          sin 
+                            x
+                      cos 
+                        mult 
+                          div 
+                            y
+                            const_ 0.029303074
+                          cos 
+                            x
+              sqrt 
+                add 
+                  div 
+                    cos 
+                      cos 
+                        cos 
+                          mult 
+                            x
+                            y
+                    cos 
+                      sin 
+                        add 
+                          sin 
+                            x
+                          cos 
+                            x
+                  mixu 
+                    cos 
+                      add 
+                        sin 
+                          x
+                        sin 
+                          cos 
+                            y
+                    div 
+                      mixu 
+                        cos 
+                          sin 
+                            x
+                        const_ 0.4077708
+                        const_ 0.70329833
+                        mixu 
+                          const_ 0.6652746
+                          mixu 
+                            x
+                            const_ 0.76634526
+                            x
+                            const_ -0.51693606
+                          const_ 0.0
+                          const_ 0.09245551
+                      mult 
+                        x
+                        sin 
+                          div 
+                            y
+                            y
+                    x
+                    sin 
+                      sqrt 
+                        div 
+                          y
+                          sin 
+                            y
+              mult 
+                mixu 
+                  exp 
+                    cos 
+                      mult 
+                        sin 
+                          div 
+                            const_ 0.6749761
+                            y
+                        div 
+                          const_ 0.46281093
+                          cos 
+                            x
+                  mixu 
+                    cos 
+                      sin 
+                        mixu 
+                          div 
+                            const_ 0.1482923
+                            x
+                          mixu 
+                            const_ 0.63395
+                            y
+                            x
+                            y
+                          cos 
+                            y
+                          cos 
+                            x
+                    cos 
+                      cos 
+                        sin 
+                          cos 
+                            x
+                    const_ 0.69247484
+                    sin 
+                      mixu 
+                        add 
+                          mult 
+                            y
+                            const_ -0.20635152
+                          sin 
+                            y
+                        const_ 0.57494277
+                        add 
+                          cos 
+                            y
+                          cos 
+                            y
+                        mult 
+                          cos 
+                            y
+                          const_ -0.6572281
+                  sin 
+                    sqrt 
+                      mixu 
+                        add 
+                          add 
+                            const_ -0.59575987
+                            y
+                          cos 
+                            y
+                        sqrt 
+                          sin 
+                            x
+                        mixu 
+                          const_ 0.8814263
+                          sin 
+                            y
+                          cos 
+                            x
+                          cos 
+                            x
+                        cos 
+                          mult 
+                            const_ 0.26775622
+                            y
+                  mult 
+                    const_ 0.98603576
+                    sin 
+                      cos 
+                        mult 
+                          cos 
+                            y
+                          const_ 0.2937551
+                sin 
+                  y
+            sin 
+              add 
+                sqrt 
+                  exp 
+                    mult 
+                      const_ 0.5051447
+                      cos 
+                        add 
+                          const_ 0.81614083
+                          div 
+                            const_ -0.8341638
+                            x
+                sin 
+                  exp 
+                    cos 
+                      sin 
+                        x
+      exp 
+        sin 
+          div 
+            x
+            cos 
+              add 
+                sqrt 
+                  mult 
+                    sin 
+                      div 
+                        cos 
+                          cos 
+                            x
+                        sin 
+                          mixu 
+                            const_ -0.5485778
+                            y
+                            x
+                            y
+                    cos 
+                      cos 
+                        sqrt 
+                          mult 
+                            y
+                            y
+                cos 
+                  add 
+                    sin 
+                      sin 
+                        mult 
+                          const_ 0.91318196
+                          mult 
+                            const_ 0.049741387
+                            x
+                    sqrt 
+                      add 
+                        sin 
+                          mult 
+                            const_ -0.08749628
+                            x
+                        cos 
+                          x
+      mixu 
+        div 
+          exp 
+            mult 
+              sin 
+                cos 
+                  cos 
+                    sin 
+                      exp 
+                        mult 
+                          cos 
+                            x
+                          const_ 0.44963443
+              y
+          sin 
+            cos 
+              exp 
+                sqrt 
+                  mixu 
+                    add 
+                      mixu 
+                        cos 
+                          mult 
+                            x
+                            y
+                        mixu 
+                          cos 
+                            x
+                          const_ -0.5328874
+                          const_ 0.15086384
+                          mixu 
+                            x
+                            y
+                            y
+                            x
+                        add 
+                          cos 
+                            x
+                          x
+                        const_ -0.3631963
+                      sin 
+                        mult 
+                          sin 
+                            y
+                          add 
+                            const_ -0.44157743
+                            y
+                    mixu 
+                      mixu 
+                        cos 
+                          sin 
+                            x
+                        cos 
+                          add 
+                            x
+                            y
+                        exp 
+                          add 
+                            y
+                            x
+                        sin 
+                          cos 
+                            x
+                      cos 
+                        mixu 
+                          const_ 0.47393638
+                          cos 
+                            x
+                          y
+                          cos 
+                            y
+                      div 
+                        cos 
+                          sqrt 
+                            y
+                        cos 
+                          y
+                      mult 
+                        sqrt 
+                          exp 
+                            x
+                        div 
+                          mult 
+                            x
+                            const_ -0.19346154
+                          sin 
+                            y
+                    sin 
+                      y
+                    const_ 0.8034216
+        div 
+          div 
+            sin 
+              sin 
+                cos 
+                  sqrt 
+                    sin 
+                      cos 
+                        mult 
+                          mult 
+                            x
+                            const_ -0.5135981
+                          div 
+                            y
+                            const_ -0.30477655
+            mult 
+              add 
+                add 
+                  div 
+                    div 
+                      mult 
+                        sin 
+                          sin 
+                            x
+                        add 
+                          const_ 0.96070325
+                          x
+                      sin 
+                        sin 
+                          sin 
+                            x
+                    div 
+                      exp 
+                        sqrt 
+                          y
+                      cos 
+                        exp 
+                          add 
+                            const_ 0.3435552
+                            x
+                  exp 
+                    mixu 
+                      const_ 0.12502065
+                      sqrt 
+                        mult 
+                          add 
+                            y
+                            y
+                          y
+                      sin 
+                        add 
+                          sqrt 
+                            y
+                          div 
+                            y
+                            x
+                      sin 
+                        div 
+                          add 
+                            x
+                            const_ -0.010944009
+                          add 
+                            const_ -0.7124833
+                            x
+                cos 
+                  mult 
+                    sin 
+                      mult 
+                        cos 
+                          sin 
+                            y
+                        sin 
+                          sqrt 
+                            y
+                    cos 
+                      cos 
+                        add 
+                          add 
+                            y
+                            x
+                          y
+              sin 
+                sqrt 
+                  sqrt 
+                    sin 
+                      sin 
+                        cos 
+                          cos 
+                            x
+          cos 
+            sin 
+              cos 
+                add 
+                  sin 
+                    x
+                  cos 
+                    sin 
+                      x
+        cos 
+          sin 
+            sin 
+              mixu 
+                div 
+                  const_ 0.7456241
+                  cos 
+                    div 
+                      div 
+                        sin 
+                          mult 
+                            y
+                            y
+                        mixu 
+                          exp 
+                            y
+                          y
+                          cos 
+                            y
+                          mult 
+                            x
+                            y
+                      mixu 
+                        mult 
+                          mixu 
+                            x
+                            y
+                            x
+                            y
+                          sin 
+                            x
+                        sin 
+                          add 
+                            x
+                            y
+                        div 
+                          x
+                          div 
+                            x
+                            const_ -0.8258246
+                        sin 
+                          sin 
+                            y
+                div 
+                  x
+                  sin 
+                    mult 
+                      add 
+                        sin 
+                          mixu 
+                            y
+                            x
+                            x
+                            x
+                        sin 
+                          sin 
+                            y
+                      cos 
+                        y
+                mixu 
+                  const_ 0.5899981
+                  add 
+                    mult 
+                      sin 
+                        mult 
+                          const_ 0.83818346
+                          y
+                      const_ 0.86175406
+                    sqrt 
+                      sin 
+                        cos 
+                          sin 
+                            x
+                  sqrt 
+                    mixu 
+                      mixu 
+                        sin 
+                          div 
+                            x
+                            x
+                        x
+                        mixu 
+                          mixu 
+                            y
+                            y
+                            x
+                            x
+                          cos 
+                            y
+                          add 
+                            y
+                            const_ -0.38862514
+                          cos 
+                            x
+                        const_ 0.9998849
+                      cos 
+                        add 
+                          add 
+                            const_ -0.68000853
+                            y
+                          mixu 
+                            x
+                            const_ 0.6860225
+                            x
+                            x
+                      sin 
+                        div 
+                          sin 
+                            y
+                          const_ 0.7399931
+                      const_ -0.4467858
+                  add 
+                    mult 
+                      cos 
+                        cos 
+                          cos 
+                            y
+                      const_ 0.8486051
+                    cos 
+                      sqrt 
+                        cos 
+                          sqrt 
+                            y
+                cos 
+                  exp 
+                    cos 
+                      sin 
+                        mixu 
+                          mixu 
+                            const_ 0.5627904
+                            const_ -0.8116138
+                            y
+                            y
+                          sqrt 
+                            x
+                          exp 
+                            x
+                          const_ 0.38557145
+        cos 
+          cos 
+            sin 
+              cos 
+                exp 
+                  sin 
+                    sin 
+                      div 
+                        cos 
+                          div 
+                            x
+                            x
+                        exp 
+                          mult 
+                            x
+                            const_ 0.4553932
+  mixu 
+    sqrt 
+      sqrt 
+        sin 
+          mult 
+            sqrt 
+              add 
+                const_ 0.94985944
+                cos 
+                  sin 
+                    exp 
+                      div 
+                        const_ 0.98587996
+                        sin 
+                          cos 
+                            y
+            mixu 
+              add 
+                sqrt 
+                  x
+                sin 
+                  sin 
+                    cos 
+                      add 
+                        mult 
+                          const_ 0.9589505
+                          cos 
+                            x
+                        div 
+                          exp 
+                            y
+                          y
+              mult 
+                const_ 0.7711152
+                cos 
+                  mixu 
+                    mixu 
+                      const_ 0.78006124
+                      sin 
+                        cos 
+                          sin 
+                            x
+                      sin 
+                        sqrt 
+                          add 
+                            y
+                            x
+                      cos 
+                        sin 
+                          sin 
+                            x
+                    mult 
+                      mult 
+                        sqrt 
+                          mult 
+                            x
+                            y
+                        cos 
+                          sqrt 
+                            y
+                      const_ -0.62703556
+                    mixu 
+                      div 
+                        add 
+                          sin 
+                            y
+                          sin 
+                            y
+                        mixu 
+                          sqrt 
+                            y
+                          div 
+                            x
+                            const_ -0.20513308
+                          const_ -0.4050995
+                          cos 
+                            x
+                      cos 
+                        add 
+                          add 
+                            const_ 0.85139406
+                            x
+                          y
+                      const_ 0.59972095
+                      mixu 
+                        div 
+                          const_ 1.7242476
+                          exp 
+                            x
+                        cos 
+                          cos 
+                            x
+                        mult 
+                          sin 
+                            y
+                          div 
+                            x
+                            x
+                        mult 
+                          cos 
+                            y
+                          mixu 
+                            x
+                            x
+                            x
+                            y
+                    add 
+                      add 
+                        mixu 
+                          const_ 1.7664671
+                          const_ 0.4617814
+                          mixu 
+                            x
+                            y
+                            y
+                            const_ -0.77115715
+                          const_ 0.9394085
+                        const_ 0.76946586
+                      cos 
+                        mult 
+                          sin 
+                            x
+                          const_ 1.5409763
+              sin 
+                sin 
+                  sin 
+                    sin 
+                      sin 
+                        y
+              cos 
+                sin 
+                  sin 
+                    sin 
+                      cos 
+                        mult 
+                          sin 
+                            x
+                          add 
+                            x
+                            const_ 0.81041074
+    sin 
+      cos 
+        cos 
+          exp 
+            div 
+              mixu 
+                sqrt 
+                  sin 
+                    div 
+                      add 
+                        const_ 0.014258252
+                        cos 
+                          div 
+                            y
+                            const_ 0.8195976
+                      const_ 0.75404435
+                sqrt 
+                  mult 
+                    cos 
+                      cos 
+                        sqrt 
+                          mult 
+                            x
+                            const_ 0.25927556
+                    sin 
+                      cos 
+                        cos 
+                          sin 
+                            y
+                sin 
+                  exp 
+                    mult 
+                      cos 
+                        sqrt 
+                          sqrt 
+                            y
+                      cos 
+                        exp 
+                          y
+                sin 
+                  sqrt 
+                    sin 
+                      sin 
+                        sin 
+                          add 
+                            x
+                            const_ 0.28920782
+              sqrt 
+                exp 
+                  mult 
+                    y
+                    exp 
+                      sin 
+                        sin 
+                          exp 
+                            y
+    mult 
+      const_ 0.79202485
+      div 
+        cos 
+          cos 
+            sqrt 
+              sqrt 
+                cos 
+                  x
+        sin 
+          cos 
+            cos 
+              sin 
+                mixu 
+                  cos 
+                    cos 
+                      cos 
+                        cos 
+                          sqrt 
+                            y
+                  sin 
+                    div 
+                      x
+                      const_ -0.26524055
+                  const_ 0.4395461
+                  y
+    cos 
+      sin 
+        sqrt 
+          mult 
+            const_ 0.812955
+            y
+  cos 
+    sin 
+      sin 
+        cos 
+          y

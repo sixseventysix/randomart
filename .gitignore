@@ -1,3 +1,6 @@
 /target
+
 *.png
 *.txt
+!data/**/*.txt
+!data/**/*.png

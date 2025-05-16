@@ -20,7 +20,7 @@ where $x$ is the arity (number of arguments) of the function
 | `exp  a`              | Computes exponential: `e^a`                              | 1     |
 | `sqrt  a`             | Computes square root of `a`, clamps to 0 if negative     | 1     |
 | `mixu  a b c d`       | Unbounded version: `(a*c + b*d) / (a + b + epsilon)`     | 4     |
-| `triple  a b c` *     | Groups three channels R, G,                              | 3     |
+| `triple  a b c` *     | Groups three channels R, G, B                            | 3     |
 | `rule  n` *           | Refers to grammar rule number `n`                        | 1     |
 | `random` *            | Placeholder, replaced by a constant in `[-1, 1]`         | 0     |
 
