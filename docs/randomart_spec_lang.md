@@ -1,9 +1,10 @@
 # randomart spec lang
 nested functions representation in this specific format:
-```text
-<function>  ( <arg1> <arg2> ... )
+```math
+\text{function} \quad \text{arg}^{x}
 ```
-> note that tokenization is done by splitting on whitespace, so tokens `<function>`, `<arg>`, `(`, `)` need to be separated by at least one whitespace. the type of whitespace does not matter.
+where $x$ is the arity (number of arguments) of the function
+> note that tokenization is done by splitting on whitespace, so tokens `<function>`, `<arg>` need to be separated by at least one whitespace. the type of whitespace does not matter.
 
 ## node types
 | Syntax                | Meaning / Operation                                      | Arity |
