@@ -6,13 +6,14 @@ mod statistics;
 mod jit;
 
 use crate::{
-    utils::{ fnv1a, render_pixels, PixelCoordinates, Colour }, 
-    grammar::Grammar, 
+    utils::{ render_pixels, PixelCoordinates, Colour }, 
+    grammar::generate_tree_parallel, 
     reader::{TokenStream, parse_expr},
     statistics::{TreeStats},
     jit::build_jit_function_triple
 };
 use std::time::Instant;
+use xxhash_rust::xxh3::xxh3_64;
 
 fn get_output_path(file_name: &str) -> std::path::PathBuf {
     let current_dir = std::env::current_dir().expect("failed to get the current working directory");
@@ -29,11 +30,9 @@ pub struct RandomArtGenerate {
 
 impl RandomArtGenerate {
     pub fn run(&self) {
-        let seed = fnv1a(&self.string);
-        let mut grammar = Grammar::default(seed);
-
+        let seed: u64 = xxh3_64(self.string.as_bytes());
         let start1 = Instant::now();
-        let mut node = grammar.generate_tree_parallel(self.depth).unwrap();
+        let mut node = generate_tree_parallel(seed, self.depth).unwrap();
         let elaps1 = start1.elapsed();
 
         let start2 = Instant::now();

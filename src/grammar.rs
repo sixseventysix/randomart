@@ -1,5 +1,5 @@
 use crate::node::Node;
-use crate::utils::LinearCongruentialGenerator;
+use crate::utils::{Rng_, derive_seeds};
 
 #[derive(Clone)]
 struct GrammarBranch {
@@ -26,7 +26,7 @@ impl GrammarBranches {
 
 pub(crate) struct Grammar {
     rules: Vec<GrammarBranches>, 
-    rng: LinearCongruentialGenerator
+    rng: Rng_
 }
 
 impl Grammar {
@@ -34,10 +34,10 @@ impl Grammar {
         self.rules.push(branch);
     }
 
-    pub(crate) fn default(seed: u64) -> Self {
+    fn default(seed: u64) -> Self {
         let mut grammar = Self {
             rules: Vec::new(),
-            rng: LinearCongruentialGenerator::new(seed),
+            rng: Rng_::new(seed),
         };
 
         // E::= (C, C, C)
@@ -112,23 +112,6 @@ impl Grammar {
 
         grammar  
     
-    }
-
-    pub(crate) fn generate_tree_parallel(&mut self, depth: u32) -> Option<Box<Node>> {
-        let seed_b = self.rng.next_u64();
-        let seed_c = self.rng.next_u64();
-        self.rng.next_u64();
-
-        let (b, c) = rayon::join(
-            || Grammar::default(seed_b).gen_rule(1, depth - 1),
-            || Grammar::default(seed_c).gen_rule(1, depth - 1),
-        );
-        let a = self.gen_rule(1, depth - 1);
-
-        match (a, b, c) {
-            (Some(a), Some(b), Some(c)) => Some(Box::new(Node::Triple(a, b, c))),
-            _ => None,
-        }
     }
 
     pub(crate) fn gen_rule(&mut self, rule: usize, depth: u32) -> Option<Box<Node>> {
@@ -224,5 +207,21 @@ impl Grammar {
                 Some(Box::new(Node::Number(val)))
             }
         }
+    }
+}
+
+pub(crate) fn generate_tree_parallel(grand_seed: u64, depth: u32) -> Option<Box<Node>> {
+    let (seed_a, seed_b, seed_c) = derive_seeds(grand_seed);
+
+    let (b, c) = rayon::join(
+        || Grammar::default(seed_b).gen_rule(1, depth - 1),
+        || Grammar::default(seed_c).gen_rule(1, depth - 1),
+    );
+
+    let a = Grammar::default(seed_a).gen_rule(1, depth - 1);
+
+    match (a, b, c) {
+        (Some(a), Some(b), Some(c)) => Some(Box::new(Node::Triple(a, b, c))),
+        _ => None,
     }
 }

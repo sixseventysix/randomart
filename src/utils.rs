@@ -1,5 +1,8 @@
 use image::{RgbImage, Rgb};
 use rayon::prelude::*;
+use rand::{Rng, SeedableRng};
+use rand_chacha::ChaCha8Rng;
+use xxhash_rust::xxh3::xxh3_64;
 
 pub(crate) struct PixelCoordinates {
     pub x: f32,
@@ -67,41 +70,27 @@ where
     final_img
 }
 
-pub(crate) fn fnv1a(input: &str) -> u64 {
-    let mut hash: u64 = 0xcbf29ce484222325; 
-    let prime: u64 = 0x100000001b3;
-
-    for byte in input.bytes() {
-        hash ^= byte as u64;
-        hash = hash.wrapping_mul(prime); 
-    }
-
-    hash
+pub(crate) fn derive_seeds(base: u64) -> (u64, u64, u64) {
+    let s = base.to_le_bytes();
+    (
+        xxh3_64(&[s.as_slice(), b"-0"].concat()),
+        xxh3_64(&[s.as_slice(), b"-1"].concat()),
+        xxh3_64(&[s.as_slice(), b"-2"].concat()),
+    )
 }
 
-pub(crate) struct LinearCongruentialGenerator {
-    state: u64, 
-    a: u64,    
-    c: u64,   
-    m: u64,    
+pub(crate) struct Rng_ {
+    rng: ChaCha8Rng,
 }
 
-impl LinearCongruentialGenerator {
+impl Rng_ {
     pub(crate) fn new(seed: u64) -> Self {
         Self {
-            state: seed,
-            a: 1664525,
-            c: 1013904223,
-            m: 2_u64.pow(32), 
+            rng: ChaCha8Rng::seed_from_u64(seed),
         }
     }
 
-    pub(crate) fn next_u64(&mut self) -> u64 {
-        self.state = (self.a.wrapping_mul(self.state).wrapping_add(self.c)) % self.m;
-        self.state
-    }
-
     pub(crate) fn next_float(&mut self) -> f32 {
-        (self.next_u64() as f32) / (self.m as f32)
+        self.rng.random::<f32>() // guaranteed in [0.0, 1.0)
     }
 }

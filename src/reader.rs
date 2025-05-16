@@ -33,10 +33,6 @@ impl<'a> TokenStream<'a> {
     pub(crate) fn current_pos(&self) -> usize {
         self.index
     }
-
-    pub(crate) fn peek(&self) -> Option<&'a str> {
-        self.tokens.get(self.index).copied()
-    }
 }
 
 pub(crate) fn parse_expr<'a>(tokens: &mut TokenStream<'a>) -> Node {
