@@ -5,7 +5,17 @@ image generated using the string: `My brain on drugs` with depth = 40\
 (sadly, this cannot be made anymore because i chose multi-threaded tree gen sadface)
 
 > currently experimenting with metal gpu. it works as of now, need to just automate the process
+## metal exec
+for creating the metallib file
+```bash
+xcrun -sdk macosx metal randomart_shader.metal -o randomart_spiderman_2.metallib                   
+```
 
+executing using swift
+```bash
+swiftc main.swift -framework Metal -framework MetalKit -framework CoreGraphics -framework ImageIO -framework CoreImage -o run_art
+./run_art
+```
 
 ## generate mode
 takes string and maximum depth as inputs, outputs the image and its respective formula in a txt file
