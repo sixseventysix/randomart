@@ -1,12 +1,13 @@
-mod utils;
 mod reader;
 mod grammar;
 mod node;
 mod statistics;
 mod jit;
+mod render;
+mod rng;
 
 use crate::{
-    utils::{ render_pixels, PixelCoordinates, Colour }, 
+    render::{ render_pixels, PixelCoordinates, Colour }, 
     grammar::generate_tree_parallel, 
     reader::{TokenStream, parse_expr},
     statistics::{TreeStats},

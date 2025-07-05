@@ -1,5 +1,7 @@
 use crate::node::Node;
-use crate::utils::{Rng_, derive_seeds};
+use crate::rng::Rng_;
+use xxhash_rust::xxh3::xxh3_64;
+
 
 #[derive(Clone)]
 struct GrammarBranch {
@@ -208,6 +210,15 @@ impl Grammar {
             }
         }
     }
+}
+
+pub(crate) fn derive_seeds(base: u64) -> (u64, u64, u64) {
+    let s = base.to_le_bytes();
+    (
+        xxh3_64(&[s.as_slice(), b"-a"].concat()),
+        xxh3_64(&[s.as_slice(), b"-b"].concat()),
+        xxh3_64(&[s.as_slice(), b"-c"].concat()),
+    )
 }
 
 pub(crate) fn generate_tree_parallel(grand_seed: u64, depth: u32) -> Option<Box<Node>> {
