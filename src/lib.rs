@@ -7,6 +7,7 @@ mod render;
 mod rng;
 mod metal_codegen;
 
+use std::process::Command;
 use std::fs::File;
 use std::io::Write;
 use crate::{
@@ -52,6 +53,7 @@ impl RandomArtGenerate {
         let formula = format!("{}", node);
         let elaps4 = start4.elapsed();
 
+        let start5 = Instant::now();
         let crate::node::Node::Triple(r, g, b) = *node else {
             panic!("Expected top-level Triple node");
         };
@@ -95,11 +97,38 @@ kernel void art_gen(texture2d<float, access::write> out [[texture(0)]],
     out.write(float4((r + 1.0) * 0.5, (g + 1.0) * 0.5, (b + 1.0) * 0.5, 1.0), gid);
 }
 "#;
-
-        let mut file = File::create("randomart_shader.metal").expect("error while creating randomart_shader.metal file");
+        let output_metal_filename = get_output_path(&format!("data/metal/randomart_shader.metal"));
+        let mut file = File::create(output_metal_filename).expect("error while creating randomart_shader.metal file");
         file.write_all(out.as_bytes()).expect("error while writing out to randomart_shader.metal");
+        let elaps5 = start5.elapsed();
 
+        let start6 = Instant::now();
+        Command::new("xcrun")
+            .args([
+                "-sdk", "macosx",
+                "metal",
+                "data/metal/randomart_shader.metal",
+                "-o", "bin/randomart.metallib",
+            ])
+            .status()
+            .expect("Failed to compile Metal");
+        let elaps6 = start6.elapsed();
 
+        let start7 = Instant::now();
+        Command::new("swiftc")
+            .args([
+                "src/main.swift",
+                "-o", "bin/run_art",
+            ])
+            .status()
+            .expect("Failed to compile Swift");
+        let elaps7 = start7.elapsed();
+
+        let start8 = Instant::now();
+        Command::new("./bin/run_art")
+            .status()
+            .expect("Failed to run GPU image generation");
+        let elaps8 = start8.elapsed();
         // let start5 = Instant::now();
         // let (r_jit_fn, g_jit_fn, b_jit_fn) = build_jit_function_triple(&node);
         // let rgb_fn = |coord: PixelCoordinates| Colour {
@@ -122,10 +151,14 @@ kernel void art_gen(texture2d<float, access::write> out [[texture(0)]],
         //     self.string, self.depth, self.width, self.height);
         // stats.report();
 
-        // println!("\n\ngenerate_tree_parallel: {:?}", elaps1);
-        // println!("simplify: {:?}", elaps2);
-        // println!("stats: {:?}", elaps3);
-        // println!("saving formula as string: {:?}", elaps4);
+        println!("\n\ngenerate_tree_parallel: {:?}", elaps1);
+        println!("simplify: {:?}", elaps2);
+        println!("stats: {:?}", elaps3);
+        println!("saving formula as string: {:?}", elaps4);
+        println!("created .metal file: {:?}", elaps5);
+        println!("created .metallib file: {:?}", elaps6);
+        println!("created compiled binary from the swift file: {:?}", elaps7);
+        println!("executed on gpu: {:?}", elaps8);
         // println!("building jit compiled fn: {:?}", elaps5);
         // println!("render pixels: {:?}", elaps6);
     }
