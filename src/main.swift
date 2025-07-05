@@ -44,7 +44,7 @@ commandBuffer.commit()
 commandBuffer.waitUntilCompleted()
 let end = CFAbsoluteTimeGetCurrent()
 
-print("⏱ GPU kernel execution took \(String(format: "%.3f", (end - start) * 1000)) ms")
+print("GPU kernel execution took \(String(format: "%.3f", (end - start) * 1000)) ms")
 
 let byteCount = width * height * 4 * MemoryLayout<Float>.size
 let raw = UnsafeMutableRawPointer.allocate(byteCount: byteCount, alignment: 0x1000)

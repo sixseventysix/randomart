@@ -4,13 +4,16 @@
 image generated using the string: `My brain on drugs` with depth = 40\
 (sadly, this cannot be made anymore because i chose multi-threaded tree gen sadface)
 
+using Metal GPU for creating the image. paying some overhead because of creating the .metal file, the binaries, and then executing them, but the actual execution is much faster than pulling any tricks on the cpu.
 ## generate mode
+creates image from string
 ```bash
 usage: cargo run --release -- generate <string> <depth> <width>(opt) <height>(opt) <outfile>(opt)
 ```
 takes string and maximum depth as inputs, outputs the image and its respective formula in a txt file
 
 ## read mode
+reads the randomart spec lang and generates its corresponding image
 ```bash
 usage: cargo run --release -- read <input> <width>(opt) <height>(opt) <outfile>(opt)
 ```
