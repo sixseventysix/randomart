@@ -4,7 +4,7 @@ fn main() {
     match args.get(1).map(|s| s.as_str()) {
         Some("generate") => {
             if args.len() != 4 {
-                eprintln!("incorrect num args")
+                eprintln!("incorrect num args");
                 std::process::exit(1);
             }
             let string = args[2].clone();
@@ -19,13 +19,13 @@ fn main() {
 
         Some("read") => {
             if args.len() != 3 {
-                eprintln!("incorrect num args")
+                eprintln!("incorrect num args");
                 std::process::exit(1);
             }
-            let input_file = args[2].clone();
+            let input_filepath = args[2].clone();
 
             randomart::RandomArtReadCtx {
-                input_file,
+                input_filepath,
             }
             .run();
         }

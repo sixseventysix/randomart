@@ -11,9 +11,8 @@ use crate::{
     reader::{TokenStream, parse_expr},
     grammar::generate_tree_parallel,
     statistics::{TreeStats},
-    metal_codegen::{emit_metal_from_triple, CodegenCtx }
+    metal_codegen::emit_metal_from_triple
 };
-use std::time::Instant;
 use xxhash_rust::xxh3::xxh3_64;
 
 fn get_output_path(file_name: &str) -> std::path::PathBuf {
@@ -55,12 +54,12 @@ impl RandomArtGenerateCtx {
  }
 
 pub struct RandomArtReadCtx {
-    pub input_file: String,
+    pub input_filepath: String,
 }
 
 impl RandomArtReadCtx {
     pub fn run(&self) {
-        let input = std::fs::read_to_string(format!("{}", &self.input_file)).expect("Failed to read file");
+        let input = std::fs::read_to_string(format!("{}", &self.input_filepath)).expect("Failed to read file");
         let mut ts = TokenStream::new(&input);
         let node = parse_expr(&mut ts);
 
@@ -75,8 +74,8 @@ impl RandomArtReadCtx {
         let mut file = File::create(output_metal_filename).expect("error while creating randomart_shader.metal file");
         file.write_all(out.as_bytes()).expect("error while writing out to randomart_shader.metal");
 
-        println!("\nrandomart\nstr: {}\ndepth:{}\n", 
-            self.string, self.depth);
+        println!("\nrandomart\ninput filepath:{}\n", 
+            self.input_filepath);
         stats.report();
     }
 }

@@ -1,7 +1,7 @@
 use crate::node::Node;
 use std::fmt::Write;
 
-pub struct CodegenCtx {
+struct CodegenCtx {
     lines: Vec<String>,
     counter: usize,
 }
@@ -109,7 +109,7 @@ impl CodegenCtx {
     }
 }
 
-fn emit_metal_from_triple(r: &Node, g: &Node, b: &Node) -> String {
+pub(crate) fn emit_metal_from_triple(r: &Node, g: &Node, b: &Node) -> String {
     let mut out = String::new();
     out += r#"
 #include <metal_stdlib>
