@@ -108,3 +108,47 @@ impl CodegenCtx {
         out
     }
 }
+
+fn emit_metal_from_triple(r: &Node, g: &Node, b: &Node) -> String {
+    let mut out = String::new();
+    out += r#"
+#include <metal_stdlib>
+using namespace metal;
+
+inline float mixu(float a, float b, float c, float d) {
+    return (a * c + b * d) / (a + b + 1e-6);
+}
+"#;
+
+    let mut ctx_r = CodegenCtx::new();
+    let r_final = ctx_r.gen(r);
+    out += &ctx_r.eval_function("eval_r", &r_final);
+    out += "\n";
+
+    let mut ctx_g = CodegenCtx::new();
+    let g_final = ctx_g.gen(g);
+    out += &ctx_g.eval_function("eval_g", &g_final);
+    out += "\n";
+
+    let mut ctx_b = CodegenCtx::new();
+    let b_final = ctx_b.gen(b);
+    out += &ctx_b.eval_function("eval_b", &b_final);
+    out += "\n";
+
+    out += r#"
+kernel void art_gen(texture2d<float, access::write> out [[texture(0)]],
+                    uint2 gid [[thread_position_in_grid]]) {
+    float2 uv = float2(gid) / float2(out.get_width(), out.get_height());
+    float x = uv.x * 2.0 - 1.0;
+    float y = uv.y * 2.0 - 1.0;
+
+    float r = eval_r(x, y);
+    float g = eval_g(x, y);
+    float b = eval_b(x, y);
+
+    out.write(float4((r + 1.0) * 0.5, (g + 1.0) * 0.5, (b + 1.0) * 0.5, 1.0), gid);
+}
+"#;
+
+    out
+}

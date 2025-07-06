@@ -3,10 +3,14 @@ fn main() {
 
     match args.get(1).map(|s| s.as_str()) {
         Some("generate") => {
+            if args.len() != 4 {
+                eprintln!("incorrect num args")
+                std::process::exit(1);
+            }
             let string = args[2].clone();
             let depth = args[3].parse().unwrap();
 
-            randomart::RandomArtGenerate {
+            randomart::RandomArtGenerateCtx {
                 string,
                 depth,
             }
@@ -14,9 +18,13 @@ fn main() {
         }
 
         Some("read") => {
+            if args.len() != 3 {
+                eprintln!("incorrect num args")
+                std::process::exit(1);
+            }
             let input_file = args[2].clone();
 
-            randomart::RandomArtRead {
+            randomart::RandomArtReadCtx {
                 input_file,
             }
             .run();
@@ -24,8 +32,8 @@ fn main() {
 
         _ => {
             eprintln!("Usage:");
-            eprintln!("{} generate <string> <depth> <width>(opt) <height>(opt) <outfile>(opt)", args[0]);
-            eprintln!("{} read <input> <width>(opt) <height>(opt) <outfile>(opt)", args[0]);
+            eprintln!("{} generate <string> <depth>", args[0]);
+            eprintln!("{} read <input>", args[0]);
         }
     }
 }
