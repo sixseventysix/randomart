@@ -6,8 +6,17 @@ import ImageIO
 import CoreImage
 import UniformTypeIdentifiers
 
-let width = 512
-let height = 512
+let args = CommandLine.arguments
+guard args.count >= 4 else {
+    print("Usage: run_art <output.png> <width> <height>")
+    exit(1)
+}
+
+let outputName = args[1]
+guard let width = Int(args[2]), let height = Int(args[3]) else {
+    print("Invalid dimensions")
+    exit(1)
+}
 
 let device = MTLCreateSystemDefaultDevice()!
 let commandQueue = device.makeCommandQueue()!
@@ -78,7 +87,7 @@ let ctx = CGContext(data: &data,
                     bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)!
 
 let image = ctx.makeImage()!
-let url = URL(fileURLWithPath: "out.png")
+let url = URL(fileURLWithPath: "data/images/\(outputName)")
 
 let dest = CGImageDestinationCreateWithURL(url as CFURL, UTType.png.identifier as CFString, 1, nil)!
 CGImageDestinationAddImage(dest, image, nil)
