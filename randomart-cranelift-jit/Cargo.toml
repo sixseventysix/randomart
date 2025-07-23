@@ -1,0 +1,14 @@
+[package]
+name = "randomart-cranelift-jit"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+cranelift = "0.119.0"
+cranelift-jit = "0.119"
+cranelift-module = "0.119"
+image = "0.25.6"
+rand = "0.9.1"
+rand_chacha = "0.9.0"
+rayon = "1.10.0"
+xxhash-rust = { version = "0.8", features = ["xxh3"] }

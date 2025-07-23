@@ -1,6 +1,7 @@
-/target
-/bin
+*/target
+*/bin
 *.png
 *.txt
+*/data/
 !data/**/*.txt
 !data/**/*.png
