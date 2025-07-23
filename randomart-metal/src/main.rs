@@ -1,3 +1,5 @@
+use randomart_metal::{RandomArtGenerateCtx, RandomArtReadCtx};
+
 fn main() {
     let args: Vec<String> = std::env::args().collect();
 
@@ -10,7 +12,7 @@ fn main() {
             let string = args[2].clone();
             let depth = args[3].parse().unwrap();
 
-            randomart::RandomArtGenerateCtx {
+            RandomArtGenerateCtx {
                 string,
                 depth,
             }
@@ -24,7 +26,7 @@ fn main() {
             }
             let input_filepath = args[2].clone();
 
-            randomart::RandomArtReadCtx {
+            RandomArtReadCtx {
                 input_filepath,
             }
             .run();
