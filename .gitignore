@@ -5,3 +5,4 @@
 */data/
 !data/**/*.txt
 !data/**/*.png
+.DS_Store
