@@ -4,14 +4,14 @@ mod node;
 mod statistics;
 mod rng;
 mod metal_codegen;
+pub mod gpu;
 
-use std::fs::File;
-use std::io::Write;
 use crate::{
     reader::{TokenStream, parse_expr},
     grammar::generate_tree_parallel,
-    statistics::{TreeStats},
-    metal_codegen::emit_metal_from_triple
+    statistics::TreeStats,
+    metal_codegen::emit_metal_from_triple,
+    gpu::{compile_metal, run_gpu_kernel},
 };
 use xxhash_rust::xxh3::xxh3_64;
 
@@ -20,62 +20,92 @@ fn get_output_path(file_name: &str) -> std::path::PathBuf {
     current_dir.join(file_name)
 }
 
+fn render_and_save(r: &node::Node, g: &node::Node, b: &node::Node, out_png: &str, width: u32, height: u32) {
+    let out_path = get_output_path(out_png);
+    if let Some(parent) = out_path.parent() {
+        std::fs::create_dir_all(parent).expect("failed to create output directory");
+    }
+    let metal_src = emit_metal_from_triple(r, g, b);
+
+    let src_file = tempfile::Builder::new()
+        .suffix(".metal")
+        .tempfile()
+        .expect("failed to create temp .metal file");
+    std::fs::write(src_file.path(), metal_src.as_bytes())
+        .expect("failed to write .metal source");
+
+    let lib_file = tempfile::Builder::new()
+        .suffix(".metallib")
+        .tempfile()
+        .expect("failed to create temp .metallib file");
+
+    compile_metal(src_file.path(), lib_file.path())
+        .expect("Metal shader compilation failed");
+
+    let img = run_gpu_kernel(lib_file.path(), width, height);
+    img.save(get_output_path(out_png)).expect("failed to save image");
+}
+
 pub struct RandomArtGenerateCtx {
     pub string: String,
     pub depth: u32,
+    pub width: u32,
+    pub height: u32,
 }
 
 impl RandomArtGenerateCtx {
     pub fn run(&self) {
         let seed: u64 = xxh3_64(self.string.as_bytes());
         let mut node = generate_tree_parallel(seed, self.depth).unwrap();
-
         node.simplify_triple();
 
         let stats = TreeStats::from_triple(&node);
         let formula = format!("{}", node);
 
-        let crate::node::Node::Triple(r, g, b) = *node else {
+        let node::Node::Triple(r, g, b) = *node else {
             panic!("Expected top-level Triple node");
         };
-        
-        let out = emit_metal_from_triple(&r, &g, &b);
-        let output_metal_filename = get_output_path(&format!("data/metal/randomart_shader.metal"));
-        let mut file = File::create(output_metal_filename).expect("error while creating randomart_shader.metal file");
-        file.write_all(out.as_bytes()).expect("error while writing out to randomart_shader.metal");
+
+        let out_png = format!("data/images/{}.png", self.string);
+        render_and_save(&r, &g, &b, &out_png, self.width, self.height);
 
         let output_formula = get_output_path(&format!("data/randomart_spec_lang/{}.txt", self.string));
+        std::fs::create_dir_all(output_formula.parent().unwrap()).expect("failed to create spec lang directory");
         std::fs::write(output_formula, formula).unwrap();
 
-        println!("\nrandomart\nstr: {}\ndepth:{}\n", 
-            self.string, self.depth);
+        println!("\nrandomart\nstr: {}\ndepth:{}\nwidth:{} height:{}\n",
+            self.string, self.depth, self.width, self.height);
         stats.report();
     }
- }
+}
 
 pub struct RandomArtReadCtx {
     pub input_filepath: String,
+    pub width: u32,
+    pub height: u32,
 }
 
 impl RandomArtReadCtx {
     pub fn run(&self) {
-        let input = std::fs::read_to_string(format!("{}", &self.input_filepath)).expect("Failed to read file");
+        let input = std::fs::read_to_string(&self.input_filepath)
+            .expect("Failed to read file");
         let mut ts = TokenStream::new(&input);
         let node = parse_expr(&mut ts);
 
         let stats = TreeStats::from_triple(&node);
 
-        let crate::node::Node::Triple(r, g, b) = node else {
+        let node::Node::Triple(r, g, b) = node else {
             panic!("Expected top-level Triple node");
         };
-        
-        let out = emit_metal_from_triple(&r, &g, &b);
-        let output_metal_filename = get_output_path(&format!("data/metal/randomart_shader.metal"));
-        let mut file = File::create(output_metal_filename).expect("error while creating randomart_shader.metal file");
-        file.write_all(out.as_bytes()).expect("error while writing out to randomart_shader.metal");
 
-        println!("\nrandomart\ninput filepath:{}\n", 
-            self.input_filepath);
+        let stem = std::path::Path::new(&self.input_filepath)
+            .file_stem()
+            .and_then(|s| s.to_str())
+            .unwrap_or(&self.input_filepath);
+        let out_png = format!("data/images/{}.png", stem);
+        render_and_save(&r, &g, &b, &out_png, self.width, self.height);
+
+        println!("\nrandomart\ninput filepath:{}\n", self.input_filepath);
         stats.report();
     }
 }
