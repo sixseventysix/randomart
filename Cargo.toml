@@ -5,5 +5,6 @@ members = [
     "randomart-cranelift-jit",
     "randomart-closure-tree",
     "randomart-cli",
+    "randomart-tests",
 ]
 resolver = "2"

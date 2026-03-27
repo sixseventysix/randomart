@@ -1264,6 +1264,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "randomart-tests"
+version = "0.1.0"
+dependencies = [
+ "randomart-closure-tree",
+ "randomart-cranelift-jit",
+]
+
+[[package]]
 name = "rav1e"
 version = "0.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"

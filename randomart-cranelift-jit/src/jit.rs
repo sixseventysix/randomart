@@ -6,7 +6,13 @@ use randomart_core::node::Node;
 macro_rules! define_and_register_math_fns {
     ($builder:ident, [$(($name:ident, $ret:ty, [$($arg:ident : $typ:ty),*], $body:block)),* $(,)?]) => {
         $(
+            #[cfg_attr(not(feature = "no-extern-c"), allow(improper_ctypes_definitions))]
+            #[cfg(not(feature = "no-extern-c"))]
             extern "C" fn $name($($arg: $typ),*) -> $ret {
+                $body
+            }
+            #[cfg(feature = "no-extern-c")]
+            fn $name($($arg: $typ),*) -> $ret {
                 $body
             }
             $builder.symbol(stringify!($name), $name as *const u8);
@@ -52,13 +58,23 @@ fn codegen_node(
         Node::Add(a, b) => {
             let lhs = codegen_node(builder, module, a, x, y);
             let rhs = codegen_node(builder, module, b, x, y);
-            call_imported_func!(builder, module, "my_add", [lhs, rhs],  [types::F32, types::F32], types::F32)
+            #[cfg(feature = "native-ops")] {
+                let sum = builder.ins().fadd(lhs, rhs);
+                let two = builder.ins().f32const(Ieee32::with_float(2.0));
+                builder.ins().fdiv(sum, two)
+            }
+            #[cfg(not(feature = "native-ops"))]
+            call_imported_func!(builder, module, "my_add", [lhs, rhs], [types::F32, types::F32], types::F32)
         }
 
         Node::Mult(a, b) => {
             let lhs = codegen_node(builder, module, a, x, y);
             let rhs = codegen_node(builder, module, b, x, y);
-            call_imported_func!(builder, module, "my_mul", [lhs, rhs],  [types::F32, types::F32], types::F32)
+            #[cfg(feature = "native-ops")] {
+                builder.ins().fmul(lhs, rhs)
+            }
+            #[cfg(not(feature = "native-ops"))]
+            call_imported_func!(builder, module, "my_mul", [lhs, rhs], [types::F32, types::F32], types::F32)
         }
 
         Node::Sin(inner) => {
@@ -73,6 +89,13 @@ fn codegen_node(
 
         Node::Sqrt(inner) => {
             let arg = codegen_node(builder, module, inner, x, y);
+            #[cfg(feature = "native-ops")] {
+                // clamp to 0 before sqrt, matching my_sqrt's x.sqrt().max(0.0)
+                let zero = builder.ins().f32const(Ieee32::with_float(0.0));
+                let safe = builder.ins().fmax(arg, zero);
+                builder.ins().sqrt(safe)
+            }
+            #[cfg(not(feature = "native-ops"))]
             call_imported_func!(builder, module, "my_sqrt", [arg], [types::F32], types::F32)
         }
 
@@ -84,7 +107,17 @@ fn codegen_node(
         Node::Div(a, b) => {
             let lhs = codegen_node(builder, module, a, x, y);
             let rhs = codegen_node(builder, module, b, x, y);
-            call_imported_func!(builder, module, "my_div", [lhs, rhs],  [types::F32, types::F32], types::F32)
+            #[cfg(feature = "native-ops")] {
+                // if |rhs| > 1e-6 { lhs / rhs } else { 0.0 }
+                let threshold = builder.ins().f32const(Ieee32::with_float(1e-6));
+                let zero = builder.ins().f32const(Ieee32::with_float(0.0));
+                let abs_rhs = builder.ins().fabs(rhs);
+                let cond = builder.ins().fcmp(FloatCC::GreaterThan, abs_rhs, threshold);
+                let quot = builder.ins().fdiv(lhs, rhs);
+                builder.ins().select(cond, quot, zero)
+            }
+            #[cfg(not(feature = "native-ops"))]
+            call_imported_func!(builder, module, "my_div", [lhs, rhs], [types::F32, types::F32], types::F32)
         }
 
         Node::MixUnbounded(a, b, c, d) => {
@@ -92,6 +125,17 @@ fn codegen_node(
             let vb = codegen_node(builder, module, b, x, y);
             let vc = codegen_node(builder, module, c, x, y);
             let vd = codegen_node(builder, module, d, x, y);
+            #[cfg(feature = "native-ops")] {
+                // (va*vc + vb*vd) / (va + vb + 1e-6) — exact same as my_mixu
+                let eps = builder.ins().f32const(Ieee32::with_float(1e-6));
+                let rac = builder.ins().fmul(va, vc);
+                let rbd = builder.ins().fmul(vb, vd);
+                let num = builder.ins().fadd(rac, rbd);
+                let ab = builder.ins().fadd(va, vb);
+                let denom = builder.ins().fadd(ab, eps);
+                builder.ins().fdiv(num, denom)
+            }
+            #[cfg(not(feature = "native-ops"))]
             call_imported_func!(builder, module, "my_mixu", [va, vb, vc, vd], [types::F32, types::F32, types::F32, types::F32], types::F32)
         }
 
@@ -158,7 +202,9 @@ fn build_jit_function(ast: &Node) -> Box<dyn Fn(f32, f32) -> f32 + Sync + Send> 
     fb.ins().return_(&[result]);
     fb.finalize();
 
-    // println!("{}", ctx.func.display());
+    #[cfg(feature = "debug-ir")]
+    println!("{}", ctx.func.display());
+
     module.define_function(func_id, &mut ctx).unwrap();
     module.clear_context(&mut ctx);
     let _ = module.finalize_definitions();

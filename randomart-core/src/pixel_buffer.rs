@@ -8,7 +8,7 @@ pub struct ReadOutput {
 }
 
 /// A flat RGB image buffer. Each pixel is 3 consecutive bytes: R, G, B.
-#[derive(PartialEq, Eq)]
+#[derive(PartialEq, Eq, Debug)]
 pub struct PixelBuffer {
     pub width: u32,
     pub height: u32,

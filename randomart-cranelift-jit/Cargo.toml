@@ -3,6 +3,11 @@ name = "randomart-cranelift-jit"
 version = "0.1.0"
 edition = "2024"
 
+[features]
+no-extern-c = []
+native-ops = []
+debug-ir = []
+
 [dependencies]
 randomart-core = { path = "../randomart-core" }
 cranelift = "0.119.0"

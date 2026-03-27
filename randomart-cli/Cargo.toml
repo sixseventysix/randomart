@@ -15,6 +15,11 @@ path = "src/bin/randomart-cranelift.rs"
 name = "randomart-closure-tree"
 path = "src/bin/randomart-closure-tree.rs"
 
+[features]
+no-extern-c = ["randomart-cranelift-jit/no-extern-c"]
+native-ops  = ["randomart-cranelift-jit/native-ops"]
+debug-ir    = ["randomart-cranelift-jit/debug-ir"]
+
 [dependencies]
 randomart-core = { path = "../randomart-core" }
 randomart-metal = { path = "../randomart-metal" }

@@ -2,7 +2,7 @@
 */bin
 *.png
 *.txt
+*.json
 */data/
-!data/**/*.txt
 !data/**/*.png
 .DS_Store
