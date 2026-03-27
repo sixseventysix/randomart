@@ -1,4 +1,3 @@
-mod reader;
 mod grammar;
 mod node;
 mod statistics;
@@ -7,10 +6,9 @@ mod render;
 mod rng;
 
 use crate::{
-    render::{ render_pixels, PixelCoordinates, Colour }, 
-    grammar::generate_tree_parallel, 
-    reader::{TokenStream, parse_expr},
-    statistics::{TreeStats},
+    render::{ render_pixels, PixelCoordinates, Colour },
+    grammar::generate_tree_parallel,
+    statistics::TreeStats,
     jit::build_jit_function_triple
 };
 use std::time::Instant;
@@ -43,9 +41,9 @@ impl RandomArtGenerate {
         let start3 = Instant::now();
         let stats = TreeStats::from_triple(&node);
         let elaps3 = start3.elapsed();
-        
+
         let start4 = Instant::now();
-        let formula = format!("{}", node);
+        let json = serde_json::to_string_pretty(&*node).unwrap();
         let elaps4 = start4.elapsed();
 
         let start5 = Instant::now();
@@ -62,22 +60,22 @@ impl RandomArtGenerate {
         let elaps6 = start6.elapsed();
 
         let output_img = get_output_path(&format!("{}.png", self.output_file_namespace));
-        let output_formula = get_output_path(&format!("{}.txt", self.output_file_namespace));
+        let output_json = get_output_path(&format!("{}.json", self.output_file_namespace));
         img.save(output_img).unwrap();
-        std::fs::write(output_formula, formula).unwrap();
+        std::fs::write(output_json, json).unwrap();
 
-        println!("\nrandomart\nstr: {}\ndepth:{}\nwidth:{} height:{}\n", 
+        println!("\nrandomart\nstr: {}\ndepth:{}\nwidth:{} height:{}\n",
             self.string, self.depth, self.width, self.height);
         stats.report();
 
         println!("\n\ngenerate_tree_parallel: {:?}", elaps1);
         println!("simplify: {:?}", elaps2);
         println!("stats: {:?}", elaps3);
-        println!("saving formula as string: {:?}", elaps4);
+        println!("serialize to json: {:?}", elaps4);
         println!("building jit compiled fn: {:?}", elaps5);
         println!("render pixels: {:?}", elaps6);
     }
- }
+}
 
 pub struct RandomArtRead {
     pub input_file: String,
@@ -88,33 +86,27 @@ pub struct RandomArtRead {
 
 impl RandomArtRead {
     pub fn run(&self) {
-        let input = std::fs::read_to_string(format!("{}.txt", &self.input_file)).expect("Failed to read file");
-
         let start1 = Instant::now();
-        let mut ts = TokenStream::new(&input);
+        let json = std::fs::read_to_string(&self.input_file).expect("failed to read file");
+        let node: node::Node = serde_json::from_str(&json).expect("failed to deserialize node from JSON");
         let elaps1 = start1.elapsed();
 
         let start2 = Instant::now();
-        let node = parse_expr(&mut ts);
-        let elaps2 = start2.elapsed();
-
-        let start3 = Instant::now();
         let (r_jit_fn, g_jit_fn, b_jit_fn) = build_jit_function_triple(&node);
         let rgb_fn = |coord: PixelCoordinates| Colour {
             r: r_jit_fn(coord.x, coord.y),
             g: g_jit_fn(coord.x, coord.y),
             b: b_jit_fn(coord.x, coord.y),
         };
+        let elaps2 = start2.elapsed();
+
+        let start3 = Instant::now();
+        let img = render_pixels(&rgb_fn, self.width, self.height);
         let elaps3 = start3.elapsed();
 
-        let start4 = Instant::now();
-        let img = render_pixels(&rgb_fn, self.width, self.height);
-        let elaps4 = start4.elapsed();
-
-        println!("tokenize: {:?}", elaps1);
-        println!("parse_expr: {:?}", elaps2);
-        println!("building jit compiled fn: {:?}", elaps3);
-        println!("render pixels: {:?}", elaps4);
+        println!("deserialize from json: {:?}", elaps1);
+        println!("building jit compiled fn: {:?}", elaps2);
+        println!("render pixels: {:?}", elaps3);
         img.save(format!("{}.png", self.output_file_namespace)).unwrap();
     }
 }
