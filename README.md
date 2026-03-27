@@ -6,18 +6,18 @@ Generates images from strings using a randomly grown expression tree.
 
 ### `randomart-core`
 Common types and algorithms shared across the whole project:
-- `Node` — the AST
-- `Grammar` — probabilistic tree generation
-- `PixelBuffer` - flat RGB image buffer
-- `Statistics` — tree analysis
-- `Rng` — seeded random number generation
+- `Node`: the AST
+- `Grammar`: probabilistic tree generation
+- `PixelBuffer`: flat RGB image buffer
+- `Statistics`: tree analysis
+- `Rng`: seeded random number generation
 
 ### `randomart-metal` / `randomart-cranelift-jit` / `randomart-closure-tree`
 Execution backends. Each one does exactly one thing: take an AST and return a `PixelBuffer`.
 
-- **metal** — compiles the AST to Metal Shading Language and runs it on the GPU
-- **cranelift-jit** — JIT-compiles the AST to native code via Cranelift
-- **closure-tree** — interprets the AST as a tree of Rust closures
+- **metal**: compiles the AST to Metal Shading Language and runs it on the GPU
+- **cranelift-jit**: JIT-compiles the AST to native code via Cranelift
+- **closure-tree**: interprets the AST as a tree of Rust closures
 
 ### `randomart-cli`
 Owns all I/O. Parses CLI arguments, invokes a backend, and saves the resulting `PixelBuffer` as a PNG. Optionally writes the formula as JSON. Three binaries, one per backend: `randomart-metal`, `randomart-cranelift`, `randomart-closure-tree`.
