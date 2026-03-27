@@ -1,4 +1,3 @@
-mod reader;
 mod grammar;
 mod node;
 mod statistics;
@@ -7,7 +6,6 @@ mod metal_codegen;
 pub mod gpu;
 
 use crate::{
-    reader::{TokenStream, parse_expr},
     grammar::generate_tree_parallel,
     statistics::TreeStats,
     metal_codegen::emit_metal_from_triple,
@@ -60,7 +58,6 @@ impl RandomArtGenerateCtx {
         node.simplify_triple();
 
         let stats = TreeStats::from_triple(&node);
-        let formula = format!("{}", node);
 
         let node::Node::Triple(r, g, b) = *node else {
             panic!("Expected top-level Triple node");
@@ -69,9 +66,11 @@ impl RandomArtGenerateCtx {
         let out_png = format!("data/images/{}.png", self.string);
         render_and_save(&r, &g, &b, &out_png, self.width, self.height);
 
-        let output_formula = get_output_path(&format!("data/randomart_spec_lang/{}.txt", self.string));
-        std::fs::create_dir_all(output_formula.parent().unwrap()).expect("failed to create spec lang directory");
-        std::fs::write(output_formula, formula).unwrap();
+        let tree = node::Node::Triple(r, g, b);
+        let output_json = get_output_path(&format!("data/formulas/{}.json", self.string));
+        std::fs::create_dir_all(output_json.parent().unwrap()).expect("failed to create formulas directory");
+        let json = serde_json::to_string_pretty(&tree).unwrap();
+        std::fs::write(output_json, json).unwrap();
 
         println!("\nrandomart\nstr: {}\ndepth:{}\nwidth:{} height:{}\n",
             self.string, self.depth, self.width, self.height);
@@ -87,10 +86,10 @@ pub struct RandomArtReadCtx {
 
 impl RandomArtReadCtx {
     pub fn run(&self) {
-        let input = std::fs::read_to_string(&self.input_filepath)
-            .expect("Failed to read file");
-        let mut ts = TokenStream::new(&input);
-        let node = parse_expr(&mut ts);
+        let json = std::fs::read_to_string(&self.input_filepath)
+            .expect("failed to read file");
+        let node: node::Node = serde_json::from_str(&json)
+            .expect("failed to deserialize node from JSON");
 
         let stats = TreeStats::from_triple(&node);
 
