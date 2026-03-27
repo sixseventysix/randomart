@@ -45,3 +45,32 @@ Re-render from a saved formula:
 ```
 
 Output is always written to the current working directory. Pass `--help` to any binary or subcommand for full usage.
+
+## Testing
+
+### `randomart-tests`
+Correctness tests that compare execution backends and the pixel buffers against each other.
+
+Run the default tests (extern C dispatch):
+
+```sh
+cargo test --package randomart-tests
+```
+
+Test with native Cranelift instructions instead of extern C dispatch:
+
+```sh
+cargo test --package randomart-tests --features native-ops
+```
+
+Test without `extern "C"` on the registered math functions:
+
+```sh
+cargo test --package randomart-tests --features no-extern-c
+```
+
+Both features can be combined:
+
+```sh
+cargo test --package randomart-tests --features native-ops,no-extern-c
+```
