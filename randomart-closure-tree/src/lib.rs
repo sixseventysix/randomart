@@ -1,8 +1,7 @@
 pub mod utils;
 use utils::{ Colour, LinearCongruentialGenerator };
-use std::fmt;
 
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, serde::Serialize, serde::Deserialize)]
 pub enum Node {
     X,                       
     Y,                       
@@ -20,93 +19,6 @@ pub enum Node {
     Triple(Box<Node>, Box<Node>, Box<Node>), 
     Mix(Box<Node>, Box<Node>, Box<Node>, Box<Node>),
     MixUnbounded(Box<Node>, Box<Node>, Box<Node>, Box<Node>)
-}
-
-impl Node {
-    pub fn fmt_pretty(&self, f: &mut fmt::Formatter<'_>, indent: usize) -> fmt::Result {
-        let pad = "  ".repeat(indent);
-        use Node::*;
-        match self {
-            X => writeln!(f, "{}X", pad),
-            Y => writeln!(f, "{}Y", pad),
-            Number(n) => writeln!(f, "{}Const({})", pad, n),
-            Random => writeln!(f, "{}Random", pad),
-            Rule(r) => writeln!(f, "{}Rule({})", pad, r),
-            Sin(inner) => {
-                writeln!(f, "{}Sin(", pad)?;
-                inner.fmt_pretty(f, indent + 1)?;
-                writeln!(f, "{})", pad)
-            }
-            Cos(inner) => {
-                writeln!(f, "{}Cos(", pad)?;
-                inner.fmt_pretty(f, indent + 1)?;
-                writeln!(f, "{})", pad)
-            }
-            Exp(inner) => {
-                writeln!(f, "{}Exp(", pad)?;
-                inner.fmt_pretty(f, indent + 1)?;
-                writeln!(f, "{})", pad)
-            }
-            Sqrt(inner) => {
-                writeln!(f, "{}Sqrt(", pad)?;
-                inner.fmt_pretty(f, indent + 1)?;
-                writeln!(f, "{})", pad)
-            }
-            Add(a, b) => {
-                writeln!(f, "{}Add(", pad)?;
-                a.fmt_pretty(f, indent + 1)?;
-                b.fmt_pretty(f, indent + 1)?;
-                writeln!(f, "{})", pad)
-            }
-            Mult(a, b) => {
-                writeln!(f, "{}Mult(", pad)?;
-                a.fmt_pretty(f, indent + 1)?;
-                b.fmt_pretty(f, indent + 1)?;
-                writeln!(f, "{})", pad)
-            }
-            Div(a, b) => {
-                writeln!(f, "{}Div(", pad)?;
-                a.fmt_pretty(f, indent + 1)?;
-                b.fmt_pretty(f, indent + 1)?;
-                writeln!(f, "{})", pad)
-            }
-            Modulo(a, b) => {
-                writeln!(f, "{}Modulo(", pad)?;
-                a.fmt_pretty(f, indent + 1)?;
-                b.fmt_pretty(f, indent + 1)?;
-                writeln!(f, "{})", pad)
-            }
-            Mix(a, b, c, d) => {
-                writeln!(f, "{}Mix(", pad)?;
-                a.fmt_pretty(f, indent + 1)?;
-                b.fmt_pretty(f, indent + 1)?;
-                c.fmt_pretty(f, indent + 1)?;
-                d.fmt_pretty(f, indent + 1)?;
-                writeln!(f, "{})", pad)
-            }
-            MixUnbounded(a, b, c, d) => {
-                writeln!(f, "{}MixUnbounded(", pad)?;
-                a.fmt_pretty(f, indent + 1)?;
-                b.fmt_pretty(f, indent + 1)?;
-                c.fmt_pretty(f, indent + 1)?;
-                d.fmt_pretty(f, indent + 1)?;
-                writeln!(f, "{})", pad)
-            }
-            Triple(a, b, c) => {
-                writeln!(f, "{}Triple(", pad)?;
-                a.fmt_pretty(f, indent + 1)?;
-                b.fmt_pretty(f, indent + 1)?;
-                c.fmt_pretty(f, indent + 1)?;
-                writeln!(f, "{})", pad)
-            }
-        }
-    }
-}
-
-impl fmt::Display for Node {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        self.fmt_pretty(f, 0)
-    }
 }
 
 impl Node {

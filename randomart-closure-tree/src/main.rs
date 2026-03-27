@@ -20,7 +20,7 @@ fn main() {
         std::process::exit(1);
     });
     let output_img_filename = format!("{}.png", args[3]);
-    let output_formula_filename = format!("{}.txt", args[3]);
+    let output_formula_filename = format!("{}.json", args[3]);
 
     let width: u32 = args.get(4).map_or(400, |arg| {
         arg.parse().unwrap_or_else(|_| {
@@ -43,7 +43,7 @@ fn main() {
 
     generated_node.simplify_triple();
 
-    let formula = format!("{}", generated_node);
+    let json = serde_json::to_string_pretty(&*generated_node).unwrap();
     let closure_tree = ClosureTree::from_node(&generated_node);
 
     let rgb_fn = move |coord: PixelCoordinates| closure_tree.eval_rgb(coord.x, coord.y);
@@ -52,5 +52,5 @@ fn main() {
     let output_img_filepath = get_output_path(&output_img_filename);
     img.save(output_img_filepath.clone()).expect("failed to save the image");
     let output_formula_filepath = get_output_path(&output_formula_filename);
-    std::fs::write(output_formula_filepath, formula).unwrap();
+    std::fs::write(output_formula_filepath, json).unwrap();
 }

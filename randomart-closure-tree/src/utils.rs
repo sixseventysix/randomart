@@ -70,7 +70,4 @@ impl LinearCongruentialGenerator {
         (self.next() as f32) / (self.m as f32)
     }
 
-    pub fn next_range(&mut self, min: u64, max: u64) -> u64 {
-        min + (self.next() % (max - min))
-    }
 }
