@@ -6,7 +6,7 @@ enum Dependency {
     X,
     Y,
     XY,
-    NO
+    NO,
 }
 
 #[derive(Debug, Default)]
@@ -51,7 +51,7 @@ impl TreeStatsInner {
                 }
 
                 Add(a, b) => {
-                    *stats.op_counts.entry("Add".into()).or_default() += 1;
+                    *stats.op_counts.entry("Add").or_default() += 1;
                     stats.total_ops += 1;
                     let (d1, o1) = helper(a, depth + 1, stats);
                     let (d2, o2) = helper(b, depth + 1, stats);
@@ -59,7 +59,7 @@ impl TreeStatsInner {
                     child_op_count += o1 + o2;
                 }
                 Mult(a, b) => {
-                    *stats.op_counts.entry("Mult".into()).or_default() += 1;
+                    *stats.op_counts.entry("Mult").or_default() += 1;
                     stats.total_ops += 1;
                     let (d1, o1) = helper(a, depth + 1, stats);
                     let (d2, o2) = helper(b, depth + 1, stats);
@@ -67,7 +67,7 @@ impl TreeStatsInner {
                     child_op_count += o1 + o2;
                 }
                 Div(a, b) => {
-                    *stats.op_counts.entry("Div".into()).or_default() += 1;
+                    *stats.op_counts.entry("Div").or_default() += 1;
                     stats.total_ops += 1;
                     let (d1, o1) = helper(a, depth + 1, stats);
                     let (d2, o2) = helper(b, depth + 1, stats);
@@ -76,35 +76,35 @@ impl TreeStatsInner {
                 }
 
                 Sin(a) => {
-                    *stats.op_counts.entry("Sin".into()).or_default() += 1;
+                    *stats.op_counts.entry("Sin").or_default() += 1;
                     stats.total_ops += 1;
                     let (d, o) = helper(a, depth + 1, stats);
                     child_deps.push(d);
                     child_op_count += o;
                 }
                 Cos(a) => {
-                    *stats.op_counts.entry("Cos".into()).or_default() += 1;
+                    *stats.op_counts.entry("Cos").or_default() += 1;
                     stats.total_ops += 1;
                     let (d, o) = helper(a, depth + 1, stats);
                     child_deps.push(d);
                     child_op_count += o;
                 }
                 Exp(a) => {
-                    *stats.op_counts.entry("Exp".into()).or_default() += 1;
+                    *stats.op_counts.entry("Exp").or_default() += 1;
                     stats.total_ops += 1;
                     let (d, o) = helper(a, depth + 1, stats);
                     child_deps.push(d);
                     child_op_count += o;
                 }
                 Sqrt(a) => {
-                    *stats.op_counts.entry("Sqrt".into()).or_default() += 1;
+                    *stats.op_counts.entry("Sqrt").or_default() += 1;
                     stats.total_ops += 1;
                     let (d, o) = helper(a, depth + 1, stats);
                     child_deps.push(d);
                     child_op_count += o;
                 }
                 MixUnbounded(a, b, c, d) => {
-                    *stats.op_counts.entry("MixUnbounded".into()).or_default() += 1;
+                    *stats.op_counts.entry("MixUnbounded").or_default() += 1;
                     stats.total_ops += 1;
                     let (d1, o1) = helper(a, depth + 1, stats);
                     let (d2, o2) = helper(b, depth + 1, stats);
@@ -218,14 +218,14 @@ impl TreeStatsInner {
     }
 }
 
-pub(crate) struct TreeStats {
+pub struct TreeStats {
     r: TreeStatsInner,
     g: TreeStatsInner,
-    b: TreeStatsInner
+    b: TreeStatsInner,
 }
 
 impl TreeStats {
-    pub(crate) fn from_triple(node: &Node) -> Self {
+    pub fn from_triple(node: &Node) -> Self {
         let (r, g, b) = match &*node {
             Node::Triple(r, g, b) => (r, g, b),
             _ => panic!("Expected Triple node at top level"),
@@ -235,10 +235,10 @@ impl TreeStats {
             || TreeStatsInner::from_node(g),
         );
         let b = TreeStatsInner::from_node(b);
-        Self {r, g, b}
+        Self { r, g, b }
     }
 
-    pub(crate) fn report(&self) {
+    pub fn report(&self) {
         println!("r channel:");
         self.r.report();
         println!("\ng channel:");

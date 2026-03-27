@@ -1,5 +1,5 @@
 #[derive(Clone, Debug, PartialEq, serde::Serialize, serde::Deserialize)]
-pub(crate) enum Node {
+pub enum Node {
     X,
     Y,
     Random,
@@ -17,7 +17,7 @@ pub(crate) enum Node {
 }
 
 impl Node {
-    fn simplify(&mut self) {
+    pub fn simplify(&mut self) {
         use Node::*;
         match self {
             Sin(inner) => {
@@ -68,7 +68,7 @@ impl Node {
         }
     }
 
-    pub(crate) fn simplify_triple(&mut self) {
+    pub fn simplify_triple(&mut self) {
         if let Node::Triple(first, second, third) = self {
             rayon::join(|| first.simplify(), || second.simplify());
             third.simplify();

@@ -1,6 +1,6 @@
 use std::path::Path;
 use std::process::Command;
-use image::{ImageBuffer, RgbaImage};
+use randomart_core::pixel_buffer::PixelBuffer;
 use std::ptr::NonNull;
 use objc2::rc::Retained;
 use objc2::runtime::ProtocolObject;
@@ -42,12 +42,12 @@ pub fn compile_metal(src_path: &Path, lib_path: &Path) -> Result<(), String> {
 }
 
 fn ns_error_msg(err: &Retained<NSError>) -> String {
-    unsafe { err.localizedDescription().to_string() }
+    err.localizedDescription().to_string()
 }
 
 /// Load a `.metallib`, dispatch the `art_gen` kernel over a `width x height`
-/// rgba32Float texture, read back the pixels, and return an RGBA image.
-pub fn run_gpu_kernel(metallib_path: &Path, width: u32, height: u32) -> RgbaImage {
+/// rgba32Float texture, read back the pixels, and return a RGB PixelBuffer.
+pub fn run_gpu_kernel(metallib_path: &Path, width: u32, height: u32) -> PixelBuffer {
     unsafe {
         let device = MTLCreateSystemDefaultDevice().expect("no Metal device");
 
@@ -123,17 +123,19 @@ pub fn run_gpu_kernel(metallib_path: &Path, width: u32, height: u32) -> RgbaImag
         let ptr = NonNull::new(raw.as_mut_ptr() as *mut std::ffi::c_void).unwrap();
         texture.getBytes_bytesPerRow_fromRegion_mipmapLevel(ptr, bytes_per_row, region, 0);
 
-        // Convert RGBA32F → RGBA8.
+        // Convert RGBA32F → RGB8.
         // The Metal kernel already maps values into [0, 1] before writing.
         let float_pixels: &[f32] = std::slice::from_raw_parts(
             raw.as_ptr() as *const f32,
             width as usize * height as usize * 4,
         );
-        let rgba8: Vec<u8> = float_pixels.iter().map(|&v| {
-            let scaled = v * 255.0;
-            if scaled.is_finite() { (scaled as u32).min(255) as u8 } else { 0 }
-        }).collect();
-
-        ImageBuffer::from_raw(width, height, rgba8).expect("ImageBuffer::from_raw failed")
+        let mut buf = PixelBuffer::new(width, height);
+        for (i, chunk) in float_pixels.chunks_exact(4).enumerate() {
+            let x = (i % width as usize) as u32;
+            let y = (i / width as usize) as u32;
+            let to_u8 = |v: f32| if (v * 255.0).is_finite() { ((v * 255.0) as u32).min(255) as u8 } else { 0 };
+            buf.put_pixel(x, y, to_u8(chunk[0]), to_u8(chunk[1]), to_u8(chunk[2]));
+        }
+        buf
     }
 }

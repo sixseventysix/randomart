@@ -1,18 +1,18 @@
-use image::{RgbImage, Rgb};
 use rayon::prelude::*;
+use randomart_core::pixel_buffer::PixelBuffer;
 
 pub(crate) struct PixelCoordinates {
     pub x: f32,
-    pub y: f32
+    pub y: f32,
 }
 
 pub(crate) struct Colour {
     pub r: f32,
     pub g: f32,
-    pub b: f32
+    pub b: f32,
 }
 
-pub(crate) fn render_pixels<F>(function: &F, width: u32, height: u32) -> RgbImage
+pub(crate) fn render_pixels<F>(function: &F, width: u32, height: u32) -> PixelBuffer
 where
     F: Sync + Fn(PixelCoordinates) -> Colour,
 {
@@ -25,44 +25,37 @@ where
         .flat_map(|ty| (0..tiles_x).map(move |tx| (tx * TILE_SIZE, ty * TILE_SIZE)))
         .collect();
 
-    let partial_tiles: Vec<(u32, u32, RgbImage)> = tiles
+    // Each tile produces a vec of (global_x, global_y, r, g, b) tuples.
+    let tile_pixels: Vec<Vec<(u32, u32, u8, u8, u8)>> = tiles
         .into_par_iter()
         .map(|(x_start, y_start)| {
             let x_end = (x_start + TILE_SIZE).min(width);
             let y_end = (y_start + TILE_SIZE).min(height);
-            let tile_width = x_end - x_start;
-            let tile_height = y_end - y_start;
 
-            let mut tile_img = RgbImage::new(tile_width, tile_height);
+            let mut pixels = Vec::with_capacity(((x_end - x_start) * (y_end - y_start)) as usize);
 
-            for py in 0..tile_height {
-                for px in 0..tile_width {
-                    let global_x = x_start + px;
-                    let global_y = y_start + py;
-
-                    let x = (global_x as f32 / (width - 1) as f32) * 2.0 - 1.0;
-                    let y = (global_y as f32 / (height - 1) as f32) * 2.0 - 1.0;
+            for py in y_start..y_end {
+                for px in x_start..x_end {
+                    let x = (px as f32 / (width - 1) as f32) * 2.0 - 1.0;
+                    let y = (py as f32 / (height - 1) as f32) * 2.0 - 1.0;
                     let Colour { r, g, b } = function(PixelCoordinates { x, y });
 
-                    let pixel = Rgb([
-                        ((r + 1.0) * 127.5).clamp(0.0, 255.0) as u8,
-                        ((g + 1.0) * 127.5).clamp(0.0, 255.0) as u8,
-                        ((b + 1.0) * 127.5).clamp(0.0, 255.0) as u8,
-                    ]);
-                    tile_img.put_pixel(px, py, pixel);
+                    let r = ((r + 1.0) * 127.5).clamp(0.0, 255.0) as u8;
+                    let g = ((g + 1.0) * 127.5).clamp(0.0, 255.0) as u8;
+                    let b = ((b + 1.0) * 127.5).clamp(0.0, 255.0) as u8;
+                    pixels.push((px, py, r, g, b));
                 }
             }
 
-            (x_start, y_start, tile_img)
+            pixels
         })
         .collect();
 
-    let mut final_img = RgbImage::new(width, height);
-    for (x_start, y_start, tile) in partial_tiles {
-        for (px, py, pixel) in tile.enumerate_pixels() {
-            final_img.put_pixel(x_start + px, y_start + py, *pixel);
+    let mut buf = PixelBuffer::new(width, height);
+    for tile in tile_pixels {
+        for (x, y, r, g, b) in tile {
+            buf.put_pixel(x, y, r, g, b);
         }
     }
-
-    final_img
+    buf
 }

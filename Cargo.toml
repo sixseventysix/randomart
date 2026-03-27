@@ -1,0 +1,9 @@
+[workspace]
+members = [
+    "randomart-core",
+    "randomart-metal",
+    "randomart-cranelift-jit",
+    "randomart-closure-tree",
+    "randomart-cli",
+]
+resolver = "2"

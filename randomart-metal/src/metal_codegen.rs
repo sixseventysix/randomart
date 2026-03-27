@@ -1,4 +1,4 @@
-use crate::node::Node;
+use randomart_core::node::Node;
 use std::fmt::Write;
 
 struct CodegenCtx {

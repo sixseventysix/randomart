@@ -2,11 +2,10 @@ use crate::node::Node;
 use crate::rng::Rng_;
 use xxhash_rust::xxh3::xxh3_64;
 
-
 #[derive(Clone)]
 struct GrammarBranch {
-    node: Box<Node>, 
-    probability: f32, 
+    node: Box<Node>,
+    probability: f32,
 }
 
 #[derive(Clone)]
@@ -26,9 +25,9 @@ impl GrammarBranches {
     }
 }
 
-pub(crate) struct Grammar {
-    rules: Vec<GrammarBranches>, 
-    rng: Rng_
+pub struct Grammar {
+    rules: Vec<GrammarBranches>,
+    rng: Rng_,
 }
 
 impl Grammar {
@@ -36,7 +35,7 @@ impl Grammar {
         self.rules.push(branch);
     }
 
-    fn default(seed: u64) -> Self {
+    pub fn default(seed: u64) -> Self {
         let mut grammar = Self {
             rules: Vec::new(),
             rng: Rng_::new(seed),
@@ -56,42 +55,21 @@ impl Grammar {
 
         // C::= A | Add(C, C) | Mult(C, C) | Sin(C) | Cos(C) | Exp(C) | Sqrt(C) | Div(C, C) | MixUnbounded(C, C, C, C)
         let mut c_branch = GrammarBranches::new();
-        c_branch.add_alternate(Node::Rule(2), 1.0 / 13.0); 
+        c_branch.add_alternate(Node::Rule(2), 1.0 / 13.0);
         c_branch.add_alternate(
-            Node::Add(
-                Box::new(Node::Rule(1)),
-                Box::new(Node::Rule(1)),
-            ),
+            Node::Add(Box::new(Node::Rule(1)), Box::new(Node::Rule(1))),
             1.0 / 13.0,
         );
         c_branch.add_alternate(
-            Node::Mult(
-                Box::new(Node::Rule(1)),
-                Box::new(Node::Rule(1)),
-            ),
+            Node::Mult(Box::new(Node::Rule(1)), Box::new(Node::Rule(1))),
             1.0 / 13.0,
         );
+        c_branch.add_alternate(Node::Sin(Box::new(Node::Rule(1))), 3.0 / 13.0);
+        c_branch.add_alternate(Node::Cos(Box::new(Node::Rule(1))), 3.0 / 13.0);
+        c_branch.add_alternate(Node::Exp(Box::new(Node::Rule(1))), 1.0 / 13.0);
+        c_branch.add_alternate(Node::Sqrt(Box::new(Node::Rule(1))), 1.0 / 13.0);
         c_branch.add_alternate(
-            Node::Sin(Box::new(Node::Rule(1))),
-            3.0 / 13.0,
-        );
-        c_branch.add_alternate(
-            Node::Cos(Box::new(Node::Rule(1))),
-            3.0 / 13.0,
-        );
-        c_branch.add_alternate(
-            Node::Exp(Box::new(Node::Rule(1))),
-            1.0 / 13.0,
-        );
-        c_branch.add_alternate(
-            Node::Sqrt(Box::new(Node::Rule(1))),
-            1.0 / 13.0,
-        );
-        c_branch.add_alternate(
-            Node::Div(
-                Box::new(Node::Rule(1)),
-                Box::new(Node::Rule(1)),
-            ),
+            Node::Div(Box::new(Node::Rule(1)), Box::new(Node::Rule(1))),
             1.0 / 13.0,
         );
         c_branch.add_alternate(
@@ -112,24 +90,23 @@ impl Grammar {
         a_branch.add_alternate(Node::Random, 1.0 / 3.0);
         grammar.add_rule(a_branch);
 
-        grammar  
-    
+        grammar
     }
 
-    pub(crate) fn gen_rule(&mut self, rule: usize, depth: u32) -> Option<Box<Node>> {
+    pub fn gen_rule(&mut self, rule: usize, depth: u32) -> Option<Box<Node>> {
         if depth <= 0 {
-            return None; 
+            return None;
         }
-    
+
         assert!(rule < self.rules.len(), "invalid rule index");
         let branches = self.rules[rule].clone();
         assert!(!branches.alternates.is_empty(), "no branches available");
-    
+
         let mut node = None;
-    
-        for _ in 0..100 { 
-            let p: f32 = self.rng.next_float(); 
-    
+
+        for _ in 0..100 {
+            let p: f32 = self.rng.next_float();
+
             let mut cumulative_probability = 0.0;
             for branch in &branches.alternates {
                 cumulative_probability += branch.probability;
@@ -138,12 +115,12 @@ impl Grammar {
                     break;
                 }
             }
-    
+
             if node.is_some() {
-                break; 
+                break;
             }
         }
-    
+
         node
     }
 
@@ -212,7 +189,7 @@ impl Grammar {
     }
 }
 
-pub(crate) fn derive_seeds(base: u64) -> (u64, u64, u64) {
+pub fn derive_seeds(base: u64) -> (u64, u64, u64) {
     let s = base.to_le_bytes();
     (
         xxh3_64(&[s.as_slice(), b"-a"].concat()),
@@ -221,7 +198,7 @@ pub(crate) fn derive_seeds(base: u64) -> (u64, u64, u64) {
     )
 }
 
-pub(crate) fn generate_tree_parallel(grand_seed: u64, depth: u32) -> Option<Box<Node>> {
+pub fn generate_tree_parallel(grand_seed: u64, depth: u32) -> Option<Box<Node>> {
     let (seed_a, seed_b, seed_c) = derive_seeds(grand_seed);
 
     let (b, c) = rayon::join(
