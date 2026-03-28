@@ -3,10 +3,7 @@ name = "randomart-tests"
 version = "0.1.0"
 edition = "2021"
 
-[features]
-no-extern-c = ["randomart-cranelift-jit/no-extern-c"]
-native-ops = ["randomart-cranelift-jit/native-ops"]
-
 [dev-dependencies]
 randomart-cranelift-jit = { path = "../randomart-cranelift-jit" }
 randomart-closure-tree = { path = "../randomart-closure-tree" }
+randomart-llvm-aot = { path = "../randomart-llvm-aot" }

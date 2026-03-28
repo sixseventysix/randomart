@@ -1,0 +1,15 @@
+[package]
+name = "randomart-llvm-aot"
+version = "0.1.0"
+edition = "2021"
+build = "build.rs"
+
+[dependencies]
+randomart-core = { path = "../randomart-core" }
+rayon = "1.10.0"
+serde_json = "1"
+xxhash-rust = { version = "0.8", features = ["xxh3"] }
+
+[build-dependencies]
+randomart-core = { path = "../randomart-core" }
+xxhash-rust = { version = "0.8", features = ["xxh3"] }

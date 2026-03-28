@@ -1248,6 +1248,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "randomart-llvm-aot"
+version = "0.1.0"
+dependencies = [
+ "randomart-core",
+ "rayon",
+ "serde_json",
+ "xxhash-rust",
+]
+
+[[package]]
 name = "randomart-metal"
 version = "0.1.0"
 dependencies = [
@@ -1269,6 +1279,7 @@ version = "0.1.0"
 dependencies = [
  "randomart-closure-tree",
  "randomart-cranelift-jit",
+ "randomart-llvm-aot",
 ]
 
 [[package]]
