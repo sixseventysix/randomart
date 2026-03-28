@@ -20,7 +20,7 @@ Execution backends. Each one does exactly one thing: take an AST and return a `P
 - **closure-tree**: interprets the AST as a tree of Rust closures
 
 ### `randomart-cli`
-Owns all I/O. Parses CLI arguments, invokes a backend, and saves the resulting `PixelBuffer` as a PNG. Optionally writes the formula as JSON. Three binaries, one per backend: `randomart-metal`, `randomart-cranelift`, `randomart-closure-tree`.
+Owns all I/O. Parses CLI arguments, invokes a backend, and saves the resulting `PixelBuffer` as a PNG. Optionally writes the formula as JSON.
 
 ## Usage
 
@@ -37,6 +37,8 @@ Generate an image from a string seed:
 ```sh
 ./randomart-metal generate "hello world" 10
 ```
+
+`depth` controls how deep the expression tree is allowed to grow. Higher depth means more complex images.
 
 Re-render from a saved formula:
 
