@@ -8,29 +8,13 @@ use randomart_core::{
 };
 use crate::{
     metal_codegen::emit_metal_from_triple,
-    gpu::{compile_metal, run_gpu_kernel},
+    gpu::run_gpu_kernel,
 };
 use xxhash_rust::xxh3::xxh3_64;
 
 fn render_to_buffer(r: &Node, g: &Node, b: &Node, width: u32, height: u32) -> PixelBuffer {
     let metal_src = emit_metal_from_triple(r, g, b);
-
-    let src_file = tempfile::Builder::new()
-        .suffix(".metal")
-        .tempfile()
-        .expect("failed to create temp .metal file");
-    std::fs::write(src_file.path(), metal_src.as_bytes())
-        .expect("failed to write .metal source");
-
-    let lib_file = tempfile::Builder::new()
-        .suffix(".metallib")
-        .tempfile()
-        .expect("failed to create temp .metallib file");
-
-    compile_metal(src_file.path(), lib_file.path())
-        .expect("Metal shader compilation failed");
-
-    run_gpu_kernel(lib_file.path(), width, height)
+    run_gpu_kernel(&metal_src, width, height)
 }
 
 pub fn generate(string: &str, depth: u32, width: u32, height: u32) -> GenerateOutput {

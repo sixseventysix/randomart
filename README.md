@@ -40,39 +40,24 @@ Generate an image from a string seed:
 
 `depth` controls how deep the expression tree is allowed to grow. Higher depth means more complex images.
 
-Re-render from a saved formula:
+Save the formula as JSON alongside the image:
+
+```sh
+./randomart-metal generate "hello world" 10 --save-json
+```
+
+This writes a `.json` file next to the PNG. You can then re-render from it later:
 
 ```sh
 ./randomart-metal read formula.json
 ```
 
+Other options for `generate`:
+
+```
+--width <WIDTH>    Image width in pixels  [default: 512]
+--height <HEIGHT>  Image height in pixels [default: 512]
+--out <OUT>        Output filename stem   [default: the input string]
+```
+
 Output is always written to the current working directory. Pass `--help` to any binary or subcommand for full usage.
-
-## Testing
-
-### `randomart-tests`
-Correctness tests that compare execution backends and the pixel buffers against each other.
-
-Run the default tests (extern C dispatch):
-
-```sh
-cargo test --package randomart-tests
-```
-
-Test with native Cranelift instructions instead of extern C dispatch:
-
-```sh
-cargo test --package randomart-tests --features native-ops
-```
-
-Test without `extern "C"` on the registered math functions:
-
-```sh
-cargo test --package randomart-tests --features no-extern-c
-```
-
-Both features can be combined:
-
-```sh
-cargo test --package randomart-tests --features native-ops,no-extern-c
-```

@@ -1,19 +1,19 @@
-use std::path::Path;
-use std::process::Command;
 use randomart_core::pixel_buffer::PixelBuffer;
 use std::ptr::NonNull;
 use objc2::rc::Retained;
 use objc2::runtime::ProtocolObject;
-use objc2_foundation::{NSError, NSString, NSURL};
+use objc2_foundation::{NSError, NSString};
 use objc2_metal::{
     MTLCommandBuffer,
     MTLCommandEncoder,
     MTLCommandQueue,
+    MTLCompileOptions,
     MTLComputeCommandEncoder,
     MTLComputePipelineState,
     MTLCreateSystemDefaultDevice,
     MTLDevice,
     MTLLibrary,
+    MTLMathMode,
     MTLOrigin,
     MTLPixelFormat,
     MTLRegion,
@@ -23,31 +23,14 @@ use objc2_metal::{
     MTLTextureUsage,
 };
 
-/// Compile `src_path` (MSL source) to a `.metallib` at `lib_path` using xcrun.
-pub fn compile_metal(src_path: &Path, lib_path: &Path) -> Result<(), String> {
-    let status = Command::new("xcrun")
-        .args([
-            "-sdk", "macosx", "metal",
-            src_path.to_str().unwrap(),
-            "-o", lib_path.to_str().unwrap(),
-        ])
-        .status()
-        .map_err(|e| format!("failed to run xcrun: {e}"))?;
-
-    if status.success() {
-        Ok(())
-    } else {
-        Err(format!("xcrun metal exited with {status}"))
-    }
-}
 
 fn ns_error_msg(err: &Retained<NSError>) -> String {
     err.localizedDescription().to_string()
 }
 
-/// Load a `.metallib`, dispatch the `art_gen` kernel over a `width x height`
+/// JIT-compile MSL `source`, dispatch the `art_gen` kernel over a `width x height`
 /// rgba32Float texture, read back the pixels, and return a RGB PixelBuffer.
-pub fn run_gpu_kernel(metallib_path: &Path, width: u32, height: u32) -> PixelBuffer {
+pub fn run_gpu_kernel(source: &str, width: u32, height: u32) -> PixelBuffer {
     unsafe {
         let device = MTLCreateSystemDefaultDevice().expect("no Metal device");
 
@@ -55,12 +38,13 @@ pub fn run_gpu_kernel(metallib_path: &Path, width: u32, height: u32) -> PixelBuf
             .newCommandQueue()
             .expect("newCommandQueue failed");
 
-        // Load library from file URL.
-        let path_str = NSString::from_str(metallib_path.to_str().unwrap());
-        let url = NSURL::fileURLWithPath(&path_str);
+        // JIT-compile MSL source with fast-math disabled.
+        let options = MTLCompileOptions::new();
+        options.setMathMode(MTLMathMode::Safe);
+        let source_str = NSString::from_str(source);
         let library: Retained<ProtocolObject<dyn MTLLibrary>> = device
-            .newLibraryWithURL_error(&url)
-            .unwrap_or_else(|e| panic!("newLibraryWithURL failed: {}", ns_error_msg(&e)));
+            .newLibraryWithSource_options_error(&source_str, Some(&options))
+            .unwrap_or_else(|e| panic!("Metal JIT compile failed: {}", ns_error_msg(&e)));
 
         let fn_name = NSString::from_str("art_gen");
         let metal_fn = library
