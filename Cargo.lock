@@ -1153,6 +1153,7 @@ dependencies = [
 name = "randomart-core"
 version = "0.1.0"
 dependencies = [
+ "cc",
  "rand",
  "rand_chacha",
  "rayon",
@@ -1205,6 +1206,7 @@ dependencies = [
  "randomart-closure-tree",
  "randomart-cranelift-jit",
  "randomart-llvm-aot",
+ "randomart-metal",
 ]
 
 [[package]]

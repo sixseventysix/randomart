@@ -1,5 +1,6 @@
 use randomart_core::pixel_buffer::PixelBuffer;
 use randomart_core::node::Node;
+use randomart_core::math;
 
 pub struct PixelCoordinates {
     pub x: f32,
@@ -65,19 +66,19 @@ pub fn compile_node(node: &Node) -> Box<dyn ClosureNode> {
         }
         Node::Sqrt(inner) => {
             let f = compile_node(inner);
-            Box::new(move |x, y| f(x, y).sqrt().max(0.0))
+            Box::new(move |x, y| math::sqrtf(f(x, y)).max(0.0))
         }
         Node::Sin(inner) => {
             let f = compile_node(inner);
-            Box::new(move |x, y| f(x, y).sin())
+            Box::new(move |x, y| math::sinf(f(x, y)))
         }
         Node::Cos(inner) => {
             let f = compile_node(inner);
-            Box::new(move |x, y| f(x, y).cos())
+            Box::new(move |x, y| math::cosf(f(x, y)))
         }
         Node::Exp(inner) => {
             let f = compile_node(inner);
-            Box::new(move |x, y| f(x, y).exp())
+            Box::new(move |x, y| math::expf(f(x, y)))
         }
         Node::MixUnbounded(a, b, c, d) => {
             let fa = compile_node(a);

@@ -2,6 +2,7 @@ use cranelift::prelude::*;
 use cranelift_jit::{JITBuilder, JITModule};
 use cranelift_module::{Module, Linkage};
 use randomart_core::node::Node;
+use randomart_core::math;
 
 macro_rules! define_and_register_math_fns {
     ($builder:ident, [$(($name:ident, $ret:ty, [$($arg:ident : $typ:ty),*], $body:block)),* $(,)?]) => {
@@ -129,9 +130,9 @@ fn build_jit_function(ast: &Node) -> Box<dyn Fn(f32, f32) -> f32 + Sync + Send> 
         .expect("Failed to create JITBuilder");
 
     define_and_register_math_fns!(builder, [
-        (my_sin, f32, [x: f32], { x.sin() }),
-        (my_cos, f32, [x: f32], { x.cos() }),
-        (my_exp, f32, [x: f32], { x.exp() }),
+        (my_sin, f32, [x: f32], { math::sinf(x) }),
+        (my_cos, f32, [x: f32], { math::cosf(x) }),
+        (my_exp, f32, [x: f32], { math::expf(x) }),
     ]);
 
     let mut module = JITModule::new(builder);

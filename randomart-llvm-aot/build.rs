@@ -30,24 +30,24 @@ fn emit_node(out: &mut String, node: &Node) {
             out.push_str(") / _d } else { 0.0_f32 } }");
         }
         Node::Sin(inner) => {
-            out.push('(');
+            out.push_str("randomart_core::math::sinf(");
             emit_node(out, inner);
-            out.push_str(").sin()");
+            out.push(')');
         }
         Node::Cos(inner) => {
-            out.push('(');
+            out.push_str("randomart_core::math::cosf(");
             emit_node(out, inner);
-            out.push_str(").cos()");
+            out.push(')');
         }
         Node::Exp(inner) => {
-            out.push('(');
+            out.push_str("randomart_core::math::expf(");
             emit_node(out, inner);
-            out.push_str(").exp()");
+            out.push(')');
         }
         Node::Sqrt(inner) => {
-            out.push_str("(");
+            out.push_str("randomart_core::math::sqrtf((");
             emit_node(out, inner);
-            out.push_str(").max(0.0_f32).sqrt()");
+            out.push_str(").max(0.0_f32))");
         }
         Node::MixUnbounded(a, b, c, d) => {
             out.push_str("{ let _a = ");

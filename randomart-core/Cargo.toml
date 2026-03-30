@@ -2,6 +2,7 @@
 name = "randomart-core"
 version = "0.1.0"
 edition = "2021"
+build = "build.rs"
 
 [dependencies]
 serde = { version = "1", features = ["derive"] }
@@ -9,3 +10,6 @@ rand = "0.9.1"
 rand_chacha = "0.9.0"
 rayon = "1.10.0"
 xxhash-rust = { version = "0.8", features = ["xxh3"] }
+
+[build-dependencies]
+cc = "1.2.58"

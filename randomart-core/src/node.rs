@@ -19,22 +19,23 @@ pub enum Node {
 impl Node {
     pub fn simplify(&mut self) {
         use Node::*;
+        use crate::math;
         match self {
             Sin(inner) => {
                 inner.simplify();
-                if let Number(val) = **inner { *self = Number(val.sin()); }
+                if let Number(val) = **inner { *self = Number(math::sinf(val)); }
             }
             Cos(inner) => {
                 inner.simplify();
-                if let Number(val) = **inner { *self = Number(val.cos()); }
+                if let Number(val) = **inner { *self = Number(math::cosf(val)); }
             }
             Exp(inner) => {
                 inner.simplify();
-                if let Number(val) = **inner { *self = Number(val.exp()); }
+                if let Number(val) = **inner { *self = Number(math::expf(val)); }
             }
             Sqrt(inner) => {
                 inner.simplify();
-                if let Number(val) = **inner { *self = Number(val.sqrt().max(0.0)); }
+                if let Number(val) = **inner { *self = Number(math::sqrtf(val).max(0.0)); }
             }
             Add(lhs, rhs) => {
                 lhs.simplify();
