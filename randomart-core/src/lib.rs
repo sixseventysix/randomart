@@ -13,23 +13,12 @@ pub unsafe fn disable_ftz() {
     {
         let mut mxcsr: u32;
         std::arch::asm!("stmxcsr [{0}]", out(reg) mxcsr, options(nostack));
-        mxcsr &= !(1 << 15); // clear FTZ (bit 15)
-        mxcsr &= !(1 << 6);  // clear DAZ (bit 6)
-        std::arch::asm!("ldmxcsr [{0}]", in(reg) &mxcsr, options(nostack));
+        std::arch::asm!("ldmxcsr [{0}]", in(reg) &(mxcsr & !0x8040), options(nostack));
     }
     #[cfg(target_arch = "aarch64")]
     {
         let mut fpcr: u64;
-        std::arch::asm!(
-            "mrs {0}, fpcr",
-            out(reg) fpcr,
-            options(nostack)
-        );
-        fpcr &= !(1 << 24); // clear FZ (bit 24)
-        std::arch::asm!(
-            "msr fpcr, {0}",
-            in(reg) fpcr,
-            options(nostack)
-        );
+        std::arch::asm!("mrs {0}, fpcr", out(reg) fpcr, options(nostack));
+        std::arch::asm!("msr fpcr, {0}", in(reg) fpcr & !(1 << 24), options(nostack));
     }
 }
