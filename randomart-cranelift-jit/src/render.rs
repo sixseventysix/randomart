@@ -1,5 +1,6 @@
 use rayon::prelude::*;
 use randomart_core::pixel_buffer::PixelBuffer;
+use randomart_core::disable_ftz;
 
 pub(crate) struct PixelCoordinates {
     pub x: f32,
@@ -26,6 +27,8 @@ where
         .collect();
 
     // Each tile produces a vec of (global_x, global_y, r, g, b) tuples.
+    rayon::broadcast(|_| unsafe { disable_ftz() });
+
     let tile_pixels: Vec<Vec<(u32, u32, u8, u8, u8)>> = tiles
         .into_par_iter()
         .map(|(x_start, y_start)| {
