@@ -10,7 +10,13 @@ pub mod math;
 /// Must be called on each thread that performs floating-point computation.
 pub unsafe fn disable_ftz() {
     #[cfg(target_arch = "x86_64")]
-    unimplemented!("disable_ftz not yet implemented for x86_64");
+    {
+        let mut mxcsr: u32;
+        std::arch::asm!("stmxcsr [{0}]", out(reg) mxcsr, options(nostack));
+        mxcsr &= !(1 << 15); // clear FTZ (bit 15)
+        mxcsr &= !(1 << 6);  // clear DAZ (bit 6)
+        std::arch::asm!("ldmxcsr [{0}]", in(reg) &mxcsr, options(nostack));
+    }
     #[cfg(target_arch = "aarch64")]
     {
         let mut fpcr: u64;
