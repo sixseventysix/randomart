@@ -4,7 +4,7 @@
 image generated using the string: `My brain on drugs` with depth = 40\
 (sadly, this cannot be made anymore because i chose multi-threaded tree gen sadface)
 
-using Metal GPU for creating the image. paying some overhead because of creating the .metal file, the binaries, and then executing them, but the actual execution is much faster than pulling any tricks on the cpu.
+using Metal GPU for creating the image. the AST is compiled to Metal Shading Language and JIT-compiled + dispatched inline via `objc2-metal` (no `.metal` files or external binaries are written or spawned). execution is much faster than pulling any tricks on the cpu.
 ## generate mode
 creates image from string
 ```bash
