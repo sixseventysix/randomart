@@ -78,3 +78,64 @@ impl Node {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::Node::*;
+    use super::*;
+
+    fn num(v: f32) -> Box<Node> {
+        Box::new(Number(v))
+    }
+
+    fn simplified(node: Node) -> f32 {
+        let mut n = node;
+        n.simplify();
+        match n {
+            Number(v) => v,
+            other => panic!("expected fully-folded Number, got {other:?}"),
+        }
+    }
+
+    #[test]
+    fn folds_nested_constants() {
+        // Add averages: (Mult(2,3)=6 , 4) -> (6+4)/2 = 5
+        let tree = Add(Box::new(Mult(num(2.0), num(3.0))), num(4.0));
+        assert_eq!(simplified(tree), 5.0);
+    }
+
+    #[test]
+    fn div_guard_matches_runtime_formula() {
+        // |denom| > 1e-6 -> normal division
+        assert_eq!(simplified(Div(num(1.0), num(2.0))), 0.5);
+        // denom exactly 0 and sub-epsilon -> 0.0, matching the backends' guard
+        assert_eq!(simplified(Div(num(1.0), num(0.0))), 0.0);
+        assert_eq!(simplified(Div(num(1.0), num(1e-7))), 0.0);
+    }
+
+    #[test]
+    fn sqrt_clamps_negative_like_backends() {
+        assert_eq!(simplified(Sqrt(num(4.0))), 2.0);
+        assert_eq!(simplified(Sqrt(num(-4.0))), 0.0);
+    }
+
+    #[test]
+    fn mix_unbounded_uses_epsilon_denominator() {
+        // a=b=0 -> denom 1e-6, numerator 0 -> 0.0 (finite, no NaN)
+        assert_eq!(simplified(MixUnbounded(num(0.0), num(0.0), num(5.0), num(5.0))), 0.0);
+        // general case matches (a*c + b*d) / (a + b + 1e-6)
+        let expect = (1.0 * 3.0 + 2.0 * 4.0) / (1.0 + 2.0 + 1e-6);
+        assert_eq!(
+            simplified(MixUnbounded(num(1.0), num(2.0), num(3.0), num(4.0))),
+            expect
+        );
+    }
+
+    #[test]
+    fn leaves_x_and_y_untouched() {
+        let mut n = Add(Box::new(X), num(1.0));
+        n.simplify();
+        // Can't fold because X is not a constant; stays an Add.
+        assert!(matches!(n, Add(_, _)));
+    }
+}

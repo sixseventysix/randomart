@@ -7,6 +7,8 @@ edition = "2021"
 randomart-cranelift-jit = { path = "../randomart-cranelift-jit" }
 randomart-closure-tree = { path = "../randomart-closure-tree" }
 randomart-llvm-aot = { path = "../randomart-llvm-aot" }
+randomart-core = { path = "../randomart-core" }
+serde_json = "1.0.150"
 
 [target.'cfg(target_os = "macos")'.dev-dependencies]
 randomart-metal = { path = "../randomart-metal" }
