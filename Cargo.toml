@@ -9,3 +9,13 @@ members = [
     "randomart-llvm-aot",
 ]
 resolver = "2"
+
+# Optimize release for speed + reasonable size. opt-level stays 3 (this is a
+# compute-bound renderer — "z"/"s" would slow the hot pixel loop). panic = "abort"
+# is release-only: the metal correctness test uses catch_unwind, which requires
+# unwinding, so dev/test keep the default panic strategy.
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
