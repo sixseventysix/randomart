@@ -4,21 +4,23 @@ version = "0.1.0"
 edition = "2021"
 
 [[bin]]
-name = "randomart-metal"
-path = "src/bin/randomart-metal.rs"
+name = "randomart"
+path = "src/main.rs"
 
-[[bin]]
-name = "randomart-cranelift"
-path = "src/bin/randomart-cranelift.rs"
-
-[[bin]]
-name = "randomart-closure-tree"
-path = "src/bin/randomart-closure-tree.rs"
+[features]
+# Exactly one backend is selected at build time. closure-tree is the default;
+# swap it with e.g. `--no-default-features --features cranelift`.
+# metal is macOS-only (its deps don't build elsewhere).
+default = ["closure"]
+closure = ["dep:randomart-closure-tree"]
+cranelift = ["dep:randomart-cranelift-jit"]
+metal = ["dep:randomart-metal"]
 
 [dependencies]
 randomart-core = { path = "../randomart-core" }
-randomart-metal = { path = "../randomart-metal" }
-randomart-cranelift-jit = { path = "../randomart-cranelift-jit" }
-randomart-closure-tree = { path = "../randomart-closure-tree" }
 clap = { version = "4", features = ["derive"] }
 image = "0.25.6"
+
+randomart-closure-tree = { path = "../randomart-closure-tree", optional = true }
+randomart-cranelift-jit = { path = "../randomart-cranelift-jit", optional = true }
+randomart-metal = { path = "../randomart-metal", optional = true }

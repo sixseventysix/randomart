@@ -27,18 +27,20 @@ Owns all I/O. Parses CLI arguments, invokes a backend, and saves the resulting `
 
 ## Usage
 
-Build a binary for the backend you want:
+The CLI builds a single `randomart` binary. The backend is chosen at build time
+via a Cargo feature, so only that backend's dependencies are compiled in.
+`closure` is the default; `metal` is macOS-only.
 
 ```sh
-cargo build --release --bin randomart-metal
-cargo build --release --bin randomart-cranelift
-cargo build --release --bin randomart-closure-tree
+cargo build --release                                          # closure-tree (default)
+cargo build --release --no-default-features --features cranelift
+cargo build --release --no-default-features --features metal    # macOS only
 ```
 
 Generate an image from a string seed:
 
 ```sh
-./randomart-metal generate "hello world" 10
+./randomart generate "hello world" 10
 ```
 
 `depth` controls how deep the expression tree is allowed to grow. Higher depth means more complex images.
@@ -46,13 +48,13 @@ Generate an image from a string seed:
 Save the formula as JSON alongside the image:
 
 ```sh
-./randomart-metal generate "hello world" 10 --save-json
+./randomart generate "hello world" 10 --save-json
 ```
 
 This writes a `.json` file next to the PNG. You can then re-render from it later:
 
 ```sh
-./randomart-metal read formula.json
+./randomart read formula.json
 ```
 
 Other options for `generate`:
