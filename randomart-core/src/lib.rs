@@ -4,6 +4,7 @@ pub mod statistics;
 pub mod rng;
 pub mod pixel_buffer;
 pub mod math;
+pub mod render;
 
 /// Disable Flush-to-Zero (FTZ) and Denormals-Are-Zero (DAZ) in the MXCSR register.
 /// This ensures subnormal floats are handled correctly (IEEE 754 compliant).

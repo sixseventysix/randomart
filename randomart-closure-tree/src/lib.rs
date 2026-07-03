@@ -1,10 +1,11 @@
 pub mod utils;
 
-use utils::{compile_node, render_pixels, Colour, PixelCoordinates};
+use utils::compile_node;
 use randomart_core::{
     grammar::generate_tree_parallel,
     node::Node,
     pixel_buffer::{PixelBuffer, GenerateOutput, ReadOutput},
+    render::{render_tiled, Colour, PixelCoordinates},
 };
 use xxhash_rust::xxh3::xxh3_64;
 
@@ -16,8 +17,8 @@ fn render_node(node: &Node, width: u32, height: u32) -> PixelBuffer {
     let r_fn = compile_node(r);
     let g_fn = compile_node(g);
     let b_fn = compile_node(b);
-    render_pixels(
-        move |coord: PixelCoordinates| Colour {
+    render_tiled(
+        &move |coord: PixelCoordinates| Colour {
             r: r_fn(coord.x, coord.y),
             g: g_fn(coord.x, coord.y),
             b: b_fn(coord.x, coord.y),

@@ -1,24 +1,27 @@
+use crate::disable_ftz;
+use crate::pixel_buffer::PixelBuffer;
 use rayon::prelude::*;
-use randomart_core::pixel_buffer::PixelBuffer;
-use randomart_core::disable_ftz;
 
-pub(crate) struct PixelCoordinates {
+pub struct PixelCoordinates {
     pub x: f32,
     pub y: f32,
 }
 
-pub(crate) struct Colour {
+pub struct Colour {
     pub r: f32,
     pub g: f32,
     pub b: f32,
 }
 
-pub(crate) fn render_pixels<F>(function: &F, width: u32, height: u32) -> PixelBuffer
+const TILE_SIZE: u32 = 32;
+
+/// Render `width x height` pixels in parallel tiles by evaluating `function` at
+/// each pixel's `[-1, 1]` coordinate. Disables FTZ/DAZ on every worker thread so
+/// subnormal floats are handled IEEE-correctly, keeping CPU backends bit-exact.
+pub fn render_tiled<F>(function: &F, width: u32, height: u32) -> PixelBuffer
 where
     F: Sync + Fn(PixelCoordinates) -> Colour,
 {
-    const TILE_SIZE: u32 = 32;
-
     let tiles_x = (width + TILE_SIZE - 1) / TILE_SIZE;
     let tiles_y = (height + TILE_SIZE - 1) / TILE_SIZE;
 

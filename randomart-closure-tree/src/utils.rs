@@ -1,38 +1,5 @@
-use randomart_core::pixel_buffer::PixelBuffer;
 use randomart_core::node::Node;
 use randomart_core::math;
-
-pub struct PixelCoordinates {
-    pub x: f32,
-    pub y: f32,
-}
-
-pub struct Colour {
-    pub r: f32,
-    pub g: f32,
-    pub b: f32,
-}
-
-pub fn render_pixels<F>(function: F, width: u32, height: u32) -> PixelBuffer
-where
-    F: Fn(PixelCoordinates) -> Colour,
-{
-    let mut buf = PixelBuffer::new(width, height);
-
-    for py in 0..height {
-        for px in 0..width {
-            let x = (px as f32 / (width - 1) as f32) * 2.0 - 1.0;
-            let y = (py as f32 / (height - 1) as f32) * 2.0 - 1.0;
-            let colour = function(PixelCoordinates { x, y });
-            let r = ((colour.r + 1.0) * 127.5).clamp(0.0, 255.0) as u8;
-            let g = ((colour.g + 1.0) * 127.5).clamp(0.0, 255.0) as u8;
-            let b = ((colour.b + 1.0) * 127.5).clamp(0.0, 255.0) as u8;
-            buf.put_pixel(px, py, r, g, b);
-        }
-    }
-
-    buf
-}
 
 pub trait ClosureNode: Fn(f32, f32) -> f32 + Send + Sync {}
 impl<T: Fn(f32, f32) -> f32 + Send + Sync> ClosureNode for T {}

@@ -1,14 +1,11 @@
 mod jit;
-mod render;
 
-use crate::{
-    render::{render_pixels, PixelCoordinates, Colour},
-    jit::build_jit_function_triple,
-};
+use crate::jit::build_jit_function_triple;
 use randomart_core::{
     grammar::generate_tree_parallel,
     node::Node,
     pixel_buffer::{GenerateOutput, ReadOutput},
+    render::{render_tiled, Colour, PixelCoordinates},
 };
 use xxhash_rust::xxh3::xxh3_64;
 
@@ -26,7 +23,7 @@ pub fn generate(string: &str, depth: u32, width: u32, height: u32) -> GenerateOu
         b: b_jit_fn(coord.x, coord.y),
     };
 
-    let pixels = render_pixels(&rgb_fn, width, height);
+    let pixels = render_tiled(&rgb_fn, width, height);
     GenerateOutput { pixels, json }
 }
 
@@ -40,6 +37,6 @@ pub fn read_json(json: &str, width: u32, height: u32) -> ReadOutput {
         b: b_jit_fn(coord.x, coord.y),
     };
 
-    let pixels = render_pixels(&rgb_fn, width, height);
+    let pixels = render_tiled(&rgb_fn, width, height);
     ReadOutput { pixels }
 }
