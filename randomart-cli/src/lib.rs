@@ -1,3 +1,4 @@
+use anyhow::{Context, Result};
 use clap::{Parser, Subcommand};
 use image::RgbImage;
 use randomart_core::pixel_buffer::{GenerateOutput, PixelBuffer, ReadOutput};
@@ -57,21 +58,22 @@ pub enum Command {
 }
 
 pub trait RandomArtBackend {
-    fn generate(string: &str, depth: u32, width: u32, height: u32) -> GenerateOutput;
-    fn read_json(json: &str, width: u32, height: u32) -> ReadOutput;
+    fn generate(string: &str, depth: u32, width: u32, height: u32) -> Result<GenerateOutput>;
+    fn read_json(json: &str, width: u32, height: u32) -> Result<ReadOutput>;
 }
 
-pub fn run<B: RandomArtBackend>(cli: Cli) {
+pub fn run<B: RandomArtBackend>(cli: Cli) -> Result<()> {
     match cli.command {
         Command::Generate { string, depth, width, height, out, save_json } => {
             let stem = out.unwrap_or_else(|| string.clone());
-            let output = B::generate(&string, depth, width, height);
+            let output = B::generate(&string, depth, width, height)?;
 
-            save_image(output.pixels, &pwd(&format!("{stem}.png")));
+            save_image(output.pixels, &pwd(&format!("{stem}.png")))?;
 
             if save_json {
-                std::fs::write(pwd(&format!("{stem}.json")), &output.json)
-                    .expect("failed to write json");
+                let path = pwd(&format!("{stem}.json"));
+                std::fs::write(&path, &output.json)
+                    .with_context(|| format!("failed to write JSON to {}", path.display()))?;
             }
         }
 
@@ -84,19 +86,22 @@ pub fn run<B: RandomArtBackend>(cli: Cli) {
                     .to_string()
             });
 
-            let json = std::fs::read_to_string(&input).expect("failed to read input file");
-            let output = B::read_json(&json, width, height);
+            let json = std::fs::read_to_string(&input)
+                .with_context(|| format!("failed to read input file {input}"))?;
+            let output = B::read_json(&json, width, height)?;
 
-            save_image(output.pixels, &pwd(&format!("{stem}.png")));
+            save_image(output.pixels, &pwd(&format!("{stem}.png")))?;
         }
     }
+    Ok(())
 }
 
-fn save_image(buf: PixelBuffer, path: &Path) {
+fn save_image(buf: PixelBuffer, path: &Path) -> Result<()> {
     RgbImage::from_raw(buf.width, buf.height, buf.data)
-        .expect("PixelBuffer to RgbImage failed")
+        .context("pixel buffer dimensions do not match its data length")?
         .save(path)
-        .expect("failed to save image");
+        .with_context(|| format!("failed to save image to {}", path.display()))?;
+    Ok(())
 }
 
 fn pwd(filename: &str) -> PathBuf {

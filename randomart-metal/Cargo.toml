@@ -26,3 +26,4 @@ objc2-metal = { version = "0.3.2", features = [
     "MTLTexture",
     "MTLTypes",
 ] }
+anyhow = "1.0.103"

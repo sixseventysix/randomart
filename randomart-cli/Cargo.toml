@@ -24,3 +24,4 @@ image = "0.25.6"
 randomart-closure-tree = { path = "../randomart-closure-tree", optional = true }
 randomart-cranelift-jit = { path = "../randomart-cranelift-jit", optional = true }
 randomart-metal = { path = "../randomart-metal", optional = true }
+anyhow = "1.0.103"

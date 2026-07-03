@@ -15,6 +15,7 @@ use randomart_core::{
     pixel_buffer::{GenerateOutput, PixelBuffer, ReadOutput},
     render::{render_tiled, Colour, PixelCoordinates},
 };
+use anyhow::{Context, Result};
 
 fn render(width: u32, height: u32) -> PixelBuffer {
     render_tiled(
@@ -30,21 +31,23 @@ fn render(width: u32, height: u32) -> PixelBuffer {
 
 /// Renders the expression baked in at compile time.
 /// `string` and `depth` are ignored at runtime — they were consumed by build.rs.
-pub fn generate(_string: &str, _depth: u32, width: u32, height: u32) -> GenerateOutput {
+pub fn generate(_string: &str, _depth: u32, width: u32, height: u32) -> Result<GenerateOutput> {
     use xxhash_rust::xxh3::xxh3_64;
     let seed_str = option_env!("RANDOMART_SEED").unwrap_or("default");
     let depth_str: u32 = option_env!("RANDOMART_DEPTH")
         .and_then(|v| v.parse().ok())
         .unwrap_or(8);
     let seed = xxh3_64(seed_str.as_bytes());
-    let mut node = generate_tree_parallel(seed, depth_str).unwrap();
+    let mut node = generate_tree_parallel(seed, depth_str)
+        .context("tree generation failed")?;
     node.simplify_triple();
-    let json = serde_json::to_string_pretty(&*node).unwrap();
+    let json = serde_json::to_string_pretty(&*node)
+        .context("failed to serialize node tree")?;
     let pixels = render(width, height);
-    GenerateOutput { pixels, json }
+    Ok(GenerateOutput { pixels, json })
 }
 
-pub fn read_json(_json: &str, width: u32, height: u32) -> ReadOutput {
+pub fn read_json(_json: &str, width: u32, height: u32) -> Result<ReadOutput> {
     let pixels = render(width, height);
-    ReadOutput { pixels }
+    Ok(ReadOutput { pixels })
 }

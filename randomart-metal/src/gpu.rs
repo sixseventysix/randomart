@@ -1,4 +1,5 @@
 use randomart_core::pixel_buffer::PixelBuffer;
+use anyhow::{anyhow, Context, Result};
 use std::ptr::NonNull;
 use objc2::rc::Retained;
 use objc2::runtime::ProtocolObject;
@@ -30,12 +31,12 @@ fn ns_error_msg(err: &Retained<NSError>) -> String {
 
 /// JIT-compile MSL `source`, dispatch the `art_gen` kernel over a `width x height`
 /// rgba32Float texture, read back the pixels, and return a RGB PixelBuffer.
-pub fn run_gpu_kernel(source: &str, width: u32, height: u32) -> PixelBuffer {
-    let device = MTLCreateSystemDefaultDevice().expect("no Metal device");
+pub fn run_gpu_kernel(source: &str, width: u32, height: u32) -> Result<PixelBuffer> {
+    let device = MTLCreateSystemDefaultDevice().context("no Metal device available")?;
 
     let queue: Retained<ProtocolObject<dyn MTLCommandQueue>> = device
         .newCommandQueue()
-        .expect("newCommandQueue failed");
+        .context("failed to create Metal command queue")?;
 
     // JIT-compile MSL source with fast-math disabled.
     let options = MTLCompileOptions::new();
@@ -43,16 +44,16 @@ pub fn run_gpu_kernel(source: &str, width: u32, height: u32) -> PixelBuffer {
     let source_str = NSString::from_str(source);
     let library: Retained<ProtocolObject<dyn MTLLibrary>> = device
         .newLibraryWithSource_options_error(&source_str, Some(&options))
-        .unwrap_or_else(|e| panic!("Metal JIT compile failed: {}", ns_error_msg(&e)));
+        .map_err(|e| anyhow!("Metal JIT compile failed: {}", ns_error_msg(&e)))?;
 
     let fn_name = NSString::from_str("art_gen");
     let metal_fn = library
         .newFunctionWithName(&fn_name)
-        .expect("function 'art_gen' not found in metallib");
+        .context("function 'art_gen' not found in compiled Metal library")?;
 
     let pipeline: Retained<ProtocolObject<dyn MTLComputePipelineState>> = device
         .newComputePipelineStateWithFunction_error(&metal_fn)
-        .unwrap_or_else(|e| panic!("newComputePipelineState failed: {}", ns_error_msg(&e)));
+        .map_err(|e| anyhow!("newComputePipelineState failed: {}", ns_error_msg(&e)))?;
 
     // Create rgba32Float texture.
     // SAFETY: the descriptor constructor is marked unsafe only because it takes
@@ -68,16 +69,16 @@ pub fn run_gpu_kernel(source: &str, width: u32, height: u32) -> PixelBuffer {
     desc.setUsage(MTLTextureUsage::ShaderWrite | MTLTextureUsage::ShaderRead);
     let texture: Retained<ProtocolObject<dyn MTLTexture>> = device
         .newTextureWithDescriptor(&desc)
-        .expect("newTexture failed");
+        .context("failed to allocate output texture")?;
 
     // Encode and dispatch.
     let cmd_buf: Retained<ProtocolObject<dyn MTLCommandBuffer>> = queue
         .commandBuffer()
-        .expect("commandBuffer failed");
+        .context("failed to create command buffer")?;
 
     let encoder: Retained<ProtocolObject<dyn MTLComputeCommandEncoder>> = cmd_buf
         .computeCommandEncoder()
-        .expect("computeCommandEncoder failed");
+        .context("failed to create compute command encoder")?;
 
     encoder.setComputePipelineState(&pipeline);
     // SAFETY: index 0 matches `out [[texture(0)]]` in the kernel, and `texture`
@@ -125,5 +126,5 @@ pub fn run_gpu_kernel(source: &str, width: u32, height: u32) -> PixelBuffer {
         let to_u8 = |v: f32| if (v * 255.0).is_finite() { ((v * 255.0) as u32).min(255) as u8 } else { 0 };
         buf.put_pixel(x, y, to_u8(chunk[0]), to_u8(chunk[1]), to_u8(chunk[2]));
     }
-    buf
+    Ok(buf)
 }

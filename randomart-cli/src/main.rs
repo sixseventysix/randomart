@@ -1,3 +1,4 @@
+use anyhow::Result;
 use clap::Parser;
 use randomart_cli::{run, Cli, RandomArtBackend};
 use randomart_core::pixel_buffer::{GenerateOutput, ReadOutput};
@@ -26,14 +27,14 @@ compile_error!("multiple backends selected: enable exactly one of `closure`, `cr
 struct Backend;
 
 impl RandomArtBackend for Backend {
-    fn generate(string: &str, depth: u32, width: u32, height: u32) -> GenerateOutput {
+    fn generate(string: &str, depth: u32, width: u32, height: u32) -> Result<GenerateOutput> {
         backend::generate(string, depth, width, height)
     }
-    fn read_json(json: &str, width: u32, height: u32) -> ReadOutput {
+    fn read_json(json: &str, width: u32, height: u32) -> Result<ReadOutput> {
         backend::read_json(json, width, height)
     }
 }
 
-fn main() {
-    run::<Backend>(Cli::parse());
+fn main() -> Result<()> {
+    run::<Backend>(Cli::parse())
 }
