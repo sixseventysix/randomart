@@ -1,7 +1,7 @@
 mod jit;
 
 use crate::jit::build_jit_function_triple;
-use randomart_core::{
+use engine::{
     grammar::generate_tree_parallel,
     node::Node,
     pixel_buffer::{GenerateOutput, ReadOutput},

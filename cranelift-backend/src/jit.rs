@@ -1,8 +1,8 @@
 use cranelift::prelude::*;
 use cranelift_jit::{JITBuilder, JITModule};
 use cranelift_module::{Module, Linkage};
-use randomart_core::node::Node;
-use randomart_core::math;
+use engine::node::Node;
+use engine::math;
 
 macro_rules! define_and_register_math_fns {
     ($builder:ident, [$(($name:ident, $ret:ty, [$($arg:ident : $typ:ty),*], $body:block)),* $(,)?]) => {

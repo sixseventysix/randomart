@@ -1,7 +1,7 @@
 pub mod utils;
 
 use utils::compile_node;
-use randomart_core::{
+use engine::{
     grammar::generate_tree_parallel,
     node::Node,
     pixel_buffer::{PixelBuffer, GenerateOutput, ReadOutput},

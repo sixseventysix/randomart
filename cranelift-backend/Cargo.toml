@@ -1,10 +1,10 @@
 [package]
-name = "randomart-cranelift-jit"
+name = "cranelift-backend"
 version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-randomart-core = { path = "../randomart-core" }
+engine = { path = "../engine" }
 cranelift = "0.119.0"
 cranelift-jit = "0.119"
 cranelift-module = "0.119"

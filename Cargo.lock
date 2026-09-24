@@ -291,6 +291,29 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c8d4a3bb8b1e0c1050499d1815f5ab16d04f0959b233085fb31653fbfc9d98f9"
 
 [[package]]
+name = "cli"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "clap",
+ "closure-tree",
+ "cranelift-backend",
+ "engine",
+ "image",
+ "metal",
+]
+
+[[package]]
+name = "closure-tree"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "engine",
+ "serde_json",
+ "xxhash-rust",
+]
+
+[[package]]
 name = "color_quant"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -338,6 +361,20 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6bf62afda29fcde09d922f125a7d47880b540fd1de069558bfa637b4ce7aa1ca"
 dependencies = [
  "cranelift-srcgen",
+]
+
+[[package]]
+name = "cranelift-backend"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "cranelift",
+ "cranelift-jit",
+ "cranelift-module",
+ "engine",
+ "rayon",
+ "serde_json",
+ "xxhash-rust",
 ]
 
 [[package]]
@@ -536,6 +573,18 @@ name = "either"
 version = "1.15.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "48c757948c5ede0e46177b7add2e67155f70e33c07fea8284df6576da70b3719"
+
+[[package]]
+name = "engine"
+version = "0.1.0"
+dependencies = [
+ "cc",
+ "rand",
+ "rand_chacha",
+ "rayon",
+ "serde",
+ "xxhash-rust",
+]
 
 [[package]]
 name = "equator"
@@ -846,6 +895,22 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f8ca58f447f06ed17d5fc4043ce1b10dd205e060fb3ce5b979b8ed8e59ff3f79"
 
 [[package]]
+name = "metal"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "engine",
+ "objc2",
+ "objc2-foundation",
+ "objc2-metal",
+ "rand",
+ "rand_chacha",
+ "rayon",
+ "serde_json",
+ "xxhash-rust",
+]
+
+[[package]]
 name = "miniz_oxide"
 version = "0.8.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1126,94 +1191,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "76afc826de14238e6e8c374ddcc1fa19e374fd8dd986b0d2af0d02377261d83c"
 dependencies = [
  "getrandom",
-]
-
-[[package]]
-name = "randomart-cli"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "clap",
- "image",
- "randomart-closure-tree",
- "randomart-core",
- "randomart-cranelift-jit",
- "randomart-metal",
-]
-
-[[package]]
-name = "randomart-closure-tree"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "randomart-core",
- "serde_json",
- "xxhash-rust",
-]
-
-[[package]]
-name = "randomart-core"
-version = "0.1.0"
-dependencies = [
- "cc",
- "rand",
- "rand_chacha",
- "rayon",
- "serde",
- "xxhash-rust",
-]
-
-[[package]]
-name = "randomart-cranelift-jit"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "cranelift",
- "cranelift-jit",
- "cranelift-module",
- "randomart-core",
- "rayon",
- "serde_json",
- "xxhash-rust",
-]
-
-[[package]]
-name = "randomart-llvm-aot"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "randomart-core",
- "rayon",
- "serde_json",
- "xxhash-rust",
-]
-
-[[package]]
-name = "randomart-metal"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "objc2",
- "objc2-foundation",
- "objc2-metal",
- "rand",
- "rand_chacha",
- "randomart-core",
- "rayon",
- "serde_json",
- "xxhash-rust",
-]
-
-[[package]]
-name = "randomart-tests"
-version = "0.1.0"
-dependencies = [
- "randomart-closure-tree",
- "randomart-core",
- "randomart-cranelift-jit",
- "randomart-llvm-aot",
- "randomart-metal",
- "serde_json",
 ]
 
 [[package]]

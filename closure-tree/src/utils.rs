@@ -1,5 +1,5 @@
-use randomart_core::node::Node;
-use randomart_core::math;
+use engine::node::Node;
+use engine::math;
 
 pub trait ClosureNode: Fn(f32, f32) -> f32 + Send + Sync {}
 impl<T: Fn(f32, f32) -> f32 + Send + Sync> ClosureNode for T {}

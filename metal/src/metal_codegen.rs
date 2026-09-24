@@ -1,4 +1,4 @@
-use randomart_core::node::Node;
+use engine::node::Node;
 use std::fmt::Write;
 
 struct CodegenCtx {

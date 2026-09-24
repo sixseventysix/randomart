@@ -1,4 +1,4 @@
-use randomart_core::pixel_buffer::PixelBuffer;
+use engine::pixel_buffer::PixelBuffer;
 use anyhow::{anyhow, Context, Result};
 use std::ptr::NonNull;
 use objc2::rc::Retained;

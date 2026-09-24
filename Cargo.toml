@@ -1,12 +1,10 @@
 [workspace]
 members = [
-    "randomart-core",
-    "randomart-metal",
-    "randomart-cranelift-jit",
-    "randomart-closure-tree",
-    "randomart-cli",
-    "randomart-tests",
-    "randomart-llvm-aot",
+    "engine",
+    "metal",
+    "cranelift-backend",
+    "closure-tree",
+    "cli",
 ]
 resolver = "2"
 

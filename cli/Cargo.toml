@@ -1,5 +1,5 @@
 [package]
-name = "randomart-cli"
+name = "cli"
 version = "0.1.0"
 edition = "2021"
 
@@ -12,16 +12,16 @@ path = "src/main.rs"
 # swap it with e.g. `--no-default-features --features cranelift`.
 # metal is macOS-only (its deps don't build elsewhere).
 default = ["closure"]
-closure = ["dep:randomart-closure-tree"]
-cranelift = ["dep:randomart-cranelift-jit"]
-metal = ["dep:randomart-metal"]
+closure = ["dep:closure-tree"]
+cranelift = ["dep:cranelift-backend"]
+metal = ["dep:metal"]
 
 [dependencies]
-randomart-core = { path = "../randomart-core" }
+engine = { path = "../engine" }
 clap = { version = "4", features = ["derive"] }
 image = "0.25.6"
 
-randomart-closure-tree = { path = "../randomart-closure-tree", optional = true }
-randomart-cranelift-jit = { path = "../randomart-cranelift-jit", optional = true }
-randomart-metal = { path = "../randomart-metal", optional = true }
+closure-tree = { path = "../closure-tree", optional = true }
+cranelift-backend = { path = "../cranelift-backend", optional = true }
+metal = { path = "../metal", optional = true }
 anyhow = "1.0.103"

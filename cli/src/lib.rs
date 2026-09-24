@@ -1,7 +1,7 @@
 use anyhow::{Context, Result};
 use clap::{Parser, Subcommand};
 use image::RgbImage;
-use randomart_core::pixel_buffer::{GenerateOutput, PixelBuffer, ReadOutput};
+use engine::pixel_buffer::{GenerateOutput, PixelBuffer, ReadOutput};
 use std::path::{Path, PathBuf};
 
 #[derive(Parser)]
