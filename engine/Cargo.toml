@@ -1,8 +1,7 @@
 [package]
 name = "engine"
-version = "0.1.0"
-edition = "2024"
-build = "build.rs"
+version.workspace = true
+edition.workspace = true
 
 [dependencies]
 serde = { version = "1.0.229", features = ["derive"] }
