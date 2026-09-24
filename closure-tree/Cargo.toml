@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-anyhow = "1.0.103"
+anyhow = "1.0.104"
 engine = { path = "../engine" }
-serde_json = "1"
-xxhash-rust = { version = "0.8", features = ["xxh3"] }
+serde_json = "1.0.151"
+xxhash-rust = { version = "0.8.18", features = ["xxh3"] }

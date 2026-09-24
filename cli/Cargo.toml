@@ -1,7 +1,7 @@
 [package]
 name = "cli"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
 
 [[bin]]
 name = "randomart"
@@ -18,10 +18,10 @@ metal = ["dep:metal"]
 
 [dependencies]
 engine = { path = "../engine" }
-clap = { version = "4", features = ["derive"] }
-image = "0.25.6"
+clap = { version = "4.6.7", features = ["derive"] }
+image = "0.25.10"
 
 closure-tree = { path = "../closure-tree", optional = true }
 cranelift-backend = { path = "../cranelift-backend", optional = true }
 metal = { path = "../metal", optional = true }
-anyhow = "1.0.103"
+anyhow = "1.0.104"

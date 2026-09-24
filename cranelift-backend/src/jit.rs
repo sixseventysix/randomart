@@ -161,7 +161,7 @@ fn build_jit_function(ast: &Node) -> Box<dyn Fn(f32, f32) -> f32 + Sync + Send> 
     let y = fb.block_params(block)[1];
     let result = codegen_node(&mut fb, &mut module, ast, x, y);
     fb.ins().return_(&[result]);
-    fb.finalize();
+    fb.finalize(module.isa().frontend_config());
 
     module.define_function(func_id, &mut ctx).unwrap();
     module.clear_context(&mut ctx);

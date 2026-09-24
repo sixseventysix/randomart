@@ -1,4 +1,4 @@
-extern "C" {
+unsafe extern "C" {
     fn cr_sinf(x: f32) -> f32;
     fn cr_cosf(x: f32) -> f32;
     fn cr_expf(x: f32) -> f32;

@@ -21,7 +21,7 @@ impl CodegenCtx {
         self.lines.push(line);
     }
 
-    pub fn gen(&mut self, node: &Node) -> String {
+    pub fn lower(&mut self, node: &Node) -> String {
         match node {
             Node::X => "x".to_string(),
             Node::Y => "y".to_string(),
@@ -33,62 +33,62 @@ impl CodegenCtx {
             }
 
             Node::Sin(inner) => {
-                let arg = self.gen(inner);
+                let arg = self.lower(inner);
                 let tmp = self.next_tmp();
                 self.emit(format!("float {} = sin({});", tmp, arg));
                 tmp
             }
 
             Node::Cos(inner) => {
-                let arg = self.gen(inner);
+                let arg = self.lower(inner);
                 let tmp = self.next_tmp();
                 self.emit(format!("float {} = cos({});", tmp, arg));
                 tmp
             }
 
             Node::Sqrt(inner) => {
-                let arg = self.gen(inner);
+                let arg = self.lower(inner);
                 let tmp = self.next_tmp();
                 self.emit(format!("float {} = sqrt(fmax({}, 0.0));", tmp, arg));
                 tmp
             }
 
             Node::Exp(inner) => {
-                let arg = self.gen(inner);
+                let arg = self.lower(inner);
                 let tmp = self.next_tmp();
                 self.emit(format!("float {} = exp({});", tmp, arg));
                 tmp
             }
 
             Node::Add(a, b) => {
-                let left = self.gen(a);
-                let right = self.gen(b);
+                let left = self.lower(a);
+                let right = self.lower(b);
                 let tmp = self.next_tmp();
                 self.emit(format!("float {} = ({} + {}) * 0.5;", tmp, left, right));
                 tmp
             }
 
             Node::Mult(a, b) => {
-                let left = self.gen(a);
-                let right = self.gen(b);
+                let left = self.lower(a);
+                let right = self.lower(b);
                 let tmp = self.next_tmp();
                 self.emit(format!("float {} = {} * {};", tmp, left, right));
                 tmp
             }
 
             Node::Div(a, b) => {
-                let left = self.gen(a);
-                let right = self.gen(b);
+                let left = self.lower(a);
+                let right = self.lower(b);
                 let tmp = self.next_tmp();
                 self.emit(format!("float {tmp} = fabs({right}) > 1e-6 ? ({left} / {right}) : 0.0;"));
                 tmp
             }
 
             Node::MixUnbounded(a, b, c, d) => {
-                let a = self.gen(a);
-                let b = self.gen(b);
-                let c = self.gen(c);
-                let d = self.gen(d);
+                let a = self.lower(a);
+                let b = self.lower(b);
+                let c = self.lower(c);
+                let d = self.lower(d);
                 let tmp = self.next_tmp();
                 self.emit(format!("float {} = mixu({}, {}, {}, {});", tmp, a, b, c, d));
                 tmp
@@ -121,17 +121,17 @@ inline float mixu(float a, float b, float c, float d) {
 "#;
 
     let mut ctx_r = CodegenCtx::new();
-    let r_final = ctx_r.gen(r);
+    let r_final = ctx_r.lower(r);
     out += &ctx_r.eval_function("eval_r", &r_final);
     out += "\n";
 
     let mut ctx_g = CodegenCtx::new();
-    let g_final = ctx_g.gen(g);
+    let g_final = ctx_g.lower(g);
     out += &ctx_g.eval_function("eval_g", &g_final);
     out += "\n";
 
     let mut ctx_b = CodegenCtx::new();
-    let b_final = ctx_b.gen(b);
+    let b_final = ctx_b.lower(b);
     out += &ctx_b.eval_function("eval_b", &b_final);
     out += "\n";
 

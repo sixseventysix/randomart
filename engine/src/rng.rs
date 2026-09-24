@@ -1,5 +1,5 @@
 use rand_chacha::ChaCha8Rng;
-use rand::{Rng, SeedableRng};
+use rand::{RngExt, SeedableRng};
 
 pub struct Rng_ {
     rng: ChaCha8Rng,

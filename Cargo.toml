@@ -6,7 +6,7 @@ members = [
     "closure-tree",
     "cli",
 ]
-resolver = "2"
+resolver = "3"
 
 # Optimize release for speed + reasonable size. opt-level stays 3 (this is a
 # compute-bound renderer — "z"/"s" would slow the hot pixel loop). panic = "abort"
