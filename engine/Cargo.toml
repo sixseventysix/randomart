@@ -14,3 +14,10 @@ rand_distr = "0.6.0"
 
 [build-dependencies]
 cc = "1.4.7"
+
+[dev-dependencies]
+divan.workspace = true
+
+[[bench]]
+name = "generate"
+harness = false
