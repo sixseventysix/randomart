@@ -21,9 +21,6 @@ front with a stack, so every op's inputs are ready before the op itself.
 
 - **`closure-tree`**: builds each tree into a tree of Rust closures
 
-`cranelift-backend` (JIT to native code) and `metal` (GPU) are still in the repo but
-not part of the build until they are ported to `Vec<Op>`.
-
 > The closure backend uses the CORE-MATH project for its math implementations of functions not guaranteed by IEEE 754 to be correctly rounded.
 
 ### `cli`
