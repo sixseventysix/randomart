@@ -1,11 +1,11 @@
 use rand_chacha::ChaCha8Rng;
 use rand::{RngExt, SeedableRng};
 
-pub struct Rng_ {
+pub struct Prng {
     rng: ChaCha8Rng,
 }
 
-impl Rng_ {
+impl Prng {
     pub fn new(seed: u64) -> Self {
         Self {
             rng: ChaCha8Rng::seed_from_u64(seed),

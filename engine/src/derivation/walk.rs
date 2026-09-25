@@ -1,17 +1,17 @@
-use crate::derivation::rng::Rng_;
+use crate::derivation::rng::Prng;
 use crate::grammar::Grammar;
 use crate::tree::node::Node;
 
 pub struct Walk<'g> {
     grammar: &'g Grammar,
-    rng: Rng_,
+    rng: Prng,
 }
 
 impl<'g> Walk<'g> {
     pub fn new(grammar: &'g Grammar, seed: u64) -> Self {
         Self {
             grammar,
-            rng: Rng_::new(seed),
+            rng: Prng::new(seed),
         }
     }
 
