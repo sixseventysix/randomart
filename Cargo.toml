@@ -1,8 +1,6 @@
 [workspace]
 members = [
     "engine",
-    "metal",
-    "cranelift-backend",
     "closure-tree",
     "cli",
 ]

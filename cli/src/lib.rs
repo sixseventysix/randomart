@@ -3,9 +3,9 @@ use clap::{Parser, Subcommand, ValueEnum};
 use image::RgbImage;
 use engine::{
     backend::Backend,
-    derivation::seed::generate_from_str,
+    seed::generate_from_str,
+    op::Op,
     render::pixel_buffer::PixelBuffer,
-    tree::node::Node,
 };
 use std::path::{Path, PathBuf};
 
@@ -23,10 +23,6 @@ pub struct Cli {
 pub enum BackendKind {
     #[cfg(feature = "closure")]
     Closure,
-    #[cfg(feature = "cranelift")]
-    Cranelift,
-    #[cfg(feature = "metal")]
-    Metal,
 }
 
 #[derive(Subcommand)]
@@ -79,14 +75,14 @@ pub fn run(backend: &dyn Backend, command: Command) -> Result<()> {
     match command {
         Command::Generate { string, depth, width, height, out, save_json } => {
             let stem = out.unwrap_or_else(|| string.clone());
-            let node = generate_from_str(&string, depth).context("tree generation failed")?;
-            let pixels = backend.render(&node, width, height)?;
+            let channels = generate_from_str(&string, depth);
+            let pixels = backend.render(&channels, width, height)?;
 
             save_image(pixels, &pwd(&format!("{stem}.png")))?;
 
             if save_json {
                 let path = pwd(&format!("{stem}.json"));
-                let json = serde_json::to_string_pretty(&*node)
+                let json = serde_json::to_string_pretty(&channels)
                     .context("failed to serialize node tree")?;
                 std::fs::write(&path, json)
                     .with_context(|| format!("failed to write JSON to {}", path.display()))?;
@@ -104,9 +100,9 @@ pub fn run(backend: &dyn Backend, command: Command) -> Result<()> {
 
             let json = std::fs::read_to_string(&input)
                 .with_context(|| format!("failed to read input file {input}"))?;
-            let node: Node = serde_json::from_str(&json)
+            let channels: [Vec<Op>; 3] = serde_json::from_str(&json)
                 .context("failed to deserialize node tree from JSON")?;
-            let pixels = backend.render(&node, width, height)?;
+            let pixels = backend.render(&channels, width, height)?;
 
             save_image(pixels, &pwd(&format!("{stem}.png")))?;
         }

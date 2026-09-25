@@ -3,8 +3,8 @@ use clap::Parser;
 use cli::{run, BackendKind, Cli};
 use engine::backend::Backend;
 
-#[cfg(not(any(feature = "closure", feature = "cranelift", feature = "metal")))]
-compile_error!("no backend compiled in: enable at least one of the `closure`, `cranelift`, or `metal` features");
+#[cfg(not(feature = "closure"))]
+compile_error!("no backend compiled in: enable the `closure` feature");
 
 fn main() -> Result<()> {
     let cli = Cli::parse();
@@ -22,10 +22,6 @@ fn main() -> Result<()> {
     let backend: Box<dyn Backend> = match kind {
         #[cfg(feature = "closure")]
         BackendKind::Closure => Box::new(closure_tree::ClosureTree),
-        #[cfg(feature = "cranelift")]
-        BackendKind::Cranelift => Box::new(cranelift_backend::Cranelift),
-        #[cfg(feature = "metal")]
-        BackendKind::Metal => Box::new(metal::Metal),
     };
 
     run(backend.as_ref(), cli.command)

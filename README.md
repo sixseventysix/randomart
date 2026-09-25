@@ -5,35 +5,36 @@ Generates images from strings using a randomly grown expression tree.
 ## Crates
 
 ### `engine`
-Common types and algorithms shared across the whole project:
-- `Node`: the AST
-- `Grammar`: probabilistic tree generation
+The pipeline:
+- `Op`: one node of an expression (`X`, `Y`, `Const`, `Sin`, `Add`, ...)
+- `Grammar`: a probabilistic context-free grammar. It is an iterator: seeded with a
+  random stream, it walks the grammar depth-first and yields `Op`s in prefix order.
+  Collecting it gives one tree as a flat `Vec<Op>`.
+- `seed`: turns a string into three seeds, one per colour channel, and so into three trees
+- `Backend`: the trait every backend implements
 - `PixelBuffer`: flat RGB image buffer
-- `Statistics`: tree analysis
-- `Rng`: seeded random number generation
 
 ### Backends
-Execution backends. Each one does exactly one thing: take an AST and return a `PixelBuffer`.
+Execution backends. Each one does exactly one thing: take three `Vec<Op>` trees
+(red, green, blue) and return a `PixelBuffer`. A backend reads each tree back to
+front with a stack, so every op's inputs are ready before the op itself.
 
-- **`metal`**: compiles the AST to Metal Shading Language and runs it on the GPU
-- **`cranelift-backend`**: JIT-compiles the AST to native code via Cranelift
-- **`closure-tree`**: interprets the AST as a tree of Rust closures
+- **`closure-tree`**: builds each tree into a tree of Rust closures
 
-> The CPU backends use the CORE-MATH project for their math implementations of functions not guaranteed by IEEE 754 to be correctly rounded. The Metal backend currently does not support this because it doesn't have native support of `f64`. The Metal output may not be bit-identical to the CPU output.
+`cranelift-backend` (JIT to native code) and `metal` (GPU) are still in the repo but
+not part of the build until they are ported to `Vec<Op>`.
+
+> The closure backend uses the CORE-MATH project for its math implementations of functions not guaranteed by IEEE 754 to be correctly rounded.
 
 ### `cli`
 Owns all I/O. Parses CLI arguments, invokes a backend, and saves the resulting `PixelBuffer` as a PNG. Optionally writes the formula as JSON.
 
 ## Usage
 
-The CLI builds a single `randomart` binary. The backend is chosen at build time
-via a Cargo feature, so only that backend's dependencies are compiled in.
-`closure` is the default; `metal` is macOS-only.
+The CLI builds a single `randomart` binary, using the closure backend.
 
 ```sh
-cargo build --release                                          # closure-tree (default)
-cargo build --release --no-default-features --features cranelift
-cargo build --release --no-default-features --features metal    # macOS only
+cargo build --release
 ```
 
 Generate an image from a string seed:
@@ -42,7 +43,7 @@ Generate an image from a string seed:
 ./randomart generate "hello world" 10
 ```
 
-`depth` controls how deep the expression tree is allowed to grow. Higher depth means more complex images.
+`depth` controls how deep the expression tree is allowed to grow. Higher depth means more complex images. Each step of the grammar (for example `C → sin C`, or `C → A`) uses one level.
 
 Save the formula as JSON alongside the image:
 
@@ -50,7 +51,9 @@ Save the formula as JSON alongside the image:
 ./randomart generate "hello world" 10 --save-json
 ```
 
-This writes a `.json` file next to the PNG. You can then re-render from it later:
+This writes a `.json` file next to the PNG: three lists of ops, one per colour
+channel, in prefix order (for example `["Sin", "Add", "X", {"Const": 0.3}]`).
+Files saved by older versions, which stored a nested tree, can't be read. You can re-render from it later:
 
 ```sh
 ./randomart read formula.json
