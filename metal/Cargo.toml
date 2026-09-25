@@ -4,8 +4,8 @@ version.workspace = true
 edition.workspace = true
 
 [dependencies]
-engine = { path = "../engine" }
+anyhow.workspace = true
+engine.workspace = true
 objc2 = "0.6.4"
 objc2-foundation = { version = "0.3.2", features = ["NSString", "NSURL", "NSError", "NSObject"] }
 objc2-metal = { version = "0.3.2", features = ["MTLAllocation", "MTLCommandBuffer", "MTLCommandEncoder", "MTLCommandQueue", "MTLComputeCommandEncoder", "MTLComputePipeline", "MTLDevice", "MTLLibrary", "MTLPixelFormat", "MTLResource", "MTLTexture", "MTLTypes"] }
-anyhow = "1.0.104"
