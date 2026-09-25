@@ -15,6 +15,8 @@ pub struct Colour {
 
 const TILE_SIZE: u32 = 32;
 
+type TilePixels = Vec<(u32, u32, u8, u8, u8)>;
+
 /// Render `width x height` pixels in parallel tiles by evaluating `function` at
 /// each pixel's `[-1, 1]` coordinate. Disables FTZ/DAZ on every worker thread so
 /// subnormal floats are handled IEEE-correctly, keeping CPU backends bit-exact.
@@ -22,17 +24,17 @@ pub fn render_tiled<F>(function: &F, width: u32, height: u32) -> PixelBuffer
 where
     F: Sync + Fn(PixelCoordinates) -> Colour,
 {
-    let tiles_x = (width + TILE_SIZE - 1) / TILE_SIZE;
-    let tiles_y = (height + TILE_SIZE - 1) / TILE_SIZE;
+    let tiles_x = width.div_ceil(TILE_SIZE);
+    let tiles_y = height.div_ceil(TILE_SIZE);
 
     let tiles: Vec<(u32, u32)> = (0..tiles_y)
         .flat_map(|ty| (0..tiles_x).map(move |tx| (tx * TILE_SIZE, ty * TILE_SIZE)))
         .collect();
 
     // Each tile produces a vec of (global_x, global_y, r, g, b) tuples.
-    rayon::broadcast(|_| unsafe { disable_ftz() });
+    rayon::broadcast(|_| disable_ftz());
 
-    let tile_pixels: Vec<Vec<(u32, u32, u8, u8, u8)>> = tiles
+    let tile_pixels: Vec<TilePixels> = tiles
         .into_par_iter()
         .map(|(x_start, y_start)| {
             let x_end = (x_start + TILE_SIZE).min(width);

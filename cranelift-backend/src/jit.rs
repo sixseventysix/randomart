@@ -125,7 +125,9 @@ fn codegen_node(
     }
 }
 
-fn build_jit_function(ast: &Node) -> Box<dyn Fn(f32, f32) -> f32 + Sync + Send> {
+type JitFn = Box<dyn Fn(f32, f32) -> f32 + Sync + Send>;
+
+fn build_jit_function(ast: &Node) -> JitFn {
     let mut builder = JITBuilder::new(cranelift_module::default_libcall_names())
         .expect("Failed to create JITBuilder");
 
@@ -168,21 +170,12 @@ fn build_jit_function(ast: &Node) -> Box<dyn Fn(f32, f32) -> f32 + Sync + Send> 
     let _ = module.finalize_definitions();
 
     let code = module.get_finalized_function(func_id);
-    let fn_ptr = unsafe { std::mem::transmute::<_, fn(f32, f32) -> f32>(code) };
-    Box::new(fn_ptr) as Box<dyn Fn(f32, f32) -> f32 + Sync + Send>
+    let fn_ptr = unsafe { std::mem::transmute::<*const u8, fn(f32, f32) -> f32>(code) };
+    Box::new(fn_ptr)
 }
 
-pub(crate) fn build_jit_function_triple(r: &Node, g: &Node, b: &Node)
--> (
-    Box<dyn Fn(f32, f32) -> f32 + Sync + Send>,
-    Box<dyn Fn(f32, f32) -> f32 + Sync + Send>,
-    Box<dyn Fn(f32, f32) -> f32 + Sync + Send>,
-)
-{
-    let (r_jit_fn, g_jit_fn): (
-        Box<dyn Fn(f32, f32) -> f32 + Sync + Send>,
-        Box<dyn Fn(f32, f32) -> f32 + Sync + Send>
-    ) = rayon::join(
+pub(crate) fn build_jit_function_triple(r: &Node, g: &Node, b: &Node) -> (JitFn, JitFn, JitFn) {
+    let (r_jit_fn, g_jit_fn) = rayon::join(
         || build_jit_function(r),
         || build_jit_function(g)
     );

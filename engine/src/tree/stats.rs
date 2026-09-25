@@ -33,7 +33,7 @@ impl TreeStatsInner {
             let mut child_deps = vec![];
             let mut child_op_count = 0;
 
-            let _ = match node {
+            match node {
                 X => {
                     stats.leaf_nodes += 1;
                     stats.leaf_depths.push(depth);
@@ -226,7 +226,7 @@ pub struct TreeStats {
 
 impl TreeStats {
     pub fn from_triple(node: &Node) -> Self {
-        let (r, g, b) = match &*node {
+        let (r, g, b) = match node {
             Node::Triple(r, g, b) => (r, g, b),
             _ => panic!("Expected Triple node at top level"),
         };

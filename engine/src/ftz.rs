@@ -1,7 +1,7 @@
 /// Disable Flush-to-Zero (FTZ) and Denormals-Are-Zero (DAZ) in the MXCSR register.
 /// This ensures subnormal floats are handled correctly (IEEE 754 compliant).
 /// Must be called on each thread that performs floating-point computation.
-pub unsafe fn disable_ftz() {
+pub fn disable_ftz() {
     #[cfg(target_arch = "x86_64")]
     unsafe {
         let mut mxcsr: u32;

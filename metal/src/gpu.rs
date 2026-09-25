@@ -91,8 +91,8 @@ pub fn run_gpu_kernel(source: &str, width: u32, height: u32) -> Result<PixelBuff
     let tg_height = max_threads / exec_width;
     let threads_per_tg = MTLSize { width: tg_width, height: tg_height, depth: 1 };
     let threadgroups = MTLSize {
-        width:  (width  as usize + tg_width  - 1) / tg_width,
-        height: (height as usize + tg_height - 1) / tg_height,
+        width:  (width  as usize).div_ceil(tg_width),
+        height: (height as usize).div_ceil(tg_height),
         depth: 1,
     };
 
