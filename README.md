@@ -7,7 +7,7 @@ Generates images from strings using a randomly grown expression tree.
 ### `engine`
 The pipeline:
 - `Op`: one node of an expression (`X`, `Y`, `Const`, `Sin`, `Add`, ...)
-- `Grammar`: a probabilistic context-free grammar. It is an iterator: seeded with a
+- `OpGenerator`: a probabilistic context-free grammar. It is an iterator: seeded with a
   random stream, it walks the grammar depth-first and yields `Op`s in prefix order.
   Collecting it gives one tree as a flat `Vec<Op>`.
 - `seed`: turns a string into three seeds, one per colour channel, and so into three trees

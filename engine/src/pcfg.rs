@@ -43,14 +43,14 @@ fn dice(table: Table) -> WeightedAliasIndex<f32> {
     WeightedAliasIndex::new(table.iter().map(|(weight, _)| *weight).collect()).unwrap()
 }
 
-pub struct Grammar {
+pub struct OpGenerator {
     c_dice: WeightedAliasIndex<f32>,
     a_dice: WeightedAliasIndex<f32>,
     rng: ChaCha8Rng,
     todo: Vec<(Symbol, u32)>,
 }
 
-impl Grammar {
+impl OpGenerator {
     pub fn new(seed: u64, depth: u32) -> Self {
         Self {
             c_dice: dice(C_TABLE),
@@ -73,7 +73,7 @@ impl Grammar {
     }
 }
 
-impl Iterator for Grammar {
+impl Iterator for OpGenerator {
     type Item = Op;
 
     fn next(&mut self) -> Option<Op> {
@@ -93,7 +93,7 @@ mod tests {
     use super::*;
 
     fn generate(seed: u64, depth: u32) -> Vec<Op> {
-        Grammar::new(seed, depth).collect()
+        OpGenerator::new(seed, depth).collect()
     }
 
     #[test]
