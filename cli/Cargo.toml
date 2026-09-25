@@ -8,8 +8,8 @@ name = "randomart"
 path = "src/main.rs"
 
 [features]
-# Exactly one backend is selected at build time. closure-tree is the default;
-# swap it with e.g. `--no-default-features --features cranelift`.
+# Features choose which backends are compiled in; `--backend` picks one at run
+# time. closure-tree is the default; add others with e.g. `--features cranelift`.
 # metal is macOS-only (its deps don't build elsewhere).
 default = ["closure"]
 closure = ["dep:closure-tree"]
@@ -18,7 +18,7 @@ metal = ["dep:metal"]
 
 [dependencies]
 clap = { version = "4.6.7", features = ["derive"] }
-image = "0.25.10"
+image = { version = "0.25.10", default-features = false, features = ["png"] }
 
 closure-tree = { path = "../closure-tree", optional = true }
 cranelift-backend = { path = "../cranelift-backend", optional = true }

@@ -1,5 +1,5 @@
 use anyhow::{Context, Result};
-use clap::{Parser, Subcommand};
+use clap::{Parser, Subcommand, ValueEnum};
 use image::RgbImage;
 use engine::{
     backend::Backend,
@@ -12,8 +12,21 @@ use std::path::{Path, PathBuf};
 #[derive(Parser)]
 #[command(about = "Generate randomart images")]
 pub struct Cli {
+    #[arg(long, value_enum, global = true)]
+    pub backend: Option<BackendKind>,
+
     #[command(subcommand)]
     pub command: Command,
+}
+
+#[derive(Clone, Copy, ValueEnum)]
+pub enum BackendKind {
+    #[cfg(feature = "closure")]
+    Closure,
+    #[cfg(feature = "cranelift")]
+    Cranelift,
+    #[cfg(feature = "metal")]
+    Metal,
 }
 
 #[derive(Subcommand)]
@@ -62,8 +75,8 @@ pub enum Command {
     },
 }
 
-pub fn run(backend: &impl Backend, cli: Cli) -> Result<()> {
-    match cli.command {
+pub fn run(backend: &dyn Backend, command: Command) -> Result<()> {
+    match command {
         Command::Generate { string, depth, width, height, out, save_json } => {
             let stem = out.unwrap_or_else(|| string.clone());
             let node = generate_from_str(&string, depth).context("tree generation failed")?;
