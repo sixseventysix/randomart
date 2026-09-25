@@ -16,7 +16,7 @@ impl<'g> Walk<'g> {
     }
 
     pub fn gen_rule(&mut self, rule: usize, depth: u32) -> Option<Box<Node>> {
-        if depth <= 0 {
+        if depth == 0 {
             return None;
         }
 
