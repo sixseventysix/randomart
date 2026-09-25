@@ -6,5 +6,3 @@ edition.workspace = true
 [dependencies]
 anyhow = "1.0.104"
 engine = { path = "../engine" }
-serde_json = "1.0.151"
-xxhash-rust = { version = "0.8.18", features = ["xxh3"] }

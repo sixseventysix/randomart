@@ -8,7 +8,5 @@ engine = { path = "../engine" }
 cranelift = "0.135.3"
 cranelift-jit = "0.135.3"
 cranelift-module = "0.135.3"
-serde_json = "1.0.151"
 rayon = "1.12.0"
-xxhash-rust = { version = "0.8.18", features = ["xxh3"] }
 anyhow = "1.0.104"

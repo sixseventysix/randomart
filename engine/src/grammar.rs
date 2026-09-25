@@ -1,16 +1,12 @@
-use crate::node::Node;
-use crate::rng::Rng_;
-use xxhash_rust::xxh3::xxh3_64;
+use crate::tree::node::Node;
 
-#[derive(Clone)]
-struct GrammarBranch {
-    node: Box<Node>,
-    probability: f32,
+pub(crate) struct GrammarBranch {
+    pub(crate) node: Box<Node>,
+    pub(crate) probability: f32,
 }
 
-#[derive(Clone)]
-struct GrammarBranches {
-    alternates: Vec<GrammarBranch>,
+pub(crate) struct GrammarBranches {
+    pub(crate) alternates: Vec<GrammarBranch>,
 }
 
 impl GrammarBranches {
@@ -26,20 +22,18 @@ impl GrammarBranches {
 }
 
 pub struct Grammar {
-    rules: Vec<GrammarBranches>,
-    rng: Rng_,
+    pub(crate) rules: Vec<GrammarBranches>,
 }
 
 impl Grammar {
     fn add_rule(&mut self, branch: GrammarBranches) {
         self.rules.push(branch);
     }
+}
 
-    pub fn default(seed: u64) -> Self {
-        let mut grammar = Self {
-            rules: Vec::new(),
-            rng: Rng_::new(seed),
-        };
+impl Default for Grammar {
+    fn default() -> Self {
+        let mut grammar = Self { rules: Vec::new() };
 
         // E::= (C, C, C)
         let mut e_branch = GrammarBranches::new();
@@ -91,125 +85,5 @@ impl Grammar {
         grammar.add_rule(a_branch);
 
         grammar
-    }
-
-    pub fn gen_rule(&mut self, rule: usize, depth: u32) -> Option<Box<Node>> {
-        if depth <= 0 {
-            return None;
-        }
-
-        assert!(rule < self.rules.len(), "invalid rule index");
-        let branches = self.rules[rule].clone();
-        assert!(!branches.alternates.is_empty(), "no branches available");
-
-        let mut node = None;
-
-        for _ in 0..100 {
-            let p: f32 = self.rng.next_float();
-
-            let mut cumulative_probability = 0.0;
-            for branch in &branches.alternates {
-                cumulative_probability += branch.probability;
-                if cumulative_probability >= p {
-                    node = self.gen_node(&branch.node, depth - 1);
-                    break;
-                }
-            }
-
-            if node.is_some() {
-                break;
-            }
-        }
-
-        node
-    }
-
-    fn gen_node(&mut self, node: &Node, depth: u32) -> Option<Box<Node>> {
-        match node {
-            Node::X | Node::Y | Node::Number(_) => Some(Box::new(node.clone())),
-
-            Node::Sqrt(inner) => {
-                let rhs = self.gen_node(inner, depth)?;
-                Some(Box::new(Node::Sqrt(rhs)))
-            }
-            Node::Sin(inner) => {
-                let rhs = self.gen_node(inner, depth)?;
-                Some(Box::new(Node::Sin(rhs)))
-            }
-            Node::Cos(inner) => {
-                let rhs = self.gen_node(inner, depth)?;
-                Some(Box::new(Node::Cos(rhs)))
-            }
-            Node::Exp(inner) => {
-                let rhs = self.gen_node(inner, depth)?;
-                Some(Box::new(Node::Exp(rhs)))
-            }
-
-            Node::Add(lhs, rhs) => {
-                let lhs = self.gen_node(lhs, depth)?;
-                let rhs = self.gen_node(rhs, depth)?;
-                Some(Box::new(Node::Add(lhs, rhs)))
-            }
-            Node::Mult(lhs, rhs) => {
-                let lhs = self.gen_node(lhs, depth)?;
-                let rhs = self.gen_node(rhs, depth)?;
-                Some(Box::new(Node::Mult(lhs, rhs)))
-            }
-            Node::Div(lhs, rhs) => {
-                let lhs = self.gen_node(lhs, depth)?;
-                let rhs = self.gen_node(rhs, depth)?;
-                Some(Box::new(Node::Div(lhs, rhs)))
-            }
-
-            Node::MixUnbounded(a, b, c, d) => {
-                let a = self.gen_node(a, depth)?;
-                let b = self.gen_node(b, depth)?;
-                let c = self.gen_node(c, depth)?;
-                let d = self.gen_node(d, depth)?;
-                Some(Box::new(Node::MixUnbounded(a, b, c, d)))
-            }
-
-            Node::Triple(first, second, third) => {
-                let first = self.gen_node(first, depth)?;
-                let second = self.gen_node(second, depth)?;
-                let third = self.gen_node(third, depth)?;
-                Some(Box::new(Node::Triple(first, second, third)))
-            }
-
-            Node::Rule(rule_index) => {
-                let new_depth = depth.checked_sub(1)?;
-                self.gen_rule(*rule_index, new_depth)
-            }
-
-            Node::Random => {
-                let val = self.rng.next_float() * 2.0 - 1.0;
-                Some(Box::new(Node::Number(val)))
-            }
-        }
-    }
-}
-
-pub fn derive_seeds(base: u64) -> (u64, u64, u64) {
-    let s = base.to_le_bytes();
-    (
-        xxh3_64(&[s.as_slice(), b"-a"].concat()),
-        xxh3_64(&[s.as_slice(), b"-b"].concat()),
-        xxh3_64(&[s.as_slice(), b"-c"].concat()),
-    )
-}
-
-pub fn generate_tree_parallel(grand_seed: u64, depth: u32) -> Option<Box<Node>> {
-    let (seed_a, seed_b, seed_c) = derive_seeds(grand_seed);
-
-    let (b, c) = rayon::join(
-        || Grammar::default(seed_b).gen_rule(1, depth - 1),
-        || Grammar::default(seed_c).gen_rule(1, depth - 1),
-    );
-
-    let a = Grammar::default(seed_a).gen_rule(1, depth - 1);
-
-    match (a, b, c) {
-        (Some(a), Some(b), Some(c)) => Some(Box::new(Node::Triple(a, b, c))),
-        _ => None,
     }
 }

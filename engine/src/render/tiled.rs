@@ -1,5 +1,5 @@
-use crate::disable_ftz;
-use crate::pixel_buffer::PixelBuffer;
+use crate::ftz::disable_ftz;
+use crate::render::pixel_buffer::PixelBuffer;
 use rayon::prelude::*;
 
 pub struct PixelCoordinates {
@@ -64,4 +64,21 @@ where
         }
     }
     buf
+}
+
+pub fn render_channels<R, G, B>(r: R, g: G, b: B, width: u32, height: u32) -> PixelBuffer
+where
+    R: Sync + Fn(f32, f32) -> f32,
+    G: Sync + Fn(f32, f32) -> f32,
+    B: Sync + Fn(f32, f32) -> f32,
+{
+    render_tiled(
+        &|coord: PixelCoordinates| Colour {
+            r: r(coord.x, coord.y),
+            g: g(coord.x, coord.y),
+            b: b(coord.x, coord.y),
+        },
+        width,
+        height,
+    )
 }

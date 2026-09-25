@@ -1,4 +1,4 @@
-use engine::pixel_buffer::PixelBuffer;
+use engine::render::pixel_buffer::PixelBuffer;
 use anyhow::{anyhow, Context, Result};
 use std::ptr::NonNull;
 use objc2::rc::Retained;

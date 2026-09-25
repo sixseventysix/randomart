@@ -1,4 +1,4 @@
-use engine::node::Node;
+use engine::tree::node::Node;
 use std::fmt::Write;
 
 struct CodegenCtx {

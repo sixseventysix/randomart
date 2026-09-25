@@ -9,6 +9,7 @@ rand = "0.10.3"
 rand_chacha = "0.10.0"
 rayon = "1.12.0"
 xxhash-rust = { version = "0.8.18", features = ["xxh3"] }
+anyhow = "1.0.104"
 
 [build-dependencies]
 cc = "1.4.7"

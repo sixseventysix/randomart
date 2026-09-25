@@ -1,7 +1,12 @@
 use anyhow::{Context, Result};
 use clap::{Parser, Subcommand};
 use image::RgbImage;
-use engine::pixel_buffer::{GenerateOutput, PixelBuffer, ReadOutput};
+use engine::{
+    backend::Backend,
+    derivation::seed::generate_from_str,
+    render::pixel_buffer::PixelBuffer,
+    tree::node::Node,
+};
 use std::path::{Path, PathBuf};
 
 #[derive(Parser)]
@@ -57,22 +62,20 @@ pub enum Command {
     },
 }
 
-pub trait RandomArtBackend {
-    fn generate(string: &str, depth: u32, width: u32, height: u32) -> Result<GenerateOutput>;
-    fn read_json(json: &str, width: u32, height: u32) -> Result<ReadOutput>;
-}
-
-pub fn run<B: RandomArtBackend>(cli: Cli) -> Result<()> {
+pub fn run(backend: &impl Backend, cli: Cli) -> Result<()> {
     match cli.command {
         Command::Generate { string, depth, width, height, out, save_json } => {
             let stem = out.unwrap_or_else(|| string.clone());
-            let output = B::generate(&string, depth, width, height)?;
+            let node = generate_from_str(&string, depth).context("tree generation failed")?;
+            let pixels = backend.render(&node, width, height)?;
 
-            save_image(output.pixels, &pwd(&format!("{stem}.png")))?;
+            save_image(pixels, &pwd(&format!("{stem}.png")))?;
 
             if save_json {
                 let path = pwd(&format!("{stem}.json"));
-                std::fs::write(&path, &output.json)
+                let json = serde_json::to_string_pretty(&*node)
+                    .context("failed to serialize node tree")?;
+                std::fs::write(&path, json)
                     .with_context(|| format!("failed to write JSON to {}", path.display()))?;
             }
         }
@@ -88,9 +91,11 @@ pub fn run<B: RandomArtBackend>(cli: Cli) -> Result<()> {
 
             let json = std::fs::read_to_string(&input)
                 .with_context(|| format!("failed to read input file {input}"))?;
-            let output = B::read_json(&json, width, height)?;
+            let node: Node = serde_json::from_str(&json)
+                .context("failed to deserialize node tree from JSON")?;
+            let pixels = backend.render(&node, width, height)?;
 
-            save_image(output.pixels, &pwd(&format!("{stem}.png")))?;
+            save_image(pixels, &pwd(&format!("{stem}.png")))?;
         }
     }
     Ok(())

@@ -1,7 +1,7 @@
 use cranelift::prelude::*;
 use cranelift_jit::{JITBuilder, JITModule};
 use cranelift_module::{Module, Linkage};
-use engine::node::Node;
+use engine::tree::node::Node;
 use engine::math;
 
 macro_rules! define_and_register_math_fns {
@@ -172,17 +172,13 @@ fn build_jit_function(ast: &Node) -> Box<dyn Fn(f32, f32) -> f32 + Sync + Send> 
     Box::new(fn_ptr) as Box<dyn Fn(f32, f32) -> f32 + Sync + Send>
 }
 
-pub(crate) fn build_jit_function_triple(node: &Node)
+pub(crate) fn build_jit_function_triple(r: &Node, g: &Node, b: &Node)
 -> (
     Box<dyn Fn(f32, f32) -> f32 + Sync + Send>,
     Box<dyn Fn(f32, f32) -> f32 + Sync + Send>,
     Box<dyn Fn(f32, f32) -> f32 + Sync + Send>,
 )
 {
-    let (r, g, b) = match &*node {
-        Node::Triple(r, g, b) => (r, g, b),
-        _ => panic!("Expected Triple node at top level"),
-    };
     let (r_jit_fn, g_jit_fn): (
         Box<dyn Fn(f32, f32) -> f32 + Sync + Send>,
         Box<dyn Fn(f32, f32) -> f32 + Sync + Send>

@@ -25,3 +25,4 @@ closure-tree = { path = "../closure-tree", optional = true }
 cranelift-backend = { path = "../cranelift-backend", optional = true }
 metal = { path = "../metal", optional = true }
 anyhow = "1.0.104"
+serde_json = "1.0.151"

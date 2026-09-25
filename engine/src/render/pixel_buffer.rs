@@ -1,12 +1,3 @@
-pub struct GenerateOutput {
-    pub pixels: PixelBuffer,
-    pub json: String,
-}
-
-pub struct ReadOutput {
-    pub pixels: PixelBuffer,
-}
-
 /// A flat RGB image buffer. Each pixel is 3 consecutive bytes: R, G, B.
 #[derive(PartialEq, Eq, Debug)]
 pub struct PixelBuffer {

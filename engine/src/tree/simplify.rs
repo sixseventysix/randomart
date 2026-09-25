@@ -1,20 +1,4 @@
-#[derive(Clone, Debug, PartialEq, serde::Serialize, serde::Deserialize)]
-pub enum Node {
-    X,
-    Y,
-    Random,
-    Rule(usize),
-    Number(f32),
-    Sqrt(Box<Node>),
-    Sin(Box<Node>),
-    Cos(Box<Node>),
-    Exp(Box<Node>),
-    Add(Box<Node>, Box<Node>),
-    Mult(Box<Node>, Box<Node>),
-    Div(Box<Node>, Box<Node>),
-    Triple(Box<Node>, Box<Node>, Box<Node>),
-    MixUnbounded(Box<Node>, Box<Node>, Box<Node>, Box<Node>),
-}
+use super::node::Node;
 
 impl Node {
     pub fn simplify(&mut self) {

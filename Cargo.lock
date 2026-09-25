@@ -312,6 +312,7 @@ dependencies = [
  "engine",
  "image",
  "metal",
+ "serde_json",
 ]
 
 [[package]]
@@ -320,8 +321,6 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "engine",
- "serde_json",
- "xxhash-rust",
 ]
 
 [[package]]
@@ -393,8 +392,6 @@ dependencies = [
  "cranelift-module",
  "engine",
  "rayon",
- "serde_json",
- "xxhash-rust",
 ]
 
 [[package]]
@@ -608,6 +605,7 @@ checksum = "48c757948c5ede0e46177b7add2e67155f70e33c07fea8284df6576da70b3719"
 name = "engine"
 version = "0.1.0"
 dependencies = [
+ "anyhow",
  "cc",
  "rand 0.10.3",
  "rand_chacha 0.10.0",
@@ -970,8 +968,6 @@ dependencies = [
  "objc2",
  "objc2-foundation",
  "objc2-metal",
- "serde_json",
- "xxhash-rust",
 ]
 
 [[package]]

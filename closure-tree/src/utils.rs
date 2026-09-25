@@ -1,4 +1,4 @@
-use engine::node::Node;
+use engine::tree::node::Node;
 use engine::math;
 
 pub trait ClosureNode: Fn(f32, f32) -> f32 + Send + Sync {}

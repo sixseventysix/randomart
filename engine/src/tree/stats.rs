@@ -1,4 +1,4 @@
-use crate::node::Node;
+use crate::tree::node::Node;
 use std::collections::BTreeMap;
 
 #[derive(PartialEq)]
@@ -26,7 +26,7 @@ struct TreeStatsInner {
 impl TreeStatsInner {
     pub fn from_node(node: &Node) -> Self {
         fn helper(node: &Node, depth: usize, stats: &mut TreeStatsInner) -> (Dependency, usize) {
-            use crate::node::Node::*;
+            use crate::tree::node::Node::*;
 
             stats.total_nodes += 1;
             stats.max_depth = stats.max_depth.max(depth);

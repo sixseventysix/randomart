@@ -1,18 +1,17 @@
 use anyhow::Result;
 use clap::Parser;
-use cli::{run, Cli, RandomArtBackend};
-use engine::pixel_buffer::{GenerateOutput, ReadOutput};
+use cli::{run, Cli};
 
-// Exactly one backend feature must be enabled. Alias the selected backend crate
-// to `backend` so the rest of this file is backend-agnostic.
+// Exactly one backend feature must be enabled. Alias the selected backend
+// to `SelectedBackend` so the rest of this file is backend-agnostic.
 // Precedence (closure > cranelift > metal) keeps exactly one alias active even
 // when several features are on, so the compile_error! below is the only error.
 #[cfg(feature = "closure")]
-use closure_tree as backend;
+use closure_tree::ClosureTree as SelectedBackend;
 #[cfg(all(feature = "cranelift", not(feature = "closure")))]
-use cranelift_backend as backend;
+use cranelift_backend::Cranelift as SelectedBackend;
 #[cfg(all(feature = "metal", not(feature = "closure"), not(feature = "cranelift")))]
-use metal as backend;
+use metal::Metal as SelectedBackend;
 
 #[cfg(not(any(feature = "closure", feature = "cranelift", feature = "metal")))]
 compile_error!("no backend selected: enable one of the `closure`, `cranelift`, or `metal` features");
@@ -24,17 +23,6 @@ compile_error!("no backend selected: enable one of the `closure`, `cranelift`, o
 ))]
 compile_error!("multiple backends selected: enable exactly one of `closure`, `cranelift`, `metal`");
 
-struct Backend;
-
-impl RandomArtBackend for Backend {
-    fn generate(string: &str, depth: u32, width: u32, height: u32) -> Result<GenerateOutput> {
-        backend::generate(string, depth, width, height)
-    }
-    fn read_json(json: &str, width: u32, height: u32) -> Result<ReadOutput> {
-        backend::read_json(json, width, height)
-    }
-}
-
 fn main() -> Result<()> {
-    run::<Backend>(Cli::parse())
+    run(&SelectedBackend, Cli::parse())
 }
