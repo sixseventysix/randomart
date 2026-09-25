@@ -106,12 +106,7 @@ mod tests {
     #[test]
     fn every_tree_is_one_complete_expression() {
         for seed in 0..100 {
-            let mut open = 1;
-            for op in generate(seed, 8) {
-                assert!(open > 0);
-                open = open - 1 + op.arity();
-            }
-            assert_eq!(open, 0);
+            crate::op::check(&generate(seed, 8)).unwrap();
         }
     }
 

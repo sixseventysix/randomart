@@ -4,7 +4,7 @@ use image::RgbImage;
 use engine::{
     backend::Backend,
     seed::generate_from_str,
-    op::Op,
+    op::{check, Op},
     render::pixel_buffer::PixelBuffer,
 };
 use std::path::{Path, PathBuf};
@@ -102,6 +102,9 @@ pub fn run(backend: &dyn Backend, command: Command) -> Result<()> {
                 .with_context(|| format!("failed to read input file {input}"))?;
             let channels: [Vec<Op>; 3] = serde_json::from_str(&json)
                 .context("failed to deserialize node tree from JSON")?;
+            for ops in &channels {
+                check(ops).with_context(|| format!("invalid expression in {input}"))?;
+            }
             let pixels = backend.render(&channels, width, height)?;
 
             save_image(pixels, &pwd(&format!("{stem}.png")))?;
