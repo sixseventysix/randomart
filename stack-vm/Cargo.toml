@@ -1,8 +1,9 @@
 [package]
-name = "closure-tree"
+name = "stack-vm"
 version.workspace = true
 edition.workspace = true
 
 [dependencies]
 anyhow.workspace = true
 engine.workspace = true
+rayon = "1.12.0"

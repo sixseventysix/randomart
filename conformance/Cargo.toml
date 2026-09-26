@@ -1,0 +1,16 @@
+[package]
+name = "conformance"
+version.workspace = true
+edition.workspace = true
+
+[dev-dependencies]
+closure-tree = { path = "../closure-tree" }
+divan.workspace = true
+engine.workspace = true
+rayon = "1.12.0"
+stack-vm = { path = "../stack-vm" }
+xxhash-rust.workspace = true
+
+[[bench]]
+name = "render"
+harness = false

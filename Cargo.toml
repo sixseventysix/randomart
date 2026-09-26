@@ -3,6 +3,8 @@ members = [
     "engine",
     "closure-tree",
     "cli",
+    "stack-vm",
+    "conformance",
 ]
 resolver = "3"
 
