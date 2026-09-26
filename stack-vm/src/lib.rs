@@ -1,3 +1,7 @@
+mod memo;
+
+pub use memo::MemoStackVm;
+
 use anyhow::Result;
 use engine::{
     backend::Backend,
@@ -59,63 +63,86 @@ impl Machine {
         self.top -= 3;
     }
 
+    fn step(&mut self, op: Op, xs: &[f32], y: f32) {
+        match op {
+            Op::X => self.push().copy_from_slice(xs),
+            Op::Y => self.push().fill(y),
+            Op::Const(v) => self.push().fill(v),
+            Op::Sin => self.unary(math::sinf),
+            Op::Cos => self.unary(math::cosf),
+            Op::Exp => self.unary(math::expf),
+            Op::Sqrt => self.unary(|a| math::sqrtf(a).max(0.0)),
+            Op::Add => self.binary(|a, b| (a + b) / 2.0),
+            Op::Mult => self.binary(|a, b| a * b),
+            Op::Div => self.binary(|a, b| if b.abs() > 1e-6 { a / b } else { 0.0 }),
+            Op::Mix => self.mix(),
+        }
+    }
+
     fn run(&mut self, ops: &[Op], xs: &[f32], y: f32) -> &[f32] {
         self.top = 0;
         for &op in ops.iter().rev() {
-            match op {
-                Op::X => self.push().copy_from_slice(xs),
-                Op::Y => self.push().fill(y),
-                Op::Const(v) => self.push().fill(v),
-                Op::Sin => self.unary(math::sinf),
-                Op::Cos => self.unary(math::cosf),
-                Op::Exp => self.unary(math::expf),
-                Op::Sqrt => self.unary(|a| math::sqrtf(a).max(0.0)),
-                Op::Add => self.binary(|a, b| (a + b) / 2.0),
-                Op::Mult => self.binary(|a, b| a * b),
-                Op::Div => self.binary(|a, b| if b.abs() > 1e-6 { a / b } else { 0.0 }),
-                Op::Mix => self.mix(),
-            }
+            self.step(op, xs, y);
         }
         &self.stack[0]
     }
 }
 
+trait Channel: Sync {
+    fn run_row<'m>(&self, machine: &'m mut Machine, row: usize, xs: &[f32], y: f32) -> &'m [f32];
+}
+
+impl Channel for Vec<Op> {
+    fn run_row<'m>(&self, machine: &'m mut Machine, _row: usize, xs: &[f32], y: f32) -> &'m [f32] {
+        machine.run(self, xs, y)
+    }
+}
+
+fn pixel_positions(size: u32) -> Vec<f32> {
+    (0..size as usize).map(|px| pixel_position(px, size)).collect()
+}
+
+fn render_bands(channels: &[impl Channel; 3], xs: &[f32], width: u32, height: u32) -> PixelBuffer {
+    let mut buf = PixelBuffer::new(width, height);
+    if buf.data.is_empty() {
+        return buf;
+    }
+    let row_bytes = width as usize * 3;
+
+    rayon::broadcast(|_| disable_ftz());
+
+    buf.data
+        .par_chunks_mut(row_bytes * ROWS_PER_BAND)
+        .enumerate()
+        .for_each(|(band, out)| {
+            let mut machines = [
+                Machine::new(width as usize),
+                Machine::new(width as usize),
+                Machine::new(width as usize),
+            ];
+            let [red, green, blue] = &mut machines;
+
+            for (i, row) in out.chunks_mut(row_bytes).enumerate() {
+                let row_index = band * ROWS_PER_BAND + i;
+                let y = pixel_position(row_index, height);
+                let r = channels[0].run_row(red, row_index, xs, y);
+                let g = channels[1].run_row(green, row_index, xs, y);
+                let b = channels[2].run_row(blue, row_index, xs, y);
+
+                for (px, pixel) in row.chunks_exact_mut(3).enumerate() {
+                    pixel[0] = to_byte(r[px]);
+                    pixel[1] = to_byte(g[px]);
+                    pixel[2] = to_byte(b[px]);
+                }
+            }
+        });
+
+    buf
+}
+
 impl Backend for StackVm {
     fn render(&self, channels: &[Vec<Op>; 3], width: u32, height: u32) -> Result<PixelBuffer> {
-        let mut buf = PixelBuffer::new(width, height);
-        if buf.data.is_empty() {
-            return Ok(buf);
-        }
-        let row_bytes = width as usize * 3;
-        let xs: Vec<f32> = (0..width as usize).map(|px| pixel_position(px, width)).collect();
-
-        rayon::broadcast(|_| disable_ftz());
-
-        buf.data
-            .par_chunks_mut(row_bytes * ROWS_PER_BAND)
-            .enumerate()
-            .for_each(|(band, out)| {
-                let mut machines = [
-                    Machine::new(width as usize),
-                    Machine::new(width as usize),
-                    Machine::new(width as usize),
-                ];
-                let [red, green, blue] = &mut machines;
-
-                for (i, row) in out.chunks_mut(row_bytes).enumerate() {
-                    let y = pixel_position(band * ROWS_PER_BAND + i, height);
-                    let r = red.run(&channels[0], &xs, y);
-                    let g = green.run(&channels[1], &xs, y);
-                    let b = blue.run(&channels[2], &xs, y);
-
-                    for (px, pixel) in row.chunks_exact_mut(3).enumerate() {
-                        pixel[0] = to_byte(r[px]);
-                        pixel[1] = to_byte(g[px]);
-                        pixel[2] = to_byte(b[px]);
-                    }
-                }
-            });
-
-        Ok(buf)
+        let xs = pixel_positions(width);
+        Ok(render_bands(channels, &xs, width, height))
     }
 }

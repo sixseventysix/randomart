@@ -1,6 +1,6 @@
 use closure_tree::ClosureTree;
 use engine::{backend::Backend, seed::generate_from_str};
-use stack_vm::StackVm;
+use stack_vm::{MemoStackVm, StackVm};
 use xxhash_rust::xxh3::xxh3_64;
 
 const GOLDEN: [(&str, u32, u64); 3] = [
@@ -9,8 +9,8 @@ const GOLDEN: [(&str, u32, u64); 3] = [
     ("colour", 16, 5108133957971540951),
 ];
 
-fn backends() -> [(&'static str, &'static dyn Backend); 2] {
-    [("closure-tree", &ClosureTree), ("stack-vm", &StackVm)]
+fn backends() -> [(&'static str, &'static dyn Backend); 3] {
+    [("closure-tree", &ClosureTree), ("stack-vm", &StackVm), ("memo-stack-vm", &MemoStackVm)]
 }
 
 #[test]
