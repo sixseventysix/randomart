@@ -14,3 +14,4 @@ edition = "2024"
 engine = { path = "engine" }
 anyhow = "1.0.104"
 divan = "0.1.21"
+xxhash-rust = { version = "0.8.18", features = ["xxh3"] }

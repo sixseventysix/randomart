@@ -5,7 +5,7 @@ use engine::{
     backend::Backend,
     op::Op,
     render::pixel_buffer::PixelBuffer,
-    render::tiled::render_channels,
+    render::render_channels,
 };
 use anyhow::Result;
 

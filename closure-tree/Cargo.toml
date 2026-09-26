@@ -10,6 +10,7 @@ engine.workspace = true
 [dev-dependencies]
 divan.workspace = true
 rayon = "1.12.0"
+xxhash-rust.workspace = true
 
 [[bench]]
 name = "render"

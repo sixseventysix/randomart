@@ -176,6 +176,7 @@ dependencies = [
  "divan",
  "engine",
  "rayon",
+ "xxhash-rust",
 ]
 
 [[package]]
