@@ -74,8 +74,8 @@ impl EvaluationStack {
         let b = &upper[1];
         let c = &upper[0];
         let d = &mut lower[self.stack_ptr - 4];
-        for i in 0..self.width {
-            d[i] = (a[i] * c[i] + b[i] * d[i]) / (a[i] + b[i] + 1e-6);
+        for (((d, &a), &b), &c) in d.iter_mut().zip(a).zip(b).zip(c) {
+            *d = (a * c + b * *d) / (a + b + 1e-6);
         }
         self.stack_ptr -= 3;
     }
