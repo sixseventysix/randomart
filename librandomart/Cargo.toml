@@ -4,7 +4,6 @@ version.workspace = true
 edition.workspace = true
 
 [dependencies]
-serde = { version = "1.0.229", features = ["derive"] }
 rand = "0.10.3"
 rand_chacha = "0.10.0"
 rayon = "1.12.0"
@@ -24,4 +23,8 @@ harness = false
 
 [[bench]]
 name = "math"
+harness = false
+
+[[bench]]
+name = "render"
 harness = false
