@@ -1,8 +1,0 @@
-[package]
-name = "closure-tree"
-version.workspace = true
-edition.workspace = true
-
-[dependencies]
-anyhow.workspace = true
-engine.workspace = true

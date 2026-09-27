@@ -1,27 +1,14 @@
-use closure_tree::ClosureTree;
 use divan::{Bencher, black_box};
-use engine::{backend::Backend, seed::generate_from_str};
+use randomart::{seed::generate_from_str, vm::Vm};
 use rayon::ThreadPoolBuilder;
-use vm::Vm;
 
 fn main() {
     divan::main();
 }
 
-fn run(bencher: Bencher, threads: usize, backend: &(dyn Backend + Sync)) {
-    let pool = ThreadPoolBuilder::new().num_threads(threads).build().unwrap();
-    let channels = generate_from_str("hello world", 12);
-    bencher.bench_local(|| {
-        pool.install(|| backend.render(black_box(&channels), 512, 512).unwrap())
-    });
-}
-
-#[divan::bench(args = [1, 4, 10], sample_count = 20)]
-fn closure_tree(bencher: Bencher, threads: usize) {
-    run(bencher, threads, &ClosureTree)
-}
-
 #[divan::bench(args = [1, 4, 10], sample_count = 20)]
 fn vm(bencher: Bencher, threads: usize) {
-    run(bencher, threads, &Vm)
+    let pool = ThreadPoolBuilder::new().num_threads(threads).build().unwrap();
+    let channels = generate_from_str("hello world", 12);
+    bencher.bench_local(|| pool.install(|| Vm.render(black_box(&channels), 512, 512).unwrap()));
 }

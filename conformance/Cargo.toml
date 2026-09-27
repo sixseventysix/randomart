@@ -4,11 +4,9 @@ version.workspace = true
 edition.workspace = true
 
 [dev-dependencies]
-closure-tree = { path = "../closure-tree" }
 divan.workspace = true
-engine.workspace = true
+randomart.workspace = true
 rayon = "1.12.0"
-vm = { path = "../vm" }
 xxhash-rust.workspace = true
 
 [[bench]]

@@ -1,10 +1,7 @@
 [workspace]
 members = [
-    "engine",
-    "closure-tree",
-    "cli",
+    "librandomart",
     "conformance",
-    "vm",
 ]
 resolver = "3"
 
@@ -13,7 +10,7 @@ version = "0.1.0"
 edition = "2024"
 
 [workspace.dependencies]
-engine = { path = "engine" }
+randomart = { path = "librandomart" }
 anyhow = "1.0.104"
 divan = "0.1.21"
 xxhash-rust = { version = "0.8.18", features = ["xxh3"] }

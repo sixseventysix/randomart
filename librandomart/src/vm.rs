@@ -1,6 +1,5 @@
 use anyhow::Result;
-use engine::{
-    backend::Backend,
+use crate::{
     ftz::disable_ftz,
     math,
     op::Op,
@@ -227,8 +226,8 @@ impl Program {
 
 pub struct Vm;
 
-impl Backend for Vm {
-    fn render(&self, channels: &[Vec<Op>; 3], width: u32, height: u32) -> Result<PixelBuffer> {
+impl Vm {
+    pub fn render(&self, channels: &[Vec<Op>; 3], width: u32, height: u32) -> Result<PixelBuffer> {
         let mut buf = PixelBuffer::new(width, height);
         if buf.data.is_empty() {
             return Ok(buf);

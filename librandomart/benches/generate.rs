@@ -1,4 +1,4 @@
-use engine::{op::Op, seed::generate_from_str};
+use randomart::{op::Op, seed::generate_from_str};
 
 fn main() {
     divan::main();

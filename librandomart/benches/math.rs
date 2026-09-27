@@ -1,5 +1,5 @@
 use divan::{Bencher, black_box};
-use engine::{ftz::disable_ftz, math, render::pixel_position};
+use randomart::{ftz::disable_ftz, math, render::pixel_position};
 
 const PIXELS: usize = 512 * 512;
 
