@@ -21,3 +21,7 @@ divan.workspace = true
 [[bench]]
 name = "generate"
 harness = false
+
+[[bench]]
+name = "math"
+harness = false
