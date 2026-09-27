@@ -58,6 +58,10 @@ impl EvaluationStack {
         }
     }
 
+    fn unary_row(&mut self, f: fn(&mut [f32])) {
+        f(&mut self.evaluations[self.stack_ptr - 1]);
+    }
+
     fn binary(&mut self, f: impl Fn(f32, f32) -> f32) {
         let (lower, upper) = self.evaluations.split_at_mut(self.stack_ptr - 1);
         let a = &upper[0];
@@ -207,9 +211,9 @@ impl Program {
                     CacheEntry::YOnly(values) => stack.push().fill(values[row]),
                 },
                 Instruction::Const(v) => stack.push().fill(v),
-                Instruction::Sin => stack.unary(math::sinf),
-                Instruction::Cos => stack.unary(math::cosf),
-                Instruction::Exp => stack.unary(math::expf),
+                Instruction::Sin => stack.unary_row(math::sinf_row),
+                Instruction::Cos => stack.unary_row(math::cosf_row),
+                Instruction::Exp => stack.unary_row(math::expf_row),
                 Instruction::Sqrt => stack.unary(|a| math::sqrtf(a).max(0.0)),
                 Instruction::Add => stack.binary(|a, b| (a + b) / 2.0),
                 Instruction::Mult => stack.binary(|a, b| a * b),

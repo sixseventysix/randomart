@@ -12,14 +12,18 @@ fn main() {
     let cosf = core_math.join("src/binary32/cos/cosf.c");
     let expf = core_math.join("src/binary32/exp/expf.c");
 
-    println!("cargo:rerun-if-changed={}", sinf.display());
-    println!("cargo:rerun-if-changed={}", cosf.display());
-    println!("cargo:rerun-if-changed={}", expf.display());
+    let sinf_row = manifest_dir.join("core-math-rows/sinf_row.c");
+    let cosf_row = manifest_dir.join("core-math-rows/cosf_row.c");
+    let expf_row = manifest_dir.join("core-math-rows/expf_row.c");
+
+    for path in [&sinf, &cosf, &expf, &sinf_row, &cosf_row, &expf_row] {
+        println!("cargo:rerun-if-changed={}", path.display());
+    }
 
     cc::Build::new()
-        .file(sinf)
-        .file(cosf)
-        .file(expf)
+        .file(sinf_row)
+        .file(cosf_row)
+        .file(expf_row)
         .flag_if_supported("-std=c11")
         .compile("core_math");
 }
