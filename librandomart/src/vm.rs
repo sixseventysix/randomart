@@ -9,7 +9,8 @@ use rayon::prelude::*;
 
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum Instruction {
-    Cached(usize),
+    XOnlySubtree(usize),
+    YOnlySubtree(usize),
     Const(f32),
     Sqrt,
     Sin,
@@ -21,13 +22,9 @@ pub enum Instruction {
     Mix,
 }
 
-pub enum CacheEntry {
-    XOnly(Vec<f32>),
-    YOnly(Vec<f32>),
-}
-
 pub struct Cache {
-    pub entries: Vec<CacheEntry>,
+    pub x_rows: Vec<Vec<f32>>,
+    pub y_values: Vec<Vec<f32>>,
 }
 
 pub type SubtreeEvaluations = Vec<f32>;
@@ -109,16 +106,31 @@ fn combine(a: DependsOn, b: DependsOn) -> DependsOn {
     }
 }
 
-struct Subtree {
-    depends_on: DependsOn,
-    start: usize,
-    size: usize,
-    placeholder: Option<usize>,
+fn depends_on(ops: &[Op]) -> Vec<(DependsOn, usize)> {
+    let mut stack: Vec<(DependsOn, usize)> = Vec::new();
+    let mut nodes: Vec<(DependsOn, usize)> = ops
+        .iter()
+        .rev()
+        .map(|&op| {
+            let leaf = match op {
+                Op::X => DependsOn::X,
+                Op::Y => DependsOn::Y,
+                _ => DependsOn::Nothing,
+            };
+            let node = stack
+                .drain(stack.len() - op.arity()..)
+                .fold((leaf, 1), |(depends_on, size), (child, child_size)| (combine(depends_on, child), size + child_size));
+            stack.push(node);
+            node
+        })
+        .collect();
+    nodes.reverse();
+    nodes
 }
 
 fn instruction(op: Op) -> Instruction {
     match op {
-        Op::X | Op::Y => Instruction::Cached(0),
+        Op::X | Op::Y => Instruction::XOnlySubtree(0),
         Op::Const(v) => Instruction::Const(v),
         Op::Sqrt => Instruction::Sqrt,
         Op::Sin => Instruction::Sin,
@@ -134,23 +146,22 @@ fn instruction(op: Op) -> Instruction {
 fn evaluate(ops: &[Op], inputs: &[f32]) -> Vec<f32> {
     let program = Program {
         instructions: ops.iter().rev().map(|&op| instruction(op)).collect(),
-        cache: Cache { entries: vec![CacheEntry::XOnly(inputs.to_vec())] },
+        cache: Cache { x_rows: vec![inputs.to_vec()], y_values: Vec::new() },
     };
     let mut stack = EvaluationStack::new(inputs.len());
     program.run(&mut stack, 0).to_vec()
 }
 
-fn cut(ops: &[Op], subtree: &Subtree, xs: &[f32], ys: &[f32], entries: &mut Vec<CacheEntry>) -> Instruction {
-    let subtree_ops = &ops[subtree.start..subtree.start + subtree.size];
-    match subtree.depends_on {
-        DependsOn::Nothing => Instruction::Const(evaluate(subtree_ops, &[0.0])[0]),
+fn cut(subtree: &[Op], depends_on: DependsOn, xs: &[f32], ys: &[f32], cache: &mut Cache) -> Instruction {
+    match depends_on {
+        DependsOn::Nothing => Instruction::Const(evaluate(subtree, &[0.0])[0]),
         DependsOn::X => {
-            entries.push(CacheEntry::XOnly(evaluate(subtree_ops, xs)));
-            Instruction::Cached(entries.len() - 1)
+            cache.x_rows.push(evaluate(subtree, xs));
+            Instruction::XOnlySubtree(cache.x_rows.len() - 1)
         }
         DependsOn::Y => {
-            entries.push(CacheEntry::YOnly(evaluate(subtree_ops, ys)));
-            Instruction::Cached(entries.len() - 1)
+            cache.y_values.push(evaluate(subtree, ys));
+            Instruction::YOnlySubtree(cache.y_values.len() - 1)
         }
         DependsOn::XAndY => unreachable!(),
     }
@@ -160,55 +171,41 @@ impl Program {
     pub fn new(ops: &[Op], width: u32, height: u32) -> Self {
         let xs = positions(width);
         let ys = positions(height);
-        let mut entries = Vec::new();
-        let mut output: Vec<Option<Instruction>> = Vec::new();
-        let mut subtrees: Vec<Subtree> = Vec::new();
-
-        for (i, &op) in ops.iter().enumerate().rev() {
-            let children: Vec<Subtree> = (0..op.arity()).map(|_| subtrees.pop().unwrap()).collect();
-            let mut depends_on = match op {
-                Op::X => DependsOn::X,
-                Op::Y => DependsOn::Y,
-                _ => DependsOn::Nothing,
-            };
-            let mut size = 1;
-            for child in &children {
-                depends_on = combine(depends_on, child.depends_on);
-                size += child.size;
-            }
-
-            if depends_on == DependsOn::XAndY {
-                for child in &children {
-                    if let Some(placeholder) = child.placeholder {
-                        output[placeholder] = Some(cut(ops, child, &xs, &ys, &mut entries));
+        let nodes = depends_on(ops);
+        let mut cache = Cache { x_rows: Vec::new(), y_values: Vec::new() };
+        let mut parents: Vec<(DependsOn, usize)> = Vec::new();
+        let mut instructions: Vec<Instruction> = ops
+            .iter()
+            .zip(&nodes)
+            .enumerate()
+            .filter_map(|(i, (&op, &(depends_on, size)))| {
+                let parent = parents.last().map(|&(parent, _)| parent);
+                if let Some(waiting) = parents.last_mut() {
+                    waiting.1 -= 1;
+                    if waiting.1 == 0 {
+                        parents.pop();
                     }
                 }
-                output.push(Some(instruction(op)));
-                subtrees.push(Subtree { depends_on, start: i, size, placeholder: None });
-            } else {
-                output.truncate(output.len() - children.len());
-                output.push(None);
-                subtrees.push(Subtree { depends_on, start: i, size, placeholder: Some(output.len() - 1) });
-            }
-        }
-
-        let root = subtrees.pop().unwrap();
-        if let Some(placeholder) = root.placeholder {
-            output[placeholder] = Some(cut(ops, &root, &xs, &ys, &mut entries));
-        }
-
-        let instructions = output.into_iter().map(Option::unwrap).collect();
-        Self { instructions, cache: Cache { entries } }
+                if op.arity() > 0 {
+                    parents.push((depends_on, op.arity()));
+                }
+                match (depends_on, parent) {
+                    (DependsOn::XAndY, _) => Some(instruction(op)),
+                    (_, Some(DependsOn::XAndY) | None) => Some(cut(&ops[i..i + size], depends_on, &xs, &ys, &mut cache)),
+                    _ => None,
+                }
+            })
+            .collect();
+        instructions.reverse();
+        Self { instructions, cache }
     }
 
     pub fn run<'s>(&self, stack: &'s mut EvaluationStack, row: usize) -> &'s [f32] {
         stack.stack_ptr = 0;
         for &instruction in self.instructions.iter() {
             match instruction {
-                Instruction::Cached(k) => match &self.cache.entries[k] {
-                    CacheEntry::XOnly(values) => stack.push().copy_from_slice(values),
-                    CacheEntry::YOnly(values) => stack.push().fill(values[row]),
-                },
+                Instruction::XOnlySubtree(k) => stack.push().copy_from_slice(&self.cache.x_rows[k]),
+                Instruction::YOnlySubtree(k) => stack.push().fill(self.cache.y_values[k][row]),
                 Instruction::Const(v) => stack.push().fill(v),
                 Instruction::Sin => stack.unary_row(math::sinf_row),
                 Instruction::Cos => stack.unary_row(math::cosf_row),
