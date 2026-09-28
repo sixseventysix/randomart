@@ -1,4 +1,4 @@
-use randomart::{render::render, seed::generate_from_str};
+use randomart::randomart;
 use xxhash_rust::xxh3::xxh3_64;
 
 const GOLDEN: [(&str, u32, u64); 3] = [
@@ -10,8 +10,7 @@ const GOLDEN: [(&str, u32, u64); 3] = [
 #[test]
 fn matches_golden_hashes() {
     for (string, depth, expected) in GOLDEN {
-        let channels = generate_from_str(string, depth);
-        let buffer = render(&channels, 128, 128).unwrap();
+        let buffer = randomart(string, depth, 128, 128).unwrap();
         assert_eq!(xxh3_64(&buffer.data), expected, "{string:?} at depth {depth}");
     }
 }

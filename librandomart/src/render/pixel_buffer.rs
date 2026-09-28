@@ -15,12 +15,4 @@ impl PixelBuffer {
             data: vec![0u8; width as usize * height as usize * 3],
         }
     }
-
-    #[inline]
-    pub fn put_pixel(&mut self, x: u32, y: u32, r: u8, g: u8, b: u8) {
-        let idx = (y as usize * self.width as usize + x as usize) * 3;
-        self.data[idx]     = r;
-        self.data[idx + 1] = g;
-        self.data[idx + 2] = b;
-    }
 }

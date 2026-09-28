@@ -2,7 +2,7 @@ mod analysis;
 mod run;
 
 pub use analysis::compile;
-pub use run::{EvaluationStack, SubtreeEvaluations};
+pub use run::EvaluationStack;
 
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum Instruction {
