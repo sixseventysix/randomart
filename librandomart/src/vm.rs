@@ -92,17 +92,17 @@ fn positions(size: u32) -> Vec<f32> {
 
 #[derive(Clone, Copy, PartialEq)]
 enum DependsOn {
-    Nothing,
-    X,
-    Y,
-    XAndY,
+    Constant,
+    XOnly,
+    YOnly,
+    XY,
 }
 
 fn combine(a: DependsOn, b: DependsOn) -> DependsOn {
     match (a, b) {
-        (DependsOn::Nothing, other) | (other, DependsOn::Nothing) => other,
+        (DependsOn::Constant, other) | (other, DependsOn::Constant) => other,
         (a, b) if a == b => a,
-        _ => DependsOn::XAndY,
+        _ => DependsOn::XY,
     }
 }
 
@@ -113,9 +113,9 @@ fn depends_on(ops: &[Op]) -> Vec<(DependsOn, usize)> {
         .rev()
         .map(|&op| {
             let leaf = match op {
-                Op::X => DependsOn::X,
-                Op::Y => DependsOn::Y,
-                _ => DependsOn::Nothing,
+                Op::X => DependsOn::XOnly,
+                Op::Y => DependsOn::YOnly,
+                _ => DependsOn::Constant,
             };
             let node = stack
                 .drain(stack.len() - op.arity()..)
@@ -152,18 +152,18 @@ fn evaluate(ops: &[Op], inputs: &[f32]) -> Vec<f32> {
     program.run(&mut stack, 0).to_vec()
 }
 
-fn cut(subtree: &[Op], depends_on: DependsOn, xs: &[f32], ys: &[f32], cache: &mut Cache) -> Instruction {
+fn cache_subtree(subtree: &[Op], depends_on: DependsOn, xs: &[f32], ys: &[f32], cache: &mut Cache) -> Instruction {
     match depends_on {
-        DependsOn::Nothing => Instruction::Const(evaluate(subtree, &[0.0])[0]),
-        DependsOn::X => {
+        DependsOn::Constant => Instruction::Const(evaluate(subtree, &[0.0])[0]),
+        DependsOn::XOnly => {
             cache.x_rows.push(evaluate(subtree, xs));
             Instruction::XOnlySubtree(cache.x_rows.len() - 1)
         }
-        DependsOn::Y => {
+        DependsOn::YOnly => {
             cache.y_values.push(evaluate(subtree, ys));
             Instruction::YOnlySubtree(cache.y_values.len() - 1)
         }
-        DependsOn::XAndY => unreachable!(),
+        DependsOn::XY => unreachable!(),
     }
 }
 
@@ -190,8 +190,8 @@ impl Program {
                     parents.push((depends_on, op.arity()));
                 }
                 match (depends_on, parent) {
-                    (DependsOn::XAndY, _) => Some(instruction(op)),
-                    (_, Some(DependsOn::XAndY) | None) => Some(cut(&ops[i..i + size], depends_on, &xs, &ys, &mut cache)),
+                    (DependsOn::XY, _) => Some(instruction(op)),
+                    (_, Some(DependsOn::XY) | None) => Some(cache_subtree(&ops[i..i + size], depends_on, &xs, &ys, &mut cache)),
                     _ => None,
                 }
             })
