@@ -1,0 +1,19 @@
+[package]
+name = "math-conformance"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+randomart.workspace = true
+math = { path = "../math" }
+rayon = "1.12.0"
+
+[build-dependencies]
+cc = "1.4.7"
+
+[dev-dependencies]
+divan.workspace = true
+
+[[bench]]
+name = "math"
+harness = false

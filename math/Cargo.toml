@@ -1,0 +1,4 @@
+[package]
+name = "math"
+version.workspace = true
+edition.workspace = true
