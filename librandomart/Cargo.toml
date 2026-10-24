@@ -10,19 +10,13 @@ rayon = "1.12.0"
 xxhash-rust.workspace = true
 anyhow.workspace = true
 rand_distr = "0.6.0"
-
-[build-dependencies]
-cc = "1.4.7"
+math = { path = "../math" }
 
 [dev-dependencies]
 divan.workspace = true
 
 [[bench]]
 name = "generate"
-harness = false
-
-[[bench]]
-name = "math"
 harness = false
 
 [[bench]]

@@ -1,5 +1,4 @@
 use super::{Instruction, Program};
-use crate::math;
 
 pub type SubtreeEvaluations = Vec<f32>;
 
@@ -26,10 +25,6 @@ impl EvaluationStack {
         for v in self.evaluations[self.stack_ptr - 1].iter_mut() {
             *v = f(*v);
         }
-    }
-
-    fn unary_row(&mut self, f: fn(&mut [f32])) {
-        f(&mut self.evaluations[self.stack_ptr - 1]);
     }
 
     fn binary(&mut self, f: impl Fn(f32, f32) -> f32) {
@@ -63,10 +58,10 @@ impl Program {
                 Instruction::XOnlySubtree(k) => stack.push().copy_from_slice(&self.cache.x_rows[k]),
                 Instruction::YOnlySubtree(k) => stack.push().fill(self.cache.y_values[k][row]),
                 Instruction::Const(v) => stack.push().fill(v),
-                Instruction::Sin => stack.unary_row(math::sinf_row),
-                Instruction::Cos => stack.unary_row(math::cosf_row),
-                Instruction::Exp => stack.unary_row(math::expf_row),
-                Instruction::Sqrt => stack.unary(|a| math::sqrtf(a).max(0.0)),
+                Instruction::Sin => stack.unary(math::sinf),
+                Instruction::Cos => stack.unary(math::cosf),
+                Instruction::Exp => stack.unary(math::expf),
+                Instruction::Sqrt => stack.unary(|a| a.sqrt().max(0.0)),
                 Instruction::Add => stack.binary(|a, b| (a + b) / 2.0),
                 Instruction::Mult => stack.binary(|a, b| a * b),
                 Instruction::Div => stack.binary(|a, b| if b.abs() > 1e-6 { a / b } else { 0.0 }),
