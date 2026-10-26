@@ -1,5 +1,5 @@
 use super::{Cache, EvaluationStack, Instruction, Program};
-use crate::op::Op;
+use crate::op::{Op, Subtree, subtrees};
 
 #[derive(Clone, Copy, PartialEq)]
 enum DependsOn {
@@ -18,25 +18,22 @@ fn combine(a: DependsOn, b: DependsOn) -> DependsOn {
 }
 
 fn label(ops: &[Op]) -> Vec<(DependsOn, usize)> {
-    let mut stack: Vec<(DependsOn, usize)> = Vec::new();
-    let mut nodes: Vec<(DependsOn, usize)> = ops
-        .iter()
-        .rev()
-        .map(|&op| {
+    let mut labels = vec![(DependsOn::Constant, 0); ops.len()];
+    let mut stack: Vec<DependsOn> = Vec::new();
+    for subtree in subtrees(ops) {
+        if let Subtree::End { index, size } = subtree {
+            let op = ops[index];
             let leaf = match op {
                 Op::X => DependsOn::XOnly,
                 Op::Y => DependsOn::YOnly,
                 _ => DependsOn::Constant,
             };
-            let node = stack
-                .drain(stack.len() - op.arity()..)
-                .fold((leaf, 1), |(depends_on, size), (child, child_size)| (combine(depends_on, child), size + child_size));
-            stack.push(node);
-            node
-        })
-        .collect();
-    nodes.reverse();
-    nodes
+            let depends_on = stack.drain(stack.len() - op.arity()..).fold(leaf, combine);
+            stack.push(depends_on);
+            labels[index] = (depends_on, size);
+        }
+    }
+    labels
 }
 
 fn instruction(op: Op) -> Instruction {
@@ -54,66 +51,77 @@ fn instruction(op: Op) -> Instruction {
     }
 }
 
-fn evaluate(ops: &[Op], inputs: &[f32]) -> Vec<f32> {
-    let program = Program {
-        instructions: ops.iter().rev().map(|&op| instruction(op)).collect(),
-        cache: Cache { x_rows: vec![inputs.to_vec()], y_values: Vec::new() },
-    };
-    let mut stack = EvaluationStack::new(inputs.len());
-    program.run(&mut stack, 0).to_vec()
+struct SubtreeEvaluator {
+    program: Program,
+    stack: EvaluationStack,
 }
 
-fn cache_subtree(subtree: &[Op], depends_on: DependsOn, xs: &[f32], ys: &[f32], cache: &mut Cache) -> Instruction {
+impl SubtreeEvaluator {
+    fn new(inputs: &[f32]) -> Self {
+        Self {
+            program: Program {
+                instructions: Vec::new(),
+                cache: Cache { x_rows: vec![inputs.to_vec()], y_values: Vec::new() },
+            },
+            stack: EvaluationStack::new(inputs.len()),
+        }
+    }
+
+    fn evaluate(&mut self, ops: &[Op]) -> &[f32] {
+        self.program.instructions.clear();
+        self.program.instructions.extend(ops.iter().rev().map(|&op| instruction(op)));
+        self.program.run(&mut self.stack, 0)
+    }
+}
+
+fn cache_subtree(
+    subtree: &[Op],
+    depends_on: DependsOn,
+    constant: &mut SubtreeEvaluator,
+    x: &mut SubtreeEvaluator,
+    y: &mut SubtreeEvaluator,
+    cache: &mut Cache,
+) -> Instruction {
     match depends_on {
-        DependsOn::Constant => Instruction::Const(evaluate(subtree, &[0.0])[0]),
+        DependsOn::Constant => Instruction::Const(constant.evaluate(subtree)[0]),
         DependsOn::XOnly => {
-            cache.x_rows.push(evaluate(subtree, xs));
+            cache.x_rows.push(x.evaluate(subtree).to_vec());
             Instruction::XOnlySubtree(cache.x_rows.len() - 1)
         }
         DependsOn::YOnly => {
-            cache.y_values.push(evaluate(subtree, ys));
+            cache.y_values.push(y.evaluate(subtree).to_vec());
             Instruction::YOnlySubtree(cache.y_values.len() - 1)
         }
         DependsOn::XY => unreachable!(),
     }
 }
 
-enum Subtree<'a> {
-    NonReducible(Op),
-    Reducible(DependsOn, &'a [Op]),
-}
-
-fn reduce_subtrees<'a>(ops: &'a [Op], labels: &[(DependsOn, usize)]) -> Vec<Subtree<'a>> {
-    let mut subtrees = Vec::new();
-    let mut i = 0;
-    while i < ops.len() {
-        let (depends_on, size) = labels[i];
-        if depends_on == DependsOn::XY {
-            subtrees.push(Subtree::NonReducible(ops[i]));
-            i += 1;
-        } else {
-            subtrees.push(Subtree::Reducible(depends_on, &ops[i..i + size]));
-            i += size;
+fn precompute(ops: &[Op], labels: &[(DependsOn, usize)], xs: &[f32], ys: &[f32]) -> Program {
+    let mut cache = Cache { x_rows: Vec::new(), y_values: Vec::new() };
+    let mut constant = SubtreeEvaluator::new(&[0.0]);
+    let mut x = SubtreeEvaluator::new(xs);
+    let mut y = SubtreeEvaluator::new(ys);
+    let mut instructions = Vec::new();
+    let mut cached_until = 0;
+    for subtree in subtrees(ops) {
+        if let Subtree::Start { index } = subtree {
+            if index < cached_until {
+                continue;
+            }
+            let (depends_on, size) = labels[index];
+            if depends_on == DependsOn::XY {
+                instructions.push(instruction(ops[index]));
+            } else {
+                instructions.push(cache_subtree(&ops[index..index + size], depends_on, &mut constant, &mut x, &mut y, &mut cache));
+                cached_until = index + size;
+            }
         }
     }
-    subtrees
-}
-
-fn precompute(subtrees: &[Subtree], xs: &[f32], ys: &[f32]) -> Program {
-    let mut cache = Cache { x_rows: Vec::new(), y_values: Vec::new() };
-    let instructions = subtrees
-        .iter()
-        .rev()
-        .map(|subtree| match *subtree {
-            Subtree::NonReducible(op) => instruction(op),
-            Subtree::Reducible(depends_on, ops) => cache_subtree(ops, depends_on, xs, ys, &mut cache),
-        })
-        .collect();
+    instructions.reverse();
     Program { instructions, cache }
 }
 
 pub fn compile(ops: &[Op], xs: &[f32], ys: &[f32]) -> Program {
     let labels = label(ops);
-    let subtrees = reduce_subtrees(ops, &labels);
-    precompute(&subtrees, xs, ys)
+    precompute(ops, &labels, xs, ys)
 }

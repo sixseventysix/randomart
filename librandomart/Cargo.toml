@@ -22,3 +22,7 @@ harness = false
 [[bench]]
 name = "render"
 harness = false
+
+[[bench]]
+name = "compile"
+harness = false
