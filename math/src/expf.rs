@@ -94,7 +94,6 @@ fn expf_accurate(z: f64, ia: f64, s: f64) -> f32 {
     w.mul_add(p, s) as f32
 }
 
-#[inline]
 pub fn expf(x: f32) -> f32 {
     let z = x as f64;
     let a = ILN2 * z;

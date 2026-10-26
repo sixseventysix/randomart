@@ -62,7 +62,6 @@ fn cosf_big(x: f32) -> f32 {
     r as f32
 }
 
-#[inline]
 pub fn cosf(x: f32) -> f32 {
     let ax = x.to_bits() << 1;
     if ax > 0x9900_0000 || ax < 0x7300_0000 {
