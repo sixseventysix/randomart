@@ -4,11 +4,11 @@ version.workspace = true
 edition.workspace = true
 
 [dependencies]
-rand = "0.10.3"
+rand = { version = "0.10.3", default-features = false }
 rand_chacha = "0.10.0"
 xxhash-rust.workspace = true
 anyhow.workspace = true
-rand_distr = "0.6.0"
+rand_distr = { version = "0.6.0", default-features = false, features = ["alloc"] }
 math = { path = "../math" }
 
 [dev-dependencies]
