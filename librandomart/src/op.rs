@@ -32,21 +32,6 @@ pub fn sqrt(a: f32) -> f32 {
 }
 
 #[inline]
-pub fn sin(a: f32) -> f32 {
-    math::sinf(a)
-}
-
-#[inline]
-pub fn cos(a: f32) -> f32 {
-    math::cosf(a)
-}
-
-#[inline]
-pub fn exp(a: f32) -> f32 {
-    math::expf(a)
-}
-
-#[inline]
 pub fn add(a: f32, b: f32) -> f32 {
     (a + b) / 2.0
 }

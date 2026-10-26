@@ -9,7 +9,6 @@ rand_chacha = "0.10.0"
 xxhash-rust.workspace = true
 anyhow.workspace = true
 rand_distr = { version = "0.6.0", default-features = false, features = ["alloc"] }
-math = { path = "../math" }
 
 [dev-dependencies]
 divan.workspace = true
