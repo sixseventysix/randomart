@@ -1,7 +1,7 @@
-mod analysis;
+mod compile;
 mod run;
 
-pub use analysis::compile;
+pub use compile::compile;
 pub use run::EvaluationStack;
 
 #[derive(Clone, Copy, Debug, PartialEq)]

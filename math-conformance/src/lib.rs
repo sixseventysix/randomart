@@ -1,4 +1,4 @@
-use randomart::ftz::disable_ftz;
+use cpu::ftz::disable_ftz;
 use rayon::prelude::*;
 
 unsafe extern "C" {

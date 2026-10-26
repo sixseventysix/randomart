@@ -1,4 +1,4 @@
-use randomart::randomart;
+use cpu::randomart;
 use xxhash_rust::xxh3::xxh3_64;
 
 const GOLDEN: [(&str, u32, u64); 3] = [

@@ -1,3 +1,5 @@
+use crate::subtree::{Subtree, subtrees};
+
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum Op {
     X,
@@ -24,28 +26,29 @@ impl Op {
     }
 }
 
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum Subtree {
-    Start { index: usize },
-    End { index: usize, size: usize },
+#[inline]
+pub fn sqrt(a: f32) -> f32 {
+    a.sqrt().max(0.0)
 }
 
-pub fn subtrees(ops: &[Op]) -> impl Iterator<Item = Subtree> + '_ {
-    let mut unfinished: Vec<(usize, usize)> = Vec::new();
-    let mut next = 0;
-    std::iter::from_fn(move || {
-        if let Some(&(index, 0)) = unfinished.last() {
-            unfinished.pop();
-            if let Some((_, remaining)) = unfinished.last_mut() {
-                *remaining -= 1;
-            }
-            return Some(Subtree::End { index, size: next - index });
-        }
-        let op = *ops.get(next)?;
-        unfinished.push((next, op.arity()));
-        next += 1;
-        Some(Subtree::Start { index: next - 1 })
-    })
+#[inline]
+pub fn add(a: f32, b: f32) -> f32 {
+    (a + b) / 2.0
+}
+
+#[inline]
+pub fn mult(a: f32, b: f32) -> f32 {
+    a * b
+}
+
+#[inline]
+pub fn div(a: f32, b: f32) -> f32 {
+    if b.abs() > 1e-6 { a / b } else { 0.0 }
+}
+
+#[inline]
+pub fn mix(a: f32, b: f32, c: f32, d: f32) -> f32 {
+    (a * c + b * d) / (a + b + 1e-6)
 }
 
 pub fn check(ops: &[Op]) -> anyhow::Result<()> {
@@ -66,24 +69,7 @@ pub fn check(ops: &[Op]) -> anyhow::Result<()> {
 
 #[cfg(test)]
 mod tests {
-    use super::{check, subtrees, Subtree, Op::*};
-
-    #[test]
-    fn subtrees_start_and_end_in_order() {
-        assert_eq!(
-            subtrees(&[Mult, X, Sin, Y]).collect::<Vec<_>>(),
-            [
-                Subtree::Start { index: 0 },
-                Subtree::Start { index: 1 },
-                Subtree::End { index: 1, size: 1 },
-                Subtree::Start { index: 2 },
-                Subtree::Start { index: 3 },
-                Subtree::End { index: 3, size: 1 },
-                Subtree::End { index: 2, size: 2 },
-                Subtree::End { index: 0, size: 4 },
-            ]
-        );
-    }
+    use super::{check, Op::*};
 
     #[test]
     fn accepts_a_complete_expression() {

@@ -1,0 +1,22 @@
+[package]
+name = "cpu"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+randomart.workspace = true
+rayon = "1.12.0"
+anyhow.workspace = true
+math = { path = "../math" }
+
+[dev-dependencies]
+divan.workspace = true
+xxhash-rust.workspace = true
+
+[[bench]]
+name = "render"
+harness = false
+
+[[bench]]
+name = "compile"
+harness = false

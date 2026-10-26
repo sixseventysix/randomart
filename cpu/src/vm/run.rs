@@ -1,4 +1,5 @@
 use super::{Instruction, Program};
+use randomart::op;
 
 pub type SubtreeEvaluations = Vec<f32>;
 
@@ -44,7 +45,7 @@ impl EvaluationStack {
         let c = &upper[0];
         let d = &mut lower[self.stack_ptr - 4];
         for (((d, &a), &b), &c) in d.iter_mut().zip(a).zip(b).zip(c) {
-            *d = (a * c + b * *d) / (a + b + 1e-6);
+            *d = op::mix(a, b, c, *d);
         }
         self.stack_ptr -= 3;
     }
@@ -61,10 +62,10 @@ impl Program {
                 Instruction::Sin => stack.unary(math::sinf),
                 Instruction::Cos => stack.unary(math::cosf),
                 Instruction::Exp => stack.unary(math::expf),
-                Instruction::Sqrt => stack.unary(|a| a.sqrt().max(0.0)),
-                Instruction::Add => stack.binary(|a, b| (a + b) / 2.0),
-                Instruction::Mult => stack.binary(|a, b| a * b),
-                Instruction::Div => stack.binary(|a, b| if b.abs() > 1e-6 { a / b } else { 0.0 }),
+                Instruction::Sqrt => stack.unary(op::sqrt),
+                Instruction::Add => stack.binary(op::add),
+                Instruction::Mult => stack.binary(op::mult),
+                Instruction::Div => stack.binary(op::div),
                 Instruction::Mix => stack.mix(),
             }
         }
