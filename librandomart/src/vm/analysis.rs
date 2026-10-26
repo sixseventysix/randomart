@@ -51,24 +51,45 @@ fn instruction(op: Op) -> Instruction {
     }
 }
 
-fn evaluate(ops: &[Op], inputs: &[f32]) -> Vec<f32> {
-    let program = Program {
-        instructions: ops.iter().rev().map(|&op| instruction(op)).collect(),
-        cache: Cache { x_rows: vec![inputs.to_vec()], y_values: Vec::new() },
-    };
-    let mut stack = EvaluationStack::new(inputs.len());
-    program.run(&mut stack, 0).to_vec()
+struct SubtreeEvaluator {
+    program: Program,
+    stack: EvaluationStack,
 }
 
-fn cache_subtree(subtree: &[Op], depends_on: DependsOn, xs: &[f32], ys: &[f32], cache: &mut Cache) -> Instruction {
+impl SubtreeEvaluator {
+    fn new(inputs: &[f32]) -> Self {
+        Self {
+            program: Program {
+                instructions: Vec::new(),
+                cache: Cache { x_rows: vec![inputs.to_vec()], y_values: Vec::new() },
+            },
+            stack: EvaluationStack::new(inputs.len()),
+        }
+    }
+
+    fn evaluate(&mut self, ops: &[Op]) -> &[f32] {
+        self.program.instructions.clear();
+        self.program.instructions.extend(ops.iter().rev().map(|&op| instruction(op)));
+        self.program.run(&mut self.stack, 0)
+    }
+}
+
+fn cache_subtree(
+    subtree: &[Op],
+    depends_on: DependsOn,
+    constant: &mut SubtreeEvaluator,
+    x: &mut SubtreeEvaluator,
+    y: &mut SubtreeEvaluator,
+    cache: &mut Cache,
+) -> Instruction {
     match depends_on {
-        DependsOn::Constant => Instruction::Const(evaluate(subtree, &[0.0])[0]),
+        DependsOn::Constant => Instruction::Const(constant.evaluate(subtree)[0]),
         DependsOn::XOnly => {
-            cache.x_rows.push(evaluate(subtree, xs));
+            cache.x_rows.push(x.evaluate(subtree).to_vec());
             Instruction::XOnlySubtree(cache.x_rows.len() - 1)
         }
         DependsOn::YOnly => {
-            cache.y_values.push(evaluate(subtree, ys));
+            cache.y_values.push(y.evaluate(subtree).to_vec());
             Instruction::YOnlySubtree(cache.y_values.len() - 1)
         }
         DependsOn::XY => unreachable!(),
@@ -77,6 +98,9 @@ fn cache_subtree(subtree: &[Op], depends_on: DependsOn, xs: &[f32], ys: &[f32], 
 
 fn precompute(ops: &[Op], labels: &[(DependsOn, usize)], xs: &[f32], ys: &[f32]) -> Program {
     let mut cache = Cache { x_rows: Vec::new(), y_values: Vec::new() };
+    let mut constant = SubtreeEvaluator::new(&[0.0]);
+    let mut x = SubtreeEvaluator::new(xs);
+    let mut y = SubtreeEvaluator::new(ys);
     let mut instructions = Vec::new();
     let mut cached_until = 0;
     for subtree in subtrees(ops) {
@@ -88,7 +112,7 @@ fn precompute(ops: &[Op], labels: &[(DependsOn, usize)], xs: &[f32], ys: &[f32])
             if depends_on == DependsOn::XY {
                 instructions.push(instruction(ops[index]));
             } else {
-                instructions.push(cache_subtree(&ops[index..index + size], depends_on, xs, ys, &mut cache));
+                instructions.push(cache_subtree(&ops[index..index + size], depends_on, &mut constant, &mut x, &mut y, &mut cache));
                 cached_until = index + size;
             }
         }
