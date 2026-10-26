@@ -25,7 +25,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-use super::doubles;
+use super::{doubles, mul_add};
 
 const C: [f64; 6] = doubles([
     0x3fe62e42fefa39ef, 0x3fcebfbdff82c58f, 0x3fac6b08d702e0ed,
@@ -75,7 +75,7 @@ fn expf_special(x: f32) -> Option<f32> {
         });
     }
     if u > 0xc2ce_8ec0 {
-        let y = (x as f64 + SUBNORMAL_SHIFT).mul_add(SUBNORMAL_SCALE, TWO_TO_MINUS_149);
+        let y = mul_add(x as f64 + SUBNORMAL_SHIFT, SUBNORMAL_SCALE, TWO_TO_MINUS_149);
         return Some(y.max(TWO_TO_MINUS_151) as f32);
     }
     if u >> 31 == 0 && u > 0x42b1_7217 {
@@ -87,11 +87,11 @@ fn expf_special(x: f32) -> Option<f32> {
 #[cold]
 #[inline(never)]
 fn expf_accurate(z: f64, ia: f64, s: f64) -> f32 {
-    let h = ILN2_LO.mul_add(z, ILN2_HI.mul_add(z, ia));
+    let h = mul_add(ILN2_LO, z, mul_add(ILN2_HI, z, ia));
     let h2 = h * h;
     let w = s * h;
-    let p = h2.mul_add(h2.mul_add(h.mul_add(C[5], C[4]), h.mul_add(C[3], C[2])), h.mul_add(C[1], C[0]));
-    w.mul_add(p, s) as f32
+    let p = mul_add(h2, mul_add(h2, mul_add(h, C[5], C[4]), mul_add(h, C[3], C[2])), mul_add(h, C[1], C[0]));
+    mul_add(w, p, s) as f32
 }
 
 pub fn expf(x: f32) -> f32 {
@@ -100,7 +100,7 @@ pub fn expf(x: f32) -> f32 {
     let ux = x.to_bits() << 1;
     if ux > 0x8562_e42e || ux < 0x6f93_813e {
         if ux < 0x6f93_813e {
-            return z.mul_add(z.mul_add(0.5, 1.0), 1.0) as f32;
+            return mul_add(z, mul_add(z, 0.5, 1.0), 1.0) as f32;
         }
         if let Some(r) = expf_special(x) {
             return r;
@@ -112,9 +112,9 @@ pub fn expf(x: f32) -> f32 {
     let h = a + ia;
     let s = f64::from_bits(TB[(u & 0x3f) as usize].wrapping_add((u >> 6) << 52));
     let h2 = h * h;
-    let r = h2.mul_add(h.mul_add(B[3], B[2]), h.mul_add(B[1], B[0])) * s;
+    let r = mul_add(h2, mul_add(h, B[3], B[2]), mul_add(h, B[1], B[0])) * s;
     let ub = r as f32;
-    let lb = (-r).mul_add(ROUNDING_TEST, r) as f32;
+    let lb = mul_add(-r, ROUNDING_TEST, r) as f32;
     if ub != lb {
         return expf_accurate(z, ia, s);
     }

@@ -25,6 +25,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+use super::mul_addf;
 use super::trig::{kernel, kernel_big, non_finite, reduce, reduce_big};
 
 const MINUS_ONE_SIXTH: f32 = f32::from_bits(0xbe2aaaab);
@@ -61,7 +62,7 @@ pub fn sinf(x: f32) -> f32 {
             return if ax == 0 { x } else { (-x).mul_add(x.abs(), x) };
         }
         if ax < 0x7300_0000 {
-            return (MINUS_ONE_SIXTH * x).mul_add(x * x, x);
+            return mul_addf(MINUS_ONE_SIXTH * x, x * x, x);
         }
         return sinf_big(x);
     }

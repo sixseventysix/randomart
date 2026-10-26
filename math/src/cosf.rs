@@ -25,6 +25,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+use super::mul_addf;
 use super::trig::{kernel, kernel_big, non_finite, reduce, reduce_big};
 
 const TWO_TO_MINUS_25: f32 = f32::from_bits(0x33000000);
@@ -69,7 +70,7 @@ pub fn cosf(x: f32) -> f32 {
             return if ax == 0 { 1.0 } else { 1.0 - TWO_TO_MINUS_25 };
         }
         if ax < 0x7300_0000 {
-            return (-0.5 * x).mul_add(x, 1.0);
+            return mul_addf(-0.5 * x, x, 1.0);
         }
         return cosf_big(x);
     }
