@@ -1,40 +1,8 @@
 use super::{Cache, EvaluationStack, Instruction, Program};
-use randomart::op::{Op, Subtree, subtrees};
-
-#[derive(Clone, Copy, PartialEq)]
-enum DependsOn {
-    Constant,
-    XOnly,
-    YOnly,
-    XY,
-}
-
-fn combine(a: DependsOn, b: DependsOn) -> DependsOn {
-    match (a, b) {
-        (DependsOn::Constant, other) | (other, DependsOn::Constant) => other,
-        (a, b) if a == b => a,
-        _ => DependsOn::XY,
-    }
-}
-
-fn label(ops: &[Op]) -> Vec<(DependsOn, usize)> {
-    let mut labels = vec![(DependsOn::Constant, 0); ops.len()];
-    let mut stack: Vec<DependsOn> = Vec::new();
-    for subtree in subtrees(ops) {
-        if let Subtree::End { index, size } = subtree {
-            let op = ops[index];
-            let leaf = match op {
-                Op::X => DependsOn::XOnly,
-                Op::Y => DependsOn::YOnly,
-                _ => DependsOn::Constant,
-            };
-            let depends_on = stack.drain(stack.len() - op.arity()..).fold(leaf, combine);
-            stack.push(depends_on);
-            labels[index] = (depends_on, size);
-        }
-    }
-    labels
-}
+use randomart::{
+    op::Op,
+    subtree::{DependsOn, Subtree, depends_on, subtrees},
+};
 
 fn instruction(op: Op) -> Instruction {
     match op {
@@ -96,7 +64,7 @@ fn cache_subtree(
     }
 }
 
-fn precompute(ops: &[Op], labels: &[(DependsOn, usize)], xs: &[f32], ys: &[f32]) -> Program {
+fn precompute(ops: &[Op], dependencies: &[(DependsOn, usize)], xs: &[f32], ys: &[f32]) -> Program {
     let mut cache = Cache { x_rows: Vec::new(), y_values: Vec::new() };
     let mut constant = SubtreeEvaluator::new(&[0.0]);
     let mut x = SubtreeEvaluator::new(xs);
@@ -108,7 +76,7 @@ fn precompute(ops: &[Op], labels: &[(DependsOn, usize)], xs: &[f32], ys: &[f32])
             if index < cached_until {
                 continue;
             }
-            let (depends_on, size) = labels[index];
+            let (depends_on, size) = dependencies[index];
             if depends_on == DependsOn::XY {
                 instructions.push(instruction(ops[index]));
             } else {
@@ -122,6 +90,6 @@ fn precompute(ops: &[Op], labels: &[(DependsOn, usize)], xs: &[f32], ys: &[f32])
 }
 
 pub fn compile(ops: &[Op], xs: &[f32], ys: &[f32]) -> Program {
-    let labels = label(ops);
-    precompute(ops, &labels, xs, ys)
+    let dependencies = depends_on(ops);
+    precompute(ops, &dependencies, xs, ys)
 }
