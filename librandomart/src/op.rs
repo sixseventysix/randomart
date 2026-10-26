@@ -24,13 +24,39 @@ impl Op {
     }
 }
 
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum Subtree {
+    Start { index: usize },
+    End { index: usize, size: usize },
+}
+
+pub fn subtrees(ops: &[Op]) -> impl Iterator<Item = Subtree> + '_ {
+    let mut unfinished: Vec<(usize, usize)> = Vec::new();
+    let mut next = 0;
+    std::iter::from_fn(move || {
+        if let Some(&(index, 0)) = unfinished.last() {
+            unfinished.pop();
+            if let Some((_, remaining)) = unfinished.last_mut() {
+                *remaining -= 1;
+            }
+            return Some(Subtree::End { index, size: next - index });
+        }
+        let op = *ops.get(next)?;
+        unfinished.push((next, op.arity()));
+        next += 1;
+        Some(Subtree::Start { index: next - 1 })
+    })
+}
+
 pub fn check(ops: &[Op]) -> anyhow::Result<()> {
     let mut open = 1;
-    for (index, op) in ops.iter().enumerate() {
-        if open == 0 {
-            anyhow::bail!("{op:?} at index {index} comes after the expression is already complete");
+    for subtree in subtrees(ops) {
+        if let Subtree::Start { index } = subtree {
+            if open == 0 {
+                anyhow::bail!("{:?} at index {index} comes after the expression is already complete", ops[index]);
+            }
+            open = open - 1 + ops[index].arity();
         }
-        open = open - 1 + op.arity();
     }
     if open != 0 {
         anyhow::bail!("the expression is incomplete: {open} inputs are missing");
@@ -40,7 +66,24 @@ pub fn check(ops: &[Op]) -> anyhow::Result<()> {
 
 #[cfg(test)]
 mod tests {
-    use super::{check, Op::*};
+    use super::{check, subtrees, Subtree, Op::*};
+
+    #[test]
+    fn subtrees_start_and_end_in_order() {
+        assert_eq!(
+            subtrees(&[Mult, X, Sin, Y]).collect::<Vec<_>>(),
+            [
+                Subtree::Start { index: 0 },
+                Subtree::Start { index: 1 },
+                Subtree::End { index: 1, size: 1 },
+                Subtree::Start { index: 2 },
+                Subtree::Start { index: 3 },
+                Subtree::End { index: 3, size: 1 },
+                Subtree::End { index: 2, size: 2 },
+                Subtree::End { index: 0, size: 4 },
+            ]
+        );
+    }
 
     #[test]
     fn accepts_a_complete_expression() {
