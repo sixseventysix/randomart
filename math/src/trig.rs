@@ -25,7 +25,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-use super::doubles;
+use super::{doubles, mul_add};
 
 const A: [f64; 4] = doubles([0x3fc921fb54442d17, 0xbf54abbce6256a39, 0x3ec466bc5a518c16, 0xbe232bdc61074ff6]);
 const B: [f64; 4] = doubles([0x3f93bd3cc9be45dc, 0xbf103c1f081b0833, 0x3e755d3c6fc9ac1f, 0xbdce1d3ff281b40d]);
@@ -49,8 +49,8 @@ const TWO_TO_MINUS_64: f64 = f64::from_bits(0x3bf0000000000000);
 
 fn polynomials(z2: f64) -> (f64, f64) {
     let z4 = z2 * z2;
-    let aa = z4.mul_add(z2.mul_add(A[3], A[2]), z2.mul_add(A[1], A[0]));
-    let bb = z4.mul_add(z2.mul_add(B[3], B[2]), z2.mul_add(B[1], B[0]));
+    let aa = mul_add(z4, mul_add(z2, A[3], A[2]), mul_add(z2, A[1], A[0]));
+    let bb = mul_add(z4, mul_add(z2, B[3], B[2]), mul_add(z2, B[1], B[0]));
     (aa, bb)
 }
 
@@ -114,11 +114,11 @@ pub(super) fn kernel(z: f64, ia: i32) -> f64 {
     let z2 = z * z;
     let (aa, bb) = polynomials(z2);
     let (s0, c0) = table(ia);
-    (-bb).mul_add(z2 * s0, aa.mul_add(z * c0, s0))
+    mul_add(-bb, z2 * s0, mul_add(aa, z * c0, s0))
 }
 
 pub(super) fn kernel_big(z: f64, ia: i32) -> f64 {
     let (aa, bb) = polynomials(z * z);
     let (s0, c0) = table(ia);
-    z.mul_add(aa.mul_add(c0, -(bb * (z * s0))), s0)
+    mul_add(z, mul_add(aa, c0, -(bb * (z * s0))), s0)
 }
