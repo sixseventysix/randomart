@@ -1,5 +1,6 @@
 use divan::{Bencher, black_box};
-use randomart::{pcfg::OpGenerator, render::render, seed::derive_seeds};
+use cpu::render::render;
+use randomart::{pcfg::OpGenerator, seed::derive_seeds};
 use rayon::ThreadPoolBuilder;
 
 fn main() {

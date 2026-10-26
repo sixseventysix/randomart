@@ -1,6 +1,6 @@
 use divan::Bencher;
 use math_conformance::{core_math_cosf_row, core_math_expf_row, core_math_sinf_row};
-use randomart::{ftz::disable_ftz, render::pixel_position};
+use cpu::{ftz::disable_ftz, render::pixel_position};
 
 const PIXELS: usize = 512 * 512;
 

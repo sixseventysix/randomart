@@ -1,5 +1,5 @@
 use super::{Cache, EvaluationStack, Instruction, Program};
-use crate::op::{Op, Subtree, subtrees};
+use randomart::op::{Op, Subtree, subtrees};
 
 #[derive(Clone, Copy, PartialEq)]
 enum DependsOn {

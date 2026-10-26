@@ -3,9 +3,9 @@ pub mod pixel_buffer;
 use anyhow::Result;
 use crate::{
     ftz::disable_ftz,
-    op::Op,
     vm::{EvaluationStack, compile},
 };
+use randomart::op::Op;
 use pixel_buffer::PixelBuffer;
 use rayon::prelude::*;
 
