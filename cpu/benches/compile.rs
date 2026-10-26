@@ -1,6 +1,6 @@
 use divan::{AllocProfiler, Bencher, black_box};
-use cpu::{render::pixel_position, vm::compile};
-use randomart::{pcfg::OpGenerator, seed::derive_seeds};
+use cpu::vm::compile;
+use randomart::{pcfg::OpGenerator, pixel::pixel_position, seed::derive_seeds};
 
 #[global_allocator]
 static ALLOC: AllocProfiler = AllocProfiler::system();

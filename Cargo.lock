@@ -91,7 +91,6 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "divan",
- "math",
  "randomart",
  "rayon",
  "xxhash-rust",
@@ -220,6 +219,7 @@ dependencies = [
  "cpu",
  "divan",
  "math",
+ "randomart",
  "rayon",
 ]
 
@@ -309,6 +309,7 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "divan",
+ "math",
  "rand",
  "rand_chacha",
  "rand_distr",

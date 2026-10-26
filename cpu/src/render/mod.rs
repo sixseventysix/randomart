@@ -5,7 +5,10 @@ use crate::{
     ftz::disable_ftz,
     vm::{EvaluationStack, compile},
 };
-use randomart::op::Op;
+use randomart::{
+    op::Op,
+    pixel::{pixel_position, to_byte},
+};
 use pixel_buffer::PixelBuffer;
 use rayon::prelude::*;
 
@@ -40,14 +43,6 @@ pub fn render(channels: &[Vec<Op>; 3], width: u32, height: u32) -> Result<PixelB
     Ok(buf)
 }
 
-pub fn pixel_position(pixel: usize, size: u32) -> f32 {
-    (pixel as f32 / (size - 1) as f32) * 2.0 - 1.0
-}
-
 fn positions(size: u32) -> Vec<f32> {
     (0..size as usize).map(|pixel| pixel_position(pixel, size)).collect()
-}
-
-pub fn to_byte(value: f32) -> u8 {
-    ((value + 1.0) * 127.5).clamp(0.0, 255.0) as u8
 }

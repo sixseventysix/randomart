@@ -7,7 +7,6 @@ edition.workspace = true
 randomart.workspace = true
 rayon = "1.12.0"
 anyhow.workspace = true
-math = { path = "../math" }
 
 [dev-dependencies]
 divan.workspace = true

@@ -5,6 +5,7 @@ edition.workspace = true
 
 [dependencies]
 cpu.workspace = true
+randomart.workspace = true
 math = { path = "../math" }
 rayon = "1.12.0"
 

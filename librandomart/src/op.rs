@@ -24,6 +24,46 @@ impl Op {
     }
 }
 
+#[inline]
+pub fn sqrt(a: f32) -> f32 {
+    a.sqrt().max(0.0)
+}
+
+#[inline]
+pub fn sin(a: f32) -> f32 {
+    math::sinf(a)
+}
+
+#[inline]
+pub fn cos(a: f32) -> f32 {
+    math::cosf(a)
+}
+
+#[inline]
+pub fn exp(a: f32) -> f32 {
+    math::expf(a)
+}
+
+#[inline]
+pub fn add(a: f32, b: f32) -> f32 {
+    (a + b) / 2.0
+}
+
+#[inline]
+pub fn mult(a: f32, b: f32) -> f32 {
+    a * b
+}
+
+#[inline]
+pub fn div(a: f32, b: f32) -> f32 {
+    if b.abs() > 1e-6 { a / b } else { 0.0 }
+}
+
+#[inline]
+pub fn mix(a: f32, b: f32, c: f32, d: f32) -> f32 {
+    (a * c + b * d) / (a + b + 1e-6)
+}
+
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum Subtree {
     Start { index: usize },
