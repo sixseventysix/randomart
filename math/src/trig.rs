@@ -47,7 +47,6 @@ const THIRTY_TWO_OVER_PI_LO: f64 = f64::from_bits(0xbe2b1bbead603d8b);
 const ROUND: f64 = f64::from_bits(0x4338000000000000);
 const TWO_TO_MINUS_64: f64 = f64::from_bits(0x3bf0000000000000);
 
-#[inline]
 fn polynomials(z2: f64) -> (f64, f64) {
     let z4 = z2 * z2;
     let aa = z4.mul_add(z2.mul_add(A[3], A[2]), z2.mul_add(A[1], A[0]));
@@ -55,12 +54,10 @@ fn polynomials(z2: f64) -> (f64, f64) {
     (aa, bb)
 }
 
-#[inline]
 fn table(ia: i32) -> (f64, f64) {
     (TB[(ia & 31) as usize], TB[(ia.wrapping_add(8) & 31) as usize])
 }
 
-#[inline]
 pub(super) fn reduce(x: f32, small: bool) -> (f64, i32) {
     let x = x as f64;
     let (z, id) = if small {
@@ -113,7 +110,6 @@ pub(super) fn non_finite(x: f32) -> Option<f32> {
     Some(if ax << 8 != 0 { x + x } else { f32::NAN })
 }
 
-#[inline]
 pub(super) fn kernel(z: f64, ia: i32) -> f64 {
     let z2 = z * z;
     let (aa, bb) = polynomials(z2);
